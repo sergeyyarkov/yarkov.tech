@@ -1,0 +1,60 @@
+@import url('./fonts.scss');
+
+:root {
+  --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  --font-body: 'Rubik', var(--font-fallback);
+
+  --color-white: #ffffff;
+  --color-black: #010409;
+
+  --color-blue-50: #cae8ff;
+  --color-blue-100: #a5d6ff;
+  --color-blue-200: #79c0ff;
+  --color-blue-300: #58a6ff;
+  --color-blue-400: #388bfd;
+  --color-blue-500: #1f6feb;
+  --color-blue-600: #1158c7;
+  --color-blue-700: #0d419d;
+  --color-blue-800: #0c2d6b;
+  --color-blue-900: #051d4d;
+
+  --color-gray-50: #f0f6fc;
+  --color-gray-100: #c9d1d9;
+  --color-gray-200: #b1bac4;
+  --color-gray-300: #8b949e;
+  --color-gray-400: #6e7681;
+  --color-gray-500: #484f58;
+  --color-gray-600: #30363d;
+  --color-gray-700: #21262d;
+  --color-gray-800: #161b22;
+  --color-gray-900: #0d1117;
+
+  --color-orange-50: #ffdfb6;
+  --color-orange-100: #ffc680;
+  --color-orange-200: #ffa657;
+  --color-orange-300: #f0883e;
+  --color-orange-400: #db6d28;
+  --color-orange-500: #bd561d;
+  --color-orange-600: #9b4215;
+  --color-orange-700: #762d0a;
+  --color-orange-800: #5a1e02;
+  --color-orange-900: #3d1300;
+
+  --color-yellow-50: #f8e3a1;
+  --color-yellow-100: #f2cc60;
+  --color-yellow-200: #e3b341;
+  --color-yellow-300: #d29922;
+  --color-yellow-400: #bb8009;
+  --color-yellow-500: #9e6a03;
+  --color-yellow-600: #845306;
+  --color-yellow-700: #693e00;
+  --color-yellow-800: #4b2900;
+  --color-yellow-900: #341a00;
+}
+
+body {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  font-family: var(--font-body);
+}
