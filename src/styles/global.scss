@@ -7,6 +7,7 @@
   --font-family-base: 'Rubik', var(--font-fallback);
   --font-color: var(--color-black);
   --font-color-gray: var(--color-gray-500);
+  --font-color-grayer: var(--color-gray-700);
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
@@ -73,6 +74,7 @@
 
   /* Border */
   --border-color: var(--color-gray-100);
+  --border-color-hover: var(--color-gray-400);
   --border-radius-md: 3px;
 
   /* Sizes */
@@ -122,6 +124,52 @@ body {
   padding: 0 var(--content-padding);
 }
 
+.page-heading {
+  font-size: var(--font-size-4xl);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.page-description {
+  font-size: var(--font-size-lg);
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+  margin-bottom: 2.5rem;
+}
+
+.article-item {
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  & a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+    color: var(--font-color);
+    padding: 8px 15px;
+    & h3 {
+      font-size: var(--font-size-md);
+      font-weight: normal;
+      margin: 0;
+    }
+    & p {
+      font-size: var(--font-size-xs);
+      font-family: monospace;
+      color: var(--font-color-gray);
+      text-transform: uppercase;
+      margin: 0;
+      text-align: right;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &:hover {
+    background-color: var(--background-color-hover);
+  }
+}
+
 a {
   color: var(--color-blue-500);
   font-weight: 500;
@@ -144,6 +192,15 @@ h4,
 h5 {
   margin-top: 0;
   margin-bottom: 1.5rem;
+}
+
+input {
+  padding: 8px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  width: 100%;
+  outline-color: var(--color-blue-500);
 }
 
 svg {

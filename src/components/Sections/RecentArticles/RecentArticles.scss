@@ -15,33 +15,5 @@
   &-list {
     margin-top: 10px;
     max-width: calc(var(--content-width) + (var(--content-padding) * 2));
-    & article {
-      border-radius: var(--border-radius-md);
-      & a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        column-gap: 10px;
-        color: var(--font-color);
-        padding: 8px 15px;
-        text-decoration: none;
-        & h3 {
-          font-size: var(--font-size-md);
-          font-weight: normal;
-          margin: 0;
-        }
-        & p {
-          font-size: var(--font-size-xs);
-          font-family: monospace;
-          color: var(--font-color-gray);
-          text-transform: uppercase;
-          margin: 0;
-          text-align: right;
-        }
-      }
-      &:hover {
-        background-color: var(--background-color-hover);
-      }
-    }
   }
 }
