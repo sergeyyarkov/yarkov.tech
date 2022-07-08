@@ -1,0 +1,51 @@
+.header {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-header-color);
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  & .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--font-color);
+  }
+  &__nav {
+    display: flex;
+    align-items: center;
+    & ul {
+      display: flex;
+      list-style: none;
+      column-gap: 20px;
+      margin: 0;
+      padding: 0;
+      margin-right: 35px;
+      & li a {
+        display: inline-block;
+        font-weight: 500;
+        color: var(--font-color);
+        &:hover {
+          color: var(--color-blue-500);
+        }
+      }
+    }
+    &-contacts {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      margin-right: 40px;
+      & a {
+        text-decoration: none;
+        font-size: 0;
+      }
+    }
+  }
+}

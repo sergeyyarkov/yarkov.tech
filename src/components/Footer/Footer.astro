@@ -1,0 +1,24 @@
+---
+import './Footer.scss';
+import { AstroIcon, NetlifyIcon, RssIcon } from '@components/icons';
+---
+
+<footer class='footer'>
+  <div class='container'>
+    <ul class='footer__links'>
+      <li>
+        <a href='https://astro.build/' target='_blank'>Astro</a>
+        <AstroIcon />
+      </li>
+      <li>
+        <a href='https://www.netlify.com/' target='_blank'>Netlify</a>
+        <NetlifyIcon />
+      </li>
+      <li>
+        <a href='/rss.xml' target='_blank'>RSS</a>
+        <RssIcon />
+      </li>
+    </ul>
+    <p class='footer__copy'>© Sergey Yarkov, 2022</p>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+import './Header.scss';
+import { SITE_METADATA } from '@root/config';
+import { EmailIcon, GithubIcon, TelegramIcon } from '@components/icons';
+import ThemeSwitcher from '@components/ThemeSwticher';
+---
+
+<header class='header'>
+  <div class='container'>
+    <div class='header__logo'>
+      <a href='/'>{SITE_METADATA.name}</a>
+    </div>
+    <nav class='header__nav'>
+      <ul class='header__nav-links'>
+        <li><a href='/articles'>статьи</a></li>
+        <li><a href='/projects'>проекты</a></li>
+        <li><a href='/about'>обо мне</a></li>
+        <li><a href='/contacts'>контакты</a></li>
+      </ul>
+      <div class='header__nav-contacts'>
+        <a href={'mailto:' + SITE_METADATA.contacts.email}>
+          <EmailIcon />
+        </a>
+        <a href={SITE_METADATA.contacts.githubUrl}>
+          <GithubIcon />
+        </a>
+        <a href={SITE_METADATA.contacts.telegramUrl}>
+          <TelegramIcon />
+        </a>
+      </div>
+      <ThemeSwitcher />
+    </nav>
+  </div>
+</header>
