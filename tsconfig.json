@@ -6,12 +6,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "types": ["vite/client"],
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@root/*": ["./src/*"],
       "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
-      "@layouts/*": ["./src/layouts/*"]
+      "@layouts/*": ["./src/layouts/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "outDir": "./dist"
   },

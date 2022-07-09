@@ -16,9 +16,11 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@astrojs/solid-js": "^0.2.1",
     "astro": "^1.0.0-beta.63",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.1.1",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "solid-js": "^1.4.7"
   }
 }

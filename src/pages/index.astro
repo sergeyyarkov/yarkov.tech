@@ -1,12 +1,128 @@
 ---
 import Page from '@layouts/Page.astro';
-import {
-  WelcomeSection,
-  RecentArticlesSection,
-} from '@root/components/Sections';
+import { IArticle } from '@root/interfaces';
+import { ArticleItem } from '@components/ArticleItem';
+
+const data = await Astro.glob<IArticle>('../../content/articles/**/*.md');
+const recent = data.sort(
+  (a, b) =>
+    b.frontmatter.published_at.valueOf() - a.frontmatter.published_at.valueOf()
+);
 ---
 
 <Page title='Sergey Yarkov'>
-  <WelcomeSection />
-  <RecentArticlesSection />
+  <section class='welcome container'>
+    <header class='welcome-heading'>
+      <hgroup class='welcome-heading__title'>
+        <h1>Hello, I'am Sergey</h1>
+        <h2>Fullstack <b>web-developer</b> and <b>freelancer</b></h2>
+      </hgroup>
+      <p class='welcome-heading__description'>
+        Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а
+        также публикую различные статьи и туториалы на разные IT темы.
+      </p>
+    </header>
+    <nav class='welcome-links'>
+      <div class='welcome-links__link'>
+        <svg
+          width='18'
+          height='19'
+          viewBox='0 0 18 19'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M9 1.70001C8.04 1.70001 7.2 2.54001 7.2 3.50001C7.2 4.46001 8.04 5.30001 9 5.30001C9.96 5.30001 10.8 4.46001 10.8 3.50001C10.8 2.54001 9.96 1.70001 9 1.70001ZM4.8 6.50001V7.70001C4.8 7.70001 7.2 7.70001 7.2 10.1V12.5C7.2 14.9 4.8 14.9 4.8 14.9V16.1H13.2V14.9C13.2 14.9 10.8 14.9 10.8 12.5V7.70001C10.8 7.10001 10.2 6.50001 9.6 6.50001H4.8Z'
+          ></path>
+        </svg>
+        <a href='/about'> обо мне</a>
+      </div>
+      <div class='welcome-links__link'>
+        <svg
+          width='18'
+          height='18'
+          viewBox='0 0 18 18'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M16.125 6.366V12.6562C16.125 13.7437 15.2437 14.625 14.1562 14.625H3.84375C3.32161 14.625 2.82085 14.4176 2.45163 14.0484C2.08242 13.6792 1.875 13.1784 1.875 12.6562V6.366L8.77425 10.161C8.91488 10.2383 9.0855 10.2383 9.22575 10.161L16.125 6.36563V6.366ZM14.1562 3.375C14.6702 3.37505 15.1637 3.57606 15.5314 3.93509C15.8992 4.29412 16.1119 4.78272 16.1243 5.2965L9 9.21525L1.87575 5.29613L1.8765 5.26237C1.8975 4.75472 2.11395 4.27484 2.48059 3.92309C2.84723 3.57134 3.33566 3.37495 3.84375 3.375H14.1562Z'
+          ></path>
+        </svg>
+        <a href='/contacts'> написать мне</a>
+      </div>
+    </nav>
+  </section>
+
+  <section class='publications'>
+    <div class='container'>
+      <div class='publications-heading'>
+        <h2>недавние публикации</h2>
+        <a href='/articles'>смотреть все</a>
+      </div>
+    </div>
+    <div class='publications-list container'>
+      {recent.map((article) => <ArticleItem data={article.frontmatter} />)}
+    </div>
+  </section>
+
+  <style lang='scss'>
+    .welcome {
+      margin-top: 80px;
+      margin-bottom: 150px;
+      &-heading {
+        &__title {
+          & h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+          }
+          & h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: 1.25rem;
+            font-weight: normal;
+          }
+        }
+        &__description {
+          font-size: var(--font-size-lg);
+          max-width: 570px;
+          line-height: 1.5;
+        }
+      }
+      &-links {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+        &__link {
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+          & a {
+            color: var(--font-color-gray);
+          }
+          & svg {
+            fill: var(--font-color-gray);
+          }
+        }
+      }
+    }
+
+    .publications {
+      &-heading {
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+        & h2 {
+          margin: 0;
+        }
+      }
+      &-list {
+        margin-top: 10px;
+        max-width: calc(var(--content-width) + (var(--content-padding) * 2));
+      }
+    }
+  </style>
 </Page>
