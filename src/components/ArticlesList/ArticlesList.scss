@@ -32,7 +32,8 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      & li a {
+      & li {
+        cursor: pointer;
         padding: 3px 10px;
         border-radius: var(--border-radius-md);
         border: 1px solid var(--border-color);

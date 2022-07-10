@@ -2,12 +2,10 @@
 import Page from '@layouts/Page.astro';
 import { IArticle } from '@root/interfaces';
 import { ArticleItem } from '@components/ArticleItem';
+import * as utils from '@utils/index';
 
 const data = await Astro.glob<IArticle>('../../content/articles/**/*.md');
-const recent = data.sort(
-  (a, b) =>
-    b.frontmatter.published_at.valueOf() - a.frontmatter.published_at.valueOf()
-);
+const recent = utils.sortArtcilesByDate(utils.transformArticles(data));
 ---
 
 <Page title='Sergey Yarkov'>
@@ -60,13 +58,13 @@ const recent = data.sort(
       </div>
     </div>
     <div class='publications-list container'>
-      {recent.map((article) => <ArticleItem data={article.frontmatter} />)}
+      {recent.slice(0, 5).map((article) => <ArticleItem data={article} />)}
     </div>
   </section>
 
   <style lang='scss'>
     .welcome {
-      margin-top: 80px;
+      margin-top: 40px;
       margin-bottom: 150px;
       &-heading {
         &__title {

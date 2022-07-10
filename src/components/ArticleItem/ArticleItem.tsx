@@ -1,4 +1,4 @@
-import './ArticleItem.scss';
+import styles from './ArticleItem.module.scss';
 import { Component } from 'solid-js';
 import { IArticle } from '@root/interfaces';
 import { DateFormatter } from '@utils/date';
@@ -8,7 +8,7 @@ export type ArticleItemProps = {
 };
 
 export const ArticleItem: Component<ArticleItemProps> = ({ data }) => (
-  <article class='article-item'>
+  <article class={styles.ArticleItem}>
     <a href='#'>
       <h3>{data.title}</h3>
       <p>
