@@ -1,5 +1,5 @@
 import './ArticlesList.scss';
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, Show } from 'solid-js';
 import { PageHeading } from '@components/PageHeading';
 import { IArticle } from '@root/interfaces';
 import * as utils from '@root/utils/articles';
@@ -14,6 +14,10 @@ export const ArticlesList: Component<ArticlesListProps> = ({ data, tags }) => {
   const [articles, setArticles] = createSignal(
     utils.filterArticlesByYear(data)
   );
+
+  const [selectedTags, setSelectedTags] = createSignal<string[]>([]);
+
+  const [filteredArticles, setFilteredArticles] = createSignal<IArticle[]>([]);
 
   return (
     <section class='articles container'>
@@ -37,23 +41,56 @@ export const ArticlesList: Component<ArticlesListProps> = ({ data, tags }) => {
         <nav>
           <ul>
             {tags.map((tag) => (
-              <li data-tag={tag.toLocaleLowerCase()}>{tag}</li>
+              <li
+                style={
+                  selectedTags().includes(tag) &&
+                  'border-color: var(--border-color-hover);'
+                }
+                onClick={() => {
+                  if (selectedTags().includes(tag)) {
+                    setSelectedTags(
+                      selectedTags().filter(
+                        (selectedTag) => selectedTag !== tag
+                      )
+                    );
+                    setFilteredArticles(
+                      filteredArticles().filter((a) => !a.tags.includes(tag))
+                    );
+                    return;
+                  }
+                  setSelectedTags([...selectedTags(), tag]);
+                  data.forEach((article) => {
+                    if (article.tags.includes(tag)) {
+                      setFilteredArticles([...filteredArticles(), article]);
+                    }
+                  });
+                }}
+                data-tag={tag.toLocaleLowerCase()}>
+                {tag}
+              </li>
             ))}
           </ul>
         </nav>
       </div>
       <div class='articles-list'>
-        {Object.keys(articles())
-          .map(Number)
-          .sort((a, b) => b - a)
-          .map((year) => (
-            <div class='articles-list__wrapper'>
-              <h2>{year}</h2>
-              {utils.sortArtcilesByDate(articles()[year]).map((article) => (
-                <ArticleItem data={article} />
-              ))}
-            </div>
+        <Show when={filteredArticles().length === 0}>
+          {Object.keys(articles())
+            .map(Number)
+            .sort((a, b) => b - a)
+            .map((year) => (
+              <div class='articles-list__wrapper'>
+                <h2>{year}</h2>
+                {utils.sortArtcilesByDate(articles()[year]).map((article) => (
+                  <ArticleItem data={article} />
+                ))}
+              </div>
+            ))}
+        </Show>
+        <Show when={filteredArticles().length !== 0}>
+          {utils.sortArtcilesByDate(filteredArticles()).map((article) => (
+            <ArticleItem data={article} />
           ))}
+        </Show>
       </div>
     </section>
   );

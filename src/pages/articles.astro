@@ -8,7 +8,6 @@ const articles = await Astro.glob<IArticle>('../../content/articles/**/*.md');
 const tags = new Set(
   articles.map((article) => article.frontmatter.tags).flat()
 );
-console.log(tags);
 ---
 
 <Page title='Статьи | Sergey Yarkov'>

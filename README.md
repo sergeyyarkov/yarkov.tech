@@ -5,6 +5,14 @@
 
 Personal website created with Astro.
 
+### Todo
+
+- [ ] HTML layout
+- [ ] Adaptive & Responsive layout
+- [ ] Dark/Light Theme
+- [ ] Multilang web-site
+- [ ] Form handling via Netlify Forms
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
