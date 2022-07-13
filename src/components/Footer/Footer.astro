@@ -1,6 +1,6 @@
 ---
 import './Footer.scss';
-import { AstroIcon, NetlifyIcon, RssIcon } from '@components/icons';
+import { Icon } from 'astro-icon'
 ---
 
 <footer class='footer'>
@@ -8,15 +8,15 @@ import { AstroIcon, NetlifyIcon, RssIcon } from '@components/icons';
     <ul class='footer__links'>
       <li>
         <a href='https://astro.build/' target='_blank'>Astro</a>
-        <AstroIcon />
+        <Icon name='astro' width='20' height='20' />
       </li>
       <li>
         <a href='https://www.netlify.com/' target='_blank'>Netlify</a>
-        <NetlifyIcon />
+        <Icon name='netlify' width='20' height='20' />
       </li>
       <li>
         <a href='/rss.xml' target='_blank'>RSS</a>
-        <RssIcon />
+        <Icon name='rss' width='20' height='20' />
       </li>
     </ul>
     <p class='footer__copy'>© Sergey Yarkov, 2022</p>

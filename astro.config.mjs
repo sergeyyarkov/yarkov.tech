@@ -6,4 +6,12 @@ import solid from '@astrojs/solid-js';
 export default defineConfig({
   site: 'https://yarkov.tech',
   integrations: [solid()],
+  markdown: {
+    syntaxHighlight: 'prism',
+  },
+  vite: {
+    ssr: {
+      external: ["svgo"],
+    },
+  },
 });

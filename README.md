@@ -12,6 +12,7 @@ Personal website created with Astro.
 - [ ] Dark/Light Theme
 - [ ] Multilang web-site
 - [ ] Form handling via Netlify Forms
+- [ ] SEO optimized
 
 ## License
 

@@ -32,19 +32,6 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      & li {
-        cursor: pointer;
-        padding: 3px 10px;
-        border-radius: var(--border-radius-md);
-        border: 1px solid var(--border-color);
-        text-decoration: none;
-        color: var(--font-color);
-        font-size: var(--font-size-sm);
-        font-weight: 400;
-        &:hover {
-          border-color: var(--border-color-hover);
-        }
-      }
     }
   }
   &-list {

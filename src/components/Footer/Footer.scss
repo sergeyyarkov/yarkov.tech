@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 15px;
+    user-select: none;
   }
   &__links {
     display: flex;

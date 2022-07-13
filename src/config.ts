@@ -6,4 +6,6 @@ export const SITE_METADATA = {
     githubUrl: 'https://github.com/sergeyyarkov',
     telegramUrl: 'https://t.me/sergeyyarkov',
   },
+  projects: [],
+  skills: []
 };

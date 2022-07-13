@@ -46,6 +46,7 @@ export const ArticlesList: Component<ArticlesListProps> = ({ data, tags }) => {
                   selectedTags().includes(tag) &&
                   'border-color: var(--border-color-hover);'
                 }
+                class='btn-link'
                 onClick={() => {
                   if (selectedTags().includes(tag)) {
                     setSelectedTags(

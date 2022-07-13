@@ -5,6 +5,7 @@
   background-color: var(--background-header-color);
   padding-top: 15px;
   padding-bottom: 15px;
+  user-select: none;
 
   & .container {
     display: flex;
@@ -17,6 +18,9 @@
     font-weight: 600;
     font-size: var(--font-size-lg);
     color: var(--font-color);
+    &:hover {
+      border-bottom: 2px solid var(--color-blue-500);
+    }
   }
   &__nav {
     display: flex;
