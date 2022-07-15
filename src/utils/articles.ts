@@ -1,16 +1,16 @@
-import { IArticle } from '@root/interfaces';
+import type { IArticle } from '@root/interfaces';
 import { MarkdownInstance } from 'astro';
 
 export const transformArticles = (
   articles: MarkdownInstance<IArticle>[]
-): IArticle[] => {
-  return articles.map((article) => ({
+): IArticle[] => articles.map((article) => ({
     title: article.frontmatter.title,
     description: article.frontmatter.description,
+    author: article.frontmatter.author,
     tags: article.frontmatter.tags,
     published_at: article.frontmatter.published_at,
-  }));
-};
+  }))
+;
 
 export const sortArtcilesByDate = (articles: IArticle[]): IArticle[] => {
   return articles.sort(

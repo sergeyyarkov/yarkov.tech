@@ -1,6 +1,6 @@
 import './ArticleItem.scss';
 import { Component } from 'solid-js';
-import { IArticle } from '@root/interfaces';
+import type { IArticle } from '@root/interfaces';
 import { DateFormatter } from '@utils/date';
 
 export type ArticleItemProps = {

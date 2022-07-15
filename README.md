@@ -7,7 +7,7 @@ Personal website created with Astro.
 
 ### Todo
 
-- [ ] HTML layout
+- [x] HTML layout
 - [ ] Adaptive & Responsive layout
 - [ ] Dark/Light Theme
 - [ ] Multilang web-site
