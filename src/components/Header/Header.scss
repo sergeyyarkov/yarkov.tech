@@ -19,7 +19,9 @@
     font-size: var(--font-size-lg);
     color: var(--font-color);
     &:hover {
-      border-bottom: 2px solid var(--color-blue-500);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
     }
   }
   &__nav {
@@ -36,8 +38,10 @@
         display: inline-block;
         font-weight: 500;
         color: var(--font-color);
+        text-decoration: none;
         &:hover {
           color: var(--color-blue-500);
+          text-decoration: underline;
         }
       }
     }

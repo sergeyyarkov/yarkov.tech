@@ -1,26 +1,30 @@
 ---
-import '@styles/global.scss';
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+  import '@styles/global.scss';
+  import Header from '@components/Header';
+  import Footer from '@components/Footer';
 
-export interface Props {
-  title?: string | undefined;
-}
+  export interface Props {
+    title?: string | undefined;
+  }
 
-const { title = 'Sergey Yarkov' } = Astro.props as Props;
+  const { title = 'Sergey Yarkov' } = Astro.props as Props;
 ---
 
 <html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <title>{title}</title>
-  </head>
-  <body>
-    <Header />
-    <main class='site-content'>
-      <slot></slot>
-    </main>
-    <Footer />
-  </body>
+
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>{title}</title>
+  <link rel="stylesheet" href="/styles/prism/prism-one-light.css">
+</head>
+
+<body>
+  <Header />
+  <main class='site-content'>
+    <slot></slot>
+  </main>
+  <Footer />
+</body>
+
 </html>
