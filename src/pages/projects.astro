@@ -1,36 +1,24 @@
 ---
-import Page from '@layouts/Page.astro';
-import { PageHeading } from '@root/components/PageHeading';
-import { SITE_METADATA } from '@root/config';
+  import PageLayout from '@layouts/default.astro';
+  import { PageHeading } from '@root/components/PageHeading';
+  import { SITE_METADATA } from '@root/config';
+  import { Icon } from 'astro-icon'
 ---
 
-<Page title='Проекты | Sergey Yarkov'>
+<PageLayout title='Проекты | Sergey Yarkov'>
   <section class='projects container'>
-    <PageHeading
-      heading='Проекты'
-      description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.'
-    />
+    <PageHeading heading='Проекты'
+      description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.' />
     <div class='projects-heading'>
-      <a href={SITE_METADATA.contacts.githubUrl} target='_blank'
-        >смотреть все
+      <a href={SITE_METADATA.contacts.githubUrl + '?tab=repositories' } target='_blank'>
+        смотреть все
       </a>
     </div>
     <div class='projects-list'>
       <div class='project-item'>
         <div class='project-item__heading'>
           <h2>
-            <svg
-              width='20'
-              height='21'
-              viewBox='0 0 20 21'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M9.99983 18.8208C9.77066 18.8208 9.5565 18.7592 9.3565 18.6525L7.324 17.4458C7.01983 17.2767 7.17233 17.215 7.264 17.1842C7.67733 17.0467 7.754 17.0167 8.1815 16.7733C8.22816 16.7425 8.289 16.7567 8.33566 16.7875L9.894 17.7208C9.95566 17.7508 10.0323 17.7508 10.0782 17.7208L16.1773 14.19C16.239 14.16 16.269 14.0983 16.269 14.0217V6.97334C16.269 6.89751 16.239 6.83584 16.1773 6.80584L10.0782 3.29001C10.0173 3.25917 9.94066 3.25917 9.894 3.29001L3.79316 6.80501C3.73233 6.83501 3.7015 6.91251 3.7015 6.97251V14.02C3.7015 14.0808 3.73233 14.1583 3.79316 14.1883L5.45983 15.1525C6.3615 15.6092 6.92816 15.0733 6.92816 14.54V7.58501C6.92816 7.49334 7.004 7.40084 7.1115 7.40084H7.8915C7.9815 7.40084 8.07483 7.47751 8.07483 7.58501V14.5408C8.07483 15.7483 7.41816 16.4525 6.2715 16.4525C5.91983 16.4525 5.64483 16.4525 4.86483 16.0692L3.26066 15.1533C3.06521 15.0397 2.90301 14.8768 2.79026 14.6808C2.67751 14.4849 2.61817 14.2628 2.61816 14.0367V6.98834C2.61816 6.53001 2.86233 6.10167 3.26066 5.87251L9.35733 2.34167C9.55525 2.23583 9.77622 2.18045 10.0007 2.18045C10.2251 2.18045 10.4461 2.23583 10.644 2.34167L16.7415 5.87251C17.1407 6.10084 17.384 6.53001 17.384 6.98834V14.0367C17.384 14.4942 17.1398 14.9225 16.7415 15.1533L10.644 18.6833C10.4432 18.775 10.214 18.8208 9.99983 18.8208ZM11.8798 13.9742C9.20483 13.9742 8.65483 12.7508 8.65483 11.7125C8.65483 11.6208 8.7315 11.5283 8.83816 11.5283H9.63316C9.72483 11.5283 9.80066 11.5892 9.80066 11.6817C9.92316 12.4908 10.274 12.8892 11.8957 12.8892C13.179 12.8892 13.7307 12.5975 13.7307 11.91C13.7307 11.5125 13.5765 11.2225 11.5748 11.0242C9.909 10.8575 8.86983 10.4883 8.86983 9.15917C8.86983 7.92167 9.909 7.18751 11.6523 7.18751C13.6082 7.18751 14.5715 7.86167 14.6932 9.32751C14.6917 9.37698 14.6755 9.42487 14.6465 9.46501C14.6157 9.49501 14.5707 9.52584 14.5248 9.52584H13.7307C13.6914 9.52501 13.6535 9.51112 13.6231 9.48637C13.5926 9.46162 13.5712 9.42742 13.5623 9.38917C13.3782 8.54584 12.9048 8.27251 11.6523 8.27251C10.2448 8.27251 10.0765 8.76167 10.0765 9.12834C10.0765 9.57084 10.274 9.70834 12.1715 9.95334C14.0515 10.1975 14.9382 10.5492 14.9382 11.865C14.9215 13.2108 13.8223 13.9742 11.8798 13.9742Z'
-                fill='black'></path>
-            </svg>
-
+            <Icon name='nodejs' width='20' height='20' />
             yarkov.tech
           </h2>
           <span>2022</span>
@@ -42,38 +30,16 @@ import { SITE_METADATA } from '@root/config';
           </p>
         </div>
         <div class='project-item__links'>
-          <a class='btn-link' href='#'
-            >Исходник <svg
-              width='15'
-              height='15'
-              viewBox='0 0 15 15'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M8.4375 6.5625L13.125 1.875M10 1.875H13.125V5M13.125 8.75V11.875C13.125 12.2065 12.9933 12.5245 12.7589 12.7589C12.5245 12.9933 12.2065 13.125 11.875 13.125H3.125C2.79348 13.125 2.47554 12.9933 2.24112 12.7589C2.0067 12.5245 1.875 12.2065 1.875 11.875V3.125C1.875 2.79348 2.0067 2.47554 2.24112 2.24112C2.47554 2.0067 2.79348 1.875 3.125 1.875H6.25'
-                stroke='#21262D'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'></path>
-            </svg>
+          <a class='btn-link' href='#'>
+            Исходник
+            <Icon name='link-out' width='15' height='15' />
           </a>
         </div>
       </div>
       <div class='project-item'>
         <div class='project-item__heading'>
           <h2>
-            <svg
-              width='20'
-              height='17'
-              viewBox='0 0 20 17'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M8.2208 14.5116C8.99268 15.7027 11.0064 15.7032 11.7789 14.5122L18.4977 4.15437C19.2439 3.00368 18.2646 1.59375 16.7183 1.59375L3.2858 1.59375C1.74018 1.59375 0.760803 3.00315 1.50705 4.15384L8.2208 14.5116Z'
-                fill='black'></path>
-            </svg>
+            <Icon name='triangle_filled' width='20' height='20' />
             devthread
           </h2>
           <span>2021</span>
@@ -85,22 +51,12 @@ import { SITE_METADATA } from '@root/config';
           </p>
         </div>
         <div class='project-item__links'>
-          <a class='btn-link' href='#'>Статья</a>
-          <a class='btn-link' href='#'
-            >Исходник <svg
-              width='15'
-              height='15'
-              viewBox='0 0 15 15'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M8.4375 6.5625L13.125 1.875M10 1.875H13.125V5M13.125 8.75V11.875C13.125 12.2065 12.9933 12.5245 12.7589 12.7589C12.5245 12.9933 12.2065 13.125 11.875 13.125H3.125C2.79348 13.125 2.47554 12.9933 2.24112 12.7589C2.0067 12.5245 1.875 12.2065 1.875 11.875V3.125C1.875 2.79348 2.0067 2.47554 2.24112 2.24112C2.47554 2.0067 2.79348 1.875 3.125 1.875H6.25'
-                stroke='#21262D'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'></path>
-            </svg>
+          <a class='btn-link' href='#'>
+            Статья
+          </a>
+          <a class='btn-link' href='#'>
+            Исходник
+            <Icon name='link-out' width='15' height='15' />
           </a>
         </div>
       </div>
@@ -112,19 +68,23 @@ import { SITE_METADATA } from '@root/config';
         text-align: right;
         margin-bottom: 10px;
       }
+
       & .projects-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 10px;
+
         & .project-item {
           border: 1px solid var(--border-color);
           border-radius: var(--border-radius-lg);
           padding: 15px;
+
           &__heading {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 10px;
+
             & h2 {
               display: flex;
               align-items: center;
@@ -134,14 +94,17 @@ import { SITE_METADATA } from '@root/config';
               margin: 0;
               padding: 0;
             }
+
             & span {
               font-size: var(--font-size-sm);
               color: var(--font-color-gray);
             }
           }
+
           &__description {
             margin-bottom: 15px;
           }
+
           &__links {
             display: flex;
             column-gap: 5px;
@@ -150,4 +113,4 @@ import { SITE_METADATA } from '@root/config';
       }
     }
   </style>
-</Page>
+</PageLayout>

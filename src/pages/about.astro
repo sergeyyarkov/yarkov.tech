@@ -1,14 +1,14 @@
 ---
-import Page from '@layouts/Page.astro';
-import { Markdown } from 'astro/components';
-import { PageHeading } from '@root/components/PageHeading';
-import { Icon } from 'astro-icon'
+  import PageLayout from '@layouts/default.astro';
+  import { Markdown } from 'astro/components';
+  import { PageHeading } from '@root/components/PageHeading';
+  import { Icon } from 'astro-icon'
 
-// TODO: import content based on user ui language
-import * as aboutContent from '../../content/about/ru/index.md';
+  // TODO: import content based on user ui language
+  import * as aboutContent from '../../content/about/ru/index.md';
 ---
 
-<Page title='Обо мне | Sergey Yarkov'>
+<PageLayout title='Обо мне | Sergey Yarkov'>
   <section class='about container'>
     <PageHeading heading='Обо мне' />
     <div class='article-content'>
@@ -152,16 +152,19 @@ import * as aboutContent from '../../content/about/ru/index.md';
         column-gap: 40px;
         row-gap: 30px;
         margin-top: 5rem;
+
         & .skills-list {
           & h3 {
             font-size: var(--font-size-md);
             color: var(--font-color-grayer);
             font-weight: 500;
           }
+
           & ul {
             margin: 0;
             padding: 0;
             list-style: none;
+
             & li {
               font-weight: 400;
               margin-bottom: 10px;
@@ -174,14 +177,17 @@ import * as aboutContent from '../../content/about/ru/index.md';
         }
       }
     }
+
     @media screen and (max-width: 500px) {
       .about-skills {
         display: flex;
         flex-direction: column;
+
         & .skills-list {
           & h3 {
             text-align: center;
           }
+
           & ul {
             display: flex;
             flex-direction: column;
@@ -191,4 +197,4 @@ import * as aboutContent from '../../content/about/ru/index.md';
       }
     }
   </style>
-</Page>
+</PageLayout>

@@ -1,0 +1,35 @@
+---
+import type { IArticle } from '@root/interfaces';
+
+import './RecentArticles.scss';
+import { ArticleItem } from '@components/ArticleItem';
+import { sortArtcilesByDate } from '@utils/articles';
+
+export interface Props {
+	articles: IArticle[];
+	length?: number | undefined;
+}
+
+const { articles, length = 5 } = Astro.props as Props;
+
+const recent = sortArtcilesByDate(articles);
+---
+
+<section class='recent'>
+	<div class='container'>
+		<div class='recent-heading'>
+			<h2>недавние публикации</h2>
+			<a href='/articles'>смотреть все</a>
+		</div>
+	</div>
+
+	<div class='recent-list container'>
+		{recent.length !== 0 ? (
+			recent.slice(0, length).map((article) => <ArticleItem data={article} />)
+		) : (
+			<div style="text-align: center;margin:2.5rem 0;">
+				<p style="color:var(--font-color-gray);user-select: none;">Пока что здесь ничего нет...</p>
+			</div>
+		)}
+	</div>
+</section>

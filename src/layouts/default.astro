@@ -1,0 +1,24 @@
+---
+import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
+
+import '@styles/global.scss';
+import BaseHead from '@root/components/BaseHead.astro';
+import BaseLayout from '@components/BaseLayout';
+import { SITE_METADATA } from '@root/config';
+
+export interface Props extends BaseHeadProps {
+	lang?: string | undefined;
+}
+
+const { title = SITE_METADATA.title, description, lang = 'ru' } = Astro.props as Props;
+---
+
+<html lang={lang}>
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<BaseLayout>
+		<slot></slot>
+	</BaseLayout>
+</html>

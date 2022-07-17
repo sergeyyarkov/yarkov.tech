@@ -6,18 +6,15 @@ export type PageHeadingProps = {
   description?: string | undefined;
 };
 
-export const PageHeading: Component<PageHeadingProps> = ({
-  heading,
-  description,
-}) => {
+export const PageHeading: Component<PageHeadingProps> = (props) => {
   return (
     <header>
       <h1
         class={styles.PageHeading}
-        style={!description && 'margin-bottom: 2.5rem;'}>
-        {heading}
+        style={!props.description && 'margin-bottom: 2.5rem;'}>
+        {props.heading}
       </h1>
-      {description && <p class={styles.PageDescription}>{description}</p>}
+      {props.description && <p class={styles.PageDescription}>{props.description}</p>}
     </header>
   );
 };

@@ -1,0 +1,21 @@
+.recent {
+	&-heading {
+		display: flex;
+		align-items: center;
+		column-gap: 15px;
+		row-gap: 5px;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--border-color);
+		padding-bottom: 10px;
+
+		& h2 {
+			margin: 0;
+		}
+	}
+
+	&-list {
+		margin-top: 10px;
+		max-width: calc(var(--content-width) + (var(--content-padding) * 2));
+	}
+}
