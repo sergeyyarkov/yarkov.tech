@@ -1,116 +1,18 @@
 ---
-  import PageLayout from '@layouts/default.astro';
-  import { PageHeading } from '@root/components/PageHeading';
-  import { SITE_METADATA } from '@root/config';
-  import { Icon } from 'astro-icon'
+import { SITE_METADATA } from '@root/config';
+import PageLayout from '@layouts/default.astro';
+import PageHeading from '@root/components/PageHeading';
+import ProjectsList from '@root/components/ProjectsList';
+import ProjectItem from '@root/components/ProjectItem';
+
+const { projects } = SITE_METADATA;
 ---
 
 <PageLayout title='Проекты | Sergey Yarkov'>
-  <section class='projects container'>
-    <PageHeading heading='Проекты'
-      description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.' />
-    <div class='projects-heading'>
-      <a href={SITE_METADATA.contacts.githubUrl + '?tab=repositories' } target='_blank'>
-        смотреть все
-      </a>
-    </div>
-    <div class='projects-list'>
-      <div class='project-item'>
-        <div class='project-item__heading'>
-          <h2>
-            <Icon name='nodejs' width='20' height='20' />
-            yarkov.tech
-          </h2>
-          <span>2022</span>
-        </div>
-        <div class='project-item__description'>
-          <p>
-            Мой персональный веб-сайт где находятся информация обо мне и список
-            различных статей, туториалов...
-          </p>
-        </div>
-        <div class='project-item__links'>
-          <a class='btn-link' href='#'>
-            Исходник
-            <Icon name='link-out' width='15' height='15' />
-          </a>
-        </div>
-      </div>
-      <div class='project-item'>
-        <div class='project-item__heading'>
-          <h2>
-            <Icon name='triangle_filled' width='20' height='20' />
-            devthread
-          </h2>
-          <span>2021</span>
-        </div>
-        <div class='project-item__description'>
-          <p>
-            Статический веб-сайт для публикации различных статей, разработанный
-            при помощи Gatsby.js и NetlifyCMS
-          </p>
-        </div>
-        <div class='project-item__links'>
-          <a class='btn-link' href='#'>
-            Статья
-          </a>
-          <a class='btn-link' href='#'>
-            Исходник
-            <Icon name='link-out' width='15' height='15' />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <style lang='scss'>
-    .projects {
-      &-heading {
-        text-align: right;
-        margin-bottom: 10px;
-      }
-
-      & .projects-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 10px;
-
-        & .project-item {
-          border: 1px solid var(--border-color);
-          border-radius: var(--border-radius-lg);
-          padding: 15px;
-
-          &__heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-
-            & h2 {
-              display: flex;
-              align-items: center;
-              font-size: 1.2rem;
-              font-weight: 600;
-              column-gap: 10px;
-              margin: 0;
-              padding: 0;
-            }
-
-            & span {
-              font-size: var(--font-size-sm);
-              color: var(--font-color-gray);
-            }
-          }
-
-          &__description {
-            margin-bottom: 15px;
-          }
-
-          &__links {
-            display: flex;
-            column-gap: 5px;
-          }
-        }
-      }
-    }
-  </style>
+	<section class='container'>
+		<PageHeading heading='Проекты' description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.' />
+		<ProjectsList>
+			{projects.map((project) => <ProjectItem data={project} />)}
+		</ProjectsList>
+	</section>
 </PageLayout>

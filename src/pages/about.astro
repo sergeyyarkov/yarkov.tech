@@ -1,200 +1,28 @@
 ---
-  import PageLayout from '@layouts/default.astro';
-  import { Markdown } from 'astro/components';
-  import { PageHeading } from '@root/components/PageHeading';
-  import { Icon } from 'astro-icon'
+import { SITE_METADATA } from '@root/config';
+import { Markdown } from 'astro/components';
+import PageLayout from '@layouts/default.astro';
+import PageHeading from '@components/PageHeading';
+import SkillsList from '@components/SkillsList';
+import SkillsBlock from '@components/SkillsBlock';
 
-  // TODO: import content based on user ui language
-  import * as aboutContent from '../../content/about/ru/index.md';
+// TODO: import content based on user ui language
+import * as aboutContent from '../../content/about/ru/index.md';
+import ArticleContent from '@components/ArticleContent';
+
+const { skills } = SITE_METADATA;
 ---
 
 <PageLayout title='Обо мне | Sergey Yarkov'>
-  <section class='about container'>
-    <PageHeading heading='Обо мне' />
-    <div class='article-content'>
-      <Markdown content={aboutContent.rawContent()} />
-    </div>
-    <div class='about-skills'>
-      <div class='skills-list'>
-        <div class='skills-list__heading'>
-          <h3>Программирование</h3>
-        </div>
-        <div class='skills-list__content'>
-          <ul>
-            <li>
-              <Icon name='nodejs' width='20' height='20' />
-              Javascript/Typescript
-            </li>
-            <li>
-              <Icon name='language-c' width='20' height='20' />
-              C Language
-            </li>
-            <li>
-              <Icon name='mysql' width='20' height='20' />
-              SQL
-            </li>
-            <li>
-              <Icon name='graphql' width='20' height='20' />
-              GraphQL
-            </li>
-            <li>
-              <Icon name='avr' width='20' height='20' />
-              AVR instruction set
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class='skills-list'>
-        <div class='skills-list__heading'>
-          <h3>Фреймворки</h3>
-        </div>
-        <div class='skills-list__content'>
-          <ul>
-            <li>
-              <Icon name='adonisjs' width='20' height='20' />
-              Adonis.js
-            </li>
-            <li>
-              <Icon name='expressjs' width='20' height='20' />
-              Express.js
-            </li>
-            <li>
-              <Icon name='socket-io' width='20' height='20' />
-              Socket.io
-            </li>
-            <li>
-              <Icon name='reactjs' width='20' height='20' />
-              React.js
-            </li>
-            <li>
-              <Icon name='astro_filled' width='20' height='20' />
-              Astro.js
-            </li>
-            <li>
-              <Icon name='gatsbyjs' width='20' height='20' />
-              Gastby.js
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class='skills-list'>
-        <div class='skills-list__heading'>
-          <h3>Инструменты</h3>
-        </div>
-        <div class='skills-list__content'>
-          <ul>
-            <li>
-              <Icon name='nodejs' width='20' height='20' />
-              Node.js
-            </li>
-            <li>
-              <Icon name='docker' width='20' height='20' />
-              Docker
-            </li>
-            <li>
-              <Icon name='git-branch' width='20' height='20' />
-              Git/gitflow
-            </li>
-            <li>
-              <Icon name='sass' width='20' height='20' />
-              SASS
-            </li>
-            <li>
-              <Icon name='vite' width='20' height='20' />
-              Vite.js
-            </li>
-            <li>
-              <Icon name='webpack' width='20' height='20' />
-              Webpack
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class='skills-list'>
-        <div class='skills-list__heading'>
-          <h3>Базы данных</h3>
-        </div>
-        <div class='skills-list__content'>
-          <ul>
-            <li>
-              <Icon name='postgresql' width='20' height='20' />
-              PostgreSQL
-            </li>
-            <li>
-              <Icon name='mongodb' width='20' height='20' />
-              MongoDB
-            </li>
-            <li>
-              <Icon name='redis' width='20' height='20' />
-              Redis
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class='skills-list'>
-        <div class='skills-list__heading'>
-          <h3>Языки</h3>
-        </div>
-        <div class='skills-list__content'>
-          <ul>
-            <li>Русский (родной)</li>
-            <li>Английский (B1)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <style lang='scss'>
-    .about {
-      &-skills {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        column-gap: 40px;
-        row-gap: 30px;
-        margin-top: 5rem;
+	<section class='container'>
+		<PageHeading heading='Обо мне' />
+		<ArticleContent>
+			<Markdown content={aboutContent.rawContent()}>
 
-        & .skills-list {
-          & h3 {
-            font-size: var(--font-size-md);
-            color: var(--font-color-grayer);
-            font-weight: 500;
-          }
-
-          & ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-
-            & li {
-              font-weight: 400;
-              margin-bottom: 10px;
-              font-size: var(--font-size-sm);
-              display: flex;
-              align-items: center;
-              column-gap: 5px;
-            }
-          }
-        }
-      }
-    }
-
-    @media screen and (max-width: 500px) {
-      .about-skills {
-        display: flex;
-        flex-direction: column;
-
-        & .skills-list {
-          & h3 {
-            text-align: center;
-          }
-
-          & ul {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-        }
-      }
-    }
-  </style>
+			</Markdown>
+		</ArticleContent>
+		<SkillsList>
+			{skills.map((block) => <SkillsBlock data={block} />)}
+		</SkillsList>
+	</section>
 </PageLayout>

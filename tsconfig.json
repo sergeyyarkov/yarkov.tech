@@ -1,22 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "types": ["vite/client"],
-    "sourceMap": true,
-    "baseUrl": ".",
-    "jsx": "preserve",
-    "paths": {
-      "@root/*": ["./src/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@components/*": ["./src/components/*"],
-      "@layouts/*": ["./src/layouts/*"],
-      "@utils/*": ["./src/utils/*"]
-    },
-    "outDir": "./dist"
-  },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"types": ["vite/client"],
+		"sourceMap": true,
+		"baseUrl": ".",
+		"jsx": "preserve",
+		"paths": {
+			"@root/*": ["./src/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@components/*": ["./src/components/*"],
+			"@layouts/*": ["./src/layouts/*"],
+			"@utils/*": ["./src/utils/*"]
+		},
+		"outDir": "./dist"
+	},
+	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
 }

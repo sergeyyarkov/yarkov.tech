@@ -8,7 +8,7 @@ Personal website created with Astro.
 ### Todo
 
 - [x] HTML layout
-- [ ] Adaptive & Responsive layout
+- [x] Adaptive & Responsive layout
 - [ ] Dark/Light Theme
 - [ ] Multilang web-site
 - [ ] Form handling via Netlify Forms

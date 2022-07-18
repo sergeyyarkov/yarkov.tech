@@ -1,12 +1,12 @@
 ---
-import type { IArticle } from '@root/interfaces';
+import type { ArticleType } from '@root/types';
 
-import PageLayout from '@layouts/default.astro';
 import { Icon } from 'astro-icon';
 import * as utils from '@utils/index';
-import RecentArticles from '@root/components/RecentArticles';
+import PageLayout from '@layouts/default.astro';
+import RecentArticles from '@components/RecentArticles';
 
-const data = await Astro.glob<IArticle>('../../content/articles/**/*.md');
+const data = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
 const articles = utils.transformArticles(data);
 ---
 
@@ -18,7 +18,8 @@ const articles = utils.transformArticles(data);
 				<h2>Fullstack <b>web-developer</b> & <b>freelancer</b></h2>
 			</hgroup>
 			<p class='welcome-heading__description'>
-				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую различные статьи и туториалы на разные IT темы.
+				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую
+				различные статьи и туториалы на разные IT темы.
 			</p>
 		</header>
 		<nav class='welcome-links'>

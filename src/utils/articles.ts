@@ -1,8 +1,8 @@
-import type { IArticle } from '@root/interfaces';
+import type { ArticleType } from '@root/types';
 
 import { MarkdownInstance } from 'astro';
 
-export const transformArticles = (articles: MarkdownInstance<IArticle>[]): IArticle[] =>
+export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
 	articles.map((article) => ({
 		title: article.frontmatter.title,
 		author: article.frontmatter.author,
@@ -10,11 +10,11 @@ export const transformArticles = (articles: MarkdownInstance<IArticle>[]): IArti
 		published_at: article.frontmatter.published_at,
 	}));
 
-export const sortArtcilesByDate = (articles: IArticle[]): IArticle[] => {
+export const sortArtcilesByDate = (articles: ArticleType[]): ArticleType[] => {
 	return articles.sort((a, b) => new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf());
 };
 
-export const filterArticlesByYear = (articles: IArticle[]): { [year: number]: IArticle[] } => {
+export const filterArticlesByYear = (articles: ArticleType[]): { [year: number]: ArticleType[] } => {
 	const filtered = {};
 
 	for (const article of articles) {

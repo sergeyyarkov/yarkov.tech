@@ -1,0 +1,30 @@
+---
+import type { SkillsType } from '@root/types';
+
+import { Icon } from 'astro-icon';
+import './SkillsBlock.scss';
+
+export interface Props {
+	data: SkillsType;
+}
+
+const {
+	data: { title, list },
+} = Astro.props as Props;
+---
+
+<div class='skills-block'>
+	<div>
+		<h3>{title}</h3>
+	</div>
+	<div>
+		<ul>
+			{list.map((entry) => (
+				<li>
+					{entry.icon && <Icon name={entry.icon} width="20" height="20" />}
+					{entry.name}
+				</li>
+			))}
+		</ul>
+	</div>
+</div>

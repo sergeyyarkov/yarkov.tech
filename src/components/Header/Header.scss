@@ -135,7 +135,10 @@
 			z-index: 9999;
 			& .container {
 				flex-direction: column;
-				row-gap: 2.5rem;
+				row-gap: 3rem;
+			}
+			&__logo {
+				align-self: flex-start;
 			}
 			&__nav {
 				display: block;
@@ -144,9 +147,9 @@
 					text-align: center;
 					margin: 0;
 					& li {
-						margin-bottom: 1.2rem;
+						margin-bottom: 30px;
 						& a {
-							font-size: var(--font-size-lg);
+							font-size: var(--font-size-xl);
 						}
 					}
 				}
@@ -164,7 +167,7 @@
 				display: block;
 				position: absolute;
 				bottom: 45px;
-				right: var(--content-padding);
+				right: 2.5rem;
 				& svg {
 					width: 36px;
 					height: 36px;

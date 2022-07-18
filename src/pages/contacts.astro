@@ -1,78 +1,14 @@
 ---
 import PageLayout from '@layouts/default.astro';
-import { PageHeading } from '@root/components/PageHeading';
-import { Icon } from 'astro-icon';
-import { SITE_METADATA } from '@root/config';
+import PageHeading from '@components/PageHeading';
+import ContactForm from '@components/ContactForm';
+import ContactsList from '@components/ContactsList';
 ---
 
 <PageLayout title='Контакты | Sergey Yarkov'>
-	<section class='contacts container'>
+	<section class='container'>
 		<PageHeading heading='Контакты' description='Воспользуйтесь формой обратной связи или напишите мне в социальные сети.' />
-		<div class='contacts-form'>
-			<form name='contact' method='POST' data-netlify='true'>
-				<div>
-					<input name='name' placeholder='Ваше имя' type='text' />
-					<input name='email' placeholder='example@email.com' type='text' />
-				</div>
-				<input name='subject' placeholder='Тема сообщения' type='text' />
-				<textarea name='message' placeholder='Ваше сообщение...' id='message' cols={30} rows={10}></textarea>
-				<div>
-					<button type='submit'>Отправить</button>
-				</div>
-			</form>
-		</div>
-		<div class='contacts-link'>
-			<a href={'mailto:' + SITE_METADATA.contacts.email}
-				>Email
-				<Icon name='arrow-up-right' width='15' height='15' />
-			</a>
-			<a href={SITE_METADATA.contacts.githubUrl} target='_blank'
-				>Github
-				<Icon name='arrow-up-right' width='15' height='15' />
-			</a>
-			<a href={SITE_METADATA.contacts.telegramUrl} target='_blank'
-				>Telegram
-				<Icon name='arrow-up-right' width='15' height='15' />
-			</a>
-		</div>
+		<ContactForm client:idle />
+		<ContactsList />
 	</section>
-	<style lang='scss'>
-		.contacts {
-			& form {
-				display: flex;
-				flex-direction: column;
-				row-gap: 7px;
-				margin-bottom: 3.125rem;
-
-				& div:first-of-type {
-					display: flex;
-					column-gap: 10px;
-				}
-
-				& div:last-of-type {
-					text-align: center;
-					margin-top: 15px;
-				}
-			}
-
-			&-link {
-				display: flex;
-				flex-wrap: wrap;
-				column-gap: 40px;
-				row-gap: 30px;
-
-				& a {
-					display: flex;
-					column-gap: 5px;
-				}
-			}
-		}
-
-		@media screen and (max-width: 500px) {
-			.contacts form div:first-of-type {
-				flex-direction: column;
-				row-gap: 7px;
-			}
-		}
-	</style>
 </PageLayout>

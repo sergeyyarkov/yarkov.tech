@@ -19,4 +19,4 @@ const { title = SITE_METADATA.title, description } = Astro.props as Props;
 	{title}
 </title>
 <meta name='title' content={title} />
-{description && <meta name="description" content={description} />}
+<meta name="description" content={description || SITE_METADATA.description} />

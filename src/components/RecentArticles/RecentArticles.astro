@@ -1,12 +1,12 @@
 ---
-import type { IArticle } from '@root/interfaces';
+import type { ArticleType } from '@root/types';
 
 import './RecentArticles.scss';
 import { ArticleItem } from '@components/ArticleItem';
 import { sortArtcilesByDate } from '@utils/articles';
 
 export interface Props {
-	articles: IArticle[];
+	articles: ArticleType[];
 	length?: number | undefined;
 }
 

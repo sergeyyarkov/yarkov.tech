@@ -1,11 +1,11 @@
-import type { IArticle } from '@root/interfaces';
+import type { ArticleType } from '@root/types';
 
 import './ArticleItem.scss';
 import { Component } from 'solid-js';
 import { DateFormatter } from '@utils/date';
 
 export type ArticleItemProps = {
-	data: IArticle;
+	data: ArticleType;
 };
 
 export const ArticleItem: Component<ArticleItemProps> = (props) => {

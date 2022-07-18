@@ -177,95 +177,11 @@ body {
 	color: var(--font-color);
 	font-size: var(--font-size-sm);
 	font-weight: 400;
+	white-space: nowrap;
 	&:hover {
 		text-decoration: none;
 		color: inherit;
 		border-color: var(--border-color-hover);
-	}
-}
-
-.article-content {
-	& p,
-	& em,
-	& q {
-		line-height: var(--line-height-base);
-		font-size: var(--font-size-lg);
-	}
-
-	& ul {
-		padding-left: 1.5rem;
-		line-height: var(--line-height-base);
-		margin-bottom: 1.5rem;
-		margin-top: 0;
-		& li {
-			font-size: var(--font-size-lg);
-			line-height: var(--line-height-base);
-			margin-bottom: 0.5rem;
-			padding-left: 0.25rem;
-		}
-	}
-
-	& q {
-		font-style: italic;
-		quotes: '«' '»';
-	}
-
-	& h1,
-	& h2,
-	& h3,
-	& h4 {
-		margin-top: 3rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.35rem;
-	}
-
-	& h1:not(:first-child),
-	& h2:not(:first-child),
-	& h3:not(:first-child),
-	& h4:not(:first-child) {
-		margin-top: 3rem;
-	}
-
-	& h2 {
-		font-size: var(--font-size-3xl);
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	& h3 {
-		font-size: var(--font-size-2xl);
-	}
-
-	& h4 {
-		font-size: var(--font-size-xl);
-	}
-
-	& a {
-		color: var(--color-blue-500);
-		text-underline-offset: 2.5px;
-		text-decoration-color: var(--color-blue-500);
-		font-weight: 500;
-		&:hover {
-			color: var(--color-blue-500);
-			text-decoration-thickness: 2px;
-		}
-	}
-
-	& figure {
-		margin: 0 0 1em;
-	}
-
-	& figcaption {
-		font-style: italic;
-		font-size: 1em;
-		text-align: center;
-		margin: 0.7rem 0;
-	}
-
-	& img {
-		display: block;
-		border-radius: var(--border-radius-md);
-		max-width: 100%;
-		margin: 0 auto;
 	}
 }
 
@@ -298,6 +214,7 @@ h5 {
 
 input,
 textarea {
+	-webkit-appearance: none;
 	font-family: var(--font-family-base);
 	padding: 8px 15px;
 	border: 1px solid var(--border-color);

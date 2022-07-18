@@ -18,7 +18,7 @@ export const NavToggle: Component = () => {
 	});
 
 	return (
-		<button id="nav-toggle" class="header__button" onClick={toggleNav} type="button" aria-pressed={isNavShown() ? 'true' : 'false'}>
+		<button id="nav-toggle" class="header__button" onClick={toggleNav} type="button" aria-pressed={isNavShown() ? 'true' : 'false'} aria-label="Menu">
 			<span />
 			<span />
 			<span />

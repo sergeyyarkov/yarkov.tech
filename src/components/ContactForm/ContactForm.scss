@@ -1,0 +1,23 @@
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 7px;
+	margin-bottom: 3.125rem;
+
+	& div:first-of-type {
+		display: flex;
+		column-gap: 10px;
+	}
+
+	& div:last-of-type {
+		text-align: center;
+		margin-top: 15px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.contact-form div:first-of-type {
+		flex-direction: column;
+		row-gap: 7px;
+	}
+}

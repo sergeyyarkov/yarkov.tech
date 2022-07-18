@@ -6,7 +6,6 @@
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 10px;
-		row-gap: 5px;
 		color: var(--font-color);
 		padding: 8px 15px;
 		& h3 {
@@ -22,6 +21,7 @@
 			margin: 0;
 			text-align: right;
 			white-space: nowrap;
+			margin-bottom: 10px;
 		}
 		&:hover {
 			text-decoration: none;
@@ -34,6 +34,7 @@
 
 @media screen and (max-width: 560px) {
 	.article-item {
+		margin-bottom: 10px;
 		& a {
 			flex-direction: column-reverse;
 			align-items: flex-start;

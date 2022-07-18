@@ -1,0 +1,36 @@
+.project-item {
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-lg);
+	padding: 15px;
+
+	&__heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 10px;
+
+		& h2 {
+			display: flex;
+			align-items: center;
+			font-size: 1.2rem;
+			font-weight: 600;
+			column-gap: 10px;
+			margin: 0;
+			padding: 0;
+		}
+
+		& span {
+			font-size: var(--font-size-sm);
+			color: var(--font-color-gray);
+		}
+	}
+
+	&__description {
+		margin-bottom: 15px;
+	}
+
+	&__links {
+		display: flex;
+		column-gap: 5px;
+	}
+}
