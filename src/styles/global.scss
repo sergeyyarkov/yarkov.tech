@@ -97,13 +97,11 @@
 	--opacity-hover: 0.7;
 }
 
-/* Text selection */
 ::selection {
 	background: var(--color-yellow-100);
 	color: var(--color-black);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
@@ -164,7 +162,6 @@ body {
 	list-style: none;
 }
 
-/* Buttons */
 .btn-link {
 	cursor: pointer;
 	display: inline-flex;

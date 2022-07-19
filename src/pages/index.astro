@@ -1,91 +1,29 @@
 ---
 import type { ArticleType } from '@root/types';
 
-import { Icon } from 'astro-icon';
 import * as utils from '@utils/index';
 import PageLayout from '@layouts/default.astro';
 import RecentArticles from '@components/RecentArticles';
+import { Splash, SplashHeading, SplashLinks, Link } from '@components/Splash';
 
 const data = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
 const articles = utils.transformArticles(data);
 ---
 
 <PageLayout>
-	<section class='welcome container'>
-		<header class='welcome-heading'>
-			<hgroup class='welcome-heading__title'>
+	<Splash>
+		<SplashHeading>
+			<hgroup>
 				<h1>Hello, I'am Sergey</h1>
 				<h2>Fullstack <b>web-developer</b> & <b>freelancer</b></h2>
 			</hgroup>
-			<p class='welcome-heading__description'>
-				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую
-				различные статьи и туториалы на разные IT темы.
-			</p>
-		</header>
-		<nav class='welcome-links'>
-			<div class='welcome-links__link'>
-				<Icon name='information' width='18' height='18' />
-				<a href='/about'> обо мне</a>
-			</div>
-			<div class='welcome-links__link'>
-				<Icon name='email_filled' width='18' height='18' />
-				<a href='/contacts'> написать мне</a>
-			</div>
-		</nav>
-	</section>
+			<p>Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую различные статьи и туториалы на разные IT темы.</p>
+		</SplashHeading>
+		<SplashLinks>
+			<Link icon='information' href='/about'>обо мне</Link>
+			<Link icon='email_filled' href='/about'>написать мне</Link>
+		</SplashLinks>
+	</Splash>
 
 	<RecentArticles articles={articles} length={4} />
-
-	<style lang='scss'>
-		.welcome {
-			margin-top: 40px;
-			margin-bottom: 150px;
-
-			&-heading {
-				&__title {
-					& h1 {
-						font-size: var(--font-size-5xl);
-						font-weight: bold;
-						margin-bottom: 0.5rem;
-					}
-
-					& h2 {
-						font-size: var(--font-size-xl);
-						margin-bottom: 1.25rem;
-						font-weight: normal;
-					}
-				}
-
-				&__description {
-					font-size: var(--font-size-lg);
-					max-width: 570px;
-					line-height: 1.5;
-				}
-			}
-
-			&-links {
-				display: flex;
-				align-items: center;
-				column-gap: 20px;
-
-				&__link {
-					display: flex;
-					align-items: center;
-					column-gap: 5px;
-
-					& a {
-						color: var(--font-color-gray);
-					}
-				}
-			}
-		}
-
-		[astro-icon='information'] {
-			fill: var(--color-gray-600);
-		}
-
-		[astro-icon='email_filled'] {
-			fill: var(--color-gray-600);
-		}
-	</style>
 </PageLayout>

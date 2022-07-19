@@ -1,0 +1,9 @@
+.splash-link {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+
+	& a {
+		color: var(--font-color-gray);
+	}
+}
