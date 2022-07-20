@@ -1,0 +1,48 @@
+---
+import type { ArticleType } from '@root/types';
+
+import { DateFormatter } from '@root/utils';
+import './ArticlePost.scss';
+
+export interface Props {
+	data: ArticleType;
+}
+
+const { data } = Astro.props as Props;
+const { title, tags, author, published_at } = data;
+---
+
+<article class='article'>
+	<header>
+		<div class='meta'>
+			<ul class='list-links'>
+				{tags.map((tag) => (
+					<li>
+						<a class="btn-link" href={`/articles?tags=${tag}`}>
+							{tag}
+						</a>
+					</li>
+				))}
+			</ul>
+			<div>
+				<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
+				<span>Опубликовал&nbsp;<b>{author}</b></span>
+			</div>
+		</div>
+		<div class='heading'>
+			<h1>{title}</h1>
+		</div>
+		<div>
+			<figure>
+				<img
+					src='https://img.freepik.com/premium-photo/beautiful-emerald-lake-yoho-national-park-british-columbia-canada_131985-177.jpg?w=1920'
+					alt='Article Image'
+				/>
+			</figure>
+		</div>
+	</header>
+	<slot></slot>
+	<footer>
+		<h2>Comments</h2>
+	</footer>
+</article>

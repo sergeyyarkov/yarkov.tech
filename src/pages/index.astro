@@ -10,7 +10,7 @@ const data = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
 const articles = utils.transformArticles(data);
 ---
 
-<PageLayout>
+<PageLayout showPageHeading={false}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>
@@ -24,6 +24,5 @@ const articles = utils.transformArticles(data);
 			<Link icon='email_filled' href='/about'>написать мне</Link>
 		</SplashLinks>
 	</Splash>
-
 	<RecentArticles articles={articles} length={4} />
 </PageLayout>

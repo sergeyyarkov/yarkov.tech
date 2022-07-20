@@ -1,16 +1,14 @@
 ---
 import { SITE_METADATA } from '@root/config';
 import PageLayout from '@layouts/default.astro';
-import PageHeading from '@root/components/PageHeading';
-import ProjectsList from '@root/components/ProjectsList';
-import ProjectItem from '@root/components/ProjectItem';
+import ProjectsList from '@components/ProjectsList';
+import ProjectItem from '@components/ProjectItem';
 
 const { projects } = SITE_METADATA;
 ---
 
-<PageLayout title='Проекты | Sergey Yarkov'>
-	<section class='container'>
-		<PageHeading heading='Проекты' description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.' />
+<PageLayout title='Проекты' description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.'>
+	<section>
 		<ProjectsList>
 			{projects.map((project) => <ProjectItem data={project} />)}
 		</ProjectsList>

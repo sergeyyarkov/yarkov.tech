@@ -2,7 +2,7 @@ export type ArticleType = {
 	title: string;
 	author: string;
 	tags: Array<string>;
-	published_at: number;
+	published_at: string;
 };
 
 export type ProjectType = {

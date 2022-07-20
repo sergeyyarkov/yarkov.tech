@@ -1,0 +1,34 @@
+---
+import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
+import type { ArticleType } from '@root/types';
+
+import '@styles/global.scss';
+import BaseHead from '@root/components/BaseHead.astro';
+import BaseLayout from '@components/BaseLayout';
+import { DateFormatter } from '@root/utils';
+import ArticleContent from '@root/components/ArticleContent';
+import ArticlePost from '@root/components/ArticlePost';
+
+export interface Props extends BaseHeadProps {
+	lang?: string | undefined;
+	content: ArticleType;
+}
+
+const { lang = 'ru', content } = Astro.props as Props;
+---
+
+<html lang={lang}>
+	<head>
+		<BaseHead title={content.title} />
+	</head>
+
+	<BaseLayout>
+		<div class='container'>
+			<ArticlePost data={content}>
+				<ArticleContent>
+					<slot></slot>
+				</ArticleContent>
+			</ArticlePost>
+		</div>
+	</BaseLayout>
+</html>

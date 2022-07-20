@@ -16,14 +16,12 @@ const recent = sortArtcilesByDate(articles);
 ---
 
 <section class='recent'>
-	<div class='container'>
-		<div class='recent-heading'>
-			<h2>недавние публикации</h2>
-			<a href='/articles'>смотреть все</a>
-		</div>
+	<div class='recent-heading'>
+		<h2>недавние публикации</h2>
+		<a href='/articles'>смотреть все</a>
 	</div>
 
-	<div class='recent-list container'>
+	<div class='recent-list'>
 		{recent.length !== 0 ? (
 			recent.slice(0, length).map((article) => <ArticleItem data={article} />)
 		) : (

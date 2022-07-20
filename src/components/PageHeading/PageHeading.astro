@@ -9,9 +9,9 @@ export interface Props {
 const { heading, description } = Astro.props as Props;
 ---
 
-<header class='page-heading'>
+<div class='page-heading'>
 	<h1 style={!description && 'margin-bottom: 2.5rem;'}>
 		{heading}
 	</h1>
 	{description && <p>{description}</p>}
-</header>
+</div>

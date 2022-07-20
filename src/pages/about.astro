@@ -2,7 +2,6 @@
 import { SITE_METADATA } from '@root/config';
 import { Markdown } from 'astro/components';
 import PageLayout from '@layouts/default.astro';
-import PageHeading from '@components/PageHeading';
 import SkillsList from '@components/SkillsList';
 import SkillsBlock from '@components/SkillsBlock';
 
@@ -13,9 +12,8 @@ import ArticleContent from '@components/ArticleContent';
 const { skills } = SITE_METADATA;
 ---
 
-<PageLayout title='Обо мне | Sergey Yarkov'>
-	<section class='container'>
-		<PageHeading heading='Обо мне' />
+<PageLayout title='Обо мне'>
+	<section>
 		<ArticleContent>
 			<Markdown content={aboutContent.rawContent()}>
 

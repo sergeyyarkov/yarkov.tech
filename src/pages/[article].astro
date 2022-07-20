@@ -1,182 +1,80 @@
 ---
 import '@root/styles/prism-one-light.css';
-import PageLayout from '@root/layouts/default.astro';
+import ArticleLayout from '@root/layouts/article.astro';
 import { Markdown } from 'astro/components';
-import ArticleContent from '@components/ArticleContent';
 
 export function getStaticPaths() {
 	return [{ params: { article: 'article' } }];
 }
 ---
 
-<PageLayout title='Article'>
-	<article class='article container'>
-		<header>
-			<div class='meta'>
-				<ul class='list-links'>
-					<li><a class='btn-link' href='#'>JavaScript</a></li>
-					<li><a class='btn-link' href='#'>Docker</a></li>
-					<li><a class='btn-link' href='#'>Node.js</a></li>
-					<li><a class='btn-link' href='#'>AVR</a></li>
-					<li><a class='btn-link' href='#'>GraphQL</a></li>
-					<li><a class='btn-link' href='#'>Web-development</a></li>
-				</ul>
-				<div>
-					<time datetime='2022-01-01'> 19 ЯНВ, 2022</time>
-					<span>Опубликовал&nbsp;<b>Sergey Yarkov</b></span>
-				</div>
-			</div>
-			<div class='heading'>
-				<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
-			</div>
-			<div>
-				<figure>
-					<img
-						src='https://img.freepik.com/premium-photo/beautiful-emerald-lake-yoho-national-park-british-columbia-canada_131985-177.jpg?w=1920'
-						alt='Article Image'
-					/>
-				</figure>
-			</div>
-		</header>
-		<ArticleContent>
-			<Markdown>
-				## Introduction
+<ArticleLayout
+	content={{
+		title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		author: 'Sergey Yarkov',
+		tags: ['AVR', 'JavaScript', 'NodeJS'],
+		published_at: new Date().toISOString(),
+	}}
+>
+	<Markdown>
+		## Introduction
 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
-				Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
-				Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per
-				conubia nostra, per inceptos himenaeos. [Praesent auctor](#) purus luctus enim egestas, ac scelerisque ante
-				pulvinar.
-				Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis
-				convallis diam sit amet [lacinia](#). Aliquam in elementum
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+		Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
+		Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per
+		conubia nostra, per inceptos himenaeos. [Praesent auctor](#) purus luctus enim egestas, ac scelerisque ante
+		pulvinar.
+		Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis
+		convallis diam sit amet [lacinia](#). Aliquam in elementum
 
-				Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi.
-				Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum
-				vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit
-				amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus
-				lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin vitae facilisis
-				nisi, ac posuere leo.
+		Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi.
+		Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum
+		vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit
+		amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus
+		lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin vitae facilisis
+		nisi, ac posuere leo.
 
-				### Another Heading
+		### Another Heading
 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
-				Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+		Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
 
-				- `Nam metus lacus`: porttitor eu mauris a, [blandit ultrices](#) nibh.
-				- `Class aptent`: taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-				- `Sed nec ante`: dictum sem condimentum [ullamcorper quis](#) venenatis nisi.
+		- `Nam metus lacus`: porttitor eu mauris a, [blandit ultrices](#) nibh.
+		- `Class aptent`: taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+		- `Sed nec ante`: dictum sem condimentum [ullamcorper quis](#) venenatis nisi.
 
-				```typescript
-				import type { APIContext } from 'astro';
+		```typescript
+		import type { APIContext } from 'astro';
 
-				export async function get({ params, request }: APIContext) {
-					return {
-						body: JSON.stringify({
-							path: new URL(request.url).pathname,
-						}),
-					};
-				}
-				```
-
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
-				Sed dignissim.
-
-				<figure>
-				<img src="https://wallpaperaccess.com/full/138733.jpg" alt="test" />
-				<figcaption>This is a test image!</figcaption>
-				</figure>
-
-				<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis
-				tellus.
-				Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed
-				risus.
-				</p>
-				<p>— <a href="#">Metus Nec</a></p>
-				</blockquote>
-
-				## Conclusion
-
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
-				Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
-			</Markdown>
-		</ArticleContent>
-		<footer>
-			<h2>Comments</h2>
-		</footer>
-	</article>
-	<style lang='scss'>
-		.article {
-			& header {
-				& .meta {
-					display: flex;
-					justify-content: space-between;
-					align-items: flex-start;
-					column-gap: 5px;
-					& ul {
-						max-width: 350px;
-					}
-
-					& div {
-						display: flex;
-						flex-direction: column;
-						text-align: right;
-						white-space: nowrap;
-					}
-				}
-
-				& .heading {
-					margin-top: 2rem;
-
-					& h1 {
-						font-weight: 600;
-						font-size: 2.25rem;
-					}
-
-					& p {
-						font-size: 1.125rem;
-						line-height: var(--line-height-base);
-					}
-				}
-
-				& figure {
-					margin: 0;
-
-					& img {
-						border-radius: var(--border-radius-md);
-						display: block;
-						margin: 0 auto;
-						max-width: 100%;
-					}
-				}
-			}
-
-			& footer {
-				margin-top: 5rem;
-			}
+		export async function get({ params, request }: APIContext) {
+			return {
+				body: JSON.stringify({
+					path: new URL(request.url).pathname,
+				}),
+			};
 		}
+		```
 
-		@media screen and (max-width: 560px) {
-			.article {
-				& header {
-					& .heading h1 {
-						font-size: 2rem;
-					}
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+		Sed dignissim.
 
-					& .meta {
-						flex-direction: column-reverse;
+		<figure>
+		<img src="https://wallpaperaccess.com/full/138733.jpg" alt="test" />
+		<figcaption>This is a test image!</figcaption>
+		</figure>
 
-						& ul {
-							max-width: 100%;
-						}
+		<blockquote>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis
+		tellus.
+		Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed
+		risus.
+		</p>
+		<p>— <a href="#">Metus Nec</a></p>
+		</blockquote>
 
-						& div {
-							align-self: flex-end;
-							margin-bottom: 1.2rem;
-						}
-					}
-				}
-			}
-		}
-	</style>
-</PageLayout>
+		## Conclusion
+
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+		Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
+	</Markdown>
+</ArticleLayout>
