@@ -5,12 +5,13 @@
 
 Personal website created with Astro.
 
-### Todo
+### Features
 
 - [x] HTML layout
 - [x] Adaptive & Responsive layout
 - [ ] Dark/Light Theme
 - [ ] Multilang web-site
+- [ ] Search articles by title or description
 - [ ] Form handling via Netlify Forms
 - [ ] SEO optimized
 

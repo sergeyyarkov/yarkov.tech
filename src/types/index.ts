@@ -19,3 +19,7 @@ export type SkillsType = {
 	title: string;
 	list: Array<{ icon?: string | undefined; name: string }>;
 };
+
+export type ArticleBlockType = {
+	[year: number]: ArticleType[];
+};

@@ -175,6 +175,7 @@ body {
 	font-size: var(--font-size-sm);
 	font-weight: 400;
 	white-space: nowrap;
+	user-select: none;
 	&:hover {
 		text-decoration: none;
 		color: inherit;

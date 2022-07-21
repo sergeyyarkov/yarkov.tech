@@ -1,0 +1,23 @@
+.search-input {
+	position: relative;
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+	margin-bottom: 10px;
+
+	& svg {
+		position: absolute;
+		left: 8px;
+		fill: var(--font-color-grayer);
+	}
+	& input {
+		padding-left: 40px;
+		color: var(--font-color-grayer);
+		background-color: var(--background-color-hover);
+	}
+	& span {
+		font-size: var(--font-size-lg);
+		font-weight: 500;
+		color: var(--font-color-grayer);
+	}
+}

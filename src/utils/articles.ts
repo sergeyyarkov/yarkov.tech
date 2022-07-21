@@ -1,4 +1,4 @@
-import type { ArticleType } from '@root/types';
+import type { ArticleType, ArticleBlockType } from '@root/types';
 
 import { MarkdownInstance } from 'astro';
 
@@ -26,4 +26,20 @@ export const filterArticlesByYear = (articles: ArticleType[]): { [year: number]:
 	}
 
 	return filtered;
+};
+
+export const findArticlesBySearch = (search: string, articles: ArticleBlockType): ArticleBlockType => {
+	const filtered = Object.values(articles)
+		.flat()
+		.filter((article) => article.title.toLocaleLowerCase().includes(search));
+
+	return filterArticlesByYear(filtered);
+};
+
+export const findArticlesByTags = (tags: string[], articles: ArticleBlockType): ArticleBlockType => {
+	const filtered = Object.values(articles)
+		.flat()
+		.filter((article) => article.tags.map((tag) => tag.toLocaleLowerCase()).some((t) => tags.includes(t)));
+
+	return filterArticlesByYear(filtered);
 };

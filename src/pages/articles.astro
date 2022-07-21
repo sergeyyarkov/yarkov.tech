@@ -1,7 +1,11 @@
 ---
+import type { ArticleType } from '@root/types';
+
 import PageLayout from '@layouts/default.astro';
-import { ArticleType } from '@root/types';
-import * as utils from '@utils/index';
+import ArticlesList from '@components/ArticlesList';
+import SearchInput from '@components/SearchInput';
+import TagsList from '@components/TagsList';
+import { transformArticles, filterArticlesByYear } from '@utils/articles';
 
 const articles = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
 const tags = new Set(articles.map((article) => article.frontmatter.tags).flat());
@@ -11,5 +15,9 @@ const tags = new Set(articles.map((article) => article.frontmatter.tags).flat())
 	title='Статьи'
 	description='Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь.'
 >
-	<!-- <ArticlesList client:load data={utils.transformArticles(articles)} tags={[...tags]} /> -->
+	<section>
+		<SearchInput client:idle length={articles.length} placeholder='поиск по названию или описанию...' />
+		<TagsList client:idle data={[...tags]} />
+		<ArticlesList client:idle data={filterArticlesByYear(transformArticles(articles))} emptyPlaceholder='Не найдено ни одной статьи...' />
+	</section>
 </PageLayout>
