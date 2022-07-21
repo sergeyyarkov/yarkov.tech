@@ -20,8 +20,7 @@ export const SITE_METADATA = {
 			icon: 'nodejs',
 			name: 'yarkov.tech',
 			year: '2022',
-			description:
-				'Мой персональный веб-сайт где находятся информация обо мне и список различных статей, туториалов...',
+			description: 'Мой персональный веб-сайт где находятся информация обо мне и список различных статей, туториалов...',
 			sourceUrl: 'https://github.com/sergeyyarkov/yarkov.tech',
 			demoUrl: 'https://yarkov.tech',
 			articleUrl: undefined,
@@ -30,8 +29,7 @@ export const SITE_METADATA = {
 			icon: 'triangle_filled',
 			name: 'devthread',
 			year: '2021',
-			description:
-				'Статический веб-сайт для публикации различных статей, разработанный при помощи Gatsby.js и NetlifyCMS',
+			description: 'Статический веб-сайт для публикации различных статей, разработанный при помощи Gatsby.js и NetlifyCMS',
 			sourceUrl: 'https://github.com/sergeyyarkov/devthread.ru',
 			demoUrl: 'https://devthread.netlify.app',
 			articleUrl: undefined,
