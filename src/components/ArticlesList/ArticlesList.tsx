@@ -27,13 +27,12 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	const isEmpty = () => Object.keys(articles()).length === 0;
 
 	createEffect(() => {
-		const { state } = window.history;
 		let filtered = props.data;
 
 		/**
 		 * Find articles by title
 		 */
-		if (state.search || search()) {
+		if (search()) {
 			filtered = utils.findArticlesBySearch(search(), filtered);
 			setArticles(filtered);
 		}

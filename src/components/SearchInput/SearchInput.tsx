@@ -2,8 +2,7 @@ import type { Component, JSX } from 'solid-js';
 
 import { createEffect } from 'solid-js';
 import { search, setSearch } from '@stores/searchStore';
-import * as utils from '@root/utils/history';
-
+import * as utils from '@utils/history';
 import './SearchInput.scss';
 
 type SearchInputProps = {
@@ -13,15 +12,18 @@ type SearchInputProps = {
 
 const SearchInput: Component<SearchInputProps> = (props) => {
 	/**
-	 * Reset signal state and delete `search` param from url
+	 * Reset state and delete `search` param from url
 	 */
 	const resetSearch = () => {
 		const url = utils.deleteParamFromUrl('search');
 
 		setSearch('');
-		utils.extendHistoryState({ search: '' }, url);
+		history.replaceState(null, '', url);
 	};
 
+	/**
+	 * Update state and set url param
+	 */
 	const onSearch: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
 		const value = e.currentTarget.value;
 
@@ -30,18 +32,17 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 			return;
 		}
 
-		setSearch(e.currentTarget.value);
+		const url = utils.setParamToUrl('search', value);
 
-		const url = utils.setParamToUrl('search', search());
-
-		utils.extendHistoryState({ search: search() }, `${window.location.pathname}?${url}`);
+		history.replaceState(null, '', `${location.pathname}?${url}`);
+		setSearch(value);
 	};
 
 	/**
 	 * Set the signal state by reading the `search` parameter from the URL.
 	 */
 	createEffect(() => {
-		const param = new URLSearchParams(window.location.search).get('search');
+		const param = new URLSearchParams(location.search).get('search');
 
 		if (!param) {
 			resetSearch();
@@ -49,8 +50,6 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 		}
 
 		setSearch(param);
-
-		utils.extendHistoryState({ search: param });
 	});
 
 	return (

@@ -31,7 +31,7 @@ export const filterArticlesByYear = (articles: ArticleType[]): { [year: number]:
 export const findArticlesBySearch = (search: string, articles: ArticleBlockType): ArticleBlockType => {
 	const filtered = Object.values(articles)
 		.flat()
-		.filter((article) => article.title.toLocaleLowerCase().includes(search));
+		.filter((article) => article.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
 
 	return filterArticlesByYear(filtered);
 };

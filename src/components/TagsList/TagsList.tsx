@@ -1,8 +1,8 @@
 import type { Component, JSX } from 'solid-js';
 
 import { For, createEffect } from 'solid-js';
-import { selectedTags, setSelectedTags } from '@root/stores/searchStore';
-import * as utils from '@root/utils/history';
+import { selectedTags, setSelectedTags } from '@stores/searchStore';
+import * as utils from '@utils/history';
 
 type TagsListProps = {
 	data: string[];
@@ -18,7 +18,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 		const url = utils.deleteParamFromUrl('tags');
 
 		setSelectedTags([]);
-		utils.extendHistoryState({ tags: [] }, url);
+		history.replaceState(null, '', url);
 	};
 
 	const onSelect: JSX.EventHandler<HTMLLIElement, PointerEvent> = (e) => {
@@ -37,8 +37,8 @@ const TagsList: Component<TagsListProps> = (props) => {
 				return;
 			}
 
-			utils.extendHistoryState({ tags: updated }, `${window.location.pathname}?${url}`);
 			setSelectedTags(updated);
+			history.replaceState(null, '', `${location.pathname}?${url}`);
 			return;
 		}
 
@@ -49,18 +49,21 @@ const TagsList: Component<TagsListProps> = (props) => {
 		const url = utils.setParamToUrl('tags', updated.join(','));
 
 		setSelectedTags(updated);
-		utils.extendHistoryState({ tags: updated }, `${window.location.pathname}?${url}`);
+		history.replaceState(null, '', `${location.pathname}?${url}`);
 	};
 
 	createEffect(() => {
-		const param = new URLSearchParams(window.location.search).get('tags');
+		let param: string | string[] = new URLSearchParams(location.search).get('tags');
 
 		if (!param) {
 			resetSelected();
 			return;
 		}
 
-		if (param.split(',').length === 0) {
+		/* to array */
+		param = param.split(',');
+
+		if (param.length === 0) {
 			resetSelected();
 			return;
 		}
@@ -68,13 +71,14 @@ const TagsList: Component<TagsListProps> = (props) => {
 		const tags: string[] = [];
 
 		for (const tag of props.data) {
-			if (param.split(',').includes(tag.toLocaleLowerCase())) {
+			const isTagExist = param.includes(tag.toLocaleLowerCase());
+
+			if (isTagExist) {
 				tags.push(tag.toLocaleLowerCase());
 			}
 		}
 
 		setSelectedTags(tags);
-		utils.extendHistoryState({ tags });
 	});
 
 	return (
