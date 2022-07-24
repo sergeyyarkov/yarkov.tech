@@ -2,12 +2,11 @@
 import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
 import type { ArticleType } from '@root/types';
 
-import '@styles/global.scss';
-import BaseHead from '@root/components/BaseHead.astro';
+import BaseHead from '@components/BaseHead.astro';
 import BaseLayout from '@components/BaseLayout';
-import { DateFormatter } from '@root/utils';
-import ArticleContent from '@root/components/ArticleContent';
-import ArticlePost from '@root/components/ArticlePost';
+import ArticleContent from '@components/ArticleContent';
+import ArticlePost from '@components/ArticlePost';
+import '@styles/global.scss';
 
 export interface Props extends BaseHeadProps {
 	lang?: string | undefined;

@@ -1,11 +1,11 @@
 ---
-import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
+import type { Props as BaseHeadProps } from '@components/BaseHead.astro';
 
-import '@styles/global.scss';
-import BaseHead from '@root/components/BaseHead.astro';
+import BaseHead from '@components/BaseHead.astro';
 import BaseLayout from '@components/BaseLayout';
 import { SITE_METADATA } from '@root/config';
-import PageHeading from '@root/components/PageHeading';
+import PageHeading from '@components/PageHeading';
+import '@styles/global.scss';
 
 export interface Props extends BaseHeadProps {
 	lang?: string | undefined;

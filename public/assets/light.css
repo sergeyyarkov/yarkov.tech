@@ -1,0 +1,19 @@
+:root {
+	/* Fonts */
+	--font-color: var(--color-black);
+	--font-color-gray: var(--color-gray-500);
+	--font-color-grayer: var(--color-gray-700);
+
+	/* Border */
+	--border-color: var(--color-gray-100);
+	--border-color-hover: var(--color-gray-400);
+
+	/* Elements */
+	--background-body-color: var(--color-white);
+	--background-header-color: var(--color-white);
+	--background-inline-code: rgba(0, 0, 0, 0.05);
+	--background-color-hover: var(--color-gray-50);
+	--background-btn-link: var(--color-white);
+	--background-btn-link-active: var(--color-white);
+	--background-inputs-color: var(--color-white);
+}
