@@ -19,3 +19,10 @@
 		line-height: 1.5;
 	}
 }
+
+@media screen and (max-width: 560px) {
+	.splash-heading hgroup h1 {
+		font-size: var(--font-size-4xl);
+		margin-bottom: 0.85rem;
+	}
+}

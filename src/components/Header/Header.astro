@@ -3,7 +3,7 @@ import './Header.scss';
 import { SITE_METADATA } from '@root/config';
 import ThemeSwitcher from '@components/ThemeSwticher';
 import { Icon } from 'astro-icon';
-import { NavToggle } from './NavToggle/NavToggle.tsx';
+import NavToggle from './NavToggle';
 
 const { name, nav, contacts } = SITE_METADATA;
 const { pathname } = Astro.canonicalURL;
@@ -40,6 +40,6 @@ const { pathname } = Astro.canonicalURL;
 			</div>
 			<ThemeSwitcher />
 		</nav>
-		<NavToggle client:idle />
+		<NavToggle client:media='(max-width: 768px)' />
 	</div>
 </header>

@@ -1,7 +1,9 @@
-import './NavToggle.scss';
-import { Component, createSignal, createEffect } from 'solid-js';
+import type { Component } from 'solid-js';
 
-export const NavToggle: Component = () => {
+import { createSignal, createEffect } from 'solid-js';
+import './NavToggle.scss';
+
+const NavToggle: Component = () => {
 	const [isNavShown, setIsNavShown] = createSignal<boolean>(false);
 
 	const toggleNav = () => setIsNavShown(!isNavShown());
@@ -25,3 +27,5 @@ export const NavToggle: Component = () => {
 		</button>
 	);
 };
+
+export default NavToggle;

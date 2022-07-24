@@ -14,32 +14,46 @@ export const sortArtcilesByDate = (articles: ArticleType[]): ArticleType[] => {
 	return articles.sort((a, b) => new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf());
 };
 
-export const filterArticlesByYear = (articles: ArticleType[]): { [year: number]: ArticleType[] } => {
-	const filtered = {};
+/**
+ * This function will distribute the array of articles by years.
+ */
+export const formatToArticleBlocks = (articles: ArticleType[]): ArticleBlockType => {
+	const blocks = {};
 
 	for (const article of articles) {
 		const year = new Date(article.published_at).getFullYear();
 
-		if (!filtered[year]) filtered[year] = [];
-
-		filtered[year].push(article);
+		if (!blocks[year]) blocks[year] = [];
+		blocks[year].push(article);
 	}
 
-	return filtered;
+	return blocks;
 };
 
 export const findArticlesBySearch = (search: string, articles: ArticleBlockType): ArticleBlockType => {
-	const filtered = Object.values(articles)
-		.flat()
-		.filter((article) => article.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+	const matched: Array<ArticleType> = [];
 
-	return filterArticlesByYear(filtered);
+	for (const year in articles) {
+		for (const article of articles[year]) {
+			const match = article.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+			if (match) matched.push(article);
+		}
+	}
+
+	return formatToArticleBlocks(matched);
 };
 
 export const findArticlesByTags = (tags: string[], articles: ArticleBlockType): ArticleBlockType => {
-	const filtered = Object.values(articles)
-		.flat()
-		.filter((article) => article.tags.map((tag) => tag.toLocaleLowerCase()).some((t) => tags.includes(t)));
+	const matched: Array<ArticleType> = [];
 
-	return filterArticlesByYear(filtered);
+	for (const year in articles) {
+		for (const article of articles[year]) {
+			const entries = article.tags.map((tag) => tag.toLocaleLowerCase());
+			const match = entries.some((tag) => tags.includes(tag));
+
+			if (match) matched.push(article);
+		}
+	}
+
+	return formatToArticleBlocks(matched);
 };
