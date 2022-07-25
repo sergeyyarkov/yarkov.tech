@@ -9,7 +9,9 @@
 		position: absolute;
 		left: 8px;
 		fill: var(--font-color-grayer);
+		filter: none;
 	}
+
 	& input {
 		padding-left: 40px;
 		color: var(--font-color-gray);

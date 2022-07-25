@@ -1,5 +1,17 @@
+.nav-toggle {
+	display: flex;
+	padding: 0;
+	cursor: pointer;
+	// background: none;
+	border: none;
+	&:hover {
+		border: none;
+		opacity: var(--opacity-hover);
+	}
+}
+
 @media screen and (min-width: 769px) {
-	#nav-toggle {
+	.nav-toggle {
 		display: none;
 	}
 }

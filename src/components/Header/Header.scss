@@ -65,55 +65,51 @@
 		}
 	}
 	&__button {
-		cursor: pointer;
-		width: 30px;
-		height: 21px;
-		position: relative;
-		transform: rotate(0deg);
-		background: none;
-		border: none;
-		&:hover {
-			border: none;
-			opacity: var(--opacity-hover);
-		}
-		& span {
-			pointer-events: none;
-			display: block;
-			position: absolute;
-			height: 3px;
-			width: 100%;
-			background: var(--font-color);
-			border-radius: 7px;
-			opacity: 1;
-			left: 0;
-		}
-		& span:nth-child(1) {
-			top: 2px;
-			transform-origin: left center;
-		}
-		& span:nth-child(2) {
-			top: 9px;
-			transform-origin: left center;
-		}
-		& span:nth-child(3) {
-			top: 16px;
-			transform-origin: left center;
-		}
-		&[aria-pressed='true'] {
-			& span:nth-child(1) {
-				transform: rotate(45deg);
-				top: -1px;
-				left: 5px;
-			}
-			& span:nth-child(2) {
-				display: none;
-			}
-			& span:nth-child(3) {
-				transform: rotate(-45deg);
-				top: 20px;
-				left: 5px;
-			}
-		}
+		// cursor: pointer;
+		// background: none;
+		// border: none;
+		// &:hover {
+		// 	border: none;
+		// 	opacity: var(--opacity-hover);
+		// }
+		// & span {
+		// 	pointer-events: none;
+		// 	display: block;
+		// 	position: absolute;
+		// 	height: 3px;
+		// 	width: 100%;
+		// 	background: var(--font-color);
+		// 	border-radius: 7px;
+		// 	opacity: 1;
+		// 	left: 0;
+		// }
+		// & span:nth-child(1) {
+		// 	top: 2px;
+		// 	transform-origin: left center;
+		// }
+		// & span:nth-child(2) {
+		// 	top: 9px;
+		// 	transform-origin: left center;
+		// }
+		// & span:nth-child(3) {
+		// 	top: 16px;
+		// 	transform-origin: left center;
+		// }
+		// &[aria-pressed='true'] {
+		// 	& span:nth-child(1) {
+		// 		transform: rotate(45deg);
+		// 		top: -1px;
+		// 		left: 5px;
+		// 	}
+		// 	& span:nth-child(2) {
+		// 		display: none;
+		// 	}
+		// 	& span:nth-child(3) {
+		// 		transform: rotate(-45deg);
+		// 		top: 20px;
+		// 		left: 5px;
+		// 	}
+		// }
 	}
 }
 
@@ -160,7 +156,7 @@
 					justify-content: center;
 				}
 			}
-			&__button {
+			& .nav-toggle {
 				position: absolute;
 				right: var(--content-padding);
 			}

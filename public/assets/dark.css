@@ -16,4 +16,14 @@
 	--background-btn-link: var(--color-gray-800);
 	--background-btn-link-active: var(--color-gray-700);
 	--background-inputs-color: var(--color-gray-800);
+
+	/* Icons */
+	--icon-primary: var(--color-white);
+	--icon-secondary: var(--color-gray-100);
+	--icon-filter: invert(100%);
+}
+
+.header svg,
+.site-content svg {
+	filter: var(--icon-filter);
 }

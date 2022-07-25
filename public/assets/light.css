@@ -16,4 +16,8 @@
 	--background-btn-link: var(--color-white);
 	--background-btn-link-active: var(--color-white);
 	--background-inputs-color: var(--color-white);
+
+	/* Icons */
+	--icon-primary: var(--color-white);
+	--icon-secondary: var(--color-gray-700);
 }
