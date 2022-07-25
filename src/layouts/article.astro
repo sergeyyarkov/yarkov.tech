@@ -18,7 +18,10 @@ const { lang = 'ru', content } = Astro.props as Props;
 
 <html lang={lang}>
 	<head>
-		<BaseHead title={content.title} />
+		<BaseHead title={content.title}>
+			<link rel='stylesheet' href='assets/prism-one-dark.min.css' media='(prefers-color-scheme: dark)' />
+			<link rel='stylesheet' href='assets/prism-one-light.min.css' media='(prefers-color-scheme: light)' />
+		</BaseHead>
 	</head>
 
 	<BaseLayout>
