@@ -17,7 +17,8 @@
 			"@utils/*": ["./src/utils/*"],
 			"@stores/*": ["./src/stores/*"]
 		},
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"typeRoots": ["./node_modules/@types", "./src/types"]
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
 }

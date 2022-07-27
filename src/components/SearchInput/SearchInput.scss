@@ -9,15 +9,19 @@
 		position: absolute;
 		left: 8px;
 		fill: var(--font-color-grayer);
+		filter: none;
 	}
+
 	& input {
 		padding-left: 40px;
-		color: var(--font-color-grayer);
+		color: var(--font-color-gray);
 		background-color: var(--background-color-hover);
 	}
 	& span {
 		font-size: var(--font-size-lg);
 		font-weight: 500;
-		color: var(--font-color-grayer);
+		color: var(--font-color-gray);
+		min-width: 20px;
+		text-align: center;
 	}
 }

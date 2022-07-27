@@ -1,1 +1,1 @@
-export { default } from './ThemeSwitcher.astro';
+export { default } from './ThemeSwitcher';

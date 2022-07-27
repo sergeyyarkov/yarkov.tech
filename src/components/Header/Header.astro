@@ -38,8 +38,8 @@ const { pathname } = Astro.canonicalURL;
 					<Icon name='telegram' width='18' height='18' />
 				</a>
 			</div>
-			<ThemeSwitcher />
+			<ThemeSwitcher client:visible />
 		</nav>
-		<NavToggle client:media='(max-width: 768px)' />
+		<NavToggle client:visible />
 	</div>
 </header>

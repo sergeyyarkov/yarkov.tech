@@ -1,3 +1,7 @@
+export const SITE_SETTINGS: SiteConfigType = {
+	defaultTheme: 'dark',
+};
+
 export const SITE_METADATA = {
 	title: 'Sergey Yarkov',
 	name: 'yarkov.tech',

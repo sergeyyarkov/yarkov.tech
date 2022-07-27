@@ -9,9 +9,9 @@ Personal website created with Astro.
 
 - [x] HTML layout
 - [x] Adaptive & Responsive layout
-- [ ] Dark/Light Theme
+- [x] Search articles by title or description
+- [x] Dark/Light Theme
 - [ ] Multilang web-site
-- [ ] Search articles by title or description
 - [ ] Form handling via Netlify Forms
 - [ ] SEO optimized
 

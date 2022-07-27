@@ -8,4 +8,8 @@
 		display: flex;
 		column-gap: 5px;
 	}
+
+	& svg {
+		filter: none;
+	}
 }

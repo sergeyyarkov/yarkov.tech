@@ -1,5 +1,3 @@
-import type { ArticleType, ArticleBlockType } from '@root/types';
-
 import { MarkdownInstance } from 'astro';
 
 export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
