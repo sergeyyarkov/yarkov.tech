@@ -4,19 +4,14 @@ import { createSignal, createEffect } from 'solid-js';
 import './NavToggle.scss';
 
 const MenuIcon: Component = () => (
-	<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M21 6V8H3V6H21ZM3 18H21V16H3V18ZM3 13H21V11H3V13Z" fill="black" />
+	<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24px" height="24px">
+		<path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z" />
 	</svg>
 );
 
 const CloseIcon: Component = () => (
-	<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
-			d="M12.0002 13.0605L17.4692 18.531L18.5312 17.4705L13.0607 12L18.5312 6.53099L17.4707 5.46899L12.0002 10.9395L6.5312 5.46899L5.4707 6.53099L10.9397 12L5.4707 17.469L6.5312 18.531L12.0002 13.0605Z"
-			fill="black"
-		/>
+	<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24px" height="24px">
+		<path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z" />
 	</svg>
 );
 

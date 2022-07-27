@@ -1,91 +1,4 @@
-:root {
-	color-scheme: light dark;
-
-	/* Fonts */
-	--font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
-	--font-family-base: 'Rubik', var(--font-fallback);
-	--font-size-xs: 0.75rem;
-	--font-size-sm: 0.875rem;
-	--font-size-md: 1rem;
-	--font-size-lg: 1.125rem;
-	--font-size-xl: 1.25rem;
-	--font-size-2xl: 1.5rem;
-	--font-size-3xl: 1.875rem;
-	--font-size-4xl: 2.25rem;
-	--font-size-5xl: 3rem;
-	--font-size-6xl: 3.75rem;
-	--font-size-7xl: 4.5rem;
-	--font-size-8xl: 6rem;
-	--font-size-9xl: 8rem;
-
-	/* Line heights */
-	--line-height-normal: 'normal';
-	--line-height-none: 1;
-	--line-height-shorter: 1.25;
-	--line-height-short: 1.375;
-	--line-height-base: 1.5;
-	--line-height-tall: 1.625;
-
-	/* Colors */
-	--color-white: #ffffff;
-	--color-black: #010409;
-
-	--color-blue-50: #cae8ff;
-	--color-blue-100: #a5d6ff;
-	--color-blue-200: #79c0ff;
-	--color-blue-300: #58a6ff;
-	--color-blue-400: #388bfd;
-	--color-blue-500: #1f6feb;
-	--color-blue-600: #1158c7;
-	--color-blue-700: #0d419d;
-	--color-blue-800: #0c2d6b;
-	--color-blue-900: #051d4d;
-
-	--color-gray-50: #f0f6fc;
-	--color-gray-100: #c9d1d9;
-	--color-gray-200: #b1bac4;
-	--color-gray-300: #8b949e;
-	--color-gray-400: #6e7681;
-	--color-gray-500: #484f58;
-	--color-gray-600: #30363d;
-	--color-gray-700: #21262d;
-	--color-gray-800: #161b22;
-	--color-gray-900: #0d1117;
-
-	--color-orange-50: #ffdfb6;
-	--color-orange-100: #ffc680;
-	--color-orange-200: #ffa657;
-	--color-orange-300: #f0883e;
-	--color-orange-400: #db6d28;
-	--color-orange-500: #bd561d;
-	--color-orange-600: #9b4215;
-	--color-orange-700: #762d0a;
-	--color-orange-800: #5a1e02;
-	--color-orange-900: #3d1300;
-
-	--color-yellow-50: #f8e3a1;
-	--color-yellow-100: #f2cc60;
-	--color-yellow-200: #e3b341;
-	--color-yellow-300: #d29922;
-	--color-yellow-400: #bb8009;
-	--color-yellow-500: #9e6a03;
-	--color-yellow-600: #845306;
-	--color-yellow-700: #693e00;
-	--color-yellow-800: #4b2900;
-	--color-yellow-900: #341a00;
-
-	/* Border */
-	--border-radius-md: 3px;
-	--border-radius-lg: 5px;
-
-	/* Sizes */
-	--content-width: 760px;
-	--content-padding: 24px;
-
-	--outline-color: var(--color-blue-500);
-
-	--opacity-hover: 0.7;
-}
+@import './theme.scss';
 
 ::selection {
 	background: var(--color-yellow-100);
@@ -115,13 +28,14 @@ html {
 	font-weight: normal;
 	font-kerning: normal;
 	font-family: var(--font-family-base);
+	background: var(--background-body-color);
 }
 
 body {
 	margin: 0;
 	padding: 0;
 	color: var(--font-color);
-	background-color: var(--background-body-color);
+	background: var(--background-body-color);
 }
 
 .container {
@@ -197,13 +111,14 @@ textarea {
 	-webkit-appearance: none;
 	font-family: var(--font-family-base);
 	padding: 8px 15px;
-	border: 1px solid var(--border-color);
+	border: none;
 	border-radius: var(--border-radius-md);
 	background-color: var(--background-inputs-color);
 	font-size: var(--font-size-sm);
 	width: 100%;
-	outline-color: var(--outline-color);
 	resize: vertical;
+	border: 1px solid var(--border-color);
+	outline-color: var(--color-blue-500);
 }
 
 button {
@@ -249,12 +164,12 @@ pre {
 }
 
 a {
-	color: var(--color-blue-500);
+	color: var(--color-blue-400);
 	font-weight: 500;
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
-		color: var(--color-blue-500);
+		color: var(--color-blue-400);
 	}
 }
 

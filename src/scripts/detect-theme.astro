@@ -1,0 +1,20 @@
+<script is:inline>
+	const THEME_STORAGE_KEY = 'theme';
+
+	const getTheme = () => {
+		const local = localStorage.getItem(THEME_STORAGE_KEY);
+		if (local && (local === 'dark' || local === 'light')) return local;
+		const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		return isDark ? 'dark' : 'light';
+	};
+
+	window.theme = getTheme();
+	document.documentElement.setAttribute('data-theme', theme);
+
+	/* Sync with OS theme */
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
+		window.theme = isDark ? 'dark' : 'light';
+		localStorage.setItem(THEME_STORAGE_KEY, theme);
+		document.documentElement.setAttribute('data-theme', theme);
+	});
+</script>

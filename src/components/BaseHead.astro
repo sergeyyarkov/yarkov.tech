@@ -1,5 +1,6 @@
 ---
 import { SITE_METADATA } from '@root/config';
+import { DetectThemeScript } from '@root/scripts';
 
 export interface Props {
 	title?: string | undefined;
@@ -12,8 +13,8 @@ const { title = SITE_METADATA.title, description } = Astro.props as Props;
 <link rel='preconnect' href='https://fonts.googleapis.com' />
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 <link href='https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap' rel='stylesheet' />
-<link rel='stylesheet' href='assets/dark.css' media='(prefers-color-scheme: dark)' />
-<link rel='stylesheet' href='assets/light.css' media='(prefers-color-scheme: light)' />
+<!-- <link rel='stylesheet' href='assets/dark.css' media='(prefers-color-scheme: dark)' /> -->
+<!-- <link rel='stylesheet' href='assets/light.css' media='(prefers-color-scheme: light)' /> -->
 
 <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -22,4 +23,7 @@ const { title = SITE_METADATA.title, description } = Astro.props as Props;
 </title>
 <meta name='title' content={title} />
 <meta name='description' content={description || SITE_METADATA.description} />
+
+<!-- This script will prevent FOUC -->
+<DetectThemeScript />
 <slot></slot>
