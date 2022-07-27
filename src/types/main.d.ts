@@ -32,8 +32,4 @@ declare global {
 	};
 
 	type ThemeModeType = 'light' | 'dark';
-
-	type SiteConfigType = {
-		defaultTheme: ThemeModeType;
-	};
 }

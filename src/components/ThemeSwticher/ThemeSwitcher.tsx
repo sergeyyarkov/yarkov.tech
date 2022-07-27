@@ -26,7 +26,9 @@ const ThemeSwitcher: Component = () => {
 	const [theme, setTheme] = createSignal<ThemeModeType>(SITE_SETTINGS.defaultTheme);
 	const [isReady, setIsReady] = createSignal<boolean>(false);
 
-	const toggleTheme: JSX.EventHandler<HTMLButtonElement, MouseEvent> = (e) => {
+	const toggleTheme: JSX.EventHandler<HTMLButtonElement, MouseEvent> = () => {
+		if (!window.theme) return;
+
 		const newTheme = theme() === 'light' ? 'dark' : 'light';
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
@@ -46,7 +48,7 @@ const ThemeSwitcher: Component = () => {
 	});
 
 	return (
-		<button onClick={toggleTheme} class={isReady() ? 'theme-switcher ready' : 'theme-switcher'}>
+		<button onClick={toggleTheme} class={isReady() ? 'theme-switcher ready' : 'theme-switcher'} aria-label={theme()}>
 			<Switch
 				children={
 					<>
