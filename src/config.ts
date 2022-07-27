@@ -1,4 +1,4 @@
-export const SITE_SETTINGS: SiteConfigType = {
+export const SITE_SETTINGS = {
 	defaultTheme: 'dark',
 };
 
@@ -36,6 +36,51 @@ export const SITE_METADATA = {
 			description: 'Статический веб-сайт для публикации различных статей, разработанный при помощи Gatsby.js и NetlifyCMS',
 			sourceUrl: 'https://github.com/sergeyyarkov/devthread.ru',
 			demoUrl: 'https://devthread.netlify.app',
+			articleUrl: undefined,
+		},
+		{
+			icon: 'round-school',
+			name: 'educt',
+			year: '2022',
+			description: 'Система управления обучением (LMS) для публикации ваших курсов, лекций, уроков',
+			sourceUrl: 'https://github.com/sergeyyarkov/educt',
+			demoUrl: 'https://client-educt-lms.netlify.app',
+			articleUrl: undefined,
+		},
+		{
+			icon: 'round-shop-two',
+			name: 'digital-store',
+			year: '2019',
+			description: 'Настраиваемый интернет-магазин с панелью управления для продажи цифровых товаров',
+			sourceUrl: 'https://github.com/sergeyyarkov/digital-store/tree/digital-store-docker',
+			demoUrl: 'https://digital-store.herokuapp.com',
+			articleUrl: undefined,
+		},
+		{
+			icon: 'chat',
+			name: 'react-chat-app',
+			year: '2021',
+			description: 'Клиент-серверное веб приложение чата разработанное при помощи Node.js и Socket.io',
+			sourceUrl: 'https://github.com/sergeyyarkov/react-chat-app',
+			demoUrl: undefined,
+			articleUrl: undefined,
+		},
+		{
+			icon: 'nodejs',
+			name: 'node-docker-example',
+			year: '2022',
+			description: 'Пример использования Docker для развертывания Node.js приложения',
+			sourceUrl: 'https://github.com/sergeyyarkov/node-docker-example',
+			demoUrl: 'https://website-simple-blog.herokuapp.com',
+			articleUrl: undefined,
+		},
+		{
+			icon: 'chip',
+			name: 'memory-led-game',
+			year: '2022',
+			description: 'Аналог популярной игры “Саймон говорит” на AVR микроконтроллере',
+			sourceUrl: 'https://github.com/sergeyyarkov/attiny24a_memory-led-game',
+			demoUrl: undefined,
 			articleUrl: undefined,
 		},
 	],
