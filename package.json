@@ -10,10 +10,10 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"dev": "astro dev --host --experimental-integrations",
+		"dev": "astro dev --host",
 		"start": "astro dev",
-		"build": "astro build --experimental-integrations",
-		"preview": "astro preview --host --experimental-integrations",
+		"build": "astro build",
+		"preview": "astro preview --host",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
