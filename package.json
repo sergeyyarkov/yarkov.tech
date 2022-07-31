@@ -10,10 +10,10 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"dev": "astro dev --host",
+		"dev": "astro dev --host --experimental-integrations",
 		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview --host",
+		"build": "astro build --experimental-integrations",
+		"preview": "astro preview --host --experimental-integrations",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
@@ -23,6 +23,7 @@
 		"@typescript-eslint/parser": "^5.31.0",
 		"astro": "^1.0.0-beta.73",
 		"astro-icon": "^0.7.3",
+		"astro-compress": "^0.0.15",
 		"eslint": "^8.20.0",
 		"eslint-plugin-solid": "^0.7.1",
 		"prettier": "^2.7.1",
