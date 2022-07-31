@@ -25,7 +25,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 	 * Update state and set url param
 	 */
 	const onSearch: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
-		const value = e.currentTarget.value;
+		const value = e.currentTarget.value.trim();
 
 		if (value.length === 0) {
 			resetSearch();

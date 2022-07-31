@@ -1,12 +1,12 @@
-import type { Component } from 'solid-js';
+import { Component } from 'solid-js';
 
 import { createSignal, createEffect, For } from 'solid-js';
 import { search, selectedTags } from '@stores/searchStore';
+import { findArticlesBySearch, findArticlesByTags, sortArtcilesByDate } from '@utils/articles';
 import { ArticleItem } from '@components/ArticleItem';
-import * as utils from '@utils/articles';
+import SearchInput from '@components/SearchInput';
+import TagsList from '@components/TagsList';
 import './ArticlesList.scss';
-import SearchInput from '../SearchInput';
-import TagsList from '../TagsList';
 
 type ArticlesListProps = {
 	data: {
@@ -39,7 +39,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		 * Find articles by title
 		 */
 		if (search()) {
-			filtered = utils.findArticlesBySearch(search(), filtered);
+			filtered = findArticlesBySearch(search(), filtered);
 			setArticles(filtered);
 		}
 
@@ -47,7 +47,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		 * Find articles by selected tags
 		 */
 		if (selectedTags().length !== 0) {
-			filtered = utils.findArticlesByTags(selectedTags(), filtered);
+			filtered = findArticlesByTags(selectedTags(), filtered);
 			setArticles(filtered);
 
 			return;
@@ -78,7 +78,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 							return (
 								<div class="articles-list__wrapper">
 									<h2>{year}</h2>
-									<For each={utils.sortArtcilesByDate(articles()[year])} children={(article) => <ArticleItem data={article} />} />
+									<For each={sortArtcilesByDate(articles()[year])} children={(article) => <ArticleItem data={article} />} />
 								</div>
 							);
 						}}

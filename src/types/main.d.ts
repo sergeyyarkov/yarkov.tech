@@ -3,6 +3,11 @@ export {};
 declare global {
 	interface Window {
 		theme?: ThemeModeType | undefined;
+		addEventListener<K extends keyof CustomEventMap>(type: K, listener: (this: Window, ev: CustomEventMap[K]) => void): void;
+	}
+
+	interface CustomEventMap {
+		onthemetoggled: CustomEvent<ThemeModeType>;
 	}
 
 	type ArticleType = {

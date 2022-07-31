@@ -1,6 +1,5 @@
 import type { Component, JSX } from 'solid-js';
 
-import { SITE_SETTINGS } from '@root/config';
 import { createSignal, onMount, Switch, Match } from 'solid-js';
 import './ThemeSwitcher.scss';
 
@@ -23,14 +22,17 @@ const SunIcon: Component = () => (
 );
 
 const ThemeSwitcher: Component = () => {
-	const [theme, setTheme] = createSignal<ThemeModeType>(SITE_SETTINGS.defaultTheme);
+	const [theme, setTheme] = createSignal<ThemeModeType>('light');
 	const [isReady, setIsReady] = createSignal<boolean>(false);
 
 	const toggleTheme: JSX.EventHandler<HTMLButtonElement, MouseEvent> = () => {
 		if (!window.theme) return;
 
 		const newTheme = theme() === 'light' ? 'dark' : 'light';
+		const toggleEvent = new CustomEvent('onthemetoggled', { detail: newTheme });
+
 		setTheme(newTheme);
+		window.dispatchEvent(toggleEvent);
 		localStorage.setItem('theme', newTheme);
 		document.documentElement.setAttribute('data-theme', newTheme);
 	};
@@ -39,7 +41,7 @@ const ThemeSwitcher: Component = () => {
 		setIsReady(true);
 		if (window.theme) {
 			setTheme(window.theme);
-			/* Update theme state on changing OS the,e */
+			/* Update theme state on changing OS theme */
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
 				const theme = isDark ? 'dark' : 'light';
 				setTheme(theme);

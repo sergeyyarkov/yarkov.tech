@@ -1,35 +1,36 @@
 ---
-import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
+	import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
 
-import BaseHead from '@components/BaseHead.astro';
-import BaseLayout from '@components/BaseLayout';
-import ArticleContent from '@components/ArticleContent';
-import ArticlePost from '@components/ArticlePost';
-import '@styles/global.scss';
+	import BaseHead from '@components/BaseHead.astro';
+	import BaseLayout from '@components/BaseLayout';
+	import ArticleContent from '@components/ArticleContent';
+	import ArticlePost from '@components/ArticlePost';
+	import '@styles/global.scss';
 
-export interface Props extends BaseHeadProps {
-	lang?: string | undefined;
-	content: ArticleType;
-}
+	export interface Props extends BaseHeadProps {
+		lang?: string | undefined;
+		content: ArticleType;
+	}
 
-const { lang = 'ru', content } = Astro.props as Props;
+	const { lang = 'ru', content } = Astro.props as Props;
 ---
 
 <html lang={lang}>
-	<head>
-		<BaseHead title={content.title}>
-			<link rel='stylesheet' href='assets/css/prism-one-dark.min.css' media='(prefers-color-scheme: dark)' />
-			<link rel='stylesheet' href='assets/css/prism-one-light.min.css' media='(prefers-color-scheme: light)' />
-		</BaseHead>
-	</head>
 
-	<BaseLayout>
-		<div class='container'>
-			<ArticlePost data={content}>
-				<ArticleContent>
-					<slot></slot>
-				</ArticleContent>
-			</ArticlePost>
-		</div>
-	</BaseLayout>
+<head>
+	<BaseHead title={content.title}>
+		<script is:inline defer src='assets/js/load-code-highlight.js' />
+	</BaseHead>
+</head>
+
+<BaseLayout>
+	<div class='container'>
+		<ArticlePost data={content}>
+			<ArticleContent>
+				<slot></slot>
+			</ArticleContent>
+		</ArticlePost>
+	</div>
+</BaseLayout>
+
 </html>
