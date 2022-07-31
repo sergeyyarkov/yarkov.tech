@@ -1,12 +1,13 @@
 ---
-import './Header.scss';
-import { SITE_METADATA } from '@root/config';
-import ThemeSwitcher from '@components/ThemeSwticher';
-import { Icon } from 'astro-icon';
-import NavToggle from './NavToggle';
+	import './Header.scss';
+	import { SITE_METADATA } from '@root/config';
+	import ThemeSwitcher from '@components/ThemeSwticher';
+	import { Icon } from 'astro-icon';
+	import { removeSlashes } from '@utils/string'
+	import NavToggle from './NavToggle';
 
-const { name, nav, contacts } = SITE_METADATA;
-const { pathname } = Astro.canonicalURL;
+	const { name, nav, contacts } = SITE_METADATA;
+	const { pathname } = Astro.canonicalURL;
 ---
 
 <header class='header'>
@@ -17,11 +18,11 @@ const { pathname } = Astro.canonicalURL;
 		<nav class='header__nav'>
 			<ul class='header__nav-links'>
 				{nav.map((link) => (
-					<li>
-						<a class={pathname.includes(link.url) && 'active'} href={link.url}>
-							{link.name}
-						</a>
-					</li>
+				<li>
+					<a class={removeSlashes(pathname)===removeSlashes(link.url) && 'active' } href={link.url}>
+						{link.name}
+					</a>
+				</li>
 				))}
 			</ul>
 			<div class='header__nav-contacts'>
