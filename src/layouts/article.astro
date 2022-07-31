@@ -1,36 +1,36 @@
 ---
-	import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
+import type { Props as BaseHeadProps } from '@root/components/BaseHead.astro';
 
-	import BaseHead from '@components/BaseHead.astro';
-	import BaseLayout from '@components/BaseLayout';
-	import ArticleContent from '@components/ArticleContent';
-	import ArticlePost from '@components/ArticlePost';
-	import '@styles/global.scss';
+import BaseHead from '@components/BaseHead.astro';
+import BaseLayout from '@components/BaseLayout';
+import ArticleContent from '@components/ArticleContent';
+import ArticlePost from '@components/ArticlePost';
+import '@styles/global.scss';
 
-	export interface Props extends BaseHeadProps {
-		lang?: string | undefined;
-		content: ArticleType;
-	}
+export interface Props extends BaseHeadProps {
+	lang?: string | undefined;
+	content: ArticleType;
+}
 
-	const { lang = 'ru', content } = Astro.props as Props;
+const { lang = 'ru', content } = Astro.props as Props;
 ---
 
 <html lang={lang}>
+	<head>
+		<BaseHead title={content.title} description={content.description}>
+			<script is:inline defer src='assets/js/load-code-highlight.js'>
 
-<head>
-	<BaseHead title={content.title}>
-		<script is:inline defer src='assets/js/load-code-highlight.js' />
-	</BaseHead>
-</head>
+			</script>
+		</BaseHead>
+	</head>
 
-<BaseLayout>
-	<div class='container'>
-		<ArticlePost data={content}>
-			<ArticleContent>
-				<slot></slot>
-			</ArticleContent>
-		</ArticlePost>
-	</div>
-</BaseLayout>
-
+	<BaseLayout>
+		<div class='container'>
+			<ArticlePost data={content}>
+				<ArticleContent>
+					<slot></slot>
+				</ArticleContent>
+			</ArticlePost>
+		</div>
+	</BaseLayout>
 </html>

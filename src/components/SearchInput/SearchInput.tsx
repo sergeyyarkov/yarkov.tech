@@ -25,14 +25,14 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 	 * Update state and set url param
 	 */
 	const onSearch: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
-		const value = e.currentTarget.value.trim();
+		const value = e.currentTarget.value;
 
-		if (value.length === 0) {
+		if (value.trim().length === 0) {
 			resetSearch();
 			return;
 		}
 
-		const url = utils.setParamToUrl('search', value);
+		const url = utils.setParamToUrl('search', value.trim());
 
 		history.replaceState(null, '', `${location.pathname}?${url}`);
 		setSearch(value);
@@ -48,6 +48,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 			resetSearch();
 			return;
 		}
+		console.log(param);
 
 		setSearch(param);
 	});

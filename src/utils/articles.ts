@@ -3,6 +3,7 @@ import { MarkdownInstance } from 'astro';
 export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
 	articles.map((article) => ({
 		title: article.frontmatter.title,
+		description: article.frontmatter.description,
 		author: article.frontmatter.author,
 		tags: article.frontmatter.tags,
 		published_at: article.frontmatter.published_at,
@@ -31,9 +32,14 @@ export const formatToArticleBlocks = (articles: ArticleType[]): ArticleBlockType
 export const findArticlesBySearch = (search: string, articles: ArticleBlockType): ArticleBlockType => {
 	const matched: Array<ArticleType> = [];
 
+	search = search.toLocaleLowerCase();
+
 	for (const year in articles) {
 		for (const article of articles[year]) {
-			const match = article.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+			const title = article.title.toLocaleLowerCase();
+			const description = article.description.toLocaleLowerCase();
+			const match = title.includes(search) || description.includes(search);
+
 			if (match) matched.push(article);
 		}
 	}

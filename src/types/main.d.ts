@@ -12,6 +12,7 @@ declare global {
 
 	type ArticleType = {
 		title: string;
+		description: string;
 		author: string;
 		tags: Array<string>;
 		published_at: string;

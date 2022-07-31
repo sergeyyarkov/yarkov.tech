@@ -39,7 +39,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		 * Find articles by title
 		 */
 		if (search()) {
-			filtered = findArticlesBySearch(search(), filtered);
+			filtered = findArticlesBySearch(search().trim(), filtered);
 			setArticles(filtered);
 		}
 
