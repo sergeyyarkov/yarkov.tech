@@ -6,7 +6,7 @@
 
 if (window.theme) {
 	/* the {theme} in the path will be dynamically changed */
-	const PATH = `assets/css/code-highlight-{theme}.min.css`;
+	const PATH = `/assets/css/code-highlight-{theme}.min.css`;
 	const $head = document.getElementsByTagName('head')[0];
 	const getPath = (theme) => PATH.replace(`{theme}`, theme);
 	const createLink = (theme, media) => {

@@ -16,7 +16,7 @@ const { title, tags, author, published_at } = data;
 			<ul class='list-links'>
 				{tags.map((tag) => (
 					<li>
-						<a class="btn-link" href={`/articles?tags=${tag}`}>
+						<a class="btn-link" href={`/articles?tags=${tag.toLocaleLowerCase()}`}>
 							{tag}
 						</a>
 					</li>
@@ -32,10 +32,7 @@ const { title, tags, author, published_at } = data;
 		</div>
 		<div>
 			<figure>
-				<img
-					src='https://img.freepik.com/premium-photo/beautiful-emerald-lake-yoho-national-park-british-columbia-canada_131985-177.jpg?w=1920'
-					alt='Article Image'
-				/>
+				<img src='https://picsum.photos/1920/1080' alt='Article Image' />
 			</figure>
 		</div>
 	</header>

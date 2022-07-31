@@ -2,6 +2,7 @@ import { MarkdownInstance } from 'astro';
 
 export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
 	articles.map((article) => ({
+		slug: article.frontmatter.slug,
 		title: article.frontmatter.title,
 		description: article.frontmatter.description,
 		author: article.frontmatter.author,

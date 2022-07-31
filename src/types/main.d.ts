@@ -11,6 +11,7 @@ declare global {
 	}
 
 	type ArticleType = {
+		slug: string;
 		title: string;
 		description: string;
 		author: string;
