@@ -1,23 +1,21 @@
 ---
 import { SITE_METADATA } from '@root/config';
-import { Markdown } from 'astro/components';
 import PageLayout from '@layouts/default.astro';
 import SkillsList from '@components/SkillsList';
 import SkillsBlock from '@components/SkillsBlock';
 
 // TODO: import content based on user ui language
-import * as aboutContent from '../../content/about/ru/index.md';
+import * as about from '../../content/about/ru/index.md';
 import ArticleContent from '@components/ArticleContent';
 
 const { skills } = SITE_METADATA;
+const { Content } = about;
 ---
 
-<PageLayout title='Обо мне'>
+<PageLayout title="Обо мне">
 	<section>
 		<ArticleContent>
-			<Markdown content={aboutContent.rawContent()}>
-
-			</Markdown>
+			<Content />
 		</ArticleContent>
 		<SkillsList>
 			{skills.map((block) => <SkillsBlock data={block} />)}
