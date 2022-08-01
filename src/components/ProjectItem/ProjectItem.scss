@@ -1,4 +1,6 @@
 .project-item {
+	display: flex;
+	flex-direction: column;
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-lg);
 	padding: 15px;
@@ -25,12 +27,9 @@
 		}
 	}
 
-	&__description {
-		margin-bottom: 15px;
-	}
-
 	&__links {
 		display: flex;
+		margin-top: auto;
 		column-gap: 5px;
 	}
 }

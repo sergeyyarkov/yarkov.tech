@@ -1,8 +1,4 @@
-export const SITE_SETTINGS = {
-	defaultTheme: 'dark',
-};
-
-export const SITE_METADATA = {
+export const SITE_METADATA: SiteMetadataType = {
 	title: 'Sergey Yarkov',
 	name: 'yarkov.tech',
 	author: 'Sergey Yarkov',
@@ -21,7 +17,7 @@ export const SITE_METADATA = {
 	],
 	projects: [
 		{
-			icon: 'nodejs',
+			icon: 'book',
 			name: 'yarkov.tech',
 			year: '2022',
 			description: 'Мой персональный веб-сайт где находятся информация обо мне и список различных статей, туториалов...',

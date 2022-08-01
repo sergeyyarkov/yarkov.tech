@@ -10,6 +10,29 @@ declare global {
 		onthemetoggled: CustomEvent<ThemeModeType>;
 	}
 
+	type SiteMetadataType = {
+		title: string;
+		name: string;
+		author: string;
+		description: string;
+		contacts: {
+			email: string;
+			githubUrl: string;
+			telegramUrl: string;
+		};
+		nav: Array<{ name: string; url: string }>;
+		projects: Array<{
+			icon: string;
+			name: string;
+			year: string;
+			description: string;
+			sourceUrl?: string | undefined;
+			demoUrl?: string | undefined;
+			articleUrl?: string | undefined;
+		}>;
+		skills: Array<{ title: string; list: Array<{ icon: string; name: string }> }>;
+	};
+
 	type ArticleType = {
 		slug: string;
 		title: string;
