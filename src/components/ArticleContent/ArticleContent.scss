@@ -83,4 +83,34 @@
 		max-width: 100%;
 		margin: 0 auto;
 	}
+
+	& .table-wrapper {
+		overflow-x: auto;
+		margin-bottom: 1.25rem;
+	}
+
+	& table {
+		display: table;
+		border-radius: var(--border-radius-md);
+		min-width: 100%;
+		font-size: var(--font-size-md);
+		border: 1px solid var(--border-color);
+		border-collapse: separate;
+		border-spacing: 0;
+		margin: 5px 0;
+		& thead th {
+			background-color: var(--background-card);
+			border-top-left-radius: var(--border-radius-md);
+			border-top-right-radius: var(--border-radius-md);
+		}
+		& td,
+		th {
+			border-bottom: 1px solid var(--border-color);
+			padding: 0.5rem;
+			text-align: left;
+		}
+		& tbody tr:last-child td {
+			border: none;
+		}
+	}
 }

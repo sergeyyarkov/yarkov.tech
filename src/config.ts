@@ -4,6 +4,7 @@ export const SITE_METADATA: SiteMetadataType = {
 	author: 'Sergey Yarkov',
 	description:
 		'Здесь я публикую статьи и туториалы на различные IT темы, а также рассказываю о своих проектах которые я сделал за последние несколько лет.',
+	themeColor: '#1e2327',
 	contacts: {
 		email: 'serzh.yarkov@gmail.com',
 		githubUrl: 'https://github.com/sergeyyarkov',

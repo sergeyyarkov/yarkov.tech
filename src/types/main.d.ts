@@ -15,6 +15,7 @@ declare global {
 		name: string;
 		author: string;
 		description: string;
+		themeColor: string;
 		contacts: {
 			email: string;
 			githubUrl: string;
