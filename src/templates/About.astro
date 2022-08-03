@@ -1,0 +1,24 @@
+---
+import { SITE_METADATA } from '@root/config';
+import PageLayout from '@layouts/default.astro';
+import SkillsList from '@components/SkillsList';
+import SkillsBlock from '@components/SkillsBlock';
+
+// TODO: import content based on user ui language
+import * as data from '../../content/about/ru/index.md';
+import ArticleContent from '@components/ArticleContent';
+
+const { skills } = SITE_METADATA;
+const { Content } = data;
+---
+
+<PageLayout title="Обо мне">
+	<section>
+		<ArticleContent>
+			<Content />
+		</ArticleContent>
+		<SkillsList>
+			{skills.map((block) => <SkillsBlock data={block} />)}
+		</SkillsList>
+	</section>
+</PageLayout>

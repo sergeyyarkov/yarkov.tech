@@ -1,0 +1,12 @@
+---
+import PageLayout from '@layouts/default.astro';
+import ContactForm from '@components/ContactForm';
+import ContactsList from '@components/ContactsList';
+---
+
+<PageLayout title="Контакты" description="Воспользуйтесь формой обратной связи или напишите мне в социальные сети.">
+	<section>
+		<ContactForm client:idle />
+		<ContactsList />
+	</section>
+</PageLayout>

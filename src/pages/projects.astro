@@ -1,16 +1,5 @@
 ---
-import { SITE_METADATA } from '@root/config';
-import PageLayout from '@layouts/default.astro';
-import ProjectsList from '@components/ProjectsList';
-import ProjectItem from '@components/ProjectItem';
-
-const { projects } = SITE_METADATA;
+import Projects from '@root/templates/Projects.astro';
 ---
 
-<PageLayout title='Проекты' description='Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.'>
-	<section>
-		<ProjectsList>
-			{projects.map((project) => <ProjectItem data={project} />)}
-		</ProjectsList>
-	</section>
-</PageLayout>
+<Projects />

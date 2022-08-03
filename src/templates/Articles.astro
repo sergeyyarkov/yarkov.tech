@@ -1,0 +1,24 @@
+---
+import PageLayout from '@layouts/default.astro';
+import ArticlesList from '@components/ArticlesList';
+import { transformArticles, formatToArticleBlocks } from '@utils/articles';
+
+const articles = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
+const tags = new Set(articles.map((article) => article.frontmatter.tags).flat());
+---
+
+<PageLayout
+	title="Статьи"
+	description="Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь."
+>
+	<section>
+		<ArticlesList
+			client:load
+			data={{
+				articles: formatToArticleBlocks(transformArticles(articles)),
+				tags: [...tags],
+			}}
+			emptyPlaceholder="Не найдено ни одной статьи..."
+		/>
+	</section>
+</PageLayout>
