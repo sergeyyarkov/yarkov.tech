@@ -70,6 +70,27 @@
 		margin: 0 0 1em;
 	}
 
+	& hr {
+		background-color: var(--border-color);
+		margin: 40px 0;
+		border: none;
+		height: 1px;
+	}
+
+	& pre {
+		font-size: var(--font-size-sm);
+		border-radius: var(--border-radius-md);
+	}
+
+	& :not(pre) > code {
+		-webkit-font-smoothing: subpixel-antialiased;
+		background: var(--background-inline-code);
+		border-radius: var(--border-radius-lg);
+		font-size: 1rem;
+		font-weight: 500;
+		padding: 0.2rem 0.3rem;
+	}
+
 	& figcaption {
 		font-style: italic;
 		font-size: 1em;
@@ -112,5 +133,18 @@
 		& tbody tr:last-child td {
 			border: none;
 		}
+	}
+
+	li::marker {
+		color: var(--color-blue-500);
+		font-size: 1.3rem;
+		line-height: var(--line-height-none);
+	}
+
+	& blockquote {
+		margin: 1.5rem 0;
+		font-style: italic;
+		border-left: 0.25rem solid var(--border-color);
+		padding-left: 1rem;
 	}
 }

@@ -79,22 +79,9 @@ body {
 	}
 }
 
-li::marker {
-	color: var(--color-blue-500);
-	font-size: 1.3rem;
-	line-height: var(--line-height-none);
-}
-
 p {
 	margin-top: 0;
 	margin-bottom: 1.5rem;
-}
-
-hr {
-	background-color: var(--border-color);
-	margin: 40px 0;
-	border: none;
-	height: 1px;
 }
 
 h1,
@@ -120,46 +107,9 @@ textarea {
 	outline-color: var(--color-blue-500);
 }
 
-button {
-	cursor: pointer;
-	font-family: var(--font-family-base);
-	font-weight: 500;
-	font-size: var(--font-size-md);
-	color: var(--font-color);
-	padding: 4px 16px;
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius-md);
-	background: none;
-	font-size: var(--font-size-sm);
-	&:hover {
-		border: 1px solid var(--border-color-hover);
-	}
-}
-
 textarea {
 	max-height: 500px;
 	min-height: 200px;
-}
-
-blockquote {
-	margin: 1.5rem 0;
-	font-style: italic;
-	border-left: 0.25rem solid var(--border-color);
-	padding-left: 1rem;
-}
-
-:not(pre) > code {
-	-webkit-font-smoothing: subpixel-antialiased;
-	background: var(--background-inline-code);
-	border-radius: var(--border-radius-lg);
-	font-size: 1rem;
-	font-weight: 500;
-	padding: 0.2rem 0.3rem;
-}
-
-pre {
-	font-size: var(--font-size-sm);
-	border-radius: var(--border-radius-md);
 }
 
 a {
@@ -170,4 +120,9 @@ a {
 		text-decoration: underline;
 		color: var(--color-blue-400);
 	}
+}
+
+button {
+	background: none;
+	border: none;
 }

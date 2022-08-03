@@ -1,4 +1,6 @@
 import type { Component } from 'solid-js';
+
+import Button from '@components/Button';
 import './ContactForm.scss';
 
 type InputFieldsType = {
@@ -18,7 +20,7 @@ const ContactForm: Component = () => {
 			<input name="subject" placeholder="Тема сообщения" type="text" />
 			<textarea name="message" placeholder="Ваше сообщение..." id="message" cols={30} rows={10} />
 			<div>
-				<button type="submit">Отправить</button>
+				<Button type="submit">Отправить</Button>
 			</div>
 		</form>
 	);
