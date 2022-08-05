@@ -88,6 +88,12 @@ p {
 	margin-bottom: 1.5rem;
 }
 
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
 h1,
 h2,
 h3,
@@ -101,7 +107,6 @@ input,
 textarea {
 	-webkit-appearance: none;
 	font-family: var(--font-family-base);
-	font-size: 20px;
 	padding: 8px 15px;
 	border-radius: var(--border-radius-md);
 	background-color: var(--background-inputs-color);

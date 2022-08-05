@@ -1,29 +1,7 @@
 .article {
 	& header {
-		& .meta {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-end;
-			column-gap: 5px;
-
-			& ul {
-				max-width: 350px;
-			}
-
-			& div {
-				display: flex;
-				flex-direction: column;
-				text-align: right;
-				white-space: nowrap;
-				& time {
-					text-transform: uppercase;
-					font-size: var(--font-size-sm);
-				}
-			}
-		}
-
 		& .heading {
-			margin-top: 2rem;
+			margin-top: 1.125rem;
 
 			& h1 {
 				font-weight: 600;
@@ -34,6 +12,22 @@
 				font-size: 1.125rem;
 				line-height: var(--line-height-base);
 			}
+		}
+
+		& .tags {
+			font-size: var(--font-size-sm);
+			text-transform: uppercase;
+			& ul {
+				display: flex;
+				flex-wrap: wrap;
+				column-gap: 5px;
+				row-gap: 7px;
+			}
+		}
+
+		& .published {
+			margin-bottom: 1.25em;
+			color: var(--font-color-gray);
 		}
 
 		& figure {
@@ -55,24 +49,8 @@
 
 @media screen and (max-width: 560px) {
 	.article {
-		& header {
-			& .heading h1 {
-				font-size: 2rem;
-			}
-
-			& .meta {
-				flex-direction: column-reverse;
-				align-items: flex-start;
-
-				& ul {
-					max-width: 100%;
-				}
-
-				& div {
-					align-self: flex-end;
-					margin-bottom: 1.2rem;
-				}
-			}
+		& header .heading h1 {
+			font-size: 2rem;
 		}
 	}
 }

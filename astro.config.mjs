@@ -1,17 +1,17 @@
-import { defineConfig } from 'astro/config';
-import solid from '@astrojs/solid-js';
-import compress from 'astro-compress';
+import { defineConfig } from "astro/config";
+import solid from "@astrojs/solid-js";
+import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://yarkov.tech',
-	integrations: [solid(), compress({ img: false })],
+	site: "https://yarkov.tech",
+	integrations: [solid(), compress({ img: false, html: false })],
 	markdown: {
-		syntaxHighlight: 'prism',
+		syntaxHighlight: "prism",
 	},
 	vite: {
 		ssr: {
-			external: ['svgo'],
+			external: ["svgo"],
 		},
 	},
 	experimental: {

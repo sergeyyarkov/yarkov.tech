@@ -1,6 +1,6 @@
 ---
-import { DateFormatter } from '@root/utils';
-import './ArticlePost.scss';
+import { DateFormatter } from "@root/utils";
+import "./ArticlePost.scss";
 
 export interface Props {
 	data: ArticleType;
@@ -10,33 +10,31 @@ const { data } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
 ---
 
-<article class='article'>
+<article class="article">
 	<header>
-		<div class='meta'>
-			<ul class='list-links'>
+		<div class="tags">
+			<ul>
 				{tags.map((tag) => (
 					<li>
-						<a class="btn-link" href={`/articles?tags=${tag.toLocaleLowerCase()}`}>
-							{tag}
-						</a>
+						<a href={`/articles?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
 					</li>
 				))}
 			</ul>
-			<div>
-				<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
-				<span>Опубликовал&nbsp;<b>{author}</b></span>
-			</div>
 		</div>
-		<div class='heading'>
+		<div class="heading">
 			<h1>{title}</h1>
+		</div>
+		<div class="published">
+			<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
+			<span>{author}</span>
 		</div>
 		<div>
 			<figure>
-				<img src='https://picsum.photos/1920/1080' alt='Article Image' />
+				<img src="https://picsum.photos/1920/1080" alt="Article Image" />
 			</figure>
 		</div>
 	</header>
-	<slot></slot>
+	<slot />
 	<footer>
 		<h2>Comments</h2>
 	</footer>
