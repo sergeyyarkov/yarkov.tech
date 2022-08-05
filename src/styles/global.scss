@@ -1,4 +1,4 @@
-@import './theme.scss';
+@import "./theme.scss";
 
 ::selection {
 	background: var(--color-yellow-100);
@@ -13,7 +13,7 @@ body {
 	min-height: 100vh;
 }
 
-body[data-is-mobile-open='true'] {
+body[data-is-mobile-open="true"] {
 	overflow-y: hidden;
 }
 
@@ -42,6 +42,10 @@ body {
 	max-width: var(--content-width);
 	margin: 0 auto;
 	padding: 0 var(--content-padding);
+}
+
+.flex {
+	display: flex;
 }
 
 .list-links {
@@ -73,7 +77,7 @@ body {
 		color: inherit;
 		border-color: var(--border-color-hover);
 	}
-	&[data-active='true'] {
+	&[data-active="true"] {
 		background-color: var(--background-btn-link-active);
 		border-color: var(--border-color-hover);
 	}
@@ -97,6 +101,7 @@ input,
 textarea {
 	-webkit-appearance: none;
 	font-family: var(--font-family-base);
+	font-size: 20px;
 	padding: 8px 15px;
 	border-radius: var(--border-radius-md);
 	background-color: var(--background-inputs-color);

@@ -58,9 +58,17 @@ declare global {
 		list: Array<{ icon?: string | undefined; name: string }>;
 	};
 
+	type ContactFieldsType = {
+		name: string;
+		email: string;
+		subject: string;
+		message: string;
+		"bot-field": string;
+	};
+
 	type ArticleBlockType = {
 		[year: number]: ArticleType[];
 	};
 
-	type ThemeModeType = 'light' | 'dark';
+	type ThemeModeType = "light" | "dark";
 }

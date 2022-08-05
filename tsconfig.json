@@ -13,9 +13,11 @@
 			"@root/*": ["./src/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@components/*": ["./src/components/*"],
+			"@templates/*": ["./src/templates/*"],
 			"@layouts/*": ["./src/layouts/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@stores/*": ["./src/stores/*"]
+			"@stores/*": ["./src/stores/*"],
+			"@hooks/*": ["./src/hooks/*"]
 		},
 		"outDir": "./dist",
 		"typeRoots": ["./node_modules/@types", "./src/types"]

@@ -1,15 +1,28 @@
 .btn {
 	cursor: pointer;
+	display: inline-flex;
+	column-gap: 7px;
+	align-items: center;
 	font-family: var(--font-family-base);
 	font-weight: 500;
 	font-size: var(--font-size-md);
 	color: var(--font-color);
-	padding: 4px 16px;
+	padding: 5px 16px;
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-md);
 	background: none;
 	font-size: var(--font-size-sm);
 	&:hover {
 		border: 1px solid var(--border-color-hover);
+	}
+	&[disabled] {
+		opacity: 0.5;
+		&:hover {
+			border: 1px solid var(--border-color);
+		}
+	}
+	&[data-loading="true"] {
+		user-select: none;
+		cursor: not-allowed;
 	}
 }

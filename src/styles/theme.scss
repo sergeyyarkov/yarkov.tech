@@ -1,10 +1,10 @@
 :root,
-:root[data-theme='light'] {
+:root[data-theme="light"] {
 	color-scheme: light;
 
 	/* Fonts */
 	--font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
-	--font-family-base: 'Rubik', var(--font-fallback);
+	--font-family-base: "Rubik", var(--font-fallback);
 	--font-size-xs: 0.75rem;
 	--font-size-sm: 0.875rem;
 	--font-size-md: 1rem;
@@ -20,7 +20,7 @@
 	--font-size-9xl: 8rem;
 
 	/* Line heights */
-	--line-height-normal: 'normal';
+	--line-height-normal: "normal";
 	--line-height-none: 1;
 	--line-height-shorter: 1.25;
 	--line-height-short: 1.375;
@@ -30,6 +30,8 @@
 	/* Colors */
 	--color-white: #ffffff;
 	--color-black: #010409;
+
+	--color-error: #ff3737;
 
 	--color-blue-50: #cae8ff;
 	--color-blue-100: #a5d6ff;
@@ -109,7 +111,7 @@
 	--icon-secondary: var(--color-gray-700);
 }
 
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
 	color-scheme: dark;
 	/* Fonts */
 	--font-color: var(--color-white);
@@ -136,7 +138,7 @@
 	--icon-filter: invert(100%);
 
 	& .header svg,
-	& .site-content svg:not([data-filter='none']) {
+	& .site-content svg:not([data-filter="none"]) {
 		filter: var(--icon-filter);
 	}
 }

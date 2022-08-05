@@ -1,0 +1,26 @@
+.spinner {
+	--spinner-size: 1em;
+	display: inline-block;
+	border-top: 1px solid var(--font-color);
+	border-right: 1px solid var(--font-color);
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-radius: 99999px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	animation: 0.45s linear 0s infinite normal none running spinner;
+	width: var(--spinner-size);
+	height: var(--spinner-size);
+}
+
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
