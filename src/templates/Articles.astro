@@ -1,9 +1,9 @@
 ---
-import PageLayout from '@layouts/default.astro';
-import ArticlesList from '@components/ArticlesList';
-import { transformArticles, formatToArticleBlocks } from '@utils/articles';
+import PageLayout from "@layouts/default.astro";
+import ArticlesList from "@components/ArticlesList";
+import { transformArticles, formatToArticleBlocks } from "@utils/articles";
 
-const articles = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
+const articles = await Astro.glob<ArticleType>("../../content/articles/**/*.mdx");
 const tags = new Set(articles.map((article) => article.frontmatter.tags).flat());
 ---
 
@@ -14,10 +14,7 @@ const tags = new Set(articles.map((article) => article.frontmatter.tags).flat())
 	<section>
 		<ArticlesList
 			client:load
-			data={{
-				articles: formatToArticleBlocks(transformArticles(articles)),
-				tags: [...tags],
-			}}
+			data={{ articles: formatToArticleBlocks(transformArticles(articles)), tags: [...tags] }}
 			emptyPlaceholder="Не найдено ни одной статьи..."
 		/>
 	</section>

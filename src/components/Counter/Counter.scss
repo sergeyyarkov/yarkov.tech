@@ -1,0 +1,14 @@
+.counter {
+	margin: 2rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 15px;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	padding: 15px 5px;
+	& div {
+		display: flex;
+		column-gap: 3px;
+	}
+}

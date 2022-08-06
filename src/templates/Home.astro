@@ -4,7 +4,7 @@ import PageLayout from '@layouts/default.astro';
 import RecentArticles from '@components/RecentArticles';
 import { Splash, SplashHeading, SplashLinks, Link } from '@components/Splash';
 
-const data = await Astro.glob<ArticleType>('../../content/articles/**/*.md');
+const data = await Astro.glob<ArticleType>('../../content/articles/**/*.mdx');
 const articles = utils.transformArticles(data);
 ---
 

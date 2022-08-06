@@ -19,6 +19,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/image": "^0.3.2",
+		"@astrojs/mdx": "^0.7.0",
 		"@astrojs/solid-js": "^0.4.1",
 		"@typescript-eslint/eslint-plugin": "^5.32.0",
 		"@typescript-eslint/parser": "^5.32.0",

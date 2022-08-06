@@ -5,18 +5,18 @@ import ArticleLayout from "@layouts/article.astro";
 
 // TODO: generate pages based on user language
 export async function getStaticPaths() {
-	const data = await Astro.glob<ArticleType>("../../../content/articles/**/*.md");
+	const data = await Astro.glob<ArticleType>("../../../content/articles/**/*.mdx");
 	return data.map((article) => {
 		const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
 		const slug = `${published_at}/${article.frontmatter.slug}`;
-		const props = { Content: article.Content, frontmatter: article.frontmatter };
-		return { params: { slug }, props };
+		return { params: { slug }, props: article };
 	});
 }
 
-const { Content, frontmatter: data } = Astro.props as MarkdownInstance<ArticleType>;
+const article = Astro.props as MarkdownInstance<ArticleType>;
+const Content = article.default
 ---
 
-<ArticleLayout content={data}>
+<ArticleLayout content={article.frontmatter}>
 	<Content />
 </ArticleLayout>

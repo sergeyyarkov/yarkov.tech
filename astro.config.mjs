@@ -5,6 +5,7 @@ import { escape } from "html-escaper";
 import solid from "@astrojs/solid-js";
 import image from "@astrojs/image";
 import compress from "astro-compress";
+import mdx from "@astrojs/mdx";
 
 const createAnchorLabel = (heading) => {
 	const node = h("span.anchor-label", escape(heading));
@@ -22,6 +23,7 @@ export default defineConfig({
 			html: false,
 		}),
 		image(),
+		mdx(),
 	],
 	markdown: {
 		syntaxHighlight: "prism",
