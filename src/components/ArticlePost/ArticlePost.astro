@@ -1,8 +1,9 @@
 ---
 import { DateFormatter } from "@root/utils";
+import { Image, Picture } from '@astrojs/image/components'
 import "./ArticlePost.scss";
 
-export interface Props {
+export type Props = {
 	data: ArticleType;
 }
 
@@ -28,11 +29,11 @@ const { title, tags, author, published_at } = data;
 			<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
 			<span>{author}</span>
 		</div>
-		<div>
+		{data.coverImage && <div>
 			<figure>
-				<img src="https://picsum.photos/1920/1080" alt="Article Image" />
+				<Image src={data.coverImage} width={700} height={400} aspectRatio={'16:9'} format={'webp'} alt={data.title} />
 			</figure>
-		</div>
+		</div>}
 	</header>
 	<slot />
 	<footer>

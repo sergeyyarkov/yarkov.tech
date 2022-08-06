@@ -37,6 +37,7 @@ declare global {
 	type ArticleType = {
 		slug: string;
 		title: string;
+		coverImage?: string | undefined;
 		description: string;
 		author: string;
 		tags: Array<string>;

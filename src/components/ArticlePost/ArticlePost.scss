@@ -20,7 +20,7 @@
 			& ul {
 				display: flex;
 				flex-wrap: wrap;
-				column-gap: 5px;
+				column-gap: 7px;
 				row-gap: 7px;
 			}
 		}
@@ -38,6 +38,7 @@
 				display: block;
 				margin: 0 auto;
 				max-width: 100%;
+				height: auto;
 			}
 		}
 	}

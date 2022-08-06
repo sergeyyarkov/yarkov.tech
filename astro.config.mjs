@@ -1,11 +1,12 @@
 import { defineConfig } from "astro/config";
-import solid from "@astrojs/solid-js";
-import compress from "astro-compress";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
+import solid from "@astrojs/solid-js";
+import image from "@astrojs/image";
+import compress from "astro-compress";
 
-const createAnchorLabel = (heading: string) => {
+const createAnchorLabel = (heading) => {
 	const node = h("span.anchor-label", escape(heading));
 	node.properties["is:raw"] = true;
 	return node;
@@ -14,7 +15,14 @@ const createAnchorLabel = (heading: string) => {
 // https://astro.build/config
 export default defineConfig({
 	site: "https://yarkov.tech",
-	integrations: [solid(), compress({ img: false, html: false })],
+	integrations: [
+		solid(),
+		compress({
+			img: false,
+			html: false,
+		}),
+		image(),
+	],
 	markdown: {
 		syntaxHighlight: "prism",
 		remarkPlugins: ["remark-gfm", "remark-smartypants"],
