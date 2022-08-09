@@ -1,1 +1,1 @@
-export { default } from './SkillsList.astro';
+export { default } from "./SkillsList.astro";

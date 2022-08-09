@@ -1,1 +1,1 @@
-export { default } from './RecentArticles.astro';
+export { default } from "./RecentArticles.astro";

@@ -1,1 +1,1 @@
-export { default } from './ProjectsList.astro';
+export { default } from "./ProjectsList.astro";

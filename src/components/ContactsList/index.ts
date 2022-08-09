@@ -1,1 +1,1 @@
-export { default } from './ContactsList.astro';
+export { default } from "./ContactsList.astro";

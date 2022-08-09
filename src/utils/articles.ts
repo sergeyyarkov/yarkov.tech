@@ -1,4 +1,4 @@
-import { MarkdownInstance } from 'astro';
+import { MarkdownInstance } from "astro";
 
 export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
 	articles.map((article) => ({

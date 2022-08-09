@@ -1,5 +1,5 @@
 ---
-import './PageHeading.scss';
+import "./PageHeading.scss";
 
 export interface Props {
 	heading: string;
@@ -9,8 +9,8 @@ export interface Props {
 const { heading, description } = Astro.props as Props;
 ---
 
-<div class='page-heading'>
-	<h1 style={!description && 'margin-bottom: 2.5rem;'}>
+<div class="page-heading">
+	<h1 style={!description && "margin-bottom: 2.5rem;"}>
 		{heading}
 	</h1>
 	{description && <p>{description}</p>}

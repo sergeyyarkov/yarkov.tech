@@ -2,14 +2,14 @@ export const extendHistoryState = (state: object, url?: URL | string | undefined
 	const { history } = window;
 	const updated = Object.assign({}, history.state, state);
 
-	history.replaceState(updated, '', url);
+	history.replaceState(updated, "", url);
 };
 
 export const deleteParamFromUrl = (param: string): string => {
 	const params = new URLSearchParams(window.location.search);
 	params.delete(param);
 
-	const url = !params.toString() ? window.location.pathname : '?' + params.toString();
+	const url = !params.toString() ? window.location.pathname : "?" + params.toString();
 
 	return url;
 };

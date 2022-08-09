@@ -1,7 +1,7 @@
-import type { Component } from 'solid-js';
+import type { Component } from "solid-js";
 
-import { createSignal, createEffect } from 'solid-js';
-import './NavToggle.scss';
+import { createSignal, createEffect } from "solid-js";
+import "./NavToggle.scss";
 
 const MenuIcon: Component = () => (
 	<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24px" height="24px">
@@ -24,11 +24,11 @@ const NavToggle: Component = () => {
 		const body = document.body;
 
 		if (isNavShown()) {
-			body.setAttribute('data-is-mobile-open', 'true');
+			body.setAttribute("data-is-mobile-open", "true");
 			return;
 		}
 
-		body.removeAttribute('data-is-mobile-open');
+		body.removeAttribute("data-is-mobile-open");
 	});
 
 	return (

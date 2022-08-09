@@ -1,42 +1,42 @@
 ---
-	import './Header.scss';
-	import { SITE_METADATA } from '@root/config';
-	import ThemeSwitcher from '@components/ThemeSwticher';
-	import { Icon } from 'astro-icon';
-	import { removeSlashes } from '@utils/string'
-	import NavToggle from './NavToggle';
+import { Icon } from "astro-icon";
+import { SITE_METADATA } from "@root/config";
+import ThemeSwitcher from "@components/ThemeSwticher";
+import { removeSlashes } from "@utils/string";
+import NavToggle from "./NavToggle";
+import "./Header.scss";
 
-	const { name, nav, contacts } = SITE_METADATA;
-	const { pathname } = Astro.canonicalURL;
+const { name, nav, contacts } = SITE_METADATA;
+const { pathname } = Astro.url;
 ---
 
-<header class='header'>
-	<div class='container'>
-		<div class='header__logo'>
-			<a href='/'>{name}</a>
+<header class="header">
+	<div class="container">
+		<div class="header__logo">
+			<a href="/">{name}</a>
 		</div>
-		<nav class='header__nav'>
-			<ul class='header__nav-links'>
+		<nav class="header__nav">
+			<ul class="header__nav-links">
 				{nav.map((link) => (
-				<li>
-					<a class={removeSlashes(pathname)===removeSlashes(link.url) && 'active' } href={link.url}>
-						{link.name}
-					</a>
-				</li>
+					<li>
+						<a class={removeSlashes(pathname) === removeSlashes(link.url) && "active"} href={link.url}>
+							{link.name}
+						</a>
+					</li>
 				))}
 			</ul>
-			<div class='header__nav-contacts'>
-				<a href={'mailto:' + contacts.email}>
+			<div class="header__nav-contacts">
+				<a href={"mailto:" + contacts.email}>
 					Почта
-					<Icon name='email' width='18' height='18' />
+					<Icon name="email" width="18" height="18" />
 				</a>
 				<a href={contacts.githubUrl}>
 					Github
-					<Icon name='github_filled' width='18' height='18' />
+					<Icon name="github_filled" width="18" height="18" />
 				</a>
 				<a href={contacts.telegramUrl}>
 					Телеграм
-					<Icon name='telegram' width='18' height='18' />
+					<Icon name="telegram" width="18" height="18" />
 				</a>
 			</div>
 			<ThemeSwitcher client:visible />

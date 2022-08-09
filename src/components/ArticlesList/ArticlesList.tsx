@@ -1,12 +1,12 @@
-import { Component } from 'solid-js';
+import { Component } from "solid-js";
 
-import { createSignal, createEffect, For } from 'solid-js';
-import { search, selectedTags } from '@stores/searchStore';
-import { findArticlesBySearch, findArticlesByTags, sortArtcilesByDate } from '@utils/articles';
-import { ArticleItem } from '@components/ArticleItem';
-import SearchInput from '@components/SearchInput';
-import TagsList from '@components/TagsList';
-import './ArticlesList.scss';
+import { createSignal, createEffect, For } from "solid-js";
+import { search, selectedTags } from "@stores/searchStore";
+import { findArticlesBySearch, findArticlesByTags, sortArtcilesByDate } from "@utils/articles";
+import { ArticleItem } from "@components/ArticleItem";
+import SearchInput from "@components/SearchInput";
+import TagsList from "@components/TagsList";
+import "./ArticlesList.scss";
 
 type ArticlesListProps = {
 	data: {
@@ -69,7 +69,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 			<div class="articles-list">
 				{isEmpty() ? (
 					<div class="articles-list__empty">
-						<p>{props.emptyPlaceholder || 'No articles found...'}</p>
+						<p>{props.emptyPlaceholder || "No articles found..."}</p>
 					</div>
 				) : (
 					<For

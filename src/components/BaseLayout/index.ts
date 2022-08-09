@@ -1,1 +1,1 @@
-export { default } from './BaseLayout.astro';
+export { default } from "./BaseLayout.astro";

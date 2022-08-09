@@ -1,7 +1,7 @@
 ---
-import './RecentArticles.scss';
-import { ArticleItem } from '@components/ArticleItem';
-import { sortArtcilesByDate } from '@utils/articles';
+import "./RecentArticles.scss";
+import { ArticleItem } from "@components/ArticleItem";
+import { sortArtcilesByDate } from "@utils/articles";
 
 export interface Props {
 	articles: ArticleType[];
@@ -13,13 +13,13 @@ const { articles, length = 5 } = Astro.props as Props;
 const recent = sortArtcilesByDate(articles);
 ---
 
-<section class='recent'>
-	<div class='recent-heading'>
+<section class="recent">
+	<div class="recent-heading">
 		<h2>недавние публикации</h2>
-		<a href='/articles'>смотреть все</a>
+		<a href="/articles">смотреть все</a>
 	</div>
 
-	<div class='recent-list'>
+	<div class="recent-list">
 		{recent.length !== 0 ? (
 			recent.slice(0, length).map((article) => <ArticleItem data={article} />)
 		) : (

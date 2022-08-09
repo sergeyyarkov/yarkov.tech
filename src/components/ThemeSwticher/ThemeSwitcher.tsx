@@ -1,7 +1,7 @@
-import type { Component, JSX } from 'solid-js';
+import type { Component, JSX } from "solid-js";
 
-import { createSignal, onMount, Switch, Match } from 'solid-js';
-import './ThemeSwitcher.scss';
+import { createSignal, onMount, Switch, Match } from "solid-js";
+import "./ThemeSwitcher.scss";
 
 const MoonIcon: Component = () => (
 	<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,19 +22,19 @@ const SunIcon: Component = () => (
 );
 
 const ThemeSwitcher: Component = () => {
-	const [theme, setTheme] = createSignal<ThemeModeType>('light');
+	const [theme, setTheme] = createSignal<ThemeModeType>("light");
 	const [isReady, setIsReady] = createSignal<boolean>(false);
 
 	const toggleTheme: JSX.EventHandler<HTMLButtonElement, MouseEvent> = () => {
 		if (!window.theme) return;
 
-		const newTheme = theme() === 'light' ? 'dark' : 'light';
-		const toggleEvent = new CustomEvent('onthemetoggled', { detail: newTheme });
+		const newTheme = theme() === "light" ? "dark" : "light";
+		const toggleEvent = new CustomEvent("onthemetoggled", { detail: newTheme });
 
 		setTheme(newTheme);
 		window.dispatchEvent(toggleEvent);
-		localStorage.setItem('theme', newTheme);
-		document.documentElement.setAttribute('data-theme', newTheme);
+		localStorage.setItem("theme", newTheme);
+		document.documentElement.setAttribute("data-theme", newTheme);
 	};
 
 	onMount(() => {
@@ -42,20 +42,20 @@ const ThemeSwitcher: Component = () => {
 		if (window.theme) {
 			setTheme(window.theme);
 			/* Update theme state on changing OS theme */
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
-				const theme = isDark ? 'dark' : 'light';
+			window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
+				const theme = isDark ? "dark" : "light";
 				setTheme(theme);
 			});
 		}
 	});
 
 	return (
-		<button onClick={toggleTheme} class={isReady() ? 'theme-switcher ready' : 'theme-switcher'} aria-label={theme()}>
+		<button onClick={toggleTheme} class={isReady() ? "theme-switcher ready" : "theme-switcher"} aria-label={theme()}>
 			<Switch
 				children={
 					<>
-						<Match when={theme() === 'light'} children={<MoonIcon />} />
-						<Match when={theme() === 'dark'} children={<SunIcon />} />
+						<Match when={theme() === "light"} children={<MoonIcon />} />
+						<Match when={theme() === "dark"} children={<SunIcon />} />
 					</>
 				}
 			/>

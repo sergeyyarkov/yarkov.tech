@@ -1,1 +1,1 @@
-export { default } from './PageHeading.astro';
+export { default } from "./PageHeading.astro";

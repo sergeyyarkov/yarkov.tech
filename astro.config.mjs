@@ -4,7 +4,7 @@ import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
 import solid from "@astrojs/solid-js";
 import image from "@astrojs/image";
-import compress from "astro-compress";
+// import compress from "astro-compress";
 import mdx from "@astrojs/mdx";
 
 const createAnchorLabel = (heading) => {
@@ -16,15 +16,7 @@ const createAnchorLabel = (heading) => {
 // https://astro.build/config
 export default defineConfig({
 	site: "https://yarkov.tech",
-	integrations: [
-		solid(),
-		compress({
-			img: false,
-			html: false,
-		}),
-		image(),
-		mdx(),
-	],
+	integrations: [solid(), image(), mdx()],
 	markdown: {
 		syntaxHighlight: "prism",
 		remarkPlugins: ["remark-gfm", "remark-smartypants"],

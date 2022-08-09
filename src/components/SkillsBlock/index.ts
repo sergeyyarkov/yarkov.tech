@@ -1,1 +1,1 @@
-export { default } from './SkillsBlock.astro';
+export { default } from "./SkillsBlock.astro";

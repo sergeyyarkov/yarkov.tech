@@ -1,8 +1,8 @@
-import type { Component, JSX } from 'solid-js';
+import type { Component, JSX } from "solid-js";
 
-import { For, createEffect } from 'solid-js';
-import { selectedTags, setSelectedTags } from '@stores/searchStore';
-import * as utils from '@utils/history';
+import { For, createEffect } from "solid-js";
+import { selectedTags, setSelectedTags } from "@stores/searchStore";
+import * as utils from "@utils/history";
 
 type TagsListProps = {
 	data: string[];
@@ -15,14 +15,14 @@ const TagsList: Component<TagsListProps> = (props) => {
 	 * Reset signal state and `tags` property in history state
 	 */
 	const resetSelected = () => {
-		const url = utils.deleteParamFromUrl('tags');
+		const url = utils.deleteParamFromUrl("tags");
 
 		setSelectedTags([]);
-		history.replaceState(null, '', url);
+		history.replaceState(null, "", url);
 	};
 
 	const onSelect: JSX.EventHandler<HTMLLIElement, PointerEvent> = (e) => {
-		const tag = e.target.getAttribute('data-tag');
+		const tag = e.target.getAttribute("data-tag");
 
 		/**
 		 * Delete tag from selected tags if already selected
@@ -30,7 +30,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 		 */
 		if (isTagSelected(tag)) {
 			const updated = selectedTags().filter((selectedTag) => selectedTag !== tag);
-			const url = utils.setParamToUrl('tags', updated.join(','));
+			const url = utils.setParamToUrl("tags", updated.join(","));
 
 			if (updated.length === 0) {
 				resetSelected();
@@ -38,7 +38,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 			}
 
 			setSelectedTags(updated);
-			history.replaceState(null, '', `${location.pathname}?${url}`);
+			history.replaceState(null, "", `${location.pathname}?${url}`);
 			return;
 		}
 
@@ -46,14 +46,14 @@ const TagsList: Component<TagsListProps> = (props) => {
 		 * Add selected tag to state and update url
 		 */
 		const updated = [...selectedTags(), tag];
-		const url = utils.setParamToUrl('tags', updated.join(','));
+		const url = utils.setParamToUrl("tags", updated.join(","));
 
 		setSelectedTags(updated);
-		history.replaceState(null, '', `${location.pathname}?${url}`);
+		history.replaceState(null, "", `${location.pathname}?${url}`);
 	};
 
 	createEffect(() => {
-		let param: string | string[] = new URLSearchParams(location.search).get('tags');
+		let param: string | string[] = new URLSearchParams(location.search).get("tags");
 
 		if (!param) {
 			resetSelected();
@@ -61,7 +61,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 		}
 
 		/* to array */
-		param = param.split(',');
+		param = param.split(",");
 
 		if (param.length === 0) {
 			resetSelected();
