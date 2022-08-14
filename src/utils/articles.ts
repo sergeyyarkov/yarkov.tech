@@ -1,6 +1,6 @@
-import { MarkdownInstance } from "astro";
+import { MDXInstance } from "astro";
 
-export const transformArticles = (articles: MarkdownInstance<ArticleType>[]): ArticleType[] =>
+export const transformArticles = (articles: MDXInstance<ArticleType>[]): ArticleType[] =>
 	articles.map((article) => ({
 		slug: article.frontmatter.slug,
 		title: article.frontmatter.title,

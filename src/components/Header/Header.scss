@@ -73,7 +73,7 @@
 		}
 	}
 
-	body[data-is-mobile-open='true'] {
+	body[data-is-mobile-open="true"] {
 		& .header {
 			padding: 15px 0;
 			background-color: var(--background-header-color);

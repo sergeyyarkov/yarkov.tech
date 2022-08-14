@@ -1,6 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
-import './Link.scss';
+import { Icon } from "astro-icon";
 
 export interface Props {
 	icon: string;
@@ -10,9 +9,21 @@ export interface Props {
 const { icon, href } = Astro.props as Props;
 ---
 
-<div class='splash-link'>
-	<Icon name={icon} width='18' height='18' />
+<div>
+	<Icon name={icon} width="18" height="18" />
 	<a href={href}>
-		<slot></slot>
+		<slot />
 	</a>
 </div>
+
+<style lang="scss">
+	div {
+		display: flex;
+		align-items: center;
+		column-gap: 5px;
+
+		& a {
+			color: var(--font-color-gray);
+		}
+	}
+</style>

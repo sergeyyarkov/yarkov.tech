@@ -17,13 +17,15 @@ const { pathname } = Astro.url;
 		</div>
 		<nav class="header__nav">
 			<ul class="header__nav-links">
-				{nav.map((link) => (
-					<li>
-						<a class={removeSlashes(pathname) === removeSlashes(link.url) && "active"} href={link.url}>
-							{link.name}
-						</a>
-					</li>
-				))}
+				{
+					nav.map((link) => (
+						<li>
+							<a class={removeSlashes(pathname) === removeSlashes(link.url) && "active"} href={link.url}>
+								{link.name}
+							</a>
+						</li>
+					))
+				}
 			</ul>
 			<div class="header__nav-contacts">
 				<a href={"mailto:" + contacts.email}>

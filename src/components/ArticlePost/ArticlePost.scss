@@ -29,18 +29,18 @@
 			margin-bottom: 1.25em;
 			color: var(--font-color-gray);
 		}
+	}
 
-		& figure {
-			margin: 0;
+	& img {
+		border-radius: var(--border-radius-md);
+		display: block;
+		margin: 0 auto;
+		max-width: 100%;
+		height: auto;
+	}
 
-			& img {
-				border-radius: var(--border-radius-md);
-				display: block;
-				margin: 0 auto;
-				max-width: 100%;
-				height: auto;
-			}
-		}
+	& figure {
+		margin: 0;
 	}
 
 	& footer {

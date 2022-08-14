@@ -16,13 +16,9 @@ const { title = SITE_METADATA.title, description } = Astro.props as Props;
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-	{title}
-</title>
+<title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description || SITE_METADATA.description} />
 <meta name="theme-color" content={SITE_METADATA.themeColor} />
-<script is:inline src="/assets/js/detect-theme.js">
-
-</script>
+<script is:inline src="/assets/js/detect-theme.js"></script>
 <slot />

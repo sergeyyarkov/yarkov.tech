@@ -65,6 +65,16 @@ export default defineConfig({
 		ssr: {
 			external: ["svgo"],
 		},
+		build: {
+			minify: "esbuild",
+			rollupOptions: {
+				output: {
+					entryFileNames: `[name].[hash].js`,
+					chunkFileNames: `chunks/[name].[hash].js`,
+					assetFileNames: `assets/[hash].[ext]`,
+				},
+			},
+		},
 	},
 	experimental: {
 		integrations: true,

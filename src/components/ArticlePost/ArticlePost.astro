@@ -1,11 +1,11 @@
 ---
 import { DateFormatter } from "@root/utils";
-import { Image, Picture } from '@astrojs/image/components'
+import { Image } from "@astrojs/image/components";
 import "./ArticlePost.scss";
 
 export type Props = {
 	data: ArticleType;
-}
+};
 
 const { data } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
@@ -15,11 +15,13 @@ const { title, tags, author, published_at } = data;
 	<header>
 		<div class="tags">
 			<ul>
-				{tags.map((tag) => (
-					<li>
-						<a href={`/articles?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
-					</li>
-				))}
+				{
+					tags.map((tag) => (
+						<li>
+							<a href={`/articles?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
+						</li>
+					))
+				}
 			</ul>
 		</div>
 		<div class="heading">
@@ -29,11 +31,15 @@ const { title, tags, author, published_at } = data;
 			<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
 			<span>{author}</span>
 		</div>
-		{data.coverImage && <div>
-			<figure>
-				<Image src={data.coverImage} width={700} height={400} aspectRatio={'16:9'} format={'webp'} alt={data.title} />
-			</figure>
-		</div>}
+		{
+			data.coverImage && (
+				<div>
+					<figure>
+						<Image src={data.coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+					</figure>
+				</div>
+			)
+		}
 	</header>
 	<slot />
 	<footer>

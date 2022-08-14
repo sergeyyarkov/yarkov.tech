@@ -1,5 +1,5 @@
 ---
-import type { MarkdownInstance } from "astro";
+import type { MDXInstance } from "astro";
 
 import ArticleLayout from "@layouts/article.astro";
 
@@ -13,10 +13,9 @@ export async function getStaticPaths() {
 	});
 }
 
-const article = Astro.props as MarkdownInstance<ArticleType>;
-const Content = article.default
+const { Content, frontmatter } = Astro.props as MDXInstance<ArticleType>;
 ---
 
-<ArticleLayout content={article.frontmatter}>
+<ArticleLayout content={frontmatter}>
 	<Content />
 </ArticleLayout>

@@ -1,7 +1,7 @@
 ---
-import "./RecentArticles.scss";
 import { ArticleItem } from "@components/ArticleItem";
 import { sortArtcilesByDate } from "@utils/articles";
+import EmptyList from "./EmptyList.astro";
 
 export interface Props {
 	articles: ArticleType[];
@@ -11,21 +11,40 @@ export interface Props {
 const { articles, length = 5 } = Astro.props as Props;
 
 const recent = sortArtcilesByDate(articles);
+const isEmpty = recent.length === 0;
 ---
 
-<section class="recent">
-	<div class="recent-heading">
+<section>
+	<div>
 		<h2>недавние публикации</h2>
 		<a href="/articles">смотреть все</a>
 	</div>
 
-	<div class="recent-list">
-		{recent.length !== 0 ? (
-			recent.slice(0, length).map((article) => <ArticleItem data={article} />)
-		) : (
-			<div style="text-align: center;margin:2.5rem 0;">
-				<p style="color:var(--font-color-gray);user-select: none;">Пока что здесь ничего нет...</p>
-			</div>
-		)}
+	<div>
+		{!isEmpty ? recent.slice(0, length).map((article) => <ArticleItem data={article} />) : <EmptyList />}
 	</div>
 </section>
+
+<style lang="scss">
+	section {
+		& > div:nth-child(1) {
+			display: flex;
+			align-items: center;
+			column-gap: 15px;
+			row-gap: 5px;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			border-bottom: 1px solid var(--border-color);
+			padding-bottom: 10px;
+
+			& h2 {
+				margin: 0;
+			}
+		}
+
+		& > div:nth-child(2) {
+			margin-top: 10px;
+			max-width: calc(var(--content-width) + (var(--content-padding) * 2));
+		}
+	}
+</style>
