@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import type { Component } from "solid-js";
 
 import { createSignal, createEffect, For } from "solid-js";
 import { search, selectedTags } from "@stores/searchStore";
