@@ -3,21 +3,34 @@ import type { Component, JSX } from "solid-js";
 import { createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import { useForm } from "@hooks/index";
-import { encode } from "@root/utils/url";
+import { encode } from "@utils/url";
 import Button from "@components/Button";
-import { validateEmail } from "./validations";
+import validations from "./validations";
 import Submitted from "./Submitted";
 import Error from "./Error";
 import "./ContactForm.scss";
 
+type UiStringsType = {
+	"form.contactSuccess": string;
+	"form.contactError": string;
+	"input.nameField": string;
+	"input.subjectField": string;
+	"input.messageField": string;
+	"btn.send": string;
+	"btn.sending": string;
+	"error.invalidEmail": string;
+};
+
 const ErrorMessage: Component<{ message: string }> = (props) => <span class="error-message">{props.message}</span>;
 
-const ContactForm: Component = () => {
+const ContactForm: Component<{ i18n: UiStringsType }> = (props) => {
 	const { formSubmit, validate, errors } = useForm({ errorClass: "error-input" });
 	const [isSubmitted, setIsSubmitted] = createSignal<boolean>(false);
 	const [isLoading, setIsLoading] = createSignal<boolean>(false);
 	const [isError, setIsError] = createSignal<boolean>(false);
 	const [state, setState] = createStore<ContactFieldsType>({ name: "", email: "", subject: "", message: "", "bot-field": "" });
+
+	const { validateEmail } = validations;
 
 	const reset = (form: HTMLFormElement) => {
 		for (const key in state) {
@@ -63,13 +76,22 @@ const ContactForm: Component = () => {
 			</div>
 			<div class="flex">
 				<div>
-					<input onInput={onChange} use:validate name="name" placeholder="Ваше имя" type="text" maxLength="20" autocomplete="off" required />
+					<input
+						onInput={onChange}
+						use:validate
+						name="name"
+						placeholder={props.i18n["input.nameField"]}
+						type="text"
+						maxLength="20"
+						autocomplete="off"
+						required
+					/>
 					{errors.name && <ErrorMessage message={errors.name} />}
 				</div>
 				<div>
 					<input
 						onInput={onChange}
-						use:validate={[validateEmail]}
+						use:validate={[validateEmail(props.i18n["error.invalidEmail"])]}
 						name="email"
 						placeholder="example@email.com"
 						autocomplete="off"
@@ -84,7 +106,7 @@ const ContactForm: Component = () => {
 				onInput={onChange}
 				use:validate
 				name="subject"
-				placeholder="Тема сообщения"
+				placeholder={props.i18n["input.subjectField"]}
 				type="text"
 				autocomplete="off"
 				required
@@ -94,7 +116,7 @@ const ContactForm: Component = () => {
 				onInput={onChange}
 				use:validate
 				name="message"
-				placeholder="Ваше сообщение..."
+				placeholder={props.i18n["input.messageField"]}
 				id="message"
 				autocomplete="off"
 				cols={30}
@@ -104,12 +126,12 @@ const ContactForm: Component = () => {
 			{errors.message && <ErrorMessage message={errors.message} />}
 			<div class="form-footer">
 				{!isError() && !isSubmitted() && (
-					<Button isLoading={isLoading()} loadingText="Отправка..." type="submit">
-						Отправить
+					<Button isLoading={isLoading()} loadingText={props.i18n["btn.sending"]} type="submit">
+						{props.i18n["btn.send"]}
 					</Button>
 				)}
-				{!isError() && isSubmitted() && <Submitted />}
-				{isError() && isSubmitted() && <Error />}
+				{!isError() && isSubmitted() && <Submitted text={props.i18n["form.contactSuccess"]} />}
+				{isError() && isSubmitted() && <Error text={props.i18n["form.contactError"]} />}
 			</div>
 		</form>
 	);

@@ -1,0 +1,13 @@
+---
+import { getLanguageKeys } from "@i18n/utils";
+import { FALLBACK_LANGUAGE } from "@root/config";
+import Articles from "@templates/Articles.astro";
+
+export function getStaticPaths() {
+	return getLanguageKeys()
+		.filter((lang) => lang !== FALLBACK_LANGUAGE)
+		.map((lang) => ({ params: { lang } }));
+}
+---
+
+<Articles />

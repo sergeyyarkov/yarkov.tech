@@ -2,20 +2,25 @@
 import PageLayout from "@layouts/default.astro";
 import ArticlesList from "@components/ArticlesList";
 import { transformArticles, formatToArticleBlocks } from "@utils/articles";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
 
+const t = useTranslation(Astro);
 const articles = await Astro.glob<ArticleType>("../../content/articles/**/*.mdx");
 const tags = new Set(articles.map((article) => article.frontmatter.tags).flat());
+const lang = getLanguageFromURL(Astro.url.pathname);
 ---
 
-<PageLayout
-	title="Статьи"
-	description="Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь."
->
+<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")}>
 	<section>
 		<ArticlesList
 			client:load
+			lang={lang}
+			i18n={{
+				"input.search": t("input.search"),
+				"articles.empty": t("articles.empty"),
+			}}
 			data={{ articles: formatToArticleBlocks(transformArticles(articles)), tags: [...tags] }}
-			emptyPlaceholder="Не найдено ни одной статьи..."
 		/>
 	</section>
 </PageLayout>

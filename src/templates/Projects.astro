@@ -1,13 +1,17 @@
 ---
-import { SITE_METADATA } from '@root/config';
-import PageLayout from '@layouts/default.astro';
-import ProjectsList from '@components/ProjectsList';
-import ProjectItem from '@components/ProjectItem';
+import { SITE_METADATA } from "@root/config";
+import PageLayout from "@layouts/default.astro";
+import ProjectsList from "@components/ProjectsList";
+import ProjectItem from "@components/ProjectItem";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
 
+const t = useTranslation(Astro);
+const lang = getLanguageFromURL(Astro.url.pathname);
 const { projects } = SITE_METADATA;
 ---
 
-<PageLayout title="Проекты" description="Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.">
+<PageLayout lang={lang} title={t("pageTitle.projects")} description={t("pageDescription.projects")}>
 	<section>
 		<ProjectsList>
 			{projects.map((project) => <ProjectItem data={project} />)}

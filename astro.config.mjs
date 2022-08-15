@@ -17,6 +17,7 @@ const createAnchorLabel = (heading) => {
 export default defineConfig({
 	site: "https://yarkov.tech",
 	integrations: [solid(), image(), mdx()],
+	trailingSlash: "always",
 	markdown: {
 		syntaxHighlight: "prism",
 		remarkPlugins: ["remark-gfm", "remark-smartypants"],

@@ -8,12 +8,18 @@ import SearchInput from "@components/SearchInput";
 import TagsList from "@components/TagsList";
 import "./ArticlesList.scss";
 
+type UiStringsType = {
+	"input.search": string;
+	"articles.empty": string;
+};
+
 type ArticlesListProps = {
 	data: {
 		articles: ArticleBlockType;
 		tags: string[];
 	};
-	emptyPlaceholder?: string | undefined;
+	lang: string;
+	i18n: UiStringsType;
 };
 
 const ArticlesList: Component<ArticlesListProps> = (props) => {
@@ -64,12 +70,12 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 
 	return (
 		<>
-			<SearchInput count={getLength()} placeholder="поиск по названию или описанию..." />
+			<SearchInput count={getLength()} placeholder={props.i18n["input.search"]} />
 			<TagsList data={props.data.tags} />
 			<div class="articles-list">
 				{isEmpty() ? (
 					<div class="articles-list__empty">
-						<p>{props.emptyPlaceholder || "No articles found..."}</p>
+						<p>{props.i18n["articles.empty"]}</p>
 					</div>
 				) : (
 					<For
@@ -78,7 +84,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 							return (
 								<div class="articles-list__wrapper">
 									<h2>{year}</h2>
-									<For each={sortArtcilesByDate(articles()[year])} children={(article) => <ArticleItem data={article} />} />
+									<For each={sortArtcilesByDate(articles()[year])} children={(article) => <ArticleItem lang={props.lang} data={article} />} />
 								</div>
 							);
 						}}

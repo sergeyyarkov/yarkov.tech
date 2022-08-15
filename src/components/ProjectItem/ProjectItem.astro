@@ -1,12 +1,16 @@
 ---
-import { Icon } from 'astro-icon';
-import './ProjectItem.scss';
+import { FALLBACK_LANGUAGE } from "@root/config";
+import { getLanguageFromURL } from "@root/utils";
+import { Icon } from "astro-icon";
+import UIString from "../UIString";
+import "./ProjectItem.scss";
 
 export interface Props {
 	data: ProjectType;
 }
 
 const { data } = Astro.props as Props;
+const lang = getLanguageFromURL(Astro.url.pathname);
 const { icon, name, year, description, articleUrl, sourceUrl, demoUrl } = data;
 ---
 
@@ -19,25 +23,31 @@ const { icon, name, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		<span>{year}</span>
 	</div>
 	<div class="project-item__description">
-		<p>{description}</p>
+		<p>{description[lang] || description[FALLBACK_LANGUAGE]}</p>
 	</div>
 	<div class="project-item__links">
-		{articleUrl && (
-			<a class="btn-link" href={articleUrl} target="_blank">
-				Статья
-			</a>
-		)}
-		{sourceUrl && (
-			<a class="btn-link" href={sourceUrl} target="_blank">
-				Исходник
-				<Icon name="link-out" width="15" height="15" />
-			</a>
-		)}
-		{demoUrl && (
-			<a class="btn-link" href={demoUrl} target="_blank">
-				Демо
-				<Icon name="link-out" width="15" height="15" />
-			</a>
-		)}
+		{
+			articleUrl && (
+				<a class="btn-link" href={articleUrl} target="_blank">
+					<UIString key={"btn.article"} />
+				</a>
+			)
+		}
+		{
+			sourceUrl && (
+				<a class="btn-link" href={sourceUrl} target="_blank">
+					<UIString key={"btn.sourceCode"} />
+					<Icon name="link-out" width="15" height="15" />
+				</a>
+			)
+		}
+		{
+			demoUrl && (
+				<a class="btn-link" href={demoUrl} target="_blank">
+					<UIString key={"btn.demo"} />
+					<Icon name="link-out" width="15" height="15" />
+				</a>
+			)
+		}
 	</div>
 </div>

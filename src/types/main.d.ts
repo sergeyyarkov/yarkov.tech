@@ -1,3 +1,5 @@
+import uiKeys from "@i18n/ru/ui";
+import languages from "@i18n/languages";
 export {};
 
 declare global {
@@ -10,28 +12,22 @@ declare global {
 		onthemetoggled: CustomEvent<ThemeModeType>;
 	}
 
+	type LanguageKeys = keyof typeof languages;
+	type UIDictionaryKeys = keyof typeof uiKeys;
+
 	type SiteMetadataType = {
 		title: string;
 		name: string;
 		author: string;
-		description: string;
 		themeColor: string;
 		contacts: {
 			email: string;
 			githubUrl: string;
 			telegramUrl: string;
 		};
-		nav: Array<{ name: string; url: string }>;
-		projects: Array<{
-			icon: string;
-			name: string;
-			year: string;
-			description: string;
-			sourceUrl?: string | undefined;
-			demoUrl?: string | undefined;
-			articleUrl?: string | undefined;
-		}>;
-		skills: Array<{ title: string; list: Array<{ icon: string; name: string }> }>;
+		nav: Array<{ key: UIDictionaryKeys; url: string }>;
+		projects: Array<ProjectType>;
+		skills: Array<SkillsType>;
 	};
 
 	type ArticleType = {
@@ -48,14 +44,14 @@ declare global {
 		icon: string;
 		name: string;
 		year: string;
-		description: string;
+		description: Record<LanguageKeys, string>;
 		sourceUrl?: string | undefined;
 		articleUrl?: string | undefined;
 		demoUrl?: string | undefined;
 	};
 
 	type SkillsType = {
-		title: string;
+		title: Record<LanguageKeys, string>;
 		list: Array<{ icon?: string | undefined; name: string }>;
 	};
 

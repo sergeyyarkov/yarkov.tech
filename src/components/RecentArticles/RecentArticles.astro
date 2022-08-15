@@ -1,7 +1,10 @@
 ---
 import { ArticleItem } from "@components/ArticleItem";
+import UIString from "@components/UIString";
+import { getLanguageFromURL } from "@utils/url";
 import { sortArtcilesByDate } from "@utils/articles";
 import EmptyList from "./EmptyList.astro";
+import TranslatedLink from "@components/TranslatedLink";
 
 export interface Props {
 	articles: ArticleType[];
@@ -10,18 +13,21 @@ export interface Props {
 
 const { articles, length = 5 } = Astro.props as Props;
 
+const lang = getLanguageFromURL(Astro.url.pathname);
 const recent = sortArtcilesByDate(articles);
 const isEmpty = recent.length === 0;
 ---
 
 <section>
 	<div>
-		<h2>недавние публикации</h2>
-		<a href="/articles">смотреть все</a>
+		<h2><UIString key={"recentArticles.heading"} /></h2>
+		<TranslatedLink to="/articles/">
+			<UIString key={"recentArticles.all"} />
+		</TranslatedLink>
 	</div>
 
 	<div>
-		{!isEmpty ? recent.slice(0, length).map((article) => <ArticleItem data={article} />) : <EmptyList />}
+		{!isEmpty ? recent.slice(0, length).map((article) => <ArticleItem lang={lang} data={article} />) : <EmptyList />}
 	</div>
 </section>
 

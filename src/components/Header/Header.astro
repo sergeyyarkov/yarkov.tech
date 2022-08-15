@@ -2,9 +2,10 @@
 import { Icon } from "astro-icon";
 import { SITE_METADATA } from "@root/config";
 import ThemeSwitcher from "@components/ThemeSwticher";
-import { removeSlashes } from "@utils/string";
+import UIString from "@components/UIString";
 import NavToggle from "./NavToggle";
 import "./Header.scss";
+import TranslatedLink from "@components/TranslatedLink";
 
 const { name, nav, contacts } = SITE_METADATA;
 const { pathname } = Astro.url;
@@ -13,23 +14,25 @@ const { pathname } = Astro.url;
 <header class="header">
 	<div class="container">
 		<div class="header__logo">
-			<a href="/">{name}</a>
+			<TranslatedLink to={"/"}>
+				{name}
+			</TranslatedLink>
 		</div>
 		<nav class="header__nav">
 			<ul class="header__nav-links">
 				{
 					nav.map((link) => (
 						<li>
-							<a class={removeSlashes(pathname) === removeSlashes(link.url) && "active"} href={link.url}>
-								{link.name}
-							</a>
+							<TranslatedLink class={pathname.includes(link.url) && "active"} to={link.url}>
+								<UIString key={link.key} />
+							</TranslatedLink>
 						</li>
 					))
 				}
 			</ul>
 			<div class="header__nav-contacts">
 				<a href={"mailto:" + contacts.email}>
-					Почта
+					Email
 					<Icon name="email" width="18" height="18" />
 				</a>
 				<a href={contacts.githubUrl}>
@@ -37,11 +40,14 @@ const { pathname } = Astro.url;
 					<Icon name="github_filled" width="18" height="18" />
 				</a>
 				<a href={contacts.telegramUrl}>
-					Телеграм
+					Telegram
 					<Icon name="telegram" width="18" height="18" />
 				</a>
 			</div>
-			<ThemeSwitcher client:visible />
+			<div class="flex header__nav-settings">
+				<Icon name="translate" width="21" height="21" />
+				<ThemeSwitcher client:visible />
+			</div>
 		</nav>
 		<NavToggle client:visible />
 	</div>

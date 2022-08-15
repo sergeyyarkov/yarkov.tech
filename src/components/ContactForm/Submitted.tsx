@@ -1,7 +1,7 @@
 import type { Component } from "solid-js";
 
-const Submitted: Component = () => {
-	return <div class="form-result">&#10004;&#65039; Сообщение было успешно отправлено!</div>;
+const Submitted: Component<{ text: string }> = (props) => {
+	return <div class="form-result">&#10004;&#65039; {props.text}</div>;
 };
 
 export default Submitted;

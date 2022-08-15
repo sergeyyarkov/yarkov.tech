@@ -17,7 +17,8 @@
 			"@layouts/*": ["./src/layouts/*"],
 			"@utils/*": ["./src/utils/*"],
 			"@stores/*": ["./src/stores/*"],
-			"@hooks/*": ["./src/hooks/*"]
+			"@hooks/*": ["./src/hooks/*"],
+			"@i18n/*": ["./src/i18n/*"]
 		},
 		"outDir": "./dist",
 		"typeRoots": ["./node_modules/@types", "./src/types"]

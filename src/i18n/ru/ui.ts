@@ -1,5 +1,18 @@
 export default {
 	"site.title": "yarkov.tech",
+	"site.description":
+		"Здесь я публикую статьи и туториалы на различные IT темы, а также рассказываю о своих проектах которые я сделал за последние несколько лет.",
+	"articles.empty": "Не найдено ни одной статьи...",
+	"recentArticles.empty": "Пока что здесь ничего нет...",
+	/* Page titles */
+	"pageTitle.about": "Обо мне",
+	"pageTitle.articles": "Статьи",
+	"pageTitle.projects": "Проекты",
+	"pageTitle.contacts": "Контакты",
+	/* Page descriptions */
+	"pageDescription.articles": "Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь.",
+	"pageDescription.projects": "Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.",
+	"pageDescription.contacts": "Воспользуйтесь формой обратной связи или напишите мне в социальные сети.",
 	/* Navigation */
 	"navigation.articles": "Статьи",
 	"navigation.projects": "Проекты",
@@ -18,4 +31,20 @@ export default {
 	/* 404 page */
 	"404.heading": "404",
 	"404.description": "Страницу которую вы пытаетесь найти не существует.",
+	/* Buttons */
+	"btn.send": "Отправить",
+	"btn.sending": "Отправка...",
+	"btn.sourceCode": "Исходник",
+	"btn.demo": "Демо",
+	"btn.article": "Статья",
+	/* Inputs */
+	"input.nameField": "Ваше имя",
+	"input.subjectField": "Тема сообщения",
+	"input.messageField": "Ваше сообщение...",
+	"input.search": "поиск по названию или описанию...",
+	/* Forms */
+	"form.contactSuccess": "Сообщение было успешно отправлено!",
+	"form.contactError": "При отправке произошла ошибка. Повторите запрос позже.",
+	/* Error messages */
+	"error.invalidEmail": "Заполните поле в формате e-mail.",
 };

@@ -1,17 +1,21 @@
 ---
-import { SITE_METADATA } from '@root/config';
-import PageLayout from '@layouts/default.astro';
-import SkillsList from '@components/SkillsList';
-import SkillsBlock from '@components/SkillsBlock';
+import { SITE_METADATA } from "@root/config";
+import PageLayout from "@layouts/default.astro";
+import SkillsList from "@components/SkillsList";
+import SkillsBlock from "@components/SkillsBlock";
 
 // TODO: import content based on user ui language
-import { default as Content } from '../../content/about/ru/index.mdx';
-import ArticleContent from '@components/ArticleContent';
+import ArticleContent from "@components/ArticleContent";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
 
+const lang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslation(Astro);
+const { Content } = await import(`../../content/about/${lang}/index.mdx`);
 const { skills } = SITE_METADATA;
 ---
 
-<PageLayout title="Обо мне">
+<PageLayout lang={lang} title={t("pageTitle.about")}>
 	<section>
 		<ArticleContent>
 			<Content />

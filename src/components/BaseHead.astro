@@ -1,11 +1,13 @@
 ---
 import { SITE_METADATA } from "@root/config";
+import { useTranslation } from "@i18n/utils";
 
 export interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 }
 
+const t = useTranslation(Astro);
 const { title = SITE_METADATA.title, description } = Astro.props as Props;
 ---
 
@@ -18,7 +20,7 @@ const { title = SITE_METADATA.title, description } = Astro.props as Props;
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
 <meta name="title" content={title} />
-<meta name="description" content={description || SITE_METADATA.description} />
+<meta name="description" content={description || t("site.description")} />
 <meta name="theme-color" content={SITE_METADATA.themeColor} />
 <script is:inline src="/assets/js/detect-theme.js"></script>
 <slot />

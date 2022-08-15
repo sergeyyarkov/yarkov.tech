@@ -1,5 +1,5 @@
 ---
-import { DateFormatter } from "@root/utils";
+import { createDateFormatter, getLanguageFromURL } from "@root/utils";
 import { Image } from "@astrojs/image/components";
 import "./ArticlePost.scss";
 
@@ -9,6 +9,10 @@ export type Props = {
 
 const { data } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
+// const lang = getLanguageFromURL(Astro.url.pathname);
+// console.log(lang);
+
+const DateFormatter = createDateFormatter("ru");
 ---
 
 <article class="article">
@@ -18,7 +22,7 @@ const { title, tags, author, published_at } = data;
 				{
 					tags.map((tag) => (
 						<li>
-							<a href={`/articles?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
+							<a href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
 						</li>
 					))
 				}

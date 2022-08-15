@@ -1,10 +1,15 @@
 ---
-import PageLayout from '@layouts/default.astro';
+import PageLayout from "@layouts/default.astro";
+import { useTranslation } from "@i18n/utils";
+import { getLanguageFromURL } from "@root/utils";
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslation(Astro);
 ---
 
-<PageLayout title="404" showPageHeading={false}>
+<PageLayout lang={lang} title="404" showPageHeading={false}>
 	<div class="container">
 		<h1 style="font-size:var(--font-size-5xl);">404</h1>
-		<p>Страницу которую вы пытаетесь найти не существует.</p>
+		<p>{t("404.description")}</p>
 	</div>
 </PageLayout>

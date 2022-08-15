@@ -3,23 +3,28 @@ import * as utils from "@utils/index";
 import PageLayout from "@layouts/default.astro";
 import RecentArticles from "@components/RecentArticles";
 import { Splash, SplashHeading, SplashLinks, Link } from "@components/Splash";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
+import UIString from "@components/UIString";
 
 const data = await Astro.glob<ArticleType>("../../content/articles/**/*.mdx");
 const articles = utils.transformArticles(data);
+const t = useTranslation(Astro);
+const lang = getLanguageFromURL(Astro.url.pathname);
 ---
 
-<PageLayout showPageHeading={false}>
+<PageLayout lang={lang} description={t("site.description")} showPageHeading={false}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>
-				<h1>Hello, I'am Sergey</h1>
+				<h1><UIString key={"splash.headline"} /></h1>
 				<h2>Fullstack <b>web-developer</b> & <b>freelancer</b></h2>
 			</hgroup>
-			<p>Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую различные статьи и туториалы на разные IT темы.</p>
+			<p><UIString key={"splash.description"} /></p>
 		</SplashHeading>
 		<SplashLinks>
-			<Link icon="information" href="/about">обо мне</Link>
-			<Link icon="email_filled" href="/contacts">написать мне</Link>
+			<Link icon="information" href="/about/"><UIString key={"splash.about"} /></Link>
+			<Link icon="email_filled" href="/contacts/"><UIString key={"splash.contact"} /></Link>
 		</SplashLinks>
 	</Splash>
 	<RecentArticles articles={articles} length={4} />
