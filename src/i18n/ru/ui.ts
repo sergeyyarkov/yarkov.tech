@@ -3,6 +3,7 @@ export default {
 	"site.description":
 		"Здесь я публикую статьи и туториалы на различные IT темы, а также рассказываю о своих проектах которые я сделал за последние несколько лет.",
 	"articles.empty": "Не найдено ни одной статьи...",
+	"articlePost.comments": "Комментарии",
 	"recentArticles.empty": "Пока что здесь ничего нет...",
 	/* Page titles */
 	"pageTitle.about": "Обо мне",

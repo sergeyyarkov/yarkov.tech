@@ -77,6 +77,8 @@
 	}
 
 	body[data-is-mobile-open="true"] {
+		overflow-y: hidden;
+		touch-action: none;
 		& .header {
 			padding: 15px 0;
 			background-color: var(--background-header-color);
@@ -121,10 +123,20 @@
 				display: block;
 				position: absolute;
 				bottom: 45px;
-				right: 2.5rem;
+				right: 2.2rem;
 				& svg {
 					width: 36px;
 					height: 36px;
+				}
+			}
+			& .language-select {
+				position: absolute;
+				bottom: 115px;
+				right: 2.2rem;
+				& svg,
+				& select {
+					height: 36px;
+					width: 36px;
 				}
 			}
 		}

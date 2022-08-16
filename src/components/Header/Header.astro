@@ -6,6 +6,7 @@ import UIString from "@components/UIString";
 import NavToggle from "./NavToggle";
 import "./Header.scss";
 import TranslatedLink from "@components/TranslatedLink";
+import LanguageSelect from "@components/LanguageSelect";
 
 const { name, nav, contacts } = SITE_METADATA;
 const { pathname } = Astro.url;
@@ -45,7 +46,7 @@ const { pathname } = Astro.url;
 				</a>
 			</div>
 			<div class="flex header__nav-settings">
-				<Icon name="translate" width="21" height="21" />
+				<LanguageSelect />
 				<ThemeSwitcher client:visible />
 			</div>
 		</nav>

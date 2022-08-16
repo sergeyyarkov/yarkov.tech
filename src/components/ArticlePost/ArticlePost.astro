@@ -1,17 +1,16 @@
 ---
-import { createDateFormatter, getLanguageFromURL } from "@root/utils";
+import { createDateFormatter } from "@root/utils";
 import { Image } from "@astrojs/image/components";
+import ArticleComments from "@components/ArticleComments";
 import "./ArticlePost.scss";
 
 export type Props = {
 	data: ArticleType;
+	lang: string;
 };
 
-const { data } = Astro.props as Props;
+const { data, lang } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
-// const lang = getLanguageFromURL(Astro.url.pathname);
-// console.log(lang);
-
 const DateFormatter = createDateFormatter("ru");
 ---
 
@@ -46,7 +45,5 @@ const DateFormatter = createDateFormatter("ru");
 		}
 	</header>
 	<slot />
-	<footer>
-		<h2>Comments</h2>
-	</footer>
+	<ArticleComments />
 </article>

@@ -1,5 +1,5 @@
 ---
-import { FALLBACK_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE } from "@root/config";
 import { getLanguageFromURL } from "@root/utils";
 import { Icon } from "astro-icon";
 import UIString from "../UIString";
@@ -23,7 +23,7 @@ const { icon, name, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		<span>{year}</span>
 	</div>
 	<div class="project-item__description">
-		<p>{description[lang] || description[FALLBACK_LANGUAGE]}</p>
+		<p>{description[lang] || description[DEFAULT_LANGUAGE]}</p>
 	</div>
 	<div class="project-item__links">
 		{

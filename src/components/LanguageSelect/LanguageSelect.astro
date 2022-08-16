@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon";
+import { DEFAULT_LANGUAGE } from "@root/config";
+import languages from "@i18n/languages";
+import { getLanguageFromURL } from "@root/utils";
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+---
+
+<div class="flex language-select">
+	<Icon name="translate" width="21" height="21" />
+	<select id="languageSelect" value={lang} aria-label="Select language">
+		{
+			Object.entries(languages).map(([code]) => (
+				<option value={code} selected={lang === code}>
+					<span>{code.toLocaleUpperCase()}</span>
+				</option>
+			))
+		}
+	</select>
+</div>
+
+<style lang="scss">
+	div {
+		position: relative;
+		&:hover {
+			opacity: var(--opacity-hover);
+		}
+	}
+	svg {
+		position: absolute;
+		right: 0;
+	}
+	select {
+		appearance: none;
+		width: 21px;
+		opacity: 0;
+		margin: 0;
+		border: none;
+		font-size: var(--font-size-md);
+		font-family: "IBM Plex Mono";
+		border-radius: var(--border-radius-md);
+		cursor: pointer;
+	}
+</style>
+
+<script define:vars={{ lang, DEFAULT_LANGUAGE }}>
+	const $select = document.getElementById("languageSelect");
+
+	const changeLanguageHandler = (e) => {
+		const newLang = e.target.value;
+		const pathname = window.location.pathname;
+		const url = newLang === DEFAULT_LANGUAGE ? pathname.slice(3) : `${newLang}${pathname}`;
+
+		window.location.pathname = url;
+	};
+
+	$select.addEventListener("change", changeLanguageHandler);
+</script>

@@ -3,6 +3,7 @@ export default {
 	"site.description":
 		"Here I publish articles and tutorials on various IT topics, as well as talk about my projects that I have done over the past few years.",
 	"articles.empty": "No articles found...",
+	"articlePost.comments": "Comments",
 	"recentArticles.empty": "There is nothing here yet...",
 	/* Page titles */
 	"pageTitle.about": "About me",

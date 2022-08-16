@@ -1,5 +1,5 @@
 ---
-import { FALLBACK_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE } from "@root/config";
 import { getLanguageFromURL } from "@root/utils";
 import { Icon } from "astro-icon";
 import "./SkillsBlock.scss";
@@ -16,7 +16,7 @@ const {
 
 <div class="skills-block">
 	<div>
-		<h3>{title[lang] || title[FALLBACK_LANGUAGE]}</h3>
+		<h3>{title[lang] || title[DEFAULT_LANGUAGE]}</h3>
 	</div>
 	<div>
 		<ul>

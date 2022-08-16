@@ -1,4 +1,4 @@
-import { FALLBACK_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE } from "@root/config";
 
 export const encode = (data: object) => {
 	return Object.keys(data)
@@ -8,5 +8,5 @@ export const encode = (data: object) => {
 
 export const getLanguageFromURL = (pathname: string) => {
 	const langCodeMatch = pathname.match(/\/([a-z]{1}-?[a-z]{1})\//);
-	return langCodeMatch ? langCodeMatch[1] : FALLBACK_LANGUAGE;
+	return langCodeMatch ? langCodeMatch[1] : DEFAULT_LANGUAGE;
 };

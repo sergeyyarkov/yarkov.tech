@@ -1,4 +1,4 @@
-export const FALLBACK_LANGUAGE = "ru";
+export const DEFAULT_LANGUAGE: LanguageKeys = "ru";
 
 export const SITE_METADATA: SiteMetadataType = {
 	title: "Sergey Yarkov",

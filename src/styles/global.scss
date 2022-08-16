@@ -13,10 +13,6 @@ body {
 	min-height: 100vh;
 }
 
-body[data-is-mobile-open="true"] {
-	overflow-y: hidden;
-}
-
 *,
 *:before,
 *:after {
