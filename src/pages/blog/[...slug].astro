@@ -3,14 +3,20 @@ import type { MDXInstance } from "astro";
 
 import ArticleLayout from "@layouts/article.astro";
 import { getLanguageFromURL } from "@root/utils";
+import { DEFAULT_LANGUAGE } from "@root/config";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
 
 export async function getStaticPaths() {
+	const modules = import.meta.glob<MDXInstance<ArticleType>>("../../../content/articles/**/*.mdx", { eager: true });
+	const entries = Object.keys(modules).map((key) => [key, key.split("/").slice(7)[0]]);
 	const data = await Astro.glob<ArticleType>("../../../content/articles/**/*.mdx");
-	return data.map((article) => {
+
+	return entries.map(([key, lang]) => {
+		const article = modules[key];
 		const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
-		const slug = `${published_at}/${article.frontmatter.slug}`;
+		const slug = `${published_at}/${lang !== DEFAULT_LANGUAGE ? lang + "/" : ""}${article.frontmatter.slug}`;
+
 		return { params: { slug }, props: article };
 	});
 }

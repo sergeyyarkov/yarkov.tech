@@ -11,7 +11,6 @@ export type Props = {
 
 const { data, lang } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
-const DateFormatter = createDateFormatter("ru");
 ---
 
 <article class="article">
@@ -31,7 +30,7 @@ const DateFormatter = createDateFormatter("ru");
 			<h1>{title}</h1>
 		</div>
 		<div class="published">
-			<time datetime={published_at}>{DateFormatter.format(new Date(published_at))}</time>
+			<time datetime={published_at}>{createDateFormatter(lang).format(new Date(published_at))}</time>
 			<span>{author}</span>
 		</div>
 		{

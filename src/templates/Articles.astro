@@ -3,12 +3,13 @@ import PageLayout from "@layouts/default.astro";
 import ArticlesList from "@components/ArticlesList";
 import { transformArticles, formatToArticleBlocks } from "@utils/articles";
 import { getLanguageFromURL } from "@root/utils";
-import { useTranslation } from "@i18n/utils";
+import { useTranslation, getTranslatedArticles } from "@i18n/utils";
 
 const t = useTranslation(Astro);
-const articles = await Astro.glob<ArticleType>("../../content/articles/**/*.mdx");
-const tags = new Set(articles.map((article) => article.frontmatter.tags).flat());
+const data = getTranslatedArticles(Astro);
+const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
 const lang = getLanguageFromURL(Astro.url.pathname);
+const articles = transformArticles(data);
 ---
 
 <PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")}>
@@ -20,7 +21,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 				"input.search": t("input.search"),
 				"articles.empty": t("articles.empty"),
 			}}
-			data={{ articles: formatToArticleBlocks(transformArticles(articles)), tags: [...tags] }}
+			data={{ articles: formatToArticleBlocks(articles), tags: [...tags] }}
 		/>
 	</section>
 </PageLayout>

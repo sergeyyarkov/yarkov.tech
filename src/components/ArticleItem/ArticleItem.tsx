@@ -1,6 +1,8 @@
+/* eslint-disable solid/reactivity */
 import type { Component } from "solid-js";
 import { createDateFormatter } from "@utils/date";
 import "./ArticleItem.scss";
+import { DEFAULT_LANGUAGE } from "@root/config";
 
 export type ArticleItemProps = {
 	data: ArticleType;
@@ -8,14 +10,17 @@ export type ArticleItemProps = {
 };
 
 export const ArticleItem: Component<ArticleItemProps> = (props) => {
-	// eslint-disable-next-line solid/reactivity
-	const DateFormatter = createDateFormatter(props.lang);
+	const isNonDefaultLanguage = props.data.lang && props.data.lang !== props.lang;
+	const hrefLangPrefix = props.data.lang && props.data.lang !== DEFAULT_LANGUAGE ? "/en" : "";
 	return (
 		<article class="article-item">
-			<a href={`/blog/${new Date(props.data.published_at).toLocaleDateString("en-CA")}/${props.data.slug}/`}>
-				<h3>{props.data.title}</h3>
+			<a href={`/blog/${new Date(props.data.published_at).toLocaleDateString("en-CA")}${hrefLangPrefix}/${props.data.slug}/`}>
+				<div class="flex">
+					<h3>{props.data.title}</h3>
+					{isNonDefaultLanguage && <sup>{props.data.lang.toLocaleUpperCase()}</sup>}
+				</div>
 				<p>
-					<time datetime={props.data.published_at.toString()}>{DateFormatter.format(new Date(props.data.published_at))}</time>
+					<time datetime={props.data.published_at.toString()}>{createDateFormatter(props.lang).format(new Date(props.data.published_at))}</time>
 				</p>
 			</a>
 		</article>

@@ -11,8 +11,8 @@ Personal website created with Astro.
 - [x] Adaptive & Responsive layout
 - [x] Search articles by title or description
 - [x] Dark/Light Theme
+- [x] Form handling via Netlify Forms
 - [ ] Multilang web-site
-- [ ] Form handling via Netlify Forms
 - [ ] SEO optimized
 
 ## License

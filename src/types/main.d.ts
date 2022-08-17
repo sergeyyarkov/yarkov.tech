@@ -38,6 +38,7 @@ declare global {
 		author: string;
 		tags: Array<string>;
 		published_at: string;
+		lang?: string;
 	};
 
 	type ProjectType = {

@@ -4,13 +4,13 @@ import PageLayout from "@layouts/default.astro";
 import RecentArticles from "@components/RecentArticles";
 import { Splash, SplashHeading, SplashLinks, Link } from "@components/Splash";
 import { getLanguageFromURL } from "@root/utils";
-import { useTranslation } from "@i18n/utils";
+import { getTranslatedArticles, useTranslation } from "@i18n/utils";
 import UIString from "@components/UIString";
 
-const data = await Astro.glob<ArticleType>("../../content/articles/**/*.mdx");
-const articles = utils.transformArticles(data);
+const data = getTranslatedArticles(Astro);
 const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
+const articles = utils.transformArticles(data);
 ---
 
 <PageLayout lang={lang} description={t("site.description")} showPageHeading={false}>
@@ -27,5 +27,5 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 			<Link icon="email_filled" href="/contacts/"><UIString key={"splash.contact"} /></Link>
 		</SplashLinks>
 	</Splash>
-	<RecentArticles articles={articles} length={4} />
+	<RecentArticles articles={articles} length={10} />
 </PageLayout>

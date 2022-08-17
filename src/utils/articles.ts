@@ -8,6 +8,7 @@ export const transformArticles = (articles: MDXInstance<ArticleType>[]): Article
 		author: article.frontmatter.author,
 		tags: article.frontmatter.tags,
 		published_at: article.frontmatter.published_at,
+		lang: article.frontmatter.lang,
 	}));
 
 export const sortArtcilesByDate = (articles: ArticleType[]): ArticleType[] => {
