@@ -52,6 +52,12 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 		const pathname = window.location.pathname;
 		const url = newLang === DEFAULT_LANGUAGE ? pathname.slice(3) : `${newLang}${pathname}`;
 
+		/* Move user to articles page with new language */
+		if (window.location.pathname.includes("/blog/")) {
+			window.location.pathname = `${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
+			return;
+		}
+
 		window.location.pathname = url;
 	};
 

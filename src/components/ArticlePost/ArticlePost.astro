@@ -3,6 +3,7 @@ import { createDateFormatter } from "@root/utils";
 import { Image } from "@astrojs/image/components";
 import ArticleComments from "@components/ArticleComments";
 import "./ArticlePost.scss";
+import TranslatedLink from "../TranslatedLink";
 
 export type Props = {
 	data: ArticleType;
@@ -20,7 +21,7 @@ const { title, tags, author, published_at } = data;
 				{
 					tags.map((tag) => (
 						<li>
-							<a href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</a>
+							<TranslatedLink to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</TranslatedLink>
 						</li>
 					))
 				}
