@@ -1,5 +1,12 @@
 export const DEFAULT_LANGUAGE: LanguageKeys = "ru";
 
+export const UTTERANCES_CONFIG: UtterancesConfigType = {
+	repo: "sergeyyarkov/comments",
+	issueTerm: "title",
+	label: "Comments",
+	theme: "github-light",
+};
+
 export const SITE_METADATA: SiteMetadataType = {
 	title: "Sergey Yarkov",
 	name: "yarkov.tech",

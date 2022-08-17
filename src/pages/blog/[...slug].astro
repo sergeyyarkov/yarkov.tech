@@ -10,7 +10,6 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 export async function getStaticPaths() {
 	const modules = import.meta.glob<MDXInstance<ArticleType>>("../../../content/articles/**/*.mdx", { eager: true });
 	const entries = Object.keys(modules).map((key) => [key, key.split("/").slice(7)[0]]);
-	const data = await Astro.glob<ArticleType>("../../../content/articles/**/*.mdx");
 
 	return entries.map(([key, lang]) => {
 		const article = modules[key];
