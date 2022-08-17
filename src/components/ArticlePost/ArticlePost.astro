@@ -14,31 +14,31 @@ const { data, lang } = Astro.props as Props;
 const { title, tags, author, published_at } = data;
 ---
 
-<article class="article">
+<article itemscope itemtype="http://schema.org/BlogPosting" class="article">
 	<header>
 		<div class="tags">
-			<ul>
+			<ul itemprop="keywords">
 				{
 					tags.map((tag) => (
 						<li>
-							<TranslatedLink to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</TranslatedLink>
+							<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</TranslatedLink>
 						</li>
 					))
 				}
 			</ul>
 		</div>
 		<div class="heading">
-			<h1>{title}</h1>
+			<h1 itemprop="headline">{title}</h1>
 		</div>
 		<div class="published">
-			<time datetime={published_at}>{createDateFormatter(lang).format(new Date(published_at))}</time>
-			<span>{author}</span>
+			<time itemprop="datePublished" datetime={published_at}>{createDateFormatter(lang).format(new Date(published_at))}</time>
+			<span itemprop="author">{author}</span>
 		</div>
 		{
 			data.coverImage && (
 				<div>
 					<figure>
-						<Image src={data.coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						<Image itemprop="image" src={data.coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
 					</figure>
 				</div>
 			)
