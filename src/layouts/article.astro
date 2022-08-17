@@ -15,7 +15,7 @@ export interface Props extends BaseHeadProps {
 const { lang = "ru", content } = Astro.props as Props;
 ---
 
-<html lang={lang} translate="no">
+<html lang={lang}>
 	<head>
 		<BaseHead title={content.title} description={content.description}>
 			<script is:inline defer src="/assets/js/load-code-highlight.js"></script>
