@@ -12,7 +12,7 @@ Personal website created with Astro.
 - [x] Search articles by title or description
 - [x] Dark/Light Theme
 - [x] Multilang web-site
-- [x] Form handling via (Netlify Forms)(https://www.netlify.com/products/forms/)
+- [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
 - [ ] Comment system via [utterances](https://utteranc.es/)
 - [ ] SEO optimized
 
