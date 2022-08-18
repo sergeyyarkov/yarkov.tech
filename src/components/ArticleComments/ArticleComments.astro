@@ -1,0 +1,29 @@
+---
+import { UTTERANCES_CONFIG } from "@root/config";
+import UIString from "../UIString";
+---
+
+<footer>
+	<h2><UIString key={"articlePost.comments"} /></h2>
+	<div id="comments"></div>
+</footer>
+
+<script define:vars={{ UTTERANCES_CONFIG }}>
+	const $commentsWrapper = document.getElementById("comments");
+	const $commentsScript = document.createElement("script");
+
+	$commentsScript.async = true;
+	$commentsScript.src = "https://utteranc.es/client.js";
+	$commentsScript.setAttribute("repo", UTTERANCES_CONFIG.repo);
+	$commentsScript.setAttribute("issue-term", UTTERANCES_CONFIG.issueTerm);
+	$commentsScript.setAttribute("id", "utterances");
+	$commentsScript.setAttribute("crossorigin", "anonymous");
+
+	if (window.theme) {
+		$commentsScript.setAttribute("theme", theme === "dark" ? "dark-blue" : "github-light");
+	} else {
+		$commentsScript.setAttribute("theme", UTTERANCES_CONFIG.theme);
+	}
+
+	if ($commentsWrapper) $commentsWrapper.appendChild($commentsScript);
+</script>

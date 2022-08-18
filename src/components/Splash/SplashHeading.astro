@@ -1,0 +1,34 @@
+<header>
+	<slot />
+</header>
+
+<style lang="scss">
+	header {
+		& :global(p) {
+			font-size: var(--font-size-lg);
+			max-width: 570px;
+			line-height: 1.5;
+		}
+
+		& :global(hgroup) {
+			& :global(h1) {
+				font-size: var(--font-size-5xl);
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
+
+			& :global(h2) {
+				font-size: var(--font-size-xl);
+				margin-bottom: 1.25rem;
+				font-weight: normal;
+			}
+		}
+	}
+
+	@media screen and (max-width: 560px) {
+		.splash-heading hgroup h1 {
+			font-size: var(--font-size-4xl);
+			margin-bottom: 0.85rem;
+		}
+	}
+</style>

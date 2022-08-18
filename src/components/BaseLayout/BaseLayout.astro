@@ -1,0 +1,25 @@
+---
+import { IS_SITE_UNDER_CONSTRUCTION } from "@root/config";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
+import HeaderBanner from "@components/HeaderBanner";
+import UIString from "@components/UIString";
+import "./BaseLayout.scss";
+---
+
+<body>
+	{
+		IS_SITE_UNDER_CONSTRUCTION && (
+			<HeaderBanner>
+				&#128679;&nbsp;
+				<UIString key={"site.underConstruction"} />
+				&nbsp;&#128679;
+			</HeaderBanner>
+		)
+	}
+	<Header />
+	<main class="site-content">
+		<slot />
+	</main>
+	<Footer />
+</body>

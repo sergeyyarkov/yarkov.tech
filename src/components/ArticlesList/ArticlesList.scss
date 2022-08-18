@@ -1,0 +1,21 @@
+.articles {
+	&-tags {
+		margin-bottom: 45px;
+	}
+	&-list {
+		&__wrapper {
+			margin-top: 40px;
+			& h2 {
+				margin-bottom: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid var(--border-color);
+			}
+		}
+		&__empty {
+			color: var(--font-color-gray);
+			text-align: center;
+			user-select: none;
+			padding: 3rem 0;
+		}
+	}
+}

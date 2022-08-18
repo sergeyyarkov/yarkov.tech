@@ -1,0 +1,18 @@
+.theme-switcher {
+	background: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 0;
+	margin: 0;
+	opacity: 0;
+	&:hover {
+		opacity: var(--opacity-hover);
+		border: none;
+	}
+	&.ready {
+		opacity: 1;
+		transition: all 0.1s linear 0s;
+	}
+}

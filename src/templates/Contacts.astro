@@ -1,0 +1,29 @@
+---
+import PageLayout from "@layouts/default.astro";
+import ContactForm from "@components/ContactForm";
+import ContactsList from "@components/ContactsList";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
+
+const t = useTranslation(Astro);
+const lang = getLanguageFromURL(Astro.url.pathname);
+---
+
+<PageLayout noIndex lang={lang} title={t("pageTitle.contacts")} description={t("pageDescription.contacts")}>
+	<section>
+		<ContactForm
+			i18n={{
+				"input.nameField": t("input.nameField"),
+				"input.subjectField": t("input.subjectField"),
+				"input.messageField": t("input.messageField"),
+				"btn.send": t("btn.send"),
+				"btn.sending": t("btn.sending"),
+				"error.invalidEmail": t("error.invalidEmail"),
+				"form.contactSuccess": t("form.contactSuccess"),
+				"form.contactError": t("form.contactError"),
+			}}
+			client:load
+		/>
+		<ContactsList />
+	</section>
+</PageLayout>

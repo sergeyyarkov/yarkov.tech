@@ -1,0 +1,33 @@
+---
+import { DEFAULT_LANGUAGE } from "@root/config";
+import { getLanguageFromURL } from "@root/utils";
+import { Icon } from "astro-icon";
+import "./SkillsBlock.scss";
+
+export interface Props {
+	data: SkillsType;
+}
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+const {
+	data: { title, list },
+} = Astro.props as Props;
+---
+
+<div class="skills-block">
+	<div>
+		<h3>{title[lang] || title[DEFAULT_LANGUAGE]}</h3>
+	</div>
+	<div>
+		<ul>
+			{
+				list.map((entry) => (
+					<li>
+						{entry.icon && <Icon name={entry.icon} width="20" height="20" />}
+						{entry.name}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+.skills-block {
+	& h3 {
+		font-size: var(--font-size-md);
+		color: var(--font-color-grayer);
+		font-weight: 500;
+	}
+
+	& ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		& li {
+			font-weight: 400;
+			margin-bottom: 10px;
+			font-size: var(--font-size-sm);
+			display: flex;
+			align-items: center;
+			column-gap: 5px;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.skills-block {
+		& h3 {
+			text-align: center;
+		}
+
+		& ul {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}

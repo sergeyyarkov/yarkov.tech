@@ -1,0 +1,29 @@
+---
+import type { Props as BaseHeadProps } from "@components/BaseHead.astro";
+
+import { SITE_METADATA } from "@root/config";
+import BaseHead from "@components/BaseHead.astro";
+import BaseLayout from "@components/BaseLayout";
+import PageHeading from "@components/PageHeading";
+import "@styles/global.scss";
+
+export interface Props extends BaseHeadProps {
+	lang?: string | undefined;
+	showPageHeading?: boolean | undefined;
+	noIndex?: boolean;
+}
+
+const { title, description, lang = "ru", showPageHeading = true, noIndex = false } = Astro.props as Props;
+---
+
+<html lang={lang}>
+	<BaseHead title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title} description={description}>
+		{noIndex && <meta name="robots" content="noindex" />}
+	</BaseHead>
+	<BaseLayout>
+		<div class="container">
+			{showPageHeading && <PageHeading heading={title} description={description} />}
+			<slot />
+		</div>
+	</BaseLayout>
+</html>

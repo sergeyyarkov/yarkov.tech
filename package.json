@@ -1,24 +1,47 @@
 {
-  "name": "yarkov.tech",
-  "version": "0.0.1",
-  "private": true,
-  "description": "Personal website created with Astro.",
-  "author": {
-    "name": "Sergey Yarkov",
-    "email": "serzh.yarkov@gmail.com",
-    "url": "https://yarkov.tech"
-  },
-  "license": "MIT",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
-  },
-  "devDependencies": {
-    "astro": "^1.0.0-beta.63",
-    "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.1.1",
-    "sass": "^1.53.0"
-  }
+	"name": "yarkov.tech",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Personal website created with Astro.",
+	"author": {
+		"name": "Sergey Yarkov",
+		"email": "serzh.yarkov@gmail.com",
+		"url": "https://yarkov.tech"
+	},
+	"type": "module",
+	"license": "MIT",
+	"scripts": {
+		"dev": "astro dev --host",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview --host",
+		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
+	},
+	"devDependencies": {
+		"@astrojs/image": "^0.3.4",
+		"@astrojs/mdx": "^0.10.0",
+		"@astrojs/rss": "^1.0.0",
+		"@astrojs/sitemap": "^1.0.0",
+		"@astrojs/solid-js": "^1.0.0",
+		"@types/mdx": "^2.0.2",
+		"@typescript-eslint/eslint-plugin": "^5.33.1",
+		"@typescript-eslint/parser": "^5.33.1",
+		"astro": "^1.0.6",
+		"astro-compress": "^1.0.1",
+		"astro-icon": "^0.7.3",
+		"eslint": "^8.22.0",
+		"eslint-plugin-solid": "^0.7.1",
+		"hast-util-to-string": "^2.0.0",
+		"hastscript": "^7.0.2",
+		"html-escaper": "^3.0.3",
+		"prettier": "^2.7.1",
+		"prettier-plugin-astro": "^0.5.0",
+		"rehype-autolink-headings": "^6.1.1",
+		"rehype-slug": "^5.0.1",
+		"remark-gfm": "^3.0.1",
+		"remark-smartypants": "^2.0.0",
+		"sass": "^1.54.4",
+		"solid-js": "^1.4.8"
+	}
 }

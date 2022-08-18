@@ -1,0 +1,11 @@
+.site-content {
+	flex: 1 0 auto;
+	width: 100%;
+	margin-top: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+	.site-content {
+		margin-top: 3rem;
+	}
+}

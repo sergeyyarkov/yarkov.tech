@@ -10,6 +10,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+.idea
+.vscode
+
 
 # environment variables
 .env

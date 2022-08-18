@@ -1,0 +1,14 @@
+---
+import { DEFAULT_LANGUAGE } from "@root/config";
+import { getLanguageFromURL } from "@root/utils";
+
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	to: string;
+}
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+const { to, ...attrs } = Astro.props as Props;
+const href = lang === DEFAULT_LANGUAGE ? to : `/${lang}${to}`;
+---
+
+<a href={href} {...attrs}><slot /></a>

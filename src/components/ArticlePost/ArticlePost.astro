@@ -1,0 +1,56 @@
+---
+// import { Image } from "@astrojs/image/components";
+// import * as utils from "@utils/string";
+import { createDateFormatter } from "@root/utils";
+import ArticleComments from "@components/ArticleComments";
+import "./ArticlePost.scss";
+import TranslatedLink from "../TranslatedLink";
+
+export type Props = {
+	data: ArticleType;
+	lang: string;
+};
+
+const { data, lang } = Astro.props as Props;
+const { title, coverImage, tags, author, published_at } = data;
+---
+
+<article itemscope itemtype="http://schema.org/BlogPosting" class="article">
+	<header>
+		<div class="tags">
+			<ul itemprop="keywords">
+				{
+					tags.map((tag) => (
+						<li>
+							<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</TranslatedLink>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class="heading">
+			<h1 itemprop="headline">{title}</h1>
+		</div>
+		<div class="published">
+			<time itemprop="datePublished" datetime={published_at}>{createDateFormatter(lang).format(new Date(published_at))}</time>
+			<span itemprop="author">{author}</span>
+		</div>
+		{
+			coverImage && (
+				<div>
+					<figure>
+						{coverImage && <img src={coverImage} width='700' height='400' alt={title} />}
+						{/* Render remote or local image */}
+						{/* utils.isURL(coverImage) ? (
+							<Image itemprop="image" src={coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						) : (
+							<Image itemprop="image" src={cover.default.src} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						)*/}
+					</figure>
+				</div>
+			)
+		}
+	</header>
+	<slot />
+	<ArticleComments />
+</article>
