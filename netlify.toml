@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/*"
-  to = "/yarkov.tech/en/:splat"
+  to = "/en/:splat"
 
   status = 301
 
