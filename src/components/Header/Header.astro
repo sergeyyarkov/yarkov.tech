@@ -24,7 +24,7 @@ const { pathname } = Astro.url;
 				{
 					nav.map((link) => (
 						<li>
-							<TranslatedLink class={pathname.includes(link.url) && "active"} to={link.url}>
+							<TranslatedLink class={link.url.includes(pathname) && "active"} to={link.url}>
 								<UIString key={link.key} />
 							</TranslatedLink>
 						</li>
