@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/*"
-  to = "/yarkov.tech/en/:splat"
+  to = "/en/:splat"
 
   status = 301
 
@@ -15,4 +15,4 @@
 
   # Redirect based on conditions including browser language, geolocation,
   # identity role, and/or cookie presence.
-  conditions = {Language = ["en"], Country = ["US"]}
+  conditions = {Language = ["en"]}
