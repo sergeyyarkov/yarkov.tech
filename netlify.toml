@@ -1,3 +1,18 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/yarkov.tech/en/:splat"
+
+  status = 301
+
+  # By default, redirects won’t be applied if there’s a file with the same
+  # path as the one defined in the `from` property. Setting `force` to `true`
+  # will make the redirect rule take precedence over any existing files.
+  force = true
+
+  # Redirect based on conditions including browser language, geolocation,
+  # identity role, and/or cookie presence.
+  conditions = {Language = ["en"], Country = ["US"]}
