@@ -193,6 +193,10 @@
 			}
 		}
 	}
+	& .languages-available {
+		margin: 25px 0;
+		font-size: var(--font-size-lg);
+	}
 }
 
 @media screen and (max-width: 800px) {

@@ -14,7 +14,7 @@ const { Content } = await import(`../../content/about/${lang}/index.mdx`);
 const { skills } = SITE_METADATA;
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.about")}>
+<PageLayout noIndex lang={lang} title={t("pageTitle.about")}>
 	<section>
 		<ArticleContent>
 			<Content />

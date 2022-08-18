@@ -1,0 +1,6 @@
+# Disallow all at the time of development
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://yarkov.tech/sitemap-index.xml

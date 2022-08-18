@@ -23,7 +23,6 @@ export default defineConfig({
 	site: "https://yarkov.tech",
 	integrations: [
 		solid(),
-		image(),
 		sitemap({
 			i18n: {
 				defaultLocale: "ru",
@@ -33,6 +32,7 @@ export default defineConfig({
 				},
 			},
 		}),
+		image(),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [

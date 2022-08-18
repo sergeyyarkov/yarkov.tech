@@ -11,7 +11,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 const { projects } = SITE_METADATA;
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.projects")} description={t("pageDescription.projects")}>
+<PageLayout noIndex lang={lang} title={t("pageTitle.projects")} description={t("pageDescription.projects")}>
 	<section>
 		<ProjectsList>
 			{projects.map((project) => <ProjectItem data={project} />)}

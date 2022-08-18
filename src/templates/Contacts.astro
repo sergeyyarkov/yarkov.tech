@@ -9,7 +9,7 @@ const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.contacts")} description={t("pageDescription.contacts")}>
+<PageLayout noIndex lang={lang} title={t("pageTitle.contacts")} description={t("pageDescription.contacts")}>
 	<section>
 		<ContactForm
 			i18n={{

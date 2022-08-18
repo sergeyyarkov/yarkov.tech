@@ -61,8 +61,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 			<input
 				onInput={onSearch}
 				value={search()}
-				type="text"
-				role="search"
+				type="search"
 				placeholder={props.placeholder || "Search article by title or description..."}
 				autocapitalize="off"
 				autocomplete="off"

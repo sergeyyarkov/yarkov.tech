@@ -1,6 +1,7 @@
 ---
+// import { Image } from "@astrojs/image/components";
+// import * as utils from "@utils/string";
 import { createDateFormatter } from "@root/utils";
-import { Image } from "@astrojs/image/components";
 import ArticleComments from "@components/ArticleComments";
 import "./ArticlePost.scss";
 import TranslatedLink from "../TranslatedLink";
@@ -11,7 +12,7 @@ export type Props = {
 };
 
 const { data, lang } = Astro.props as Props;
-const { title, tags, author, published_at } = data;
+const { title, coverImage, tags, author, published_at } = data;
 ---
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="article">
@@ -35,10 +36,16 @@ const { title, tags, author, published_at } = data;
 			<span itemprop="author">{author}</span>
 		</div>
 		{
-			data.coverImage && (
+			coverImage && (
 				<div>
 					<figure>
-						<Image itemprop="image" src={data.coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						{coverImage && <img src={coverImage} width='700' height='400' alt={title} />}
+						{/* Render remote or local image */}
+						{/* utils.isURL(coverImage) ? (
+							<Image itemprop="image" src={coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						) : (
+							<Image itemprop="image" src={cover.default.src} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
+						)*/}
 					</figure>
 				</div>
 			)
