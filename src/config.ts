@@ -1,5 +1,8 @@
 export const DEFAULT_LANGUAGE: LanguageKeys = "ru";
 
+/* Show banner about website development */
+export const IS_SITE_UNDER_CONSTRUCTION = true;
+
 export const UTTERANCES_CONFIG: UtterancesConfigType = {
 	repo: "sergeyyarkov/comments",
 	issueTerm: "title",

@@ -1,11 +1,12 @@
+import solid from "@astrojs/solid-js";
+import image from "@astrojs/image";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+// import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
-import solid from "@astrojs/solid-js";
-import image from "@astrojs/image";
-// import compress from "astro-compress";
-import mdx from "@astrojs/mdx";
 import remarkGfm from "remark-gfm";
 import remarkSmartypants from "remark-smartypants";
 import rehypeSlug from "rehype-slug";
@@ -23,6 +24,15 @@ export default defineConfig({
 	integrations: [
 		solid(),
 		image(),
+		sitemap({
+			i18n: {
+				defaultLocale: "ru",
+				locales: {
+					ru: "ru-RU",
+					en: "en-US",
+				},
+			},
+		}),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [

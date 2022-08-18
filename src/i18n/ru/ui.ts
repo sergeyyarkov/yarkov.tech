@@ -2,6 +2,7 @@ export default {
 	"site.title": "yarkov.tech",
 	"site.description":
 		"Здесь я публикую статьи и туториалы на различные IT темы, а также рассказываю о своих проектах которые я сделал за последние несколько лет.",
+	"site.underConstruction": "Этот веб-сайт находится в разработке...",
 	"articles.empty": "Не найдено ни одной статьи...",
 	"articlePost.comments": "Комментарии",
 	"recentArticles.empty": "Пока что здесь ничего нет...",

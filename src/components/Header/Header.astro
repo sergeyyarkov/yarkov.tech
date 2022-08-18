@@ -1,18 +1,18 @@
 ---
 import { Icon } from "astro-icon";
-import { SITE_METADATA } from "@root/config";
+import { IS_SITE_UNDER_CONSTRUCTION, SITE_METADATA } from "@root/config";
 import ThemeSwitcher from "@components/ThemeSwticher";
 import UIString from "@components/UIString";
-import NavToggle from "./NavToggle";
-import "./Header.scss";
 import TranslatedLink from "@components/TranslatedLink";
 import LanguageSelect from "@components/LanguageSelect";
+import NavToggle from "./NavToggle";
+import "./Header.scss";
 
 const { name, nav, contacts } = SITE_METADATA;
 const { pathname } = Astro.url;
 ---
 
-<header class="header">
+<header class={`header${IS_SITE_UNDER_CONSTRUCTION ? " header-banner" : ""}`}>
 	<div class="container">
 		<div class="header__logo">
 			<TranslatedLink to={"/"}>
