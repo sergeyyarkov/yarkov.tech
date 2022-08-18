@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import { IS_SITE_UNDER_CONSTRUCTION, SITE_METADATA } from "@root/config";
+import { removeSlashes } from "@utils/string";
 import ThemeSwitcher from "@components/ThemeSwticher";
 import UIString from "@components/UIString";
 import TranslatedLink from "@components/TranslatedLink";
@@ -24,7 +25,7 @@ const { pathname } = Astro.url;
 				{
 					nav.map((link) => (
 						<li>
-							<TranslatedLink class={link.url.includes(pathname) && pathname !== '/' && "active"} to={link.url}>
+							<TranslatedLink class={pathname.includes(removeSlashes(link.url)) && pathname.split('/').length < 5 && "active"} to={link.url}>
 								<UIString key={link.key} />
 							</TranslatedLink>
 						</li>
