@@ -1,5 +1,5 @@
 import solid from "@astrojs/solid-js";
-import image from "@astrojs/image";
+// import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 // import compress from "astro-compress";
@@ -32,7 +32,7 @@ export default defineConfig({
 				},
 			},
 		}),
-		image(),
+		// image(),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [
