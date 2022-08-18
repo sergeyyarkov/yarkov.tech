@@ -14,6 +14,7 @@ Personal website created with Astro.
 - [x] Multilang web-site
 - [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
 - [x] Comment system via [utterances](https://utteranc.es/)
+- [x] RSS Feed for articles
 - [ ] SEO optimized
 
 ## License

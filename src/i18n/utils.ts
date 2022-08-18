@@ -3,11 +3,10 @@ import * as utils from "@utils/url";
 import { DEFAULT_LANGUAGE } from "@root/config";
 import languages from "./languages";
 
-export function getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
-	const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
-	const modules: Record<string, Record<string, MDXInstance<ArticleType>>> = {};
-	const siteLang = utils.getLanguageFromURL(Astro.url.pathname);
-	const articles: MDXInstance<ArticleType>[] = [];
+type TranslatedArticlesType = Record<string, Record<LanguageKeys, MDXInstance<ArticleType>> | Record<string, never>>;
+
+export function formatArticlesByLangs(data: Record<string, MDXInstance<ArticleType>>): TranslatedArticlesType {
+	const modules: TranslatedArticlesType = {};
 
 	for (const module of Object.values(data)) {
 		const splitted = module.file.split("/");
@@ -16,6 +15,15 @@ export function getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance
 		if (!modules[name]) modules[name] = {};
 		modules[name][lang] = module;
 	}
+
+	return modules;
+}
+
+export function getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
+	const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
+	const modules = formatArticlesByLangs(data);
+	const siteLang = utils.getLanguageFromURL(Astro.url.pathname);
+	const articles: MDXInstance<ArticleType>[] = [];
 
 	for (const key of Object.keys(modules)) {
 		const langs = Object.keys(modules[key]);
@@ -53,11 +61,13 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 
 const translations = transformExports<UIDictionaryKeys>(import.meta.glob("./*/ui.ts", { eager: true }));
 
+export function translate(key: UIDictionaryKeys, lang: LanguageKeys): string | undefined {
+	const string: string | undefined = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
+	if (string === undefined) console.log(`Cannot find any string for translation key "${key}".`);
+	return string;
+}
+
 export function useTranslation(Astro: Readonly<AstroGlobal>): (key: UIDictionaryKeys) => string | undefined {
-	const lang = utils.getLanguageFromURL(Astro.url.pathname);
-	return function translate(key: UIDictionaryKeys): string | undefined {
-		const string: string | undefined = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
-		if (string === undefined) console.log(`Cannot find any string for translation key "${key}" on "${Astro.url.pathname}" page.`);
-		return string;
-	};
+	const lang: LanguageKeys = utils.getLanguageFromURL(Astro.url.pathname) as LanguageKeys;
+	return (key: UIDictionaryKeys) => translate(key, lang);
 }
