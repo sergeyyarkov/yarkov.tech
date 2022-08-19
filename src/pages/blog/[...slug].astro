@@ -6,6 +6,7 @@ import { getLanguageFromURL } from "@root/utils";
 import { DEFAULT_LANGUAGE } from "@root/config";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 export async function getStaticPaths() {
 	const modules = import.meta.glob<MDXInstance<ArticleType>>("../../../content/articles/**/*.mdx", { eager: true });
@@ -23,6 +24,6 @@ export async function getStaticPaths() {
 const { Content, frontmatter } = Astro.props as MDXInstance<ArticleType>;
 ---
 
-<ArticleLayout lang={lang} content={frontmatter}>
+<ArticleLayout lang={lang} content={frontmatter} canonicalUrl={canonicalUrl.href}>
 	<Content />
 </ArticleLayout>

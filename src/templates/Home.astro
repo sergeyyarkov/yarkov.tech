@@ -11,9 +11,10 @@ const data = getTranslatedArticles(Astro);
 const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = utils.transformArticles(data);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} description={t("site.description")} showPageHeading={false}>
+<PageLayout lang={lang} description={t("site.description")} showPageHeading={false} canonicalUrl={canonicalUrl.href}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>

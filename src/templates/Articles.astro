@@ -10,9 +10,10 @@ const data = getTranslatedArticles(Astro);
 const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = transformArticles(data);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")}>
+<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")} canonicalUrl={canonicalUrl.href}>
 	<section>
 		<ArticlesList
 			client:load

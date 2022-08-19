@@ -10,14 +10,15 @@ import "@styles/global.scss";
 export interface Props extends BaseHeadProps {
 	lang?: string | undefined;
 	showPageHeading?: boolean | undefined;
-	noIndex?: boolean;
+	noIndex?: boolean | undefined;
+	canonicalUrl?: string | undefined;
 }
 
-const { title, description, lang = "ru", showPageHeading = true, noIndex = false } = Astro.props as Props;
+const { title, description, lang = "ru", showPageHeading = true, noIndex = false, canonicalUrl } = Astro.props as Props;
 ---
 
 <html lang={lang}>
-	<BaseHead title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title} description={description}>
+	<BaseHead title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title} description={description} canonicalUrl={canonicalUrl}>
 		{noIndex && <meta name="robots" content="noindex" />}
 	</BaseHead>
 	<BaseLayout>

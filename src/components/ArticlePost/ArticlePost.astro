@@ -39,7 +39,7 @@ const { title, coverImage, tags, author, published_at } = data;
 			coverImage && (
 				<div>
 					<figure>
-						{coverImage && <img src={coverImage} width='700' height='400' alt={title} />}
+						{coverImage && <img src={coverImage} width="700" height="400" alt={title} />}
 						{/* Render remote or local image */}
 						{/* utils.isURL(coverImage) ? (
 							<Image itemprop="image" src={coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
