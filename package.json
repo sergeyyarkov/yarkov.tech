@@ -36,6 +36,7 @@
 		"hastscript": "^7.0.2",
 		"html-escaper": "^3.0.3",
 		"mime-types": "^2.1.35",
+		"netlify-plugin-minify-html": "^0.3.1",
 		"prettier": "^2.7.1",
 		"prettier-plugin-astro": "^0.5.0",
 		"rehype-autolink-headings": "^6.1.1",

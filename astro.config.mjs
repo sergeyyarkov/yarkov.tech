@@ -2,7 +2,6 @@ import solid from "@astrojs/solid-js";
 // import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-// import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
