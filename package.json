@@ -28,7 +28,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.33.1",
 		"@typescript-eslint/parser": "^5.33.1",
 		"astro": "^1.0.6",
-		"astro-compress": "^1.0.1",
+		"astro-compress": "^1.0.3",
 		"astro-icon": "^0.7.3",
 		"eslint": "^8.22.0",
 		"eslint-plugin-solid": "^0.7.1",
@@ -43,7 +43,7 @@
 		"rehype-slug": "^5.0.1",
 		"remark-gfm": "^3.0.1",
 		"remark-smartypants": "^2.0.0",
-		"sass": "^1.54.4",
+		"sass": "^1.54.5",
 		"solid-js": "^1.4.8"
 	}
 }
