@@ -1,5 +1,6 @@
 import solid from "@astrojs/solid-js";
 // import image from "@astrojs/image";
+// import compress from 'astro-compress'
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
@@ -26,8 +27,8 @@ export default defineConfig({
 			i18n: {
 				defaultLocale: "ru",
 				locales: {
-					ru: "ru-RU",
-					en: "en-US",
+					ru: "ru",
+					en: "en",
 				},
 			},
 		}),
@@ -76,7 +77,7 @@ export default defineConfig({
 			],
 		}),
 	],
-	trailingSlash: "always",
+	trailingSlash: "ignore",
 	markdown: {
 		syntaxHighlight: "prism",
 	},

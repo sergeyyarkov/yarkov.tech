@@ -1,4 +1,5 @@
 import { DEFAULT_LANGUAGE } from "@root/config";
+import languages from "@i18n/languages";
 
 export const encode = (data: object) => {
 	return Object.keys(data)
@@ -7,6 +8,7 @@ export const encode = (data: object) => {
 };
 
 export const getLanguageFromURL = (pathname: string) => {
-	const langCodeMatch = pathname.match(/\/([a-z]{1}-?[a-z]{1})\//);
-	return langCodeMatch ? langCodeMatch[1] : DEFAULT_LANGUAGE;
+	const lang = pathname.split("/")[1];
+	if (Object.hasOwn(languages, lang)) return lang;
+	return DEFAULT_LANGUAGE;
 };

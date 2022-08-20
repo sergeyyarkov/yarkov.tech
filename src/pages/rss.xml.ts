@@ -14,9 +14,10 @@ for (const key of Object.keys(articles)) {
 		const { title, description, slug, published_at, coverImage } = article[lang].frontmatter;
 		items.push({
 			link:
-				`${import.meta.env.SITE}blog/` +
+				`${import.meta.env.SITE}` +
+				`${lang !== DEFAULT_LANGUAGE ? `${lang}/` : ""}` +
+				"blog/" +
 				new Date(published_at).toLocaleDateString("en-CA") +
-				`${lang !== DEFAULT_LANGUAGE ? "/" + lang : ""}` +
 				`/${slug}/`,
 			title,
 			description: `${description}${coverImage !== undefined ? `<img src="${coverImage}" alt="${title}">` : ""}`,
