@@ -1,7 +1,7 @@
 export default {
 	"site.title": "yarkov.tech",
 	"site.description":
-		"Here I publish articles and tutorials on various IT topics, as well as talk about my projects that I have done over the past few years.",
+		"Here I publish articles and tutorials on various IT topics, and I also talk about my projects that I have done over the past few years.",
 	"site.underConstruction": "This web-site is under development...",
 	"articles.empty": "No articles found...",
 	"articlePost.comments": "Comments",
@@ -13,18 +13,18 @@ export default {
 	"pageTitle.contacts": "Contacts",
 	/* Page descriptions */
 	"pageDescription.articles": "Technical articles, tutorials and various reference materials related to IT topics can be found here.",
-	"pageDescription.projects": "A few of my main projects that have been developed and made available to the public.",
+	"pageDescription.projects": "A few of my main projects that have been developed and published in open access.",
 	"pageDescription.contacts": "Use the feedback form or write to me on social networks.",
 	/* Navigation */
 	"navigation.articles": "Articles",
 	"navigation.projects": "Projects",
-	"navigation.about": "About",
+	"navigation.about": "About me",
 	"navigation.contacts": "Contacts",
-	/* Splash page */
+	/* Home page */
 	"splash.headline": "Hello, I'am Sergey",
 	"splash.subheadline": "Fullstack web-developer & freelancer",
 	"splash.description":
-		"I develop websites and web applications of varying complexity, as well as publish various articles and tutorials on various IT topics.",
+		"I develop websites and web applications of varying complexity, and also publish articles and tutorials on various IT topics.",
 	"splash.about": "about me",
 	"splash.contact": "write me",
 	/* Recent articles */
