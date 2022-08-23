@@ -33,9 +33,7 @@ export default defineConfig({
 			},
 		}),
 		// image(),
-		compress({
-			html: false,
-		}),
+		compress(),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [

@@ -1,5 +1,4 @@
 ---
-import "./Footer.scss";
 import { Icon } from "astro-icon";
 ---
 
@@ -22,3 +21,38 @@ import { Icon } from "astro-icon";
 		<p class="footer__copy">© Sergey Yarkov, 2022</p>
 	</div>
 </footer>
+
+<style lang="scss">
+	footer {
+		user-select: none;
+		text-align: center;
+		font-weight: 500;
+		margin-top: 5rem;
+		& .container {
+			padding: 25px 0 10px 0;
+			border-top: 1px solid var(--border-color);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			row-gap: 15px;
+		}
+		& ul {
+			display: flex;
+			align-items: center;
+			column-gap: 25px;
+			& li {
+				display: flex;
+				align-items: center;
+				column-gap: 7px;
+				& a {
+					color: var(--font-color);
+					font-size: var(--font-size-sm);
+				}
+			}
+		}
+		& p {
+			text-align: center;
+			font-size: var(--font-size-xs);
+		}
+	}
+</style>
