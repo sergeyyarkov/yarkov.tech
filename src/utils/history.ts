@@ -1,10 +1,3 @@
-export const extendHistoryState = (state: object, url?: URL | string | undefined): void => {
-	const { history } = window;
-	const updated = Object.assign({}, history.state, state);
-
-	history.replaceState(updated, "", url);
-};
-
 export const deleteParamFromUrl = (param: string): string => {
 	const params = new URLSearchParams(window.location.search);
 	params.delete(param);

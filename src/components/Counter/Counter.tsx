@@ -1,8 +1,8 @@
 import type { Component } from "solid-js";
 
 import { createSignal, createEffect } from "solid-js";
-import Button from "../Button";
-import "./Counter.scss";
+import Button from "@components/Button";
+import "./Counter.css";
 
 const Counter: Component<{ tick?: number }> = (props) => {
 	const [isRunned, setIsRunned] = createSignal<boolean>(false);

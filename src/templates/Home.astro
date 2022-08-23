@@ -14,7 +14,7 @@ const articles = utils.transformArticles(data);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} description={t("site.description")} showPageHeading={false} canonicalUrl={canonicalUrl.href}>
+<PageLayout lang={lang} description={t("site.description")} canonicalUrl={canonicalUrl.href}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>

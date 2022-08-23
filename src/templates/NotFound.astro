@@ -7,7 +7,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
 ---
 
-<PageLayout lang={lang} title="404" showPageHeading={false}>
+<PageLayout lang={lang} title="404">
 	<div class="container">
 		<h1 style="font-size:var(--font-size-5xl);">404</h1>
 		<p>{t("404.description")}</p>

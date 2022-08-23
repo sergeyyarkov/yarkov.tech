@@ -4,17 +4,15 @@ import type { Props as BaseHeadProps } from "@components/BaseHead.astro";
 import { SITE_METADATA } from "@root/config";
 import BaseHead from "@components/BaseHead.astro";
 import BaseLayout from "@components/BaseLayout";
-import PageHeading from "@components/PageHeading";
 import "@styles/global.scss";
 
 export interface Props extends BaseHeadProps {
 	lang?: string | undefined;
-	showPageHeading?: boolean | undefined;
 	noIndex?: boolean | undefined;
 	canonicalUrl?: string | undefined;
 }
 
-const { title, description, lang = "ru", showPageHeading = true, noIndex = false, canonicalUrl } = Astro.props as Props;
+const { title, description, lang = "ru", noIndex = false, canonicalUrl } = Astro.props as Props;
 ---
 
 <html lang={lang}>
@@ -23,7 +21,6 @@ const { title, description, lang = "ru", showPageHeading = true, noIndex = false
 	</BaseHead>
 	<BaseLayout>
 		<div class="container">
-			{showPageHeading && <PageHeading heading={title} description={description} />}
 			<slot />
 		</div>
 	</BaseLayout>

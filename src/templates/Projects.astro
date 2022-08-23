@@ -3,6 +3,7 @@ import { SITE_METADATA } from "@root/config";
 import PageLayout from "@layouts/default.astro";
 import ProjectsList from "@components/ProjectsList";
 import ProjectItem from "@components/ProjectItem";
+import PageHeading from "@components/PageHeading";
 import { getLanguageFromURL } from "@root/utils";
 import { useTranslation } from "@i18n/utils";
 
@@ -12,6 +13,7 @@ const { projects } = SITE_METADATA;
 ---
 
 <PageLayout noIndex lang={lang} title={t("pageTitle.projects")} description={t("pageDescription.projects")}>
+	<PageHeading heading={t("pageTitle.projects")} description={t("pageDescription.projects")} />
 	<section>
 		<ProjectsList>
 			{projects.map((project) => <ProjectItem data={project} />)}
