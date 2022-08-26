@@ -1,3 +1,4 @@
+import { IS_SITE_UNDER_CONSTRUCTION } from "@root/config";
 import type { Component, JSX } from "solid-js";
 
 import { createSignal, onMount, Switch, Match } from "solid-js";
@@ -50,7 +51,12 @@ const ThemeSwitcher: Component = () => {
 	});
 
 	return (
-		<button onClick={toggleTheme} class={isReady() ? "theme-switcher ready" : "theme-switcher"} aria-label={theme()}>
+		<button
+			onClick={toggleTheme}
+			class={isReady() ? "theme-switcher ready" : "theme-switcher"}
+			aria-label={theme()}
+			{...(IS_SITE_UNDER_CONSTRUCTION ? { style: "bottom:80px;" } : {})}
+		>
 			<Switch
 				children={
 					<>

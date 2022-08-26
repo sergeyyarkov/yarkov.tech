@@ -1,13 +1,9 @@
-<div class="banner-wrapper">
+<div>
 	<span><slot /></span>
 </div>
 
-<style lang="scss" is:global>
-	.header.header-banner {
-		top: 45px;
-	}
-
-	.banner-wrapper {
+<style lang="scss">
+	div {
 		padding: 12px 0;
 		min-height: 45px;
 		text-align: center;
@@ -16,19 +12,5 @@
 		position: sticky;
 		top: 0;
 		z-index: 99999;
-	}
-
-	@media screen and (max-width: 768px) {
-		body[data-is-mobile-open="true"] {
-			& .header.header-banner {
-				margin-top: 45px;
-				& .language-select {
-					bottom: 145px;
-				}
-				& .theme-switcher {
-					bottom: 80px;
-				}
-			}
-		}
 	}
 </style>

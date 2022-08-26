@@ -7,7 +7,7 @@ import HeaderBanner from "@components/HeaderBanner";
 import UIString from "@components/UIString";
 ---
 
-<body>
+<body data-is-site-under-construction={IS_SITE_UNDER_CONSTRUCTION && "true"}>
 	{
 		IS_SITE_UNDER_CONSTRUCTION && (
 			<HeaderBanner>

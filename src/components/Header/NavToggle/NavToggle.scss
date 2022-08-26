@@ -13,3 +13,10 @@
 		display: none;
 	}
 }
+
+body[data-is-mobile-open="true"] {
+	.nav-toggle {
+		position: absolute;
+		right: var(--content-padding);
+	}
+}

@@ -1,13 +1,13 @@
 ---
 import { Icon } from "astro-icon";
-import { DEFAULT_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE, IS_SITE_UNDER_CONSTRUCTION } from "@root/config";
 import languages from "@i18n/languages";
 import { getLanguageFromURL } from "@root/utils";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
 ---
 
-<div class="flex language-select">
+<div class="flex language-select" {...(IS_SITE_UNDER_CONSTRUCTION ? { style: 'bottom: 145px;' } : {})}>
 	<Icon name="translate" width="21" height="21" />
 	<select id="languageSelect" value={lang} aria-label="Select language">
 		{
@@ -41,6 +41,19 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 		font-family: "IBM Plex Mono";
 		border-radius: var(--border-radius-md);
 		cursor: pointer;
+	}
+
+	body[data-is-mobile-open="true"] {
+		.language-select {
+			position: absolute;
+			bottom: 115px;
+			right: 2.2rem;
+			& svg,
+			& select {
+				height: 36px;
+				width: 36px;
+			}
+		}
 	}
 </style>
 

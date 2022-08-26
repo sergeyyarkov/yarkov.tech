@@ -7,21 +7,20 @@ import UIString from "@components/UIString";
 import TranslatedLink from "@components/TranslatedLink";
 import LanguageSelect from "@components/LanguageSelect";
 import NavToggle from "./NavToggle";
-import "./Header.scss";
 
 const { name, nav, contacts } = SITE_METADATA;
 const { pathname } = Astro.url;
 ---
 
-<header class={`header${IS_SITE_UNDER_CONSTRUCTION ? " header-banner" : ""}`}>
+<header {...(IS_SITE_UNDER_CONSTRUCTION ? { style: 'top: 45px;' } : {})}>
 	<div class="container">
-		<div class="header__logo">
+		<div class="logo">
 			<TranslatedLink to={"/"}>
 				{name}
 			</TranslatedLink>
 		</div>
-		<nav class="header__nav">
-			<ul class="header__nav-links">
+		<nav>
+			<ul>
 				{
 					nav.map((link) => (
 						<li>
@@ -32,7 +31,7 @@ const { pathname } = Astro.url;
 					))
 				}
 			</ul>
-			<div class="header__nav-contacts">
+			<div class="contacts">
 				<a href={"mailto:" + contacts.email}>
 					Email
 					<Icon name="email" width="18" height="18" />
@@ -46,7 +45,7 @@ const { pathname } = Astro.url;
 					<Icon name="telegram" width="18" height="18" />
 				</a>
 			</div>
-			<div class="flex header__nav-settings">
+			<div class="flex settings">
 				<LanguageSelect />
 				<ThemeSwitcher client:visible />
 			</div>
@@ -54,3 +53,126 @@ const { pathname } = Astro.url;
 		<NavToggle client:visible />
 	</div>
 </header>
+
+<style lang="scss">
+	header {
+		position: sticky;
+		top: 0;
+		border-bottom: 1px solid var(--border-color);
+		background-color: var(--background-header-color);
+		padding-top: 13.5px;
+		padding-bottom: 13.5px;
+		user-select: none;
+		z-index: 9999;
+		& .container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		& .logo a {
+			text-decoration: none;
+			font-weight: 600;
+			font-size: var(--font-size-lg);
+			color: var(--font-color);
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: 2px;
+				text-underline-offset: 5px;
+			}
+		}
+		& nav {
+			display: flex;
+			align-items: center;
+			& ul {
+				display: flex;
+				list-style: none;
+				column-gap: 20px;
+				margin: 0;
+				padding: 0;
+				margin-right: 35px;
+				& li a {
+					display: inline-block;
+					font-weight: 500;
+					color: var(--font-color);
+					text-decoration: none;
+					text-transform: lowercase;
+					&:hover,
+					&.active {
+						color: var(--color-blue-500);
+						text-decoration: underline;
+						text-decoration-thickness: 2px;
+						text-underline-offset: 4px;
+					}
+				}
+			}
+			& .contacts {
+				display: flex;
+				align-items: center;
+				column-gap: 10px;
+				margin-right: 30px;
+				& a {
+					text-decoration: none;
+					font-size: 0;
+					&:hover {
+						opacity: var(--opacity-hover);
+					}
+				}
+			}
+			& .settings {
+				column-gap: 13.5px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		header {
+			padding: 10px 0;
+			& nav {
+				display: none;
+			}
+		}
+
+		body[data-is-mobile-open="true"] {
+			overflow-y: hidden;
+			touch-action: none;
+			& header {
+				padding: 15px 0;
+				background-color: var(--background-header-color);
+				position: fixed;
+				right: 0;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				height: 100%;
+				z-index: 9999;
+				& .container {
+					flex-direction: column;
+					row-gap: 3rem;
+				}
+				& .logo {
+					align-self: flex-start;
+				}
+				& nav {
+					display: block;
+					& ul {
+						display: block;
+						text-align: center;
+						margin: 0;
+						& li {
+							margin-bottom: 30px;
+							& a {
+								font-size: var(--font-size-xl);
+							}
+						}
+					}
+					& .contacts {
+						margin-right: 0;
+						margin-top: 2rem;
+						justify-content: center;
+					}
+				}
+			}
+		}
+	}
+</style>
