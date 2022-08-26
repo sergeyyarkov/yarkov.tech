@@ -10,21 +10,13 @@ const attrs = Astro.props as Props;
 
 <style lang="scss">
 	button {
-		cursor: pointer;
 		display: inline-flex;
 		column-gap: 7px;
 		font-family: var(--font-family-base);
 		font-weight: 500;
 		color: var(--font-color);
-		padding: 5px 16px;
-		border: 1px solid var(--border-color);
-		border-radius: var(--border-radius-md);
 		background: none;
 		font-size: var(--font-size-sm);
-
-		&:hover {
-			border: 1px solid var(--border-color-hover);
-		}
 
 		&[disabled] {
 			opacity: 0.5;
