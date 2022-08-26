@@ -19,7 +19,8 @@
 			"@stores/*": ["./src/stores/*"],
 			"@hooks/*": ["./src/hooks/*"],
 			"@i18n/*": ["./src/i18n/*"],
-			"@images/*": ["./src/images/*"]
+			"@images/*": ["./src/images/*"],
+			"@services/*": ["./src/services/*"]
 		},
 		"outDir": "./dist",
 		"typeRoots": ["./node_modules/@types", "./src/types"]

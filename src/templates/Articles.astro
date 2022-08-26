@@ -4,10 +4,11 @@ import PageHeading from "@components/PageHeading";
 import ArticlesList from "@components/ArticlesList";
 import { transformArticles, formatToArticleBlocks } from "@utils/articles";
 import { getLanguageFromURL } from "@root/utils";
-import { useTranslation, getTranslatedArticles } from "@i18n/utils";
+import { useTranslation } from "@i18n/utils";
+import { ArticleService } from "@services/index";
 
 const t = useTranslation(Astro);
-const data = getTranslatedArticles(Astro);
+const data = ArticleService.getTranslatedArticles(Astro);
 const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = transformArticles(data);

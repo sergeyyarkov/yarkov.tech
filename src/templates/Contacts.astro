@@ -13,19 +13,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 <PageLayout noIndex lang={lang} title={t("pageTitle.contacts")} description={t("pageDescription.contacts")}>
 	<PageHeading heading={t("pageTitle.contacts")} description={t("pageDescription.contacts")} />
 	<section>
-		<ContactForm
-			i18n={{
-				"input.nameField": t("input.nameField"),
-				"input.subjectField": t("input.subjectField"),
-				"input.messageField": t("input.messageField"),
-				"btn.send": t("btn.send"),
-				"btn.sending": t("btn.sending"),
-				"error.invalidEmail": t("error.invalidEmail"),
-				"form.contactSuccess": t("form.contactSuccess"),
-				"form.contactError": t("form.contactError"),
-			}}
-			client:load
-		/>
+		<ContactForm />
 		<ContactsList />
 	</section>
 </PageLayout>

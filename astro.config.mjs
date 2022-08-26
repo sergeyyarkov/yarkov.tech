@@ -1,14 +1,26 @@
-import solid from "@astrojs/solid-js";
-// import image from "@astrojs/image";
-import compress from "astro-compress";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
+
+/**
+ * Integrations
+ */
+import solid from "@astrojs/solid-js";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+// import image from "@astrojs/image";
+import compress from "astro-compress";
+
+/**
+ * Remark plugins
+ */
 import remarkGfm from "remark-gfm";
 import remarkSmartypants from "remark-smartypants";
+
+/**
+ * Rehype plugins
+ */
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
@@ -87,7 +99,6 @@ export default defineConfig({
 			external: ["svgo"],
 		},
 		build: {
-			minify: "esbuild",
 			rollupOptions: {
 				output: {
 					entryFileNames: `[name].[hash].js`,

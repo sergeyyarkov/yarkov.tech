@@ -34,8 +34,8 @@ export default {
 	"404.heading": "404",
 	"404.description": "The page you are trying to find does not exist.",
 	/* Buttons */
-	"btn.send": "Submit",
-	"btn.sending": "Submitting...",
+	"btn.submit": "Submit",
+	"btn.submiting": "Submitting...",
 	"btn.sourceCode": "Source",
 	"btn.demo": "Demo",
 	"btn.article": "Article",

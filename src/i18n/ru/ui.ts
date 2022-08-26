@@ -34,8 +34,8 @@ export default {
 	"404.heading": "404",
 	"404.description": "Страницу которую вы пытаетесь найти не существует.",
 	/* Buttons */
-	"btn.send": "Отправить",
-	"btn.sending": "Отправка...",
+	"btn.submit": "Отправить",
+	"btn.submitting": "Отправка...",
 	"btn.sourceCode": "Исходник",
 	"btn.demo": "Демо",
 	"btn.article": "Статья",
