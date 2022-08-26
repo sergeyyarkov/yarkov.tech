@@ -1,6 +1,5 @@
 ---
-// import { Image } from "@astrojs/image/components";
-// import * as utils from "@utils/string";
+import { Image, Picture } from "@astrojs/image/components";
 import { createDateFormatter } from "@root/utils";
 import ArticleComments from "@components/ArticleComments";
 import "./ArticlePost.scss";
@@ -39,13 +38,15 @@ const { title, coverImage, tags, author, published_at } = data;
 			coverImage && (
 				<div>
 					<figure>
-						{coverImage && <img itemprop="image" src={coverImage} width="700" height="400" alt={title} />}
-						{/* Render remote or local image */}
-						{/* utils.isURL(coverImage) ? (
-							<Image itemprop="image" src={coverImage} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
-						) : (
-							<Image itemprop="image" src={cover.default.src} width={700} height={400} aspectRatio={"16:9"} format={"webp"} alt={data.title} />
-						)*/}
+						<Picture
+							itemprop="image"
+							src={coverImage}
+							sizes="(max-width: 500px) 500px, 700px"
+							widths={[500, 700]}
+							formats={["webp"]}
+							aspectRatio={"16:9"}
+							alt={title}
+						/>
 					</figure>
 				</div>
 			)

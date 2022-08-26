@@ -9,7 +9,7 @@ import { escape } from "html-escaper";
 import solid from "@astrojs/solid-js";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-// import image from "@astrojs/image";
+import image from "@astrojs/image";
 import compress from "astro-compress";
 
 /**
@@ -44,7 +44,7 @@ export default defineConfig({
 				},
 			},
 		}),
-		// image(),
+		image(),
 		compress(),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],

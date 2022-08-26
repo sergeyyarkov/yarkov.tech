@@ -8,6 +8,7 @@ import BaseLayout from "@components/BaseLayout";
 import ArticleContent from "@components/ArticleContent";
 import ArticlePost from "@components/ArticlePost";
 import { SITE_METADATA } from "@root/config";
+import { isURL } from '@utils/string'
 import "@styles/global.scss";
 
 export interface Props extends BaseHeadProps {
@@ -27,7 +28,7 @@ const { lang = "ru", content, canonicalUrl } = Astro.props as Props;
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content={canonicalUrl} />
 		{content.coverImage && (
-			<meta property="og:image" content={`${Astro.url.origin}${content.coverImage}`} />
+			<meta property="og:image" content={isURL(content.coverImage) ? content.coverImage : `${Astro.url.origin}${content.coverImage}`} />
 			<meta property="og:image:width" content="700" />
 			<meta property="og:image:height" content="400" />
 			<meta property="og:image:type" content={`${mime.lookup(extname(content.coverImage))}`} />
