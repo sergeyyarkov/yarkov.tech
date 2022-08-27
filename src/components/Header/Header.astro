@@ -75,12 +75,16 @@ const { pathname } = Astro.url;
 			font-weight: 600;
 			font-size: var(--font-size-lg);
 			color: var(--font-color);
-			&:hover {
-				text-decoration: underline;
-				text-decoration-thickness: 2px;
-				text-underline-offset: 5px;
-			}
 		}
+
+		& a:hover,
+		a.active {
+			color: var(--color-blue-500);
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 4px;
+		}
+
 		& nav {
 			display: flex;
 			align-items: center;
@@ -97,13 +101,6 @@ const { pathname } = Astro.url;
 					color: var(--font-color);
 					text-decoration: none;
 					text-transform: lowercase;
-					&:hover,
-					&.active {
-						color: var(--color-blue-500);
-						text-decoration: underline;
-						text-decoration-thickness: 2px;
-						text-underline-offset: 4px;
-					}
 				}
 			}
 			& .contacts {
