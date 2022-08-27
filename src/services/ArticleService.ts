@@ -8,22 +8,19 @@ class ArticleService {
 		const modules = formatArticlesByLangs(data);
 		const siteLang = getLanguageFromURL(Astro.url.pathname);
 		const articles: MDXInstance<ArticleType>[] = [];
+		const push = (article: MDXInstance<ArticleType>, lang: LanguageKeys) => {
+			articles.push(article);
+			article.frontmatter.lang = lang;
+		};
 
 		for (const key of Object.keys(modules)) {
-			const langs = Object.keys(modules[key]);
-			for (const articleLang of langs) {
+			const langs = Object.keys(modules[key]) as LanguageKeys[];
+			for (const lang of langs) {
 				const isNonDefaultLanguage = !langs.includes(siteLang) && langs.length === 1;
 				const article = modules[key];
 
-				if (articleLang === siteLang) {
-					articles.push(article[siteLang]);
-					article[siteLang].frontmatter.lang = siteLang;
-				}
-
-				if (isNonDefaultLanguage) {
-					articles.push(article[articleLang]);
-					article[articleLang].frontmatter.lang = articleLang;
-				}
+				if (lang === siteLang) push(article[siteLang], siteLang);
+				if (isNonDefaultLanguage) push(article[lang], lang);
 			}
 		}
 

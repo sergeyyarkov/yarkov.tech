@@ -7,8 +7,8 @@ export const encode = (data: object) => {
 		.join("&");
 };
 
-export const getLanguageFromURL = (pathname: string) => {
-	const lang = pathname.split("/")[1];
+export const getLanguageFromURL = (pathname: string): LanguageKeys => {
+	const lang = pathname.split("/")[1] as LanguageKeys;
 	if (Object.hasOwn(languages, lang)) return lang;
 	return DEFAULT_LANGUAGE;
 };
