@@ -1,0 +1,58 @@
+---
+import Button from "@components/Button";
+import { useTranslation } from "@i18n/utils";
+
+const t = useTranslation(Astro);
+---
+
+<form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
+	<div hidden>
+		Don't fill this out if you're human
+		<input name="bot-field" />
+	</div>
+	<div class="flex">
+		<div>
+			<input name="name" placeholder={t("input.nameField")} type="text" maxlength="20" autocomplete="off" required />
+		</div>
+		<div>
+			<input name="email" placeholder="example@email.com" autocomplete="off" type="email" required />
+		</div>
+	</div>
+	<input name="subject" placeholder={t("input.subjectField")} type="text" autocomplete="off" required />
+	<textarea name="message" placeholder={t("input.messageField")} id="message" autocomplete="off" cols={30} rows={10} required></textarea>
+	<div class="footer">
+		<Button type="submit">{t("btn.submit")}</Button>
+	</div>
+</form>
+
+<style lang="scss">
+	form {
+		display: flex;
+		flex-direction: column;
+		row-gap: 7px;
+		margin-bottom: 3.125rem;
+
+		& .flex {
+			column-gap: 10px;
+			& div {
+				width: 100%;
+			}
+		}
+
+		& input.error-input,
+		& textarea.error-input {
+			border: 1px solid var(--color-error);
+		}
+
+		& .footer {
+			text-align: center;
+		}
+	}
+
+	@media screen and (max-width: 560px) {
+		.contact-form .flex {
+			flex-direction: column;
+			row-gap: 7px;
+		}
+	}
+</style>

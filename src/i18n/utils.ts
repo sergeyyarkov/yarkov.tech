@@ -12,38 +12,12 @@ export function formatArticlesByLangs(data: Record<string, MDXInstance<ArticleTy
 		const splitted = module.file.split("/");
 		const lang = splitted.at(-2);
 		const name = splitted.at(-3);
+
 		if (!modules[name]) modules[name] = {};
-		modules[name][lang] = module;
+		if (!module.frontmatter.draft) modules[name][lang] = module;
 	}
 
 	return modules;
-}
-
-export function getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
-	const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
-	const modules = formatArticlesByLangs(data);
-	const siteLang = utils.getLanguageFromURL(Astro.url.pathname);
-	const articles: MDXInstance<ArticleType>[] = [];
-
-	for (const key of Object.keys(modules)) {
-		const langs = Object.keys(modules[key]);
-		for (const articleLang of langs) {
-			const isNonDefaultLanguage = !langs.includes(siteLang) && langs.length === 1;
-			const article = modules[key];
-
-			if (articleLang === siteLang) {
-				articles.push(article[siteLang]);
-				article[siteLang].frontmatter.lang = siteLang;
-			}
-
-			if (isNonDefaultLanguage) {
-				articles.push(article[articleLang]);
-				article[articleLang].frontmatter.lang = articleLang;
-			}
-		}
-	}
-
-	return articles;
 }
 
 export function getLanguageKeys(): Array<string> {

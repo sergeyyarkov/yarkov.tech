@@ -4,16 +4,18 @@ import PageLayout from "@layouts/default.astro";
 import RecentArticles from "@components/RecentArticles";
 import { Splash, SplashHeading, SplashLinks, Link } from "@components/Splash";
 import { getLanguageFromURL } from "@root/utils";
-import { getTranslatedArticles, useTranslation } from "@i18n/utils";
+import { useTranslation } from "@i18n/utils";
+import { ArticleService } from "@services/index";
 import UIString from "@components/UIString";
 
-const data = getTranslatedArticles(Astro);
+const data = ArticleService.getTranslatedArticles(Astro);
 const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = utils.transformArticles(data);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} description={t("site.description")} showPageHeading={false}>
+<PageLayout lang={lang} description={t("site.description")} canonicalUrl={canonicalUrl.href}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>

@@ -48,7 +48,6 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 			resetSearch();
 			return;
 		}
-		console.log(param);
 
 		setSearch(param);
 	});

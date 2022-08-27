@@ -15,13 +15,6 @@ declare global {
 	type LanguageKeys = keyof typeof languages;
 	type UIDictionaryKeys = keyof typeof uiKeys;
 
-	type UtterancesConfigType = {
-		repo: string;
-		label?: string;
-		issueTerm: string;
-		theme: string;
-	};
-
 	type SiteMetadataType = {
 		title: string;
 		name: string;
@@ -46,6 +39,7 @@ declare global {
 		tags: Array<string>;
 		published_at: string;
 		lang?: string;
+		draft?: boolean;
 	};
 
 	type ProjectType = {

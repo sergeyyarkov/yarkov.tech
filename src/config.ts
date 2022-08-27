@@ -1,14 +1,7 @@
 export const DEFAULT_LANGUAGE: LanguageKeys = "ru";
 
 /* Show banner about website development */
-export const IS_SITE_UNDER_CONSTRUCTION = true;
-
-export const UTTERANCES_CONFIG: UtterancesConfigType = {
-	repo: "sergeyyarkov/comments",
-	issueTerm: "title",
-	label: "Comments",
-	theme: "github-light",
-};
+export const IS_SITE_UNDER_CONSTRUCTION = import.meta.env.IS_SITE_UNDER_CONSTRUCTION === "true" ? true : false;
 
 export const SITE_METADATA: SiteMetadataType = {
 	title: "Sergey Yarkov",
@@ -32,8 +25,8 @@ export const SITE_METADATA: SiteMetadataType = {
 			name: "yarkov.tech",
 			year: "2022",
 			description: {
-				ru: "Мой персональный веб-сайт где находятся информация обо мне и список различных статей, туториалов...",
-				en: "My personal website where you can find information about me and a list of various articles, tutorials...",
+				ru: "Мой персональный веб-сайт где находятся информация обо мне и список различных статей и туториалов...",
+				en: "My personal website where you can find information about me and a list of various articles and tutorials...",
 			},
 			sourceUrl: "https://github.com/sergeyyarkov/yarkov.tech",
 			demoUrl: "https://yarkov.tech",
@@ -48,7 +41,7 @@ export const SITE_METADATA: SiteMetadataType = {
 				en: "Static website for publishing various articles, developed with Gatsby.js and NetlifyCMS",
 			},
 			sourceUrl: "https://github.com/sergeyyarkov/devthread.ru",
-			demoUrl: "https://devthread.netlify.app",
+			demoUrl: "https://devthread.yarkov.tech",
 			articleUrl: undefined,
 		},
 		{
@@ -60,7 +53,7 @@ export const SITE_METADATA: SiteMetadataType = {
 				en: "Learning Management System (LMS) to publish your courses, lectures, lessons",
 			},
 			sourceUrl: "https://github.com/sergeyyarkov/educt",
-			demoUrl: "https://client-educt-lms.netlify.app",
+			demoUrl: "https://educt.yarkov.tech",
 			articleUrl: undefined,
 		},
 		{

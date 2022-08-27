@@ -1,7 +1,7 @@
 # yarkov.tech
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ccd0460a-9725-4e35-8263-1608c4186d9c/deploy-status)](https://app.netlify.com/sites/jade-froyo-876dfe/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ccd0460a-9725-4e35-8263-1608c4186d9c/deploy-status)](https://app.netlify.com/sites/yarkov/deploys)
 
 Personal website created with Astro.
 
@@ -15,7 +15,7 @@ Personal website created with Astro.
 - [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
 - [x] Comment system via [utterances](https://utteranc.es/)
 - [x] RSS Feed for articles
-- [ ] SEO optimized
+- [x] SEO optimized
 
 ## License
 

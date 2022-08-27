@@ -1,18 +1,22 @@
 ---
 import PageLayout from "@layouts/default.astro";
+import PageHeading from "@components/PageHeading";
 import ArticlesList from "@components/ArticlesList";
 import { transformArticles, formatToArticleBlocks } from "@utils/articles";
 import { getLanguageFromURL } from "@root/utils";
-import { useTranslation, getTranslatedArticles } from "@i18n/utils";
+import { useTranslation } from "@i18n/utils";
+import { ArticleService } from "@services/index";
 
 const t = useTranslation(Astro);
-const data = getTranslatedArticles(Astro);
+const data = ArticleService.getTranslatedArticles(Astro);
 const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = transformArticles(data);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")}>
+<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")} canonicalUrl={canonicalUrl.href}>
+	<PageHeading heading={t("pageTitle.articles")} description={t("pageDescription.articles")} />
 	<section>
 		<ArticlesList
 			client:load

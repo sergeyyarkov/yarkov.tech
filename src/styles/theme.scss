@@ -138,8 +138,8 @@
 	--icon-secondary: var(--color-gray-100);
 	--icon-filter: invert(100%);
 
-	& .header svg,
-	& .site-content svg:not([data-filter="none"]) {
+	& body > header svg,
+	& body > main svg:not([data-filter="none"]) {
 		filter: var(--icon-filter);
 	}
 }

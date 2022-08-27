@@ -130,6 +130,13 @@ a {
 }
 
 button {
+	cursor: pointer;
 	background: none;
-	border: none;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	padding: 5px 16px;
+	color: var(--font-color);
+	&:hover {
+		border: 1px solid var(--border-color-hover);
+	}
 }

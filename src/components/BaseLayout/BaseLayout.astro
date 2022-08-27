@@ -2,12 +2,12 @@
 import { IS_SITE_UNDER_CONSTRUCTION } from "@root/config";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
+import SiteContent from "@components/SiteContent";
 import HeaderBanner from "@components/HeaderBanner";
 import UIString from "@components/UIString";
-import "./BaseLayout.scss";
 ---
 
-<body>
+<body data-is-site-under-construction={IS_SITE_UNDER_CONSTRUCTION && "true"}>
 	{
 		IS_SITE_UNDER_CONSTRUCTION && (
 			<HeaderBanner>
@@ -18,8 +18,8 @@ import "./BaseLayout.scss";
 		)
 	}
 	<Header />
-	<main class="site-content">
+	<SiteContent>
 		<slot />
-	</main>
+	</SiteContent>
 	<Footer />
 </body>

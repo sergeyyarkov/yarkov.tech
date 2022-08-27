@@ -1,6 +1,4 @@
-# Disallow all at the time of development
-
 User-agent: *
-Disallow: /
+Allow: /
 
 Sitemap: https://yarkov.tech/sitemap-index.xml

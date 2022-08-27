@@ -16,3 +16,16 @@
 		transition: all 0.1s linear 0s;
 	}
 }
+
+body[data-is-mobile-open="true"] {
+	.theme-switcher {
+		display: block;
+		position: absolute;
+		bottom: 45px;
+		right: 2.2rem;
+		& svg {
+			width: 36px;
+			height: 36px;
+		}
+	}
+}

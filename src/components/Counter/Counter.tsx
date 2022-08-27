@@ -1,8 +1,6 @@
 import type { Component } from "solid-js";
 
 import { createSignal, createEffect } from "solid-js";
-import Button from "../Button";
-import "./Counter.scss";
 
 const Counter: Component<{ tick?: number }> = (props) => {
 	const [isRunned, setIsRunned] = createSignal<boolean>(false);
@@ -22,21 +20,37 @@ const Counter: Component<{ tick?: number }> = (props) => {
 	});
 
 	return (
-		<div class="counter">
+		<div
+			style={{
+				margin: "2rem 0",
+				display: "flex",
+				"flex-direction": "column",
+				"align-items": "center",
+				"row-gap": "15px",
+				border: "1px solid var(--border-color)",
+				"border-radius": "var(--border-radius-md)",
+				padding: "15px 5px",
+			}}
+		>
 			<span>{count()}</span>
-			<div>
-				<Button disabled={isRunned()} onClick={run}>
+			<div
+				style={{
+					display: "flex",
+					"column-gap": "3px",
+				}}
+			>
+				<button class="btn" disabled={isRunned()} onClick={run}>
 					Run
-				</Button>
-				<Button disabled={isRunned()} onClick={inc}>
+				</button>
+				<button class="btn" disabled={isRunned()} onClick={inc}>
 					+
-				</Button>
-				<Button disabled={isRunned()} onClick={dec}>
+				</button>
+				<button class="btn" disabled={isRunned()} onClick={dec}>
 					-
-				</Button>
-				<Button disabled={!isRunned()} onClick={stop}>
+				</button>
+				<button class="btn" disabled={!isRunned()} onClick={stop}>
 					Stop
-				</Button>
+				</button>
 			</div>
 		</div>
 	);
