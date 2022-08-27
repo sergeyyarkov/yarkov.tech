@@ -4,26 +4,54 @@ import type { MDXInstance } from "astro";
 import ArticleLayout from "@layouts/article.astro";
 import { getLanguageFromURL } from "@root/utils";
 import { DEFAULT_LANGUAGE } from "@root/config";
+import { formatArticlesByLangs, useTranslation } from "@i18n/utils";
+import languages from "@i18n/languages";
 
-const lang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslation(Astro);
+const siteLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+export interface Props {
+	article: MDXInstance<ArticleType>;
+	alternateLangs: LanguageKeys[];
+}
 
 export async function getStaticPaths() {
 	const modules = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
 	const entries = Object.keys(modules).map((key) => [key, key.split("/").slice(6)[0]]);
+	const formatted = formatArticlesByLangs(modules);
 
 	return entries.map(([key, lang]) => {
 		const article = modules[key];
+		const dirName = key.split("/").at(-3);
 		const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
 		const slug = `${lang !== DEFAULT_LANGUAGE ? `${lang}/` : ""}blog/${published_at}/${article.frontmatter.slug}`;
 
-		return { params: { slug }, props: article };
+		return { params: { slug }, props: { article, alternateLangs: Object.keys(formatted[dirName]) } };
 	});
 }
 
-const { Content, frontmatter } = Astro.props as MDXInstance<ArticleType>;
+const {
+	article: { Content, frontmatter },
+	alternateLangs,
+} = Astro.props as Props;
+
+const { pathname } = Astro.url;
 ---
 
-<ArticleLayout lang={lang} content={frontmatter} canonicalUrl={canonicalUrl.href}>
+<ArticleLayout lang={siteLang} content={frontmatter} canonicalUrl={canonicalUrl.href}>
+	{
+		alternateLangs.length > 1 && (
+			<div class="languages-available">
+				{t("article.availableOn")}:
+				{alternateLangs
+					.filter((lang) => lang !== siteLang)
+					.map((lang) => (
+						<a href={DEFAULT_LANGUAGE === lang ? `/${pathname.split("/").slice(2).join("/")}` : `/${lang}${pathname}`}>{languages[lang]}</a>
+					))
+					.reduce((prev, curr) => [prev, ", ", curr])}
+			</div>
+		)
+	}
 	<Content />
 </ArticleLayout>
