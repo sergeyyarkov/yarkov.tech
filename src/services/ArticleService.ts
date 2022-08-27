@@ -24,7 +24,7 @@ class ArticleService {
 			}
 		}
 
-		return articles;
+		return articles.filter((article) => !article.frontmatter.draft);
 	}
 }
 

@@ -14,7 +14,7 @@ export function formatArticlesByLangs(data: Record<string, MDXInstance<ArticleTy
 		const name = splitted.at(-3);
 
 		if (!modules[name]) modules[name] = {};
-		modules[name][lang] = module;
+		if (!module.frontmatter.draft) modules[name][lang] = module;
 	}
 
 	return modules;

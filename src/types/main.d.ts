@@ -39,6 +39,7 @@ declare global {
 		tags: Array<string>;
 		published_at: string;
 		lang?: string;
+		draft?: boolean;
 	};
 
 	type ProjectType = {

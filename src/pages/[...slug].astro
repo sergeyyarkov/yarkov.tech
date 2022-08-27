@@ -21,14 +21,16 @@ export async function getStaticPaths() {
 	const entries = Object.keys(modules).map((key) => [key, key.split("/").slice(6)[0]]);
 	const formatted = formatArticlesByLangs(modules);
 
-	return entries.map(([key, lang]) => {
-		const article = modules[key];
-		const dirName = key.split("/").at(-3);
-		const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
-		const slug = `${lang !== DEFAULT_LANGUAGE ? `${lang}/` : ""}blog/${published_at}/${article.frontmatter.slug}`;
+	return entries
+		.map(([key, lang]) => {
+			const article = modules[key];
+			const dirName = key.split("/").at(-3);
+			const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
+			const slug = `${lang !== DEFAULT_LANGUAGE ? `${lang}/` : ""}blog/${published_at}/${article.frontmatter.slug}`;
 
-		return { params: { slug }, props: { article, alternateLangs: Object.keys(formatted[dirName]) } };
-	});
+			return { params: { slug }, props: { article, alternateLangs: Object.keys(formatted[dirName]) } };
+		})
+		.filter(({ props: { article } }) => !article.frontmatter.draft);
 }
 
 const {
