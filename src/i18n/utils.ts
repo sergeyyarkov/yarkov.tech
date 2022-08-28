@@ -1,6 +1,6 @@
 import type { AstroGlobal, MDXInstance } from "astro";
 import * as utils from "@utils/url";
-import { DEFAULT_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/config";
 import languages from "./languages";
 
 type TranslatedArticlesType = Record<string, Record<LanguageKeys, MDXInstance<ArticleType>> | Record<string, never>>;
@@ -21,7 +21,7 @@ export function formatArticlesByLangs(data: Record<string, MDXInstance<ArticleTy
 }
 
 export function getLanguageKeys(): Array<string> {
-	return Object.keys(languages);
+	return Object.keys(languages).filter((lang) => SUPPORTED_LANGUAGES.includes(lang as LanguageKeys));
 }
 
 function transformExports<T>(modules: Record<string, { default: T }>) {

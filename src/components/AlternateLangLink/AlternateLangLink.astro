@@ -1,0 +1,30 @@
+---
+/**
+ * This components is used in article layout to display links in alternative lanugages.
+ */
+import { DEFAULT_LANGUAGE } from "@root/config";
+import { getLanguageFromURL } from "@root/utils";
+
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	lang: LanguageKeys;
+}
+
+const { pathname } = Astro.url;
+const siteLang = getLanguageFromURL(pathname);
+const { lang, ...attrs } = Astro.props as Props;
+let href: string;
+if (lang === DEFAULT_LANGUAGE) {
+	href = `/${pathname.split("/").slice(2).join("/")}`;
+} else {
+	href = `/${lang}/`;
+	if (siteLang !== DEFAULT_LANGUAGE) {
+		href += `${pathname.split("/").slice(2).join("/")}`;
+	} else {
+		href += `${pathname.split("/").slice(1).join("/")}`;
+	}
+}
+---
+
+<a href={href} {...attrs}>
+	<slot />
+</a>

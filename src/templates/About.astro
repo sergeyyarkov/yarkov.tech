@@ -1,5 +1,7 @@
 ---
-import { SITE_METADATA } from "@root/config";
+import type { MDXInstance } from "astro";
+
+import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/config";
 import PageLayout from "@layouts/default.astro";
 import PageHeading from "@components/PageHeading";
 import SkillsList from "@components/SkillsList";
@@ -11,7 +13,14 @@ import { useTranslation } from "@i18n/utils";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
-const { Content } = await import(`../../content/about/${lang}/index.mdx`);
+let markdown: MDXInstance<{}> | undefined;
+
+try {
+	markdown = (await import(`../../content/about/${lang}/index.mdx`)) as MDXInstance<{}>;
+} catch (error) {
+	markdown = (await import(`../../content/about/${DEFAULT_LANGUAGE}/index.mdx`)) as MDXInstance<{}>;
+}
+
 const { skills } = SITE_METADATA;
 ---
 
@@ -19,7 +28,7 @@ const { skills } = SITE_METADATA;
 	<PageHeading heading={t("pageTitle.about")} />
 	<section>
 		<ArticleContent>
-			<Content />
+			{markdown && <markdown.Content />}
 		</ArticleContent>
 		<SkillsList>
 			{skills.map((block) => <SkillsBlock data={block} />)}

@@ -11,7 +11,7 @@ export type ArticleItemProps = {
 
 export const ArticleItem: Component<ArticleItemProps> = (props) => {
 	const isNonDefaultLanguage = props.data.lang && props.data.lang !== props.lang;
-	const hrefLangPrefix = props.data.lang && props.data.lang !== DEFAULT_LANGUAGE ? "/en" : "";
+	const hrefLangPrefix = props.data.lang && props.data.lang !== DEFAULT_LANGUAGE ? `/${props.data.lang}` : "";
 	return (
 		<article class="article-item">
 			<a

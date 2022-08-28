@@ -17,6 +17,7 @@ declare global {
 
 	type LanguageKeys = keyof typeof languages;
 	type UIDictionaryKeys = keyof typeof uiKeys;
+	type SupportedLanguages = LanguageKeys[];
 
 	type SiteMetadataType = {
 		title: string;
@@ -52,14 +53,14 @@ declare global {
 		icon: string;
 		name: string;
 		year: string;
-		description: Record<LanguageKeys, string>;
+		description: Record<string, string>;
 		sourceUrl?: string | undefined;
 		articleUrl?: string | undefined;
 		demoUrl?: string | undefined;
 	};
 
 	type SkillsType = {
-		title: Record<LanguageKeys, string>;
+		title: Record<string, string>;
 		list: Array<{
 			icon?: string | undefined;
 			name: string;
