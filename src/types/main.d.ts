@@ -28,7 +28,10 @@ declare global {
 			githubUrl: string;
 			telegramUrl: string;
 		};
-		nav: Array<{ key: UIDictionaryKeys; url: string }>;
+		nav: Array<{
+			key: UIDictionaryKeys;
+			url: string;
+		}>;
 		projects: Array<ProjectType>;
 		skills: Array<SkillsType>;
 	};
@@ -57,7 +60,10 @@ declare global {
 
 	type SkillsType = {
 		title: Record<LanguageKeys, string>;
-		list: Array<{ icon?: string | undefined; name: string }>;
+		list: Array<{
+			icon?: string | undefined;
+			name: string;
+		}>;
 	};
 
 	type ContactFieldsType = {

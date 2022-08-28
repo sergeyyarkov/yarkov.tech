@@ -14,10 +14,19 @@ export const SITE_METADATA: SiteMetadataType = {
 		telegramUrl: "https://t.me/sergeyyarkov",
 	},
 	nav: [
-		{ key: "navigation.articles", url: "/articles/" },
-		{ key: "navigation.projects", url: "/projects/" },
+		{
+			key: "navigation.articles",
+			url: "/articles/",
+		},
+		{
+			key: "navigation.projects",
+			url: "/projects/",
+		},
 		{ key: "navigation.about", url: "/about/" },
-		{ key: "navigation.contacts", url: "/contacts/" },
+		{
+			key: "navigation.contacts",
+			url: "/contacts/",
+		},
 	],
 	projects: [
 		{
@@ -112,11 +121,20 @@ export const SITE_METADATA: SiteMetadataType = {
 				en: "Programming",
 			},
 			list: [
-				{ icon: "nodejs", name: "Javascript/Typescript" },
-				{ icon: "language-c", name: "C Language" },
+				{
+					icon: "nodejs",
+					name: "Javascript/Typescript",
+				},
+				{
+					icon: "language-c",
+					name: "C Language",
+				},
 				{ icon: "mysql", name: "SQL" },
 				{ icon: "graphql", name: "GraphQL" },
-				{ icon: "avr", name: "AVR instruction set" },
+				{
+					icon: "avr",
+					name: "AVR instruction set",
+				},
 			],
 		},
 		{
@@ -141,7 +159,10 @@ export const SITE_METADATA: SiteMetadataType = {
 			list: [
 				{ icon: "nodejs", name: "Node.js" },
 				{ icon: "docker", name: "Docker" },
-				{ icon: "git-branch", name: "Git/gitflow" },
+				{
+					icon: "git-branch",
+					name: "Git/gitflow",
+				},
 				{ icon: "sass", name: "SASS" },
 				{ icon: "webpack", name: "Webpack" },
 				{ icon: "vite", name: "Vite.js" },
@@ -153,7 +174,10 @@ export const SITE_METADATA: SiteMetadataType = {
 				en: "Databases",
 			},
 			list: [
-				{ icon: "postgresql", name: "PostgreSQL" },
+				{
+					icon: "postgresql",
+					name: "PostgreSQL",
+				},
 				{ icon: "mongodb", name: "MongoDB" },
 				{ icon: "redis", name: "Redis" },
 			],

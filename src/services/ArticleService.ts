@@ -4,7 +4,9 @@ import { getLanguageFromURL } from "@utils/url";
 
 class ArticleService {
 	public getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
-		const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
+		const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", {
+			eager: true,
+		});
 		const modules = formatArticlesByLangs(data);
 		const siteLang = getLanguageFromURL(Astro.url.pathname);
 		const articles: MDXInstance<ArticleType>[] = [];
