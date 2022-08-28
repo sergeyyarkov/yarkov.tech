@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-import { DEFAULT_LANGUAGE } from "@root/config";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/config";
 import languages from "@i18n/languages";
 import { getLanguageFromURL } from "@root/utils";
 
@@ -11,7 +11,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 	<Icon name="translate" width="21" height="21" />
 	<select id="languageSelect" value={lang} aria-label="Select language">
 		{
-			Object.entries(languages).map(([code]) => (
+			SUPPORTED_LANGUAGES.map((code) => (
 				<option value={code} selected={lang === code}>
 					<span>{code.toLocaleUpperCase()}</span>
 				</option>
@@ -71,7 +71,15 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 	const changeLanguageHandler = (e) => {
 		const newLang = e.target.value;
 		const pathname = window.location.pathname;
-		const url = newLang === DEFAULT_LANGUAGE ? pathname.slice(3) : `${newLang}${pathname}`;
+		let url;
+
+		if (lang !== DEFAULT_LANGUAGE) {
+			url = pathname.split("/").slice(2).join("/");
+		} else {
+			url = pathname.slice(1);
+		}
+
+		if (newLang !== DEFAULT_LANGUAGE) url = `${newLang}/${url}`;
 
 		/* Move user to articles page with new language */
 		if (window.location.pathname.includes("/blog/")) {

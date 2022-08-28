@@ -1,6 +1,6 @@
 {
 	"name": "yarkov.tech",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": true,
 	"description": "Personal website created with Astro.",
 	"author": {
@@ -15,7 +15,7 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview --host",
-		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
+		"format": "prettier --write ./src/\"**/*.{js,jsx,ts,tsx,json,md,mdx,astro}\"",
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
 	"devDependencies": {

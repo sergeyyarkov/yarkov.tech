@@ -1,8 +1,3 @@
-import { defineConfig } from "astro/config";
-import { h } from "hastscript";
-import { toString } from "hast-util-to-string";
-import { escape } from "html-escaper";
-
 /**
  * Integrations
  */
@@ -24,6 +19,14 @@ import remarkSmartypants from "remark-smartypants";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
+/**
+ * Other required modules
+ */
+import { defineConfig } from "astro/config";
+import { h } from "hastscript";
+import { toString } from "hast-util-to-string";
+import { escape } from "html-escaper";
+
 const createAnchorLabel = (heading) => {
 	const node = h("span.anchor-label", escape(heading));
 	node.properties["is:raw"] = true;
@@ -41,11 +44,14 @@ export default defineConfig({
 				locales: {
 					ru: "ru",
 					en: "en",
+					de: "de",
 				},
 			},
 		}),
 		image(),
-		compress(),
+		compress({
+			img: false,
+		}),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [

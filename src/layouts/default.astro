@@ -16,7 +16,11 @@ const { title, description, lang = "ru", noIndex = false, canonicalUrl } = Astro
 ---
 
 <html lang={lang}>
-	<BaseHead title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title} description={description} canonicalUrl={canonicalUrl}>
+	<BaseHead
+		title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title}
+		description={description}
+		canonicalUrl={canonicalUrl}
+	>
 		{noIndex && <meta name="robots" content="noindex" />}
 	</BaseHead>
 	<BaseLayout>

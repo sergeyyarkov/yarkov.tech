@@ -12,3 +12,7 @@ export const getLanguageFromURL = (pathname: string): LanguageKeys => {
 	if (Object.hasOwn(languages, lang)) return lang;
 	return DEFAULT_LANGUAGE;
 };
+
+export const removeLangFromURL = (pathname: string): string => {
+	return pathname.split("/").slice(2).join("/");
+};

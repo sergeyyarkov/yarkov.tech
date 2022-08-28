@@ -4,7 +4,9 @@ import rss from "@astrojs/rss";
 import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/config";
 import * as utils from "@i18n/utils";
 
-const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
+const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", {
+	eager: true,
+});
 const articles = Object.values(utils.formatArticlesByLangs(data));
 const items = [];
 

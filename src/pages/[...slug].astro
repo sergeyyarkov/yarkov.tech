@@ -2,6 +2,7 @@
 import type { MDXInstance } from "astro";
 
 import ArticleLayout from "@layouts/article.astro";
+import AlternateLangLink from "@components/AlternateLangLink";
 import { getLanguageFromURL } from "@root/utils";
 import { DEFAULT_LANGUAGE } from "@root/config";
 import { formatArticlesByLangs, useTranslation } from "@i18n/utils";
@@ -37,8 +38,6 @@ const {
 	article: { Content, frontmatter },
 	alternateLangs,
 } = Astro.props as Props;
-
-const { pathname } = Astro.url;
 ---
 
 <ArticleLayout lang={siteLang} content={frontmatter} canonicalUrl={canonicalUrl.href}>
@@ -48,9 +47,7 @@ const { pathname } = Astro.url;
 				{t("article.availableOn")}:
 				{alternateLangs
 					.filter((lang) => lang !== siteLang)
-					.map((lang) => (
-						<a href={DEFAULT_LANGUAGE === lang ? `/${pathname.split("/").slice(2).join("/")}` : `/${lang}${pathname}`}>{languages[lang]}</a>
-					))
+					.map((lang) => <AlternateLangLink lang={lang}>{languages[lang]}</AlternateLangLink>)
 					.reduce((prev, curr) => [prev, ", ", curr])}
 			</div>
 		)
