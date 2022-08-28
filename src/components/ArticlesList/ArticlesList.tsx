@@ -84,7 +84,10 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 							return (
 								<div class="articles-list__wrapper">
 									<h2>{year}</h2>
-									<For each={sortArtcilesByDate(articles()[year])} children={(article) => <ArticleItem lang={props.lang} data={article} />} />
+									<For
+										each={sortArtcilesByDate(articles()[year])}
+										children={(article) => <ArticleItem lang={props.lang} data={article} />}
+									/>
 								</div>
 							);
 						}}

@@ -49,7 +49,9 @@ const { pathname } = Astro.url;
 				{alternateLangs
 					.filter((lang) => lang !== siteLang)
 					.map((lang) => (
-						<a href={DEFAULT_LANGUAGE === lang ? `/${pathname.split("/").slice(2).join("/")}` : `/${lang}${pathname}`}>{languages[lang]}</a>
+						<a href={DEFAULT_LANGUAGE === lang ? `/${pathname.split("/").slice(2).join("/")}` : `/${lang}${pathname}`}>
+							{languages[lang]}
+						</a>
 					))
 					.reduce((prev, curr) => [prev, ", ", curr])}
 			</div>

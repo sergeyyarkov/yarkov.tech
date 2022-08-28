@@ -19,7 +19,14 @@ const t = useTranslation(Astro);
 		</div>
 	</div>
 	<input name="subject" placeholder={t("input.subjectField")} type="text" autocomplete="off" required />
-	<textarea name="message" placeholder={t("input.messageField")} id="message" autocomplete="off" cols={30} rows={10} required></textarea>
+	<textarea
+		name="message"
+		placeholder={t("input.messageField")}
+		id="message"
+		autocomplete="off"
+		cols={30}
+		rows={10}
+		required></textarea>
 	<div class="footer">
 		<Button type="submit">{t("btn.submit")}</Button>
 	</div>

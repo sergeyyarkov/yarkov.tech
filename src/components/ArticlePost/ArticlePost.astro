@@ -21,7 +21,9 @@ const { title, coverImage, tags, author, published_at } = data;
 				{
 					tags.map((tag) => (
 						<li>
-							<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${tags.at(-1) === tag ? "" : ","}`}</TranslatedLink>
+							<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${
+								tags.at(-1) === tag ? "" : ","
+							}`}</TranslatedLink>
 						</li>
 					))
 				}
@@ -31,7 +33,9 @@ const { title, coverImage, tags, author, published_at } = data;
 			<h1 itemprop="headline">{title}</h1>
 		</div>
 		<div class="published">
-			<time itemprop="datePublished" datetime={published_at}>{createDateFormatter(lang).format(new Date(published_at))}</time>
+			<time itemprop="datePublished" datetime={published_at}
+				>{createDateFormatter(lang).format(new Date(published_at))}
+			</time>
 			<span itemprop="author">{author}</span>
 		</div>
 		{

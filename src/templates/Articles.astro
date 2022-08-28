@@ -15,7 +15,12 @@ const articles = transformArticles(data);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<PageLayout lang={lang} title={t("pageTitle.articles")} description={t("pageDescription.articles")} canonicalUrl={canonicalUrl.href}>
+<PageLayout
+	lang={lang}
+	title={t("pageTitle.articles")}
+	description={t("pageDescription.articles")}
+	canonicalUrl={canonicalUrl.href}
+>
 	<PageHeading heading={t("pageTitle.articles")} description={t("pageDescription.articles")} />
 	<section>
 		<ArticlesList
