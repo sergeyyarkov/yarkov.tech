@@ -22,9 +22,7 @@ for (const key of Object.keys(articles)) {
 				new Date(published_at).toLocaleDateString("en-CA") +
 				`/${slug}/`,
 			title,
-			description: `${description}${
-				coverImage !== undefined ? `<img src="${coverImage}" alt="${title}">` : ""
-			}`,
+			description: `${description}${coverImage !== undefined ? `<img src="${coverImage}" alt="${title}">` : ""}`,
 			pubDate: published_at,
 			customData: `<language>${lang}</language>`,
 		});

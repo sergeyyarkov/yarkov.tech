@@ -12,9 +12,7 @@ export const transformArticles = (articles: MDXInstance<ArticleType>[]): Article
 	}));
 
 export const sortArtcilesByDate = (articles: ArticleType[]): ArticleType[] => {
-	return articles.sort(
-		(a, b) => new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf()
-	);
+	return articles.sort((a, b) => new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf());
 };
 
 /**
@@ -33,10 +31,7 @@ export const formatToArticleBlocks = (articles: ArticleType[]): ArticleBlockType
 	return blocks;
 };
 
-export const findArticlesBySearch = (
-	search: string,
-	articles: ArticleBlockType
-): ArticleBlockType => {
+export const findArticlesBySearch = (search: string, articles: ArticleBlockType): ArticleBlockType => {
 	const matched: Array<ArticleType> = [];
 
 	search = search.toLocaleLowerCase();
@@ -54,10 +49,7 @@ export const findArticlesBySearch = (
 	return formatToArticleBlocks(matched);
 };
 
-export const findArticlesByTags = (
-	tags: string[],
-	articles: ArticleBlockType
-): ArticleBlockType => {
+export const findArticlesByTags = (tags: string[], articles: ArticleBlockType): ArticleBlockType => {
 	const matched: Array<ArticleType> = [];
 
 	for (const year in articles) {

@@ -43,12 +43,10 @@ const ThemeSwitcher: Component = () => {
 		if (window.theme) {
 			setTheme(window.theme);
 			/* Update theme state on changing OS theme */
-			window
-				.matchMedia("(prefers-color-scheme: dark)")
-				.addEventListener("change", ({ matches: isDark }) => {
-					const theme = isDark ? "dark" : "light";
-					setTheme(theme);
-				});
+			window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
+				const theme = isDark ? "dark" : "light";
+				setTheme(theme);
+			});
 		}
 	});
 

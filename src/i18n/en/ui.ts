@@ -15,8 +15,7 @@ export default {
 	/* Page descriptions */
 	"pageDescription.articles":
 		"Technical articles, tutorials and various reference materials related to IT topics can be found here.",
-	"pageDescription.projects":
-		"A few of my main projects that have been developed and published in open access.",
+	"pageDescription.projects": "A few of my main projects that have been developed and published in open access.",
 	"pageDescription.contacts": "Use the feedback form or write to me on social networks.",
 	/* Navigation */
 	"navigation.articles": "Articles",

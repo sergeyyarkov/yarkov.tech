@@ -15,10 +15,8 @@ window.theme = (() => {
 document.documentElement.setAttribute("data-theme", window.theme);
 
 /* Sync with OS theme */
-window
-	.matchMedia("(prefers-color-scheme: dark)")
-	.addEventListener("change", ({ matches: isDark }) => {
-		window.theme = isDark ? "dark" : "light";
-		localStorage.setItem("theme", window.theme);
-		document.documentElement.setAttribute("data-theme", window.theme);
-	});
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
+	window.theme = isDark ? "dark" : "light";
+	localStorage.setItem("theme", window.theme);
+	document.documentElement.setAttribute("data-theme", window.theme);
+});

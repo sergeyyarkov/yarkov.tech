@@ -42,9 +42,7 @@ if (window.theme) {
 	$head.appendChild($dark);
 
 	window.addEventListener("onthemetoggled", ({ detail: newTheme }) => toggleMedia(newTheme));
-	window
-		.matchMedia("(prefers-color-scheme: dark)")
-		.addEventListener("change", ({ matches: isDark }) => {
-			return isDark ? toggleMedia("dark") : toggleMedia("light");
-		});
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
+		return isDark ? toggleMedia("dark") : toggleMedia("light");
+	});
 }

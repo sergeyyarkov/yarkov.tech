@@ -7,7 +7,7 @@ export function isEmail(email: string): boolean {
 }
 
 export function isURL(url: string): boolean {
-	return new RegExp(
-		/(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\\/~+#-]*[\w@?^=%&\\/~+#-])/
-	).test(url);
+	return new RegExp(/(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\\/~+#-]*[\w@?^=%&\\/~+#-])/).test(
+		url
+	);
 }
