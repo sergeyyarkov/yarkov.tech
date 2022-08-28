@@ -3,9 +3,14 @@ import * as utils from "@utils/url";
 import { DEFAULT_LANGUAGE } from "@root/config";
 import languages from "./languages";
 
-type TranslatedArticlesType = Record<string, Record<LanguageKeys, MDXInstance<ArticleType>> | Record<string, never>>;
+type TranslatedArticlesType = Record<
+	string,
+	Record<LanguageKeys, MDXInstance<ArticleType>> | Record<string, never>
+>;
 
-export function formatArticlesByLangs(data: Record<string, MDXInstance<ArticleType>>): TranslatedArticlesType {
+export function formatArticlesByLangs(
+	data: Record<string, MDXInstance<ArticleType>>
+): TranslatedArticlesType {
 	const modules: TranslatedArticlesType = {};
 
 	for (const module of Object.values(data)) {
@@ -33,15 +38,20 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 	return translations;
 }
 
-const translations = transformExports<UIDictionaryKeys>(import.meta.glob("./*/ui.ts", { eager: true }));
+const translations = transformExports<UIDictionaryKeys>(
+	import.meta.glob("./*/ui.ts", { eager: true })
+);
 
 export function translate(key: UIDictionaryKeys, lang: LanguageKeys): string | undefined {
-	const string: string | undefined = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
+	const string: string | undefined =
+		translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
 	if (string === undefined) console.log(`Cannot find any string for translation key "${key}".`);
 	return string;
 }
 
-export function useTranslation(Astro: Readonly<AstroGlobal>): (key: UIDictionaryKeys) => string | undefined {
+export function useTranslation(
+	Astro: Readonly<AstroGlobal>
+): (key: UIDictionaryKeys) => string | undefined {
 	const lang: LanguageKeys = utils.getLanguageFromURL(Astro.url.pathname) as LanguageKeys;
 	return (key: UIDictionaryKeys) => translate(key, lang);
 }

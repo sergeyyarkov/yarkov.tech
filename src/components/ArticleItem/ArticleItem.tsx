@@ -14,13 +14,19 @@ export const ArticleItem: Component<ArticleItemProps> = (props) => {
 	const hrefLangPrefix = props.data.lang && props.data.lang !== DEFAULT_LANGUAGE ? "/en" : "";
 	return (
 		<article class="article-item">
-			<a href={`${hrefLangPrefix}/blog/${new Date(props.data.published_at).toLocaleDateString("en-CA")}/${props.data.slug}/`}>
+			<a
+				href={`${hrefLangPrefix}/blog/${new Date(props.data.published_at).toLocaleDateString(
+					"en-CA"
+				)}/${props.data.slug}/`}
+			>
 				<div class="flex">
 					<h3>{props.data.title}</h3>
 					{isNonDefaultLanguage && <sup>{props.data.lang.toLocaleUpperCase()}</sup>}
 				</div>
 				<p>
-					<time datetime={props.data.published_at.toString()}>{createDateFormatter(props.lang).format(new Date(props.data.published_at))}</time>
+					<time datetime={props.data.published_at.toString()}>
+						{createDateFormatter(props.lang).format(new Date(props.data.published_at))}
+					</time>
 				</p>
 			</a>
 		</article>

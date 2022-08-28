@@ -86,7 +86,12 @@ const TagsList: Component<TagsListProps> = (props) => {
 			<For
 				each={props.data}
 				children={(tag) => (
-					<li onClick={onSelect} class="btn-link" data-tag={tag.toLocaleLowerCase()} data-active={isTagSelected(tag)}>
+					<li
+						onClick={onSelect}
+						class="btn-link"
+						data-tag={tag.toLocaleLowerCase()}
+						data-active={isTagSelected(tag)}
+					>
 						{tag}
 					</li>
 				)}
