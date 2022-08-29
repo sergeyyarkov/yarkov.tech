@@ -15,7 +15,7 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview --host",
-		"format": "prettier --write ./src/\"**/*.{js,jsx,ts,tsx,json,md,mdx,astro}\"",
+		"format": "prettier --write ./src/\"**/*.{js,jsx,ts,tsx,json,astro}\"",
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
 	"devDependencies": {
