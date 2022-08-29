@@ -26,8 +26,9 @@ import { defineConfig } from "astro/config";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
+import languages from "./src/i18n/languages";
 
-const createAnchorLabel = (heading) => {
+const createAnchorLabel = (heading: string) => {
 	const node = h("span.anchor-label", escape(heading));
 	node.properties["is:raw"] = true;
 	return node;
@@ -41,11 +42,7 @@ export default defineConfig({
 		sitemap({
 			i18n: {
 				defaultLocale: "ru",
-				locales: {
-					ru: "ru",
-					en: "en",
-					de: "de",
-				},
+				locales: Object.fromEntries(Object.keys(languages).map((key) => [key, key])),
 			},
 		}),
 		image(),
