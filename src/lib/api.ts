@@ -1,6 +1,9 @@
 import type { AstroGlobal, MDXInstance } from "astro";
 
 import { formatArticlesByLangs } from "@i18n/utils";
+import { getLanguageFromURL } from "@root/utils";
+import { DEFAULT_LANGUAGE } from "@root/config";
+
 import * as utils from "@utils/index";
 
 export function fetchTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
@@ -41,4 +44,17 @@ export function fetchTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstan
 	}
 
 	return utils.getPublishedArticles(articles);
+}
+
+export async function fetchAboutMe(Astro: Readonly<AstroGlobal>): Promise<MDXInstance<{}>> {
+	const lang = getLanguageFromURL(Astro.url.pathname);
+	let markdown: MDXInstance<{}> | undefined;
+
+	try {
+		markdown = (await import(`../../content/about/${lang}/index.mdx`)) as MDXInstance<{}>;
+	} catch (error) {
+		markdown = (await import(`../../content/about/${DEFAULT_LANGUAGE}/index.mdx`)) as MDXInstance<{}>;
+	}
+
+	return markdown;
 }
