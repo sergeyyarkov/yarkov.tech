@@ -1,32 +1,46 @@
 import type { AstroGlobal, MDXInstance } from "astro";
 import { formatArticlesByLangs } from "@i18n/utils";
-import { getLanguageFromURL } from "@utils/url";
+import * as utils from "@utils/index";
 
 class ArticleService {
 	public getTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstance<ArticleType>[] {
-		const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", {
-			eager: true,
-		});
+		const data = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
 		const modules = formatArticlesByLangs(data);
-		const siteLang = getLanguageFromURL(Astro.url.pathname);
+		const siteLang = utils.getLanguageFromURL(Astro.url.pathname);
 		const articles: MDXInstance<ArticleType>[] = [];
 		const push = (article: MDXInstance<ArticleType>, lang: LanguageKeys) => {
 			articles.push(article);
 			article.frontmatter.lang = lang;
 		};
 
-		for (const key of Object.keys(modules)) {
-			const langs = Object.keys(modules[key]) as LanguageKeys[];
-			for (const lang of langs) {
-				const isNonDefaultLanguage = !langs.includes(siteLang) && langs.length === 1;
-				const article = modules[key];
+		for (const dirName of Object.keys(modules)) {
+			const article = modules[dirName];
+			const langs = Object.keys(article) as LanguageKeys[];
 
-				if (lang === siteLang) push(article[siteLang], siteLang);
-				if (isNonDefaultLanguage) push(article[lang], lang);
+			for (const lang of langs) {
+				if (lang !== siteLang) {
+					if (langs.length === 1) {
+						push(article[lang], lang);
+					}
+
+					if (!langs.includes(siteLang) && langs.length >= 2) {
+						const fallbackLang = langs[0];
+						const isPushed = articles.find(({ frontmatter }) => {
+							return frontmatter.title === article[fallbackLang].frontmatter.title;
+						});
+
+						if (!isPushed) {
+							push(article[fallbackLang], langs[fallbackLang]);
+						}
+					}
+					continue;
+				}
+
+				push(article[lang], lang);
 			}
 		}
 
-		return articles.filter((article) => !article.frontmatter.draft);
+		return utils.getPublishedArticles(articles);
 	}
 }
 

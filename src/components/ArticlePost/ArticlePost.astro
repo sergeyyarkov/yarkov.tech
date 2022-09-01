@@ -1,9 +1,10 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 import { createDateFormatter } from "@root/utils";
+import { isURL } from "@utils/string";
 import ArticleComments from "@components/ArticleComments";
-import "./ArticlePost.scss";
 import TranslatedLink from "../TranslatedLink";
+import "./ArticlePost.scss";
 
 export type Props = {
 	data: ArticleType;
@@ -44,7 +45,7 @@ const { title, coverImage, tags, author, published_at } = data;
 					<figure>
 						<Picture
 							itemprop="image"
-							src={coverImage}
+							src={isURL(coverImage) ? coverImage : `../../../content/assets/images/${coverImage}`}
 							sizes="(max-width: 500px) 500px, 700px"
 							widths={[500, 700]}
 							formats={["webp"]}
