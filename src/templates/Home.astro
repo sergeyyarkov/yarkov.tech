@@ -5,10 +5,10 @@ import RecentArticles from "@components/RecentArticles";
 import { Splash, SplashHeading, SplashLinks, Link } from "@components/Splash";
 import { getLanguageFromURL } from "@root/utils";
 import { useTranslation } from "@i18n/utils";
-import { ArticleService } from "@services/index";
 import UIString from "@components/UIString";
+import * as API from "@root/lib/api";
 
-const data = ArticleService.getTranslatedArticles(Astro);
+const data = API.fetchTranslatedArticles(Astro);
 const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = utils.transformArticles(data);

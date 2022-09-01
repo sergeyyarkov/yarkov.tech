@@ -5,10 +5,10 @@ import ArticlesList from "@components/ArticlesList";
 import { transformArticles, formatToArticleBlocks } from "@utils/articles";
 import { getLanguageFromURL } from "@root/utils";
 import { useTranslation } from "@i18n/utils";
-import { ArticleService } from "@services/index";
+import * as API from "@root/lib/api";
 
 const t = useTranslation(Astro);
-const data = ArticleService.getTranslatedArticles(Astro);
+const data = API.fetchTranslatedArticles(Astro);
 const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
 const lang = getLanguageFromURL(Astro.url.pathname);
 const articles = transformArticles(data);
