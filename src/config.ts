@@ -132,7 +132,6 @@ export const SITE_METADATA: SiteMetadataType = {
 					name: "C Language",
 				},
 				{ icon: "mysql", name: "SQL" },
-				{ icon: "graphql", name: "GraphQL" },
 				{
 					icon: "avr",
 					name: "AVR instruction set",
