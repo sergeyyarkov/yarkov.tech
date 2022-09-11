@@ -31,7 +31,7 @@ import languages from "./src/i18n/languages";
 
 const createAnchorLabel = (heading: string) => {
 	const node = h("span.anchor-label", escape(heading));
-	node.properties["is:raw"] = true;
+	if (node.properties) node.properties["is:raw"] = true;
 	return node;
 };
 

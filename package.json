@@ -19,7 +19,7 @@
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
 	"devDependencies": {
-		"@astrojs/image": "^0.5.1",
+		"@astrojs/image": "^0.7.0",
 		"@astrojs/mdx": "^0.11.1",
 		"@astrojs/rss": "^1.0.0",
 		"@astrojs/sitemap": "^1.0.0",
@@ -28,7 +28,7 @@
 		"@types/mdx": "^2.0.2",
 		"@typescript-eslint/eslint-plugin": "^5.36.2",
 		"@typescript-eslint/parser": "^5.36.2",
-		"astro": "^1.1.6",
+		"astro": "^1.2.1",
 		"astro-compress": "^1.0.7",
 		"astro-icon": "^0.7.3",
 		"eslint": "^8.23.0",
@@ -44,7 +44,7 @@
 		"rehype-slug": "^5.0.1",
 		"remark-gfm": "^3.0.1",
 		"remark-smartypants": "^2.0.0",
-		"sass": "^1.54.8",
+		"sass": "^1.54.9",
 		"solid-js": "^1.5.4"
 	}
 }
