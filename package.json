@@ -31,7 +31,7 @@
 		"astro": "^1.2.1",
 		"astro-compress": "^1.0.7",
 		"astro-icon": "^0.7.3",
-		"eslint": "^8.23.0",
+		"eslint": "^8.23.1",
 		"eslint-plugin-solid": "^0.7.3",
 		"hast-util-to-string": "^2.0.0",
 		"hastscript": "^7.0.2",
