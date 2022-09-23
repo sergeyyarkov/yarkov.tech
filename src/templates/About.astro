@@ -1,26 +1,17 @@
 ---
-import type { MDXInstance } from "astro";
-
-import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/config";
+import { SITE_METADATA } from "@root/config";
 import PageLayout from "@layouts/default.astro";
+import { getLanguageFromURL } from "@root/utils";
+import { useTranslation } from "@i18n/utils";
+import * as API from "@root/lib/api";
 import PageHeading from "@components/PageHeading";
 import SkillsList from "@components/SkillsList";
 import SkillsBlock from "@components/SkillsBlock";
-
 import ArticleContent from "@components/ArticleContent";
-import { getLanguageFromURL } from "@root/utils";
-import { useTranslation } from "@i18n/utils";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
-let markdown: MDXInstance<{}> | undefined;
-
-try {
-	markdown = (await import(`../../content/about/${lang}/index.mdx`)) as MDXInstance<{}>;
-} catch (error) {
-	markdown = (await import(`../../content/about/${DEFAULT_LANGUAGE}/index.mdx`)) as MDXInstance<{}>;
-}
-
+const data = await API.fetchAboutMe(Astro);
 const { skills } = SITE_METADATA;
 ---
 
@@ -28,7 +19,7 @@ const { skills } = SITE_METADATA;
 	<PageHeading heading={t("pageTitle.about")} />
 	<section>
 		<ArticleContent>
-			{markdown && <markdown.Content />}
+			{data && <data.Content />}
 		</ArticleContent>
 		<SkillsList>
 			{skills.map((block) => <SkillsBlock data={block} />)}

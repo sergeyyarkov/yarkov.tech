@@ -15,6 +15,10 @@ export const sortArtcilesByDate = (articles: ArticleType[]): ArticleType[] => {
 	return articles.sort((a, b) => new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf());
 };
 
+export const getPublishedArticles = (articles: MDXInstance<ArticleType>[]) => {
+	return articles.filter((article) => !article.frontmatter.draft);
+};
+
 /**
  * This function will distribute the array of articles by years.
  */

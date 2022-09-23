@@ -115,6 +115,18 @@ export const SITE_METADATA: SiteMetadataType = {
 			demoUrl: undefined,
 			articleUrl: undefined,
 		},
+		{
+			icon: "serial",
+			name: "web-serial-example",
+			year: "2022",
+			description: {
+				ru: "Пример использования Web Serial API для взаимодействия с микроконтроллером через браузер.",
+				en: "An example of using the Web Serial API to interact with the microcontroller through a browser",
+			},
+			sourceUrl: "https://github.com/sergeyyarkov/avr128da48_web-serial-example",
+			demoUrl: "https://web-serial-example.netlify.app/",
+			articleUrl: undefined,
+		},
 	],
 	skills: [
 		{
@@ -132,7 +144,6 @@ export const SITE_METADATA: SiteMetadataType = {
 					name: "C Language",
 				},
 				{ icon: "mysql", name: "SQL" },
-				{ icon: "graphql", name: "GraphQL" },
 				{
 					icon: "avr",
 					name: "AVR instruction set",
