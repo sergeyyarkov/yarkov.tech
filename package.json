@@ -19,7 +19,7 @@
 		"lint": "eslint '**/*.{js,mjs,ts,tsx}'"
 	},
 	"devDependencies": {
-		"@astrojs/image": "^0.7.0",
+		"@astrojs/image": "^0.7.1",
 		"@astrojs/mdx": "^0.11.1",
 		"@astrojs/rss": "^1.0.1",
 		"@astrojs/sitemap": "^1.0.0",
