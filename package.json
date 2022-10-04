@@ -20,7 +20,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/image": "^0.7.1",
-		"@astrojs/mdx": "^0.11.3",
+		"@astrojs/mdx": "^0.11.4",
 		"@astrojs/rss": "^1.0.1",
 		"@astrojs/sitemap": "^1.0.0",
 		"@astrojs/solid-js": "^1.1.0",
