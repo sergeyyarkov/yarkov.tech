@@ -34,7 +34,7 @@
 		"eslint": "^8.25.0",
 		"eslint-plugin-solid": "^0.7.3",
 		"hast-util-to-string": "^2.0.0",
-		"hastscript": "^7.0.2",
+		"hastscript": "^7.1.0",
 		"html-escaper": "^3.0.3",
 		"mime-types": "^2.1.35",
 		"netlify-plugin-minify-html": "^0.3.1",
