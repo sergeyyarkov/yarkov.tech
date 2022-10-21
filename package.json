@@ -25,7 +25,7 @@
 		"@astrojs/sitemap": "^1.0.0",
 		"@astrojs/solid-js": "^1.2.1",
 		"@types/html-escaper": "^3.0.0",
-		"@types/mdx": "^2.0.2",
+		"@types/mdx": "^2.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
 		"@typescript-eslint/parser": "^5.40.0",
 		"astro": "^1.5.2",
