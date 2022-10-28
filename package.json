@@ -31,7 +31,7 @@
 		"astro": "^1.6.0",
 		"astro-icon": "^0.7.3",
 		"eslint": "^8.26.0",
-		"eslint-plugin-solid": "^0.7.3",
+		"eslint-plugin-solid": "^0.7.4",
 		"hast-util-to-string": "^2.0.0",
 		"hastscript": "^7.1.0",
 		"html-escaper": "^3.0.3",
