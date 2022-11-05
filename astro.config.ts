@@ -45,7 +45,9 @@ export default defineConfig({
 				locales: Object.fromEntries(Object.keys(languages).map((key) => [key, key])),
 			},
 		}),
-		image(),
+		image({
+			serviceEntryPoint: "@astrojs/image/sharp",
+		}),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
 			rehypePlugins: [

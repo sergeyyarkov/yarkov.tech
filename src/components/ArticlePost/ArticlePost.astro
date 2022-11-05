@@ -12,7 +12,7 @@ export type Props = {
 };
 
 const { data, lang } = Astro.props as Props;
-const { title, coverImage, tags, author, published_at } = data;
+const { title, description, coverImage, tags, author, published_at } = data;
 ---
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="article">
@@ -41,13 +41,13 @@ const { title, coverImage, tags, author, published_at } = data;
 		</div>
 		{
 			coverImage && (
-				<div>
+				<div class="cover">
 					<figure>
 						<Picture
 							itemprop="image"
 							src={isURL(coverImage) ? coverImage : `../../../content/assets/images/${coverImage}`}
-							sizes="(max-width: 500px) 500px, 700px"
-							widths={[500, 700]}
+							sizes="(max-width: 450px) 450px, 700px"
+							widths={[450, 700]}
 							formats={["webp"]}
 							aspectRatio={"16:9"}
 							alt={title}
@@ -56,6 +56,11 @@ const { title, coverImage, tags, author, published_at } = data;
 				</div>
 			)
 		}
+		<div class="description">
+			<p>
+				{description}
+			</p>
+		</div>
 	</header>
 	<slot />
 	<ArticleComments />

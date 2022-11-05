@@ -1,11 +1,4 @@
 .article-content {
-	& p,
-	& em,
-	& q {
-		line-height: var(--line-height-base);
-		font-size: var(--font-size-lg);
-	}
-
 	& h1,
 	h2,
 	h3,
@@ -17,11 +10,11 @@
 		padding-bottom: 5px;
 	}
 
-	& ul {
+	& ul,
+	ol {
 		padding-left: 1.5rem;
 		line-height: var(--line-height-base);
-		margin-bottom: 1.5rem;
-		margin-top: 0;
+		margin: 1.5rem 0;
 		& li {
 			font-size: var(--font-size-lg);
 			line-height: var(--line-height-base);
@@ -50,6 +43,9 @@
 
 	& figure {
 		margin: 0 0 1em;
+		& figcaption {
+			color: var(--color-gray-400);
+		}
 	}
 
 	& hr {

@@ -45,5 +45,8 @@
 		"remark-smartypants": "^2.0.0",
 		"sass": "^1.56.0",
 		"solid-js": "^1.6.1"
+	},
+	"dependencies": {
+		"sharp": "^0.31.2"
 	}
 }
