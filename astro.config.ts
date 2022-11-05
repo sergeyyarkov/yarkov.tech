@@ -5,7 +5,6 @@ import solid from "@astrojs/solid-js";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
-import compress from "astro-compress";
 
 /**
  * Remark plugins
@@ -46,9 +45,8 @@ export default defineConfig({
 				locales: Object.fromEntries(Object.keys(languages).map((key) => [key, key])),
 			},
 		}),
-		image(),
-		compress({
-			img: false,
+		image({
+			serviceEntryPoint: "@astrojs/image/sharp",
 		}),
 		mdx({
 			remarkPlugins: [remarkGfm, remarkSmartypants],
