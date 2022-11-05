@@ -35,13 +35,6 @@ body {
 	background: var(--background-body-color);
 }
 
-p,
-em,
-q {
-	line-height: var(--line-height-base);
-	font-size: var(--font-size-lg);
-}
-
 .container {
 	max-width: var(--content-width);
 	margin: 0 auto;
@@ -93,6 +86,7 @@ ul {
 	margin: 0;
 }
 
+p,
 h1,
 h2,
 h3,

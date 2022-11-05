@@ -10,6 +10,17 @@
 		padding-bottom: 5px;
 	}
 
+	& p,
+	em,
+	q {
+		line-height: var(--line-height-base);
+		font-size: var(--font-size-lg);
+	}
+
+	& p {
+		margin: 1.5rem 0;
+	}
+
 	& ul,
 	ol {
 		padding-left: 1.5rem;
