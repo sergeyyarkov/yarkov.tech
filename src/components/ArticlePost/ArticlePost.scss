@@ -38,6 +38,11 @@
 		}
 	}
 
+	& .description p {
+		line-height: var(--line-height-base);
+		font-size: var(--font-size-lg);
+	}
+
 	& footer {
 		margin-top: 5rem;
 	}
