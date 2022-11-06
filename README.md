@@ -16,6 +16,7 @@ Personal website created with Astro.
 - [x] Comment system via [utterances](https://utteranc.es/)
 - [x] RSS Feed for articles
 - [x] SEO optimized
+- [x] Views counter 
 
 ## License
 
