@@ -6,6 +6,7 @@ export default {
 	"article.availableOn": "Доступно на",
 	"articles.empty": "Не найдено ни одной статьи...",
 	"articlePost.comments": "Комментарии",
+	"article.views": "просмотров",
 	"recentArticles.empty": "Пока что здесь ничего нет...",
 	/* Page titles */
 	"pageTitle.about": "Обо мне",
