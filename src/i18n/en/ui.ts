@@ -6,6 +6,7 @@ export default {
 	"article.availableOn": "Available on",
 	"articles.empty": "No articles found...",
 	"articlePost.comments": "Comments",
+	"article.views": "views",
 	"recentArticles.empty": "There is nothing here yet...",
 	/* Page titles */
 	"pageTitle.about": "About me",

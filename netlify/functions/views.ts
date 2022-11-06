@@ -3,8 +3,8 @@ import { Handler } from "@netlify/functions";
 import Redis from "ioredis";
 
 const redis = new Redis({
-	host: "redis-19655.c300.eu-central-1-1.ec2.cloud.redislabs.com",
-	port: 19655,
+	host: process.env.REDIS_HOST,
+	port: Number.parseInt(process.env.REDIS_PORT || "6379", 10),
 	password: process.env.REDIS_PASSWORD,
 });
 
