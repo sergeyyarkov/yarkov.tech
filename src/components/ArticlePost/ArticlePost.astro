@@ -78,6 +78,9 @@ const t = useTranslation(Astro);
 <script define:vars={{ slug }}>
 	(async () => {
 		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
+
+		if (!response.ok) return;
+
 		const views = await response.text();
 		const $views = document.getElementById("views");
 

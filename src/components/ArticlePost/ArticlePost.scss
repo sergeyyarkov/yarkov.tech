@@ -10,6 +10,7 @@
 				& span {
 					margin-left: 3.5px;
 					font-size: var(--font-size-sm);
+					color: var(--font-color-grayer);
 				}
 			}
 		}
@@ -77,9 +78,11 @@
 	.article {
 		& header {
 			& div:nth-child(1) {
-				flex-direction: column-reverse;
-				row-gap: 10px;
+				flex-direction: column;
 				align-items: flex-start;
+				& .tags {
+					margin-bottom: 15px;
+				}
 			}
 			& .heading h1 {
 				font-size: 2rem;
