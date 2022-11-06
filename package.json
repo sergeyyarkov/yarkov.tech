@@ -47,6 +47,8 @@
 		"solid-js": "^1.6.1"
 	},
 	"dependencies": {
+		"@netlify/functions": "^1.3.0",
+		"ioredis": "^5.2.4",
 		"sharp": "^0.31.2"
 	}
 }

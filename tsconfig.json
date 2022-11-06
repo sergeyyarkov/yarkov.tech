@@ -3,6 +3,7 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "node",
+		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"types": ["vite/client", "@astrojs/image/client", "@types/mdx"],
