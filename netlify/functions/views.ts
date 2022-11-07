@@ -1,16 +1,9 @@
 import { Handler } from "@netlify/functions";
-
-import Redis from "ioredis";
-
-const redis = new Redis({
-	host: process.env.REDIS_HOST,
-	port: Number.parseInt(process.env.REDIS_PORT || "6379", 10),
-	password: process.env.REDIS_PASSWORD,
-});
+import { redisClient } from "../../redis";
 
 const getViewsBySlug = async (slug: string): Promise<number> => {
 	let views = 1;
-	const data = await redis.get(`views:${slug}`);
+	const data = await redisClient.get(`views:${slug}`);
 	if (data) views = Number.parseInt(data, 10);
 	if (Number.isNaN(views)) views = 1;
 	return views;
@@ -27,7 +20,7 @@ const handler: Handler = async (event) => {
 		}
 		case "POST": {
 			if (!slug) return { statusCode: 400, body: "Bad request." };
-			const views = await redis.incr(`views:${slug}`);
+			const views = await redisClient.incr(`views:${slug}`);
 			return { statusCode: 200, body: views.toString() };
 		}
 		default: {

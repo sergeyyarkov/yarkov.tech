@@ -46,14 +46,16 @@ export function fetchTranslatedArticles(Astro: Readonly<AstroGlobal>): MDXInstan
 	return utils.getPublishedArticles(articles);
 }
 
-export async function fetchAboutMe(Astro: Readonly<AstroGlobal>): Promise<MDXInstance<{}>> {
+export async function fetchAboutMe(Astro: Readonly<AstroGlobal>): Promise<MDXInstance<Record<string, never>>> {
 	const lang = getLanguageFromURL(Astro.url.pathname);
-	let markdown: MDXInstance<{}> | undefined;
+	let markdown: MDXInstance<Record<string, never>> | undefined;
 
 	try {
-		markdown = (await import(`../../content/about/${lang}/index.mdx`)) as MDXInstance<{}>;
+		markdown = (await import(`../../content/about/${lang}/index.mdx`)) as MDXInstance<Record<string, never>>;
 	} catch (error) {
-		markdown = (await import(`../../content/about/${DEFAULT_LANGUAGE}/index.mdx`)) as MDXInstance<{}>;
+		markdown = (await import(`../../content/about/${DEFAULT_LANGUAGE}/index.mdx`)) as MDXInstance<
+			Record<string, never>
+		>;
 	}
 
 	return markdown;
