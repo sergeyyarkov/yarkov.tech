@@ -30,7 +30,7 @@
 		"@typescript-eslint/parser": "^5.42.0",
 		"astro": "^1.6.3",
 		"astro-icon": "^0.8.0",
-		"eslint": "^8.26.0",
+		"eslint": "^8.27.0",
 		"eslint-plugin-solid": "^0.8.0",
 		"hast-util-to-string": "^2.0.0",
 		"hastscript": "^7.1.0",
