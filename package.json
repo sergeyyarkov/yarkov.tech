@@ -23,7 +23,7 @@
 		"@astrojs/mdx": "^0.11.6",
 		"@astrojs/rss": "^1.0.3",
 		"@astrojs/sitemap": "^1.0.0",
-		"@astrojs/solid-js": "^1.2.2",
+		"@astrojs/solid-js": "^1.2.3",
 		"@types/html-escaper": "^3.0.0",
 		"@types/mdx": "^2.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
