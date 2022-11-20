@@ -20,7 +20,7 @@ import UIString from "../UIString";
 	$commentsScript.setAttribute("crossorigin", "anonymous");
 
 	if (window.theme) {
-		$commentsScript.setAttribute("theme", theme === "dark" ? "dark-blue" : "github-light");
+		$commentsScript.setAttribute("theme", window.theme === "dark" ? "dark-blue" : "github-light");
 	} else {
 		$commentsScript.setAttribute("theme", "github-light");
 	}

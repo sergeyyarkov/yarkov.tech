@@ -7,15 +7,16 @@ Personal website created with Astro.
 
 ### Features
 
-- [x] HTML layout
 - [x] Adaptive & Responsive layout
 - [x] Search articles by title or description
 - [x] Dark/Light Theme
 - [x] Multilang web-site
+- [x] Prefetch pages via [Quicklink](https://getquick.link/)
 - [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
 - [x] Comment system via [utterances](https://utteranc.es/)
 - [x] RSS Feed for articles
 - [x] SEO optimized
+- [x] Views counter 
 
 ## License
 

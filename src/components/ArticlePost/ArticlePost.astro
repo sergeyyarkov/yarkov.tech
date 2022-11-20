@@ -84,6 +84,7 @@ const t = useTranslation(Astro);
 		const views = await response.text();
 		const $views = document.getElementById("views");
 
+		if (isNaN(parseInt(views, 10))) return;
 		if ($views) $views.textContent = views;
 	})();
 </script>
