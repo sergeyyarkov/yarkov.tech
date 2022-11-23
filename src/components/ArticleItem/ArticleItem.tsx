@@ -13,14 +13,14 @@ export const ArticleItem: Component<ArticleItemProps> = (props) => {
 	const isNonDefaultLanguage = props.data.lang && props.data.lang !== props.lang;
 	const hrefLangPrefix = props.data.lang && props.data.lang !== DEFAULT_LANGUAGE ? `/${props.data.lang}` : "";
 	return (
-		<article class="article-item">
+		<article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="article-item">
 			<a
 				href={`${hrefLangPrefix}/blog/${new Date(props.data.published_at).toLocaleDateString("en-CA")}/${
 					props.data.slug
 				}/`}
 			>
 				<div class="flex">
-					<h3>{props.data.title}</h3>
+					<h3 itemprop="headline">{props.data.title}</h3>
 					{isNonDefaultLanguage && <sup>{props.data.lang.toLocaleUpperCase()}</sup>}
 				</div>
 				<p>

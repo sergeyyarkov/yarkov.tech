@@ -26,7 +26,7 @@ const isEmpty = recent.length === 0;
 		</TranslatedLink>
 	</div>
 
-	<div>
+	<div itemscope itemtype="http://schema.org/Blog">
 		{!isEmpty ? recent.slice(0, length).map((article) => <ArticleItem lang={lang} data={article} />) : <EmptyList />}
 	</div>
 </section>

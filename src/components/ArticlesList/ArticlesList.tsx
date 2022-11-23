@@ -72,7 +72,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		<>
 			<SearchInput count={getLength()} placeholder={props.i18n["input.search"]} />
 			<TagsList data={props.data.tags} />
-			<div class="articles-list">
+			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
 				{isEmpty() ? (
 					<div class="articles-list__empty">
 						<p>{props.i18n["articles.empty"]}</p>

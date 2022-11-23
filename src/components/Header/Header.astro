@@ -19,12 +19,13 @@ const { pathname } = Astro.url;
 				{name}
 			</TranslatedLink>
 		</div>
-		<nav>
+		<nav itemscope itemtype="http://schema.org/SiteNavigationElement">
 			<ul>
 				{
 					nav.map((link) => (
 						<li>
 							<TranslatedLink
+								itemprop="url"
 								class={pathname.includes(removeSlashes(link.url)) && pathname.split("/").length < 5 && "active"}
 								to={link.url}
 							>
