@@ -125,7 +125,8 @@ export const SITE_METADATA: SiteMetadataType = {
 			},
 			sourceUrl: "https://github.com/sergeyyarkov/avr128da48_web-serial-example",
 			demoUrl: "https://web-serial-example.netlify.app/",
-			articleUrl: undefined,
+			articleUrl:
+				"https://yarkov.tech/blog/2022-11-04/ispolzovanie-webserial-api-dlya-obshcheniya-s-mikrokontrollerom/",
 		},
 	],
 	skills: [
