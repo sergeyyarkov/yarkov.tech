@@ -100,7 +100,7 @@ export const SITE_METADATA: SiteMetadataType = {
 				en: "An example of using Docker to deploy a Node.js application",
 			},
 			sourceUrl: "https://github.com/sergeyyarkov/node-docker-example",
-			demoUrl: "https://website-simple-blog.herokuapp.com",
+			demoUrl: "https://node-docker-example.onrender.com/",
 			articleUrl: undefined,
 		},
 		{
