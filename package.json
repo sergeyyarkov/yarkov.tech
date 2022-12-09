@@ -21,7 +21,7 @@
 	"devDependencies": {
 		"@astrojs/image": "^0.12.0",
 		"@astrojs/mdx": "^0.12.1",
-		"@astrojs/rss": "^1.0.3",
+		"@astrojs/rss": "^1.1.0",
 		"@astrojs/sitemap": "^1.0.0",
 		"@astrojs/solid-js": "^1.2.3",
 		"@types/html-escaper": "^3.0.0",
