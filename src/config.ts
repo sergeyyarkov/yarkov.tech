@@ -158,6 +158,7 @@ export const SITE_METADATA: SiteMetadataType = {
 			},
 			list: [
 				{ icon: "adonisjs", name: "Adonis.js" },
+				{ icon: "alpinejs", name: "Alpine.js" },
 				{ icon: "expressjs", name: "Express.js" },
 				{ icon: "socket-io", name: "Socket.io" },
 				{ icon: "astro_filled", name: "Astro" },
