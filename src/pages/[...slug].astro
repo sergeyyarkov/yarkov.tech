@@ -1,10 +1,10 @@
 ---
 import type { MDXInstance } from "astro";
 
+import { DEFAULT_LANGUAGE } from "@root/config";
 import ArticleLayout from "@layouts/article.astro";
 import AlternateLangLink from "@components/AlternateLangLink";
 import { getLanguageFromURL } from "@root/utils";
-import { DEFAULT_LANGUAGE } from "@root/config";
 import { formatArticlesByLangs, useTranslation } from "@i18n/utils";
 import languages from "@i18n/languages";
 
@@ -14,8 +14,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 export interface Props {
 	article: MDXInstance<ArticleType>;
-	alternateLangs: LanguageKeys[];
+	availableLangs: AvailableLang[];
 }
+
+type AvailableLang = {
+	lang: LanguageKeys;
+	slug: any;
+};
 
 export async function getStaticPaths() {
 	const modules = import.meta.glob<MDXInstance<ArticleType>>("../../content/articles/**/*.mdx", { eager: true });
@@ -28,26 +33,34 @@ export async function getStaticPaths() {
 			const dirName = key.split("/").at(-3);
 			const published_at = new Date(article.frontmatter.published_at).toLocaleDateString("en-CA");
 			const slug = `${lang !== DEFAULT_LANGUAGE ? `${lang}/` : ""}blog/${published_at}/${article.frontmatter.slug}`;
+			const availableLangs: AvailableLang[] = Object.keys(formatted[dirName]).map((lang: LanguageKeys) => ({
+				lang,
+				slug: formatted[dirName][lang].frontmatter.slug,
+			}));
 
-			return { params: { slug }, props: { article, alternateLangs: Object.keys(formatted[dirName]) } };
+			return { params: { slug }, props: { article, availableLangs } };
 		})
 		.filter(({ props: { article } }) => !article.frontmatter.draft);
 }
 
 const {
 	article: { Content, frontmatter },
-	alternateLangs,
+	availableLangs,
 } = Astro.props as Props;
 ---
 
 <ArticleLayout lang={siteLang} content={frontmatter} canonicalUrl={canonicalUrl.href}>
 	{
-		alternateLangs.length > 1 && (
+		availableLangs.length > 1 && (
 			<div class="languages-available">
 				{t("article.availableOn")}:
-				{alternateLangs
-					.filter((lang) => lang !== siteLang)
-					.map((lang) => <AlternateLangLink lang={lang}>{languages[lang]}</AlternateLangLink>)
+				{availableLangs
+					.filter((entry) => entry.lang !== siteLang)
+					.map((entry) => (
+						<AlternateLangLink slug={entry.slug} lang={entry.lang}>
+							{languages[entry.lang]}
+						</AlternateLangLink>
+					))
 					.reduce((prev, curr) => [prev, ", ", curr])}
 			</div>
 		)
