@@ -26,7 +26,7 @@
 		"@astrojs/solid-js": "^1.2.3",
 		"@types/html-escaper": "^3.0.0",
 		"@types/mdx": "^2.0.3",
-		"@typescript-eslint/eslint-plugin": "^5.46.0",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
 		"@typescript-eslint/parser": "^5.46.0",
 		"astro": "^1.6.14",
 		"astro-icon": "^0.8.0",
