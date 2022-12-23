@@ -50,6 +50,6 @@
 		"@netlify/functions": "^1.3.0",
 		"ioredis": "^5.2.4",
 		"quicklink": "^2.3.0",
-		"sharp": "^0.31.2"
+		"sharp": "^0.31.3"
 	}
 }
