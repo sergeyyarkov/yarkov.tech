@@ -1,5 +1,5 @@
 /* eslint-disable solid/reactivity */
-import { Component, createEffect } from "solid-js";
+import { Component } from "solid-js";
 import { createDateFormatter } from "@utils/date";
 import "./ArticleItem.scss";
 import { DEFAULT_LANGUAGE } from "@root/config";
