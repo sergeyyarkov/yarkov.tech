@@ -27,7 +27,7 @@
 		"@types/html-escaper": "^3.0.0",
 		"@types/mdx": "^2.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.48.1",
-		"@typescript-eslint/parser": "^5.47.0",
+		"@typescript-eslint/parser": "^5.48.1",
 		"astro": "^1.9.2",
 		"astro-icon": "^0.8.0",
 		"eslint": "^8.31.0",
