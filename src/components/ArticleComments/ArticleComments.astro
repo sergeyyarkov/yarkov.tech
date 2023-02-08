@@ -1,29 +1,43 @@
 ---
-import UIString from "../UIString";
+interface Props {
+	url: string;
+	id: string;
+}
+
+const { url, id } = Astro.props as Props;
 ---
 
-<footer>
-	<h2><UIString key={"articlePost.comments"} /></h2>
-	<div id="comments"></div>
+<footer itemscope itemtype="http://schema.org/UserComments">
+	<div id="disqus_thread"></div>
 </footer>
 
-<script>
-	const $commentsWrapper = document.getElementById("comments");
-	const $commentsScript = document.createElement("script");
+<script define:vars={{ url, id }}>
+	var disqus_config = function () {
+		this.page.url = url;
+		this.page.identifier = id;
+	};
 
-	$commentsScript.async = true;
-	$commentsScript.src = "https://utteranc.es/client.js";
-	$commentsScript.setAttribute("repo", "sergeyyarkov/comments");
-	$commentsScript.setAttribute("issue-term", "title");
-	$commentsScript.setAttribute("label", "Comment");
-	$commentsScript.setAttribute("id", "utterances");
-	$commentsScript.setAttribute("crossorigin", "anonymous");
-
-	if (window.theme) {
-		$commentsScript.setAttribute("theme", window.theme === "dark" ? "dark-blue" : "github-light");
-	} else {
-		$commentsScript.setAttribute("theme", "github-light");
+	var e = document.getElementById("disqus_thread");
+	if ("IntersectionObserver" in window) {
+		var t = new IntersectionObserver((e) => {
+			e.forEach((e) => {
+				e.isIntersecting &&
+					((function () {
+						var e = document,
+							t = e.createElement("script");
+						(t.src = "https://yarkov-tech.disqus.com/embed.js"),
+							t.setAttribute("data-timestamp", +new Date()),
+							(e.head || e.body).appendChild(t);
+					})(),
+					t.unobserve(e.target));
+			});
+		});
+		t.observe(e);
 	}
 
-	if ($commentsWrapper) $commentsWrapper.appendChild($commentsScript);
+	window.addEventListener(
+		"onthemetoggled",
+		() =>
+			document.readyState == "complete" && setTimeout(() => DISQUS.reset({ reload: true, config: disqus_config }), 100)
+	);
 </script>

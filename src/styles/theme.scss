@@ -144,4 +144,11 @@
 	& body > main svg:not([data-filter="none"]) {
 		filter: var(--icon-filter);
 	}
+
+	/*
+		https://sergeyski.com/css-color-scheme-and-iframes-lessons-learned-from-disqus-background-bug/
+	*/
+	iframe[src*="disqus.com"] {
+		color-scheme: light;
+	}
 }

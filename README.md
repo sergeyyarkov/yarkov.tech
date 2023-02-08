@@ -13,10 +13,10 @@ Personal website created with Astro.
 - [x] Multilang web-site
 - [x] Prefetch pages via [Quicklink](https://getquick.link/)
 - [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
-- [x] Comment system via [utterances](https://utteranc.es/)
+- [x] Comment system via [Disqus](https://disqus.com/)
 - [x] RSS Feed for articles
 - [x] SEO optimized
-- [x] Views counter 
+- [x] Views counter
 
 ## License
 
