@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://yarkov.tech/sitemap-index.xml
