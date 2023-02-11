@@ -5,7 +5,7 @@
 
 Personal website created with Astro.
 
-### Features
+<!-- ### Features
 
 - [x] Adaptive & Responsive layout
 - [x] Search articles by title or description
@@ -16,7 +16,7 @@ Personal website created with Astro.
 - [x] Comment system via [Disqus](https://disqus.com/)
 - [x] RSS Feed for articles
 - [x] SEO optimized
-- [x] Views counter
+- [x] Views counter -->
 
 ## License
 
