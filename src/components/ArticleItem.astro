@@ -1,0 +1,76 @@
+---
+import { getLanguageFromURL } from "@i18n/utils";
+import { DEFAULT_LANGUAGE } from "@root/constants";
+import { createDateFormatter } from "@root/utils";
+
+export interface Props {
+	href: string;
+	title: string;
+	date: Date;
+}
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+// const isNonDefaultLanguage = DEFAULT_LANGUAGE !== lang;
+
+const { href, title, date } = Astro.props as Props;
+---
+
+<article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="article-item">
+	<a href={href}>
+		<div class="flex">
+			<h3 itemprop="headline">{title}</h3>
+			<!-- {isNonDefaultLanguage && <sup>{lang.toLocaleUpperCase()}</sup>} -->
+		</div>
+		<p>
+			<time datetime={date.toString()}>
+				{createDateFormatter(lang).format(date)}
+			</time>
+		</p>
+	</a>
+</article>
+
+<style lang="scss">
+	article {
+		border-radius: var(--border-radius-md);
+		text-decoration: none;
+		& a {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 10px;
+			color: var(--font-color);
+			padding: 8px 0;
+			& sup {
+				margin-left: 5px;
+				font-size: 0.7em;
+			}
+			& h3 {
+				font-size: var(--font-size-md);
+				font-weight: normal;
+				margin: 0;
+			}
+			& p {
+				font-size: var(--font-size-xs);
+				font-family: var(--font-family-monospace);
+				color: var(--font-color-gray);
+				text-transform: uppercase;
+				text-align: right;
+				white-space: nowrap;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	@media screen and (max-width: 560px) {
+		article {
+			margin-bottom: 10px;
+			& a {
+				flex-direction: column-reverse;
+				align-items: flex-start;
+				& p {
+					margin-bottom: 5px;
+				}
+			}
+		}
+	}
+</style>

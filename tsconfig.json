@@ -1,6 +1,22 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "strictNullChecks": true
-  }
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"baseUrl": ".",
+		"paths": {
+			"@root/*": ["./src/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@components/*": ["./src/components/*"],
+			"@templates/*": ["./src/templates/*"],
+			"@layouts/*": ["./src/layouts/*"],
+			"@utils/*": ["./src/utils/*"],
+			"@stores/*": ["./src/stores/*"],
+			"@hooks/*": ["./src/hooks/*"],
+			"@i18n/*": ["./src/i18n/*"]
+		},
+		"typeRoots": ["./node_modules/@types", "./src/types"],
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js"
+	},
+	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
 }

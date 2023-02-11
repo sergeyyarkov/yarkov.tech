@@ -1,13 +1,59 @@
 ---
-const today = new Date();
+import { Icon } from "astro-icon";
+const date = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+	<div class="container">
+		<ul>
+			<li>
+				<a href="https://astro.build/" target="_blank">Astro</a>
+				<Icon name="astro" width="20" height="20" />
+			</li>
+			<li>
+				<a href="https://www.netlify.com/" target="_blank">Netlify</a>
+				<Icon name="netlify" width="20" height="20" />
+			</li>
+			<li>
+				<a href="/rss.xml" target="_blank">RSS</a>
+				<Icon name="rss" width="20" height="20" />
+			</li>
+		</ul>
+		<small>© Sergey Yarkov, {date.getFullYear()}</small>
+	</div>
 </footer>
-<style>
+
+<style lang="scss">
 	footer {
-		padding: 25px;
+		user-select: none;
 		text-align: center;
+		font-weight: 500;
+		margin-top: 5rem;
+		& .container {
+			padding: 25px 0 10px 0;
+			border-top: 1px solid var(--border-color);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			row-gap: 15px;
+		}
+		& ul {
+			display: flex;
+			align-items: center;
+			column-gap: 25px;
+			& li {
+				display: flex;
+				align-items: center;
+				column-gap: 7px;
+				& a {
+					color: var(--font-color);
+					font-size: var(--font-size-sm);
+				}
+			}
+		}
+		& small {
+			text-align: center;
+			font-size: var(--font-size-xs);
+		}
 	}
 </style>

@@ -1,0 +1,138 @@
+@import "./theme.scss";
+
+::selection {
+	background: var(--color-yellow-100);
+	color: var(--color-black);
+}
+
+html,
+body {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 16px;
+	font-weight: normal;
+	font-kerning: normal;
+	font-family: var(--font-family-base);
+	background: var(--background-body-color);
+	scroll-padding-top: 7rem;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: var(--font-color);
+	background: var(--background-body-color);
+}
+
+.container {
+	max-width: var(--content-width);
+	margin: 0 auto;
+	padding: 0 var(--content-padding);
+}
+
+.flex {
+	display: flex;
+}
+
+.list-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.btn-link {
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	column-gap: 5px;
+	padding: 3px 10px;
+	background-color: var(--background-btn-link);
+	border-radius: var(--border-radius-md);
+	border: 1px solid var(--border-color);
+	text-decoration: none;
+	color: var(--font-color);
+	font-size: var(--font-size-sm);
+	font-weight: 400;
+	white-space: nowrap;
+	user-select: none;
+	&:hover {
+		text-decoration: none;
+		color: inherit;
+		border-color: var(--border-color-hover);
+	}
+	&[data-active="true"] {
+		background-color: var(--background-btn-link-active);
+		border-color: var(--border-color-hover);
+	}
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin-top: 0;
+	margin-bottom: 1.5rem;
+}
+
+input,
+textarea {
+	-webkit-appearance: none;
+	font-family: var(--font-family-base);
+	padding: 8px 15px;
+	border-radius: var(--border-radius-md);
+	background-color: var(--background-inputs-color);
+	font-size: var(--font-size-sm);
+	width: 100%;
+	resize: vertical;
+	border: 1px solid var(--border-color);
+	outline-color: var(--color-blue-500);
+}
+
+textarea {
+	max-height: 500px;
+	min-height: 200px;
+}
+
+a {
+	color: var(--color-blue-400);
+	font-weight: 500;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+		color: var(--color-blue-400);
+	}
+}
+
+button {
+	cursor: pointer;
+	background: none;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	padding: 5px 16px;
+	color: var(--font-color);
+	&:hover {
+		border: 1px solid var(--border-color-hover);
+	}
+}

@@ -1,0 +1,20 @@
+---
+import { IS_SITE_UNDER_CONSTRUCTION } from "@root/constants";
+import Header from "@components/Header/Header.astro";
+import Footer from "@components/Footer.astro";
+import SiteContent from "@components/SiteContent.astro";
+import UnderConstruction from "./UnderConstruction.astro";
+---
+
+<body>
+	{
+		IS_SITE_UNDER_CONSTRUCTION && (
+			<UnderConstruction>&#128679;&nbsp; This web site is under development &nbsp;&#128679;</UnderConstruction>
+		)
+	}
+	<Header />
+	<SiteContent>
+		<slot />
+	</SiteContent>
+	<Footer />
+</body>

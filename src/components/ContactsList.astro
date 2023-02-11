@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<div>
+	<a href={"mailto:" + "serzh.yarkov@gmail.com"}
+		>Email
+		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
+	</a>
+	<a href={"https://github.com/sergeyyarkov"} target="_blank"
+		>Github
+		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
+	</a>
+	<a href={"https://t.me/sergeyyarkov"} target="_blank"
+		>Telegram
+		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
+	</a>
+</div>
+
+<style lang="scss">
+	div {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 40px;
+		row-gap: 30px;
+
+		& a {
+			display: flex;
+			column-gap: 5px;
+		}
+
+		& svg {
+			filter: none;
+		}
+	}
+</style>

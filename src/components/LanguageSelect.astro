@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-icon";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
+import { getLanguageFromURL } from "@i18n/utils";
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+---
+
+<div class="flex language-select">
+	<Icon name="translate" width="21" height="21" />
+	<select id="languageSelect" value={lang} aria-label="Select language">
+		{
+			SUPPORTED_LANGUAGES.map((code) => (
+				<option value={code} selected={code === lang}>
+					<span>{code.toLocaleUpperCase()}</span>
+				</option>
+			))
+		}
+	</select>
+</div>
+
+<style lang="scss">
+	div {
+		position: relative;
+		&:hover {
+			opacity: var(--opacity-hover);
+		}
+	}
+	svg {
+		position: absolute;
+		right: 0;
+	}
+	select {
+		appearance: none;
+		width: 21px;
+		opacity: 0;
+		margin: 0;
+		border: none;
+		font-size: var(--font-size-md);
+		font-family: "IBM Plex Mono";
+		border-radius: var(--border-radius-md);
+		cursor: pointer;
+	}
+
+	body[data-is-mobile-open="true"] {
+		.language-select {
+			position: absolute;
+			bottom: 115px;
+			right: 2.2rem;
+			& svg,
+			& select {
+				height: 36px;
+				width: 36px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		body[data-is-site-under-construction] {
+			.language-select {
+				bottom: 145px;
+			}
+		}
+	}
+</style>
+
+<script define:vars={{ lang, DEFAULT_LANGUAGE }}>
+	const $select = document.getElementById("languageSelect");
+
+	const changeLanguageHandler = (e) => {
+		const newLang = e.target.value;
+		const pathname = window.location.pathname;
+		let url;
+
+		if (lang !== DEFAULT_LANGUAGE) {
+			url = pathname.split("/").slice(2).join("/");
+		} else {
+			url = pathname.slice(1);
+		}
+
+		if (newLang !== DEFAULT_LANGUAGE) url = `${newLang}/${url}`;
+
+		/* Move user to articles page with new language */
+		if (window.location.pathname.includes("/blog/")) {
+			window.location.pathname = `${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
+			return;
+		}
+
+		window.location.pathname = url;
+	};
+
+	$select.addEventListener("change", changeLanguageHandler);
+</script>
