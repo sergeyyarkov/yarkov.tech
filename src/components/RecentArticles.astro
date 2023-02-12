@@ -1,18 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import ArticleItem from "@components/ArticleItem.astro";
-// import UIString from "@components/UIString";
-// import { getLanguageFromURL } from "@i18n/utils";
-// import { sortArtcilesByDate } from "@utils/articles";
 import EmptyList from "@components/EmptyList.astro";
-// import EmptyList from "./EmptyList.astro";
-// import TranslatedLink from "@components/TranslatedLink";
 export interface Props {
 	articles: CollectionEntry<"blog">[];
 	length?: number | undefined;
 }
 const { articles, length = 5 } = Astro.props as Props;
-// const lang = getLanguageFromURL(Astro.url.pathname);
 const isEmpty = articles.length === 0;
 ---
 

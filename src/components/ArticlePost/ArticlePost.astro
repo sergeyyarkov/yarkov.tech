@@ -1,9 +1,9 @@
 ---
-// import { Picture } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import { createDateFormatter } from "@root/utils";
 // import { isURL } from "@utils/string";
-// import ArticleComments from "@components/ArticleComments";
+import ArticleComments from "@components/ArticleComments.astro";
 // import TranslatedLink from "../TranslatedLink";
 import type { CollectionEntry } from "astro:content";
 // import { useTranslation } from "@root/i18n/utils";
@@ -13,9 +13,10 @@ export type Props = {
 	lang: string;
 };
 const { article, lang } = Astro.props as Props;
-// const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
-	data: { title, description, pubDate },
+	data: { coverImage, title, description, tags, pubDate },
+	slug,
 } = article;
 // const t = useTranslation(Astro);
 ---
@@ -23,19 +24,21 @@ const {
 <article itemscope itemtype="http://schema.org/BlogPosting" class="article">
 	<header>
 		<div>
-			<div class="tags">
-				<ul itemprop="keywords">
-					<!-- {
-						tags.map((tag) => (
-							<li>
-								<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${
-									tags.at(-1) === tag ? "" : ","
-								}`}</TranslatedLink>
-							</li>
-						))
-					} -->
-				</ul>
-			</div>
+			{
+				tags && (
+					<div class="tags">
+						<ul itemprop="keywords">
+							{tags.map((tag) => (
+								<li>
+									<a rel="tag" href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${
+										tags.at(-1) === tag ? "" : ","
+									}`}</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
 			<div class="views">
 				<Icon name="eye" width="21" height="21" />
 				<span><span id="views">---</span>&nbsp;{"просмотров"}</span>
@@ -48,13 +51,13 @@ const {
 			<time itemprop="datePublished" datetime={pubDate.toString()}>{createDateFormatter(lang).format(pubDate)}</time>
 			<span itemprop="author">{"Sergey Yarkov"}</span>
 		</div>
-		<!-- {
+		{
 			coverImage && (
 				<div class="cover">
 					<figure>
 						<Picture
 							itemprop="image"
-							src={isURL(coverImage) ? coverImage : `../../../content/assets/images/${coverImage}`}
+							src={coverImage}
 							sizes="(max-width: 450px) 450px, 700px"
 							widths={[450, 700]}
 							formats={["webp"]}
@@ -65,7 +68,7 @@ const {
 					</figure>
 				</div>
 			)
-		} -->
+		}
 		<div class="description">
 			<p>
 				{description}
@@ -73,5 +76,5 @@ const {
 		</div>
 	</header>
 	<slot />
-	<!-- <ArticleComments url={canonicalUrl.href} id={data.slug} /> -->
+	<ArticleComments url={canonicalUrl.href} id={slug} />
 </article>
