@@ -80,3 +80,14 @@ const {
 	<slot />
 	<ArticleComments url={canonicalUrl.href} id={slug} />
 </article>
+
+<script define:vars={{ slug }}>
+	(async () => {
+		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
+		if (!response.ok) return;
+		const views = await response.text();
+		const $views = document.getElementById("views");
+		if (isNaN(parseInt(views, 10))) return;
+		if ($views) $views.textContent = views;
+	})();
+</script>
