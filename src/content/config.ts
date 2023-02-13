@@ -13,8 +13,10 @@ const blog = defineCollection({
 			.transform((val) => new Date(val)),
 		updatedDate: z
 			.string()
+			.or(z.date())
 			.optional()
 			.transform((str) => (str ? new Date(str) : undefined)),
+		draft: z.boolean(),
 	}),
 });
 
@@ -31,4 +33,17 @@ const authors = defineCollection({
 	}),
 });
 
-export const collections = { blog, tags, authors };
+const projects = defineCollection({
+	schema: z.object({
+		icon: z.string(),
+		title: z.string(),
+		year: z.number(),
+		description: z.string(),
+		sourceUrl: z.string(),
+		demoUrl: z.string().nullable().optional(),
+		articleUrl: z.string().nullable().optional(),
+		draft: z.boolean(),
+	}),
+});
+
+export const collections = { blog, tags, authors, projects };

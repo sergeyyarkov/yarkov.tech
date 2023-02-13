@@ -15,7 +15,7 @@ export type Props = {
 const { article, lang } = Astro.props as Props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
-	data: { coverImage, title, description, tags, pubDate },
+	data: { coverImage, title, author, description, tags, pubDate },
 	slug,
 } = article;
 // const t = useTranslation(Astro);
@@ -48,8 +48,10 @@ const {
 			<h1 itemprop="headline">{title}</h1>
 		</div>
 		<div class="published">
-			<time itemprop="datePublished" datetime={pubDate.toString()}>{createDateFormatter(lang).format(pubDate)}</time>
-			<span itemprop="author">{"Sergey Yarkov"}</span>
+			<time itemprop="datePublished" datetime={pubDate.toString()}
+				>{createDateFormatter(lang).format(pubDate)}</time
+			>
+			<span itemprop="author">{author}</span>
 		</div>
 		{
 			coverImage && (

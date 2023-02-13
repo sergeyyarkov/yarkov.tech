@@ -1,6 +1,5 @@
-import type { AstroGlobal, MDXInstance } from "astro";
 import languages from "./languages";
-import { DEFAULT_LANGUAGE } from "@root/constants";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
 
 function transformExports<T>(modules: Record<string, { default: T }>) {
 	const translations: Record<string, T> = {};
@@ -9,6 +8,12 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 		translations[lang] = module.default;
 	}
 	return translations;
+}
+
+export function getLanguageKeys(): Array<string> {
+	return Object.keys(languages).filter((lang) =>
+		SUPPORTED_LANGUAGES.includes(lang as LanguageKeys)
+	);
 }
 
 export const getLanguageFromURL = (pathname: string): LanguageKeys => {

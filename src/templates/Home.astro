@@ -7,7 +7,9 @@ import SplashLink from "@root/components/Splash/SplashLink.astro";
 import { getCollection } from "astro:content";
 import RecentArticles from "@root/components/RecentArticles.astro";
 
-const articles = (await getCollection("blog")).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+const articles = (await getCollection("blog"))
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 ---
 
 <PageLayout description="Home page" lang={"ru"}>
@@ -18,8 +20,8 @@ const articles = (await getCollection("blog")).sort((a, b) => a.data.pubDate.val
 				<h2>Fullstack <b>web-developer</b> & <b>freelancer</b></h2>
 			</hgroup>
 			<p>
-				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую статьи и туториалы на
-				разные IT темы.
+				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую
+				статьи и туториалы на разные IT темы.
 			</p>
 		</SplashHeading>
 		<SplashLinks>

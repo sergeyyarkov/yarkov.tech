@@ -1,0 +1,91 @@
+---
+import { DEFAULT_LANGUAGE } from "@root/constants";
+import { getLanguageFromURL } from "@i18n/utils";
+import { Icon } from "astro-icon";
+import type { CollectionEntry } from "astro:content";
+// import UIString from "../UIString";
+
+export interface Props {
+	data: CollectionEntry<"projects">["data"];
+}
+
+const { data } = Astro.props as Props;
+// const lang = getLanguageFromURL(Astro.url.pathname);
+const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
+---
+
+<div class="project-item">
+	<div class="project-item__heading">
+		<h2>
+			<Icon name={icon} width="20" height="20" />
+			{title}
+		</h2>
+		<span>{year}</span>
+	</div>
+	<div class="project-item__description">
+		<p>{description}</p>
+	</div>
+	<div class="project-item__links">
+		{
+			articleUrl && (
+				<a class="btn-link" href={articleUrl} target="_blank">
+					Статья
+				</a>
+			)
+		}
+		{
+			sourceUrl && (
+				<a class="btn-link" href={sourceUrl} target="_blank">
+					Исходник
+					<Icon name="link-out" width="15" height="15" />
+				</a>
+			)
+		}
+		{
+			demoUrl && (
+				<a class="btn-link" href={demoUrl} target="_blank">
+					Демо
+					<Icon name="link-out" width="15" height="15" />
+				</a>
+			)
+		}
+	</div>
+</div>
+
+<style lang="scss">
+	.project-item {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-lg);
+		padding: 15px;
+
+		&__heading {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+
+			& h2 {
+				display: flex;
+				align-items: center;
+				font-size: 1.2rem;
+				font-weight: 600;
+				column-gap: 10px;
+				margin: 0;
+				padding: 0;
+			}
+
+			& span {
+				font-size: var(--font-size-sm);
+				color: var(--font-color-gray);
+			}
+		}
+
+		&__links {
+			display: flex;
+			margin-top: auto;
+			column-gap: 5px;
+		}
+	}
+</style>

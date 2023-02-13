@@ -22,7 +22,7 @@ import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
 import languages from "./src/i18n/languages";
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "./src/constants";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, SITE_METADATA } from "./src/constants";
 
 const createAnchorLabel = (heading) => {
 	const node = h("span.anchor-label", escape(heading));
@@ -48,11 +48,11 @@ export default defineConfig({
 					preview: false,
 				},
 				display_url: "https://yarkov.tech",
-				// i18n: {
-				// 	locales: SUPPORTED_LANGUAGES,
-				// 	default_locale: DEFAULT_LANGUAGE,
-				// 	structure: "multiple_files",
-				// },
+				i18n: {
+					locales: SUPPORTED_LANGUAGES,
+					default_locale: DEFAULT_LANGUAGE,
+					structure: "multiple_folders",
+				},
 				locale: DEFAULT_LANGUAGE,
 				backend: {
 					name: "test-repo",
@@ -61,6 +61,9 @@ export default defineConfig({
 				media_folder: "public/media",
 				public_folder: "/media",
 				collections: [
+					/**
+					 * Articles
+					 */
 					{
 						name: "posts",
 						label: "Публикации",
@@ -74,6 +77,14 @@ export default defineConfig({
 								name: "coverImage",
 								widget: "image",
 								label: "Постер",
+							},
+							{
+								name: "draft",
+								label: "В черновике",
+								widget: "boolean",
+								required: true,
+								default: true,
+								hint: "Опубликована ли статья",
 							},
 							{
 								name: "author",
@@ -107,9 +118,17 @@ export default defineConfig({
 							},
 							{
 								name: "pubDate",
-								widget: "date",
+								widget: "datetime",
 								label: "Дата публикации",
 								required: true,
+								picker_utc: true,
+							},
+							{
+								name: "updatedDate",
+								widget: "datetime",
+								label: "Дата обновления",
+								required: true,
+								picker_utc: true,
 							},
 							{
 								name: "body",
@@ -118,6 +137,9 @@ export default defineConfig({
 							},
 						],
 					},
+					/**
+					 * Tags
+					 */
 					{
 						name: "tags",
 						label: "Тэги",
@@ -135,6 +157,9 @@ export default defineConfig({
 							},
 						],
 					},
+					/**
+					 * Authors
+					 */
 					{
 						name: "authors",
 						label: "Авторы",
@@ -159,12 +184,88 @@ export default defineConfig({
 							},
 							{
 								label: "Об авторе",
-								name: "about",
+								name: "body",
 								widget: "markdown",
 								required: false,
 							},
 						],
 					},
+					/**
+					 * Projects
+					 */
+					{
+						name: "projects",
+						label: "Проекты",
+						label_singular: "проект",
+						folder: "src/content/projects",
+						create: true,
+						delete: true,
+						i18n: true,
+						fields: [
+							{
+								name: "icon",
+								label: "Иконка",
+								widget: "string",
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "draft",
+								label: "В черновике",
+								widget: "boolean",
+								required: true,
+								i18n: true,
+								default: true,
+							},
+							{
+								name: "title",
+								label: "Название",
+								default: "my-project",
+								widget: "string",
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "year",
+								label: "В каком году разработал",
+								widget: "number",
+								default: 2023,
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "description",
+								label: "Описание",
+								widget: "string",
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "sourceUrl",
+								label: "Ссылка на исходник",
+								widget: "string",
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "demoUrl",
+								label: "Ссылка на демонстрацию",
+								widget: "string",
+								required: false,
+								i18n: true,
+							},
+							{
+								name: "articleUrl",
+								label: "Ссылка на статью",
+								widget: "string",
+								required: false,
+								i18n: true,
+							},
+						],
+					},
+					/**
+					 * Skills
+					 */
 					{
 						name: "skills",
 						label: "Навыки",
@@ -176,6 +277,42 @@ export default defineConfig({
 								name: "title",
 								widget: "string",
 								label: "Категория",
+							},
+						],
+					},
+					/**
+					 * Settings
+					 */
+					{
+						name: "settings",
+						label: "Настройки",
+						files: [
+							{
+								name: "site-settings",
+								label: "Настройки веб-сайта",
+								file: "src/content/site-settings.yml",
+								fields: [
+									{
+										label: "Глобальный заголовок",
+										name: "globalTitle",
+										widget: "string",
+										hint: "Отображется во вкладке браузера.",
+									},
+									{
+										label: "Статьи",
+										name: "articles",
+										widget: "object",
+										fields: [
+											{
+												name: "recentLimit",
+												label: "Лимит на отображение",
+												widget: "number",
+												hint: "Кол-во публикаций на гл.странице",
+												default: 5,
+											},
+										],
+									},
+								],
 							},
 						],
 					},

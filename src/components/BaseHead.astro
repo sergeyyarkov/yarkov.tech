@@ -4,7 +4,7 @@ import { SITE_METADATA } from "@root/constants";
 
 export interface Props {
 	title?: string;
-	description: string;
+	description?: string;
 	image?: string;
 }
 
@@ -35,7 +35,7 @@ const { title, description } = Astro.props;
 	<!-- Metadata -->
 	<meta name="title" content={title || SITE_METADATA.title} />
 	<meta name="generator" content={Astro.generator} />
-	<meta name="description" content={description} />
+	{description && <meta name="description" content={description} />}
 	<meta name="theme-color" content={SITE_METADATA.themeColor} />
 	<meta name="msapplication-TileColor" content="#da532c" />
 
@@ -55,25 +55,22 @@ const { title, description } = Astro.props;
 		href="/favicon-light-16x16.png"
 		media="(prefers-color-scheme: light)"
 	/>
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-dark-32x32.png" media="(prefers-color-scheme: dark)" />
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-dark-16x16.png" media="(prefers-color-scheme: dark)" />
+	<link
+		rel="icon"
+		type="image/png"
+		sizes="32x32"
+		href="/favicon-dark-32x32.png"
+		media="(prefers-color-scheme: dark)"
+	/>
+	<link
+		rel="icon"
+		type="image/png"
+		sizes="16x16"
+		href="/favicon-dark-16x16.png"
+		media="(prefers-color-scheme: dark)"
+	/>
 	<link rel="manifest" href="/site.webmanifest" />
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-
-	<!-- Open Graph / Facebook -->
-	<!-- <meta property="og:type" content="website" />
-	<meta property="og:url" content={Astro.url} />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="og:image" content={new URL(image, Astro.url)} /> -->
-
-	<!-- Twitter -->
-	<!-- <meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={Astro.url} />
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={description} />
-	<meta property="twitter:image" content={new URL(image, Astro.url)} /> -->
-
 	<slot />
 	<script is:inline src="/assets/js/detect-theme.js"></script>
 	<!-- <script src="../quicklink.js"></script> -->

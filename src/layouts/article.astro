@@ -1,38 +1,42 @@
 ---
-import type { Props as BaseHeadProps } from "@root/components/BaseHead.astro";
+import type { CollectionEntry } from "astro:content";
+import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/constants";
 import BaseHead from "@components/BaseHead.astro";
 import BaseLayout from "@components/BaseLayout.astro";
 import ArticleContent from "@components/ArticleContent/ArticleContent.astro";
 import ArticlePost from "@components/ArticlePost/ArticlePost.astro";
-import { SITE_METADATA } from "@root/constants";
-import type { CollectionEntry } from "astro:content";
+import OpenGraph from "@components/OpenGraph.astro";
 
 export interface Props {
 	lang?: string | undefined;
-	content: CollectionEntry<"blog">;
+	article: CollectionEntry<"blog">;
 }
-const { lang = "ru", content } = Astro.props as Props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const { lang = DEFAULT_LANGUAGE, article } = Astro.props as Props;
+const {
+	data: { title, description, coverImage },
+} = article;
 ---
 
 <html lang={lang}>
-	<BaseHead title={content.data.title} description={content.data.description}>
-		<meta property="og:title" content={content.data.title} />
-		<meta property="og:site_name" content={SITE_METADATA.name} />
-		<meta property="og:description" content={content.data.description} />
-		<meta property="og:type" content="article" />
-		<!-- <meta property="og:url" content={canonicalUrl} /> -->
-		<!-- {content.coverImage && (
-			<meta property="og:image" content={isURL(content.coverImage) ? content.coverImage : `${Astro.url.origin}${content.coverImage}`} />
-			<meta property="og:image:width" content="700" />
-			<meta property="og:image:height" content="400" />
-			<meta property="og:image:type" content={`${mime.lookup(extname(content.coverImage))}`} />
-		)} -->
+	<BaseHead title={title} description={description}>
+		<OpenGraph
+			title={title}
+			siteName={SITE_METADATA.name}
+			description={description}
+			type="article"
+			url={canonicalUrl.href}
+			image={coverImage
+				? { path: coverImage, width: "700", height: "400", type: coverImage }
+				: undefined}
+		/>
 		<script is:inline defer src="/assets/js/load-code-highlight.js"></script>
 	</BaseHead>
 
 	<BaseLayout>
 		<div class="container">
-			<ArticlePost lang={lang} article={content}>
+			<ArticlePost lang={lang} article={article}>
 				<ArticleContent>
 					<slot />
 				</ArticleContent>

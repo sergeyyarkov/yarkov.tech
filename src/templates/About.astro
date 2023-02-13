@@ -1,0 +1,26 @@
+---
+import PageLayout from "@layouts/default.astro";
+import { getLanguageFromURL } from "@i18n/utils";
+// import { useTranslation } from "@i18n/utils";
+// import * as API from "@root/lib/api";
+import PageHeading from "@components/PageHeading.astro";
+// import SkillsList from "@components/SkillsList";
+// import SkillsBlock from "@components/SkillsBlock";
+// import ArticleContent from "@components/ArticleContent";
+const lang = getLanguageFromURL(Astro.url.pathname);
+// const t = useTranslation(Astro);
+// const data = await API.fetchAboutMe(Astro);
+// const { skills } = SITE_METADATA;
+---
+
+<PageLayout noIndex lang={lang} title={"Обо мне"}>
+	<PageHeading heading={"Обо мне"} />
+	<section>
+		<!-- <ArticleContent>
+			{data && <data.Content />}
+		</ArticleContent> -->
+		<!-- <SkillsList>
+			{skills.map((block) => <SkillsBlock data={block} />)}
+		</SkillsList> -->
+	</section>
+</PageLayout>
