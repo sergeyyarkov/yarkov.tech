@@ -68,6 +68,8 @@ export default defineConfig({
 						name: "posts",
 						label: "Публикации",
 						label_singular: "публикацию",
+						description:
+							"Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой",
 						folder: "src/content/blog",
 						slug: "{{year}}-{{month}}-{{day}}_{{slug}}",
 						create: true,
@@ -269,14 +271,32 @@ export default defineConfig({
 					{
 						name: "skills",
 						label: "Навыки",
+						label_singular: "навык",
 						folder: "src/content/skills",
 						create: true,
 						delete: true,
+						description: "Навыки отображаются на странице Обо мне",
+						i18n: true,
 						fields: [
 							{
 								name: "title",
-								widget: "string",
 								label: "Категория",
+								widget: "string",
+								required: true,
+								i18n: true,
+							},
+							{
+								name: "list",
+								label: "Записи",
+								required: true,
+								widget: "list",
+								allow_add: true,
+								min: 1,
+								i18n: true,
+								fields: [
+									{ name: "icon", label: "Иконка", widget: "string", i18n: true, required: false },
+									{ name: "title", label: "Название", widget: "string", i18n: true },
+								],
 							},
 						],
 					},
@@ -290,13 +310,20 @@ export default defineConfig({
 							{
 								name: "site-settings",
 								label: "Настройки веб-сайта",
-								file: "src/content/site-settings.yml",
+								file: "src/content/site-settings.md",
 								fields: [
 									{
 										label: "Глобальный заголовок",
 										name: "globalTitle",
 										widget: "string",
 										hint: "Отображется во вкладке браузера.",
+									},
+									{
+										label: "В разработке",
+										name: "isUnderConstruction",
+										widget: "boolean",
+										default: false,
+										hint: "Отображает баннер на всех старницах о том, что веб-сайт находится в разработке",
 									},
 									{
 										label: "Статьи",

@@ -1,3 +1,5 @@
+---
 globalTitle: yarkov.tech
 articles:
   recentLimit: 5
+---

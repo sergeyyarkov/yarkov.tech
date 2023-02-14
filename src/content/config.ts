@@ -46,4 +46,16 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { blog, tags, authors, projects };
+const skills = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		list: z
+			.object({
+				icon: z.string().optional(),
+				title: z.string(),
+			})
+			.array(),
+	}),
+});
+
+export const collections = { blog, tags, authors, projects, skills };
