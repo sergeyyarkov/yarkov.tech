@@ -1,6 +1,5 @@
 ---
 icon: triangle_filled
-draft: false
 title: devthread
 year: 2021
 description: Статический веб-сайт для публикации различных статей, разработанный

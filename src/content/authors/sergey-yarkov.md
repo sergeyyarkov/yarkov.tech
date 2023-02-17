@@ -1,4 +1,0 @@
----
-firstName: Sergey
-lastName: Yarkov
----

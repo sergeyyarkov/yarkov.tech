@@ -1,6 +1,5 @@
 ---
 icon: nodejs
-draft: false
 title: node-docker-example
 year: 2022
 description: An example of using Docker to deploy a Node.js application

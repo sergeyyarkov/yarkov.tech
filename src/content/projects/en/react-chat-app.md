@@ -1,6 +1,5 @@
 ---
 icon: chat
-draft: false
 title: react-chat-app
 year: 2021
 description: Client-server web chat application developed with Node.js and Socket.io

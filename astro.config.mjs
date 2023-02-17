@@ -3,7 +3,6 @@ import { defineConfig } from "astro/config";
 /**
  * Integrations
  */
-// import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
 import image from "@astrojs/image";
@@ -65,28 +64,31 @@ export default defineConfig({
 					 * Articles
 					 */
 					{
-						name: "posts",
+						name: "articles",
 						label: "Публикации",
 						label_singular: "публикацию",
 						description:
 							"Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой",
 						folder: "src/content/blog",
-						slug: "{{year}}-{{month}}-{{day}}_{{slug}}",
+						slug: "{{slug}}",
 						create: true,
 						delete: true,
+						i18n: true,
 						fields: [
 							{
 								name: "coverImage",
 								widget: "image",
 								label: "Постер",
+								required: false,
+								i18n: true,
 							},
 							{
 								name: "draft",
 								label: "В черновике",
 								widget: "boolean",
-								required: true,
-								default: true,
 								hint: "Опубликована ли статья",
+								i18n: true,
+								required: false,
 							},
 							{
 								name: "author",
@@ -95,19 +97,19 @@ export default defineConfig({
 								search_fields: ["firstName", "lastName"],
 								collection: "authors",
 								label: "Автор",
-								required: true,
+								i18n: true,
 							},
 							{
 								name: "title",
 								widget: "string",
 								label: "Заголовок",
-								required: true,
+								i18n: true,
 							},
 							{
 								name: "description",
 								widget: "string",
 								label: "Описание",
-								required: true,
+								i18n: true,
 							},
 							{
 								name: "tags",
@@ -117,25 +119,27 @@ export default defineConfig({
 								multiple: true,
 								value_field: "title",
 								search_fields: ["title"],
+								i18n: true,
 							},
 							{
 								name: "pubDate",
 								widget: "datetime",
 								label: "Дата публикации",
-								required: true,
 								picker_utc: true,
+								i18n: true,
 							},
 							{
 								name: "updatedDate",
 								widget: "datetime",
 								label: "Дата обновления",
-								required: true,
 								picker_utc: true,
+								i18n: true,
 							},
 							{
 								name: "body",
 								widget: "markdown",
 								label: "Содержание",
+								i18n: true,
 							},
 						],
 					},
@@ -171,24 +175,28 @@ export default defineConfig({
 						folder: "src/content/authors",
 						create: true,
 						delete: true,
+						i18n: true,
 						fields: [
 							{
 								label: "Имя",
 								name: "firstName",
 								widget: "string",
 								required: true,
+								i18n: true,
 							},
 							{
 								label: "Фамилия",
 								name: "lastName",
 								widget: "string",
 								required: true,
+								i18n: true,
 							},
 							{
 								label: "Об авторе",
 								name: "body",
 								widget: "markdown",
 								required: false,
+								i18n: true,
 							},
 						],
 					},
@@ -199,6 +207,7 @@ export default defineConfig({
 						name: "projects",
 						label: "Проекты",
 						label_singular: "проект",
+						description: "Основные проекты, которые были разработаны в выложены в открытый доступ",
 						folder: "src/content/projects",
 						create: true,
 						delete: true,
@@ -212,17 +221,8 @@ export default defineConfig({
 								i18n: true,
 							},
 							{
-								name: "draft",
-								label: "В черновике",
-								widget: "boolean",
-								required: true,
-								i18n: true,
-								default: true,
-							},
-							{
 								name: "title",
 								label: "Название",
-								default: "my-project",
 								widget: "string",
 								required: true,
 								i18n: true,
@@ -231,7 +231,6 @@ export default defineConfig({
 								name: "year",
 								label: "В каком году разработал",
 								widget: "number",
-								default: 2023,
 								required: true,
 								i18n: true,
 							},
@@ -308,9 +307,9 @@ export default defineConfig({
 						label: "Настройки",
 						files: [
 							{
-								name: "site-settings",
+								name: "siteconfig",
 								label: "Настройки веб-сайта",
-								file: "src/content/site-settings.md",
+								file: "siteconfig.json",
 								fields: [
 									{
 										label: "Глобальный заголовок",
@@ -320,8 +319,9 @@ export default defineConfig({
 									},
 									{
 										label: "В разработке",
-										name: "isUnderConstruction",
+										name: "isSiteUnderConstruction",
 										widget: "boolean",
+										required: false,
 										default: false,
 										hint: "Отображает баннер на всех старницах о том, что веб-сайт находится в разработке",
 									},

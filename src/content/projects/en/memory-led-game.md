@@ -1,6 +1,5 @@
 ---
 icon: chip
-draft: false
 title: memory-led-game
 year: 2022
 description: Analogue of the popular game "Simon says" on the AVR microcontroller

@@ -1,6 +1,5 @@
 ---
 icon: chip
-draft: false
 title: memory-led-game
 year: 2022
 description: Аналог популярной игры "Саймон говорит" на AVR микроконтроллере

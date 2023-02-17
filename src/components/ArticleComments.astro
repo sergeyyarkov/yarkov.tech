@@ -38,6 +38,10 @@ const { url, id } = Astro.props as Props;
 	window.addEventListener(
 		"onthemetoggled",
 		() =>
-			document.readyState == "complete" && setTimeout(() => DISQUS.reset({ reload: true, config: disqus_config }), 100)
+			document.readyState == "complete" &&
+			setTimeout(
+				() => "DISQUS" in window && DISQUS.reset({ reload: true, config: disqus_config }),
+				100
+			)
 	);
 </script>

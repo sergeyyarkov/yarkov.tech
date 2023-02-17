@@ -1,29 +1,44 @@
 ---
-import { getLanguageFromURL } from "@i18n/utils";
+import type { CollectionEntry } from "astro:content";
+import slugify from "@sindresorhus/slugify";
+import { URL_BLOG_PREFIX } from "@root/pages/[...blog].astro";
 import { DEFAULT_LANGUAGE } from "@root/constants";
+import { getLanguageFromURL } from "@i18n/utils";
 import { createDateFormatter } from "@root/utils";
 
 export interface Props {
-	href: string;
-	title: string;
-	date: Date;
+	entry: CollectionEntry<"blog">;
 }
 
-const lang = getLanguageFromURL(Astro.url.pathname);
-// const isNonDefaultLanguage = DEFAULT_LANGUAGE !== lang;
-
-const { href, title, date } = Astro.props as Props;
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const {
+	entry: {
+		id,
+		data: { title, pubDate },
+	},
+} = Astro.props as Props;
+const slug = slugify(title, { lowercase: true });
+const articleLang = id.split("/")[0];
 ---
 
-<article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="article-item">
-	<a href={href}>
+<article
+	itemprop="blogPosts"
+	itemscope
+	itemtype="http://schema.org/BlogPosting"
+	class="article-item"
+>
+	<a
+		href={articleLang === DEFAULT_LANGUAGE
+			? `/${URL_BLOG_PREFIX}/${pubDate.toISOString().split("T")[0]}/${slug}`
+			: `/${articleLang}/${URL_BLOG_PREFIX}/${pubDate.toISOString().split("T")[0]}/${slug}`}
+	>
 		<div class="flex">
 			<h3 itemprop="headline">{title}</h3>
-			<!-- {isNonDefaultLanguage && <sup>{lang.toLocaleUpperCase()}</sup>} -->
+			{articleLang !== pageLang && <sup>{articleLang.toLocaleUpperCase()}</sup>}
 		</div>
 		<p>
-			<time datetime={date.toString()}>
-				{createDateFormatter(lang).format(date)}
+			<time datetime={pubDate.toISOString()}>
+				{createDateFormatter(pageLang).format(pubDate)}
 			</time>
 		</p>
 	</a>

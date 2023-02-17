@@ -2,11 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import ArticleItem from "@components/ArticleItem.astro";
 import EmptyList from "@components/EmptyList.astro";
+import siteconfig from "siteconfig.json";
 export interface Props {
 	articles: CollectionEntry<"blog">[];
 	length?: number | undefined;
 }
-const { articles, length = 5 } = Astro.props as Props;
+const { articles, length = siteconfig.articles.recentLimit } = Astro.props as Props;
 const isEmpty = articles.length === 0;
 ---
 
@@ -19,11 +20,7 @@ const isEmpty = articles.length === 0;
 	<div itemscope itemtype="http://schema.org/Blog">
 		{
 			!isEmpty ? (
-				articles
-					.slice(0, length)
-					.map((article) => (
-						<ArticleItem href={`/articles/${article.slug}`} title={article.data.title} date={article.data.pubDate} />
-					))
+				articles.slice(0, length).map((article) => <ArticleItem entry={article} />)
 			) : (
 				<EmptyList />
 			)

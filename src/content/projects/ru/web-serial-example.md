@@ -1,6 +1,5 @@
 ---
 icon: serial
-draft: false
 title: web-serial-example
 year: 2022
 description: Пример использования Web Serial API для взаимодействия с

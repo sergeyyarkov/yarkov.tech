@@ -1,26 +1,28 @@
 ---
-import PageLayout from "@layouts/default.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
 import { getLanguageFromURL } from "@i18n/utils";
-// import { useTranslation } from "@i18n/utils";
-// import * as API from "@root/lib/api";
+import PageLayout from "@layouts/default.astro";
 import PageHeading from "@components/PageHeading.astro";
-// import SkillsList from "@components/SkillsList";
-// import SkillsBlock from "@components/SkillsBlock";
-// import ArticleContent from "@components/ArticleContent";
-const lang = getLanguageFromURL(Astro.url.pathname);
+import SkillsList from "@components/SkillsList.astro";
+import SkillsBlock from "@components/SkillsBlock.astro";
+import ArticleContent from "@components/ArticleContent.astro";
+
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const skills = await getCollection("skills", (e) => e.id.startsWith(`${pageLang}/`));
+const about = await getEntryBySlug("authors", `${pageLang}/сергей-ярков`);
+const data = await about?.render();
+
 // const t = useTranslation(Astro);
-// const data = await API.fetchAboutMe(Astro);
-// const { skills } = SITE_METADATA;
 ---
 
-<PageLayout noIndex lang={lang} title={"Обо мне"}>
+<PageLayout noIndex lang={pageLang} title={"Обо мне"}>
 	<PageHeading heading={"Обо мне"} />
 	<section>
-		<!-- <ArticleContent>
+		<ArticleContent>
 			{data && <data.Content />}
-		</ArticleContent> -->
-		<!-- <SkillsList>
-			{skills.map((block) => <SkillsBlock data={block} />)}
-		</SkillsList> -->
+		</ArticleContent>
+		<SkillsList>
+			{skills.map((block) => <SkillsBlock data={block.data} />)}
+		</SkillsList>
 	</section>
 </PageLayout>

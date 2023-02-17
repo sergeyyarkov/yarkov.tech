@@ -1,15 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import Splash from "@components/Splash/Splash.astro";
 import SplashHeading from "@root/components/Splash/SplashHeading.astro";
 import SplashLinks from "@root/components/Splash/SplashLinks.astro";
 import SplashLink from "@root/components/Splash/SplashLink.astro";
-import { getCollection } from "astro:content";
 import RecentArticles from "@root/components/RecentArticles.astro";
 
-const articles = (await getCollection("blog"))
-	.filter((p) => !p.data.draft)
-	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
 ---
 
 <PageLayout description="Home page" lang={"ru"}>

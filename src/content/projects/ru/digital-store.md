@@ -1,6 +1,5 @@
 ---
 icon: round-shop-two
-draft: false
 title: digital-store
 year: 2019
 description: Настраиваемый интернет-магазин с панелью управления для продажи
