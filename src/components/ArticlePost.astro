@@ -31,9 +31,9 @@ const {
 						<ul itemprop="keywords">
 							{tags.map((tag) => (
 								<li>
-									<a rel="tag" href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>{`${tag}${
-										tags.at(-1) === tag ? "" : ","
-									}`}</a>
+									<a rel="tag" href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>
+										{tag}
+									</a>
 								</li>
 							))}
 						</ul>
@@ -49,9 +49,9 @@ const {
 			<h1 itemprop="headline">{title}</h1>
 		</div>
 		<div class="published">
-			<time itemprop="datePublished" datetime={pubDate.toString()}
-				>{createDateFormatter(lang).format(pubDate)}</time
-			>
+			<time itemprop="datePublished" datetime={pubDate.toString()}>
+				{createDateFormatter(lang).format(pubDate)}
+			</time>
 			<span itemprop="author">{author}</span>
 		</div>
 		{coverImage && <ArticleCover src={coverImage} alt={title} />}
@@ -116,6 +116,10 @@ const {
 					flex-wrap: wrap;
 					column-gap: 7px;
 					row-gap: 7px;
+					& li:not(:last-child)::after {
+						content: ",";
+						color: var(--color-blue-400);
+					}
 				}
 			}
 
