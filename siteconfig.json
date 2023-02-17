@@ -3,5 +3,10 @@
   "articles": {
     "recentLimit": 5
   },
-  "isSiteUnderConstruction": false
+  "isSiteUnderConstruction": false,
+  "contacts": {
+    "email": "serzh.yarkov@gmail.com",
+    "telegram": "https://t.me/sergeyyarkov",
+    "github": "https://github.com/sergeyyarkov"
+  }
 }

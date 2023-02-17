@@ -8,4 +8,5 @@ export const SITE_METADATA: SiteMetadataType = {
 	name: "yarkov.tech",
 	author: "Sergey Yarkov",
 	themeColor: "#1e2327",
+	contacts: siteconfig.contacts,
 };

@@ -26,5 +26,10 @@ declare global {
 		name: string;
 		author: string;
 		themeColor: string;
+		contacts?: {
+			email?: string;
+			telegram?: string;
+			github?: string;
+		};
 	};
 }

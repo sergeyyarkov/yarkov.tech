@@ -1,6 +1,5 @@
-import { IS_SITE_UNDER_CONSTRUCTION } from "@root/constants";
 import type { Component, JSX } from "solid-js";
-
+import { IS_SITE_UNDER_CONSTRUCTION } from "@root/constants";
 import { createSignal, onMount, Switch, Match } from "solid-js";
 import "./ThemeSwitcher.scss";
 
@@ -43,10 +42,12 @@ const ThemeSwitcher: Component = () => {
 		if (window.theme) {
 			setTheme(window.theme);
 			/* Update theme state on changing OS theme */
-			window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
-				const theme = isDark ? "dark" : "light";
-				setTheme(theme);
-			});
+			window
+				.matchMedia("(prefers-color-scheme: dark)")
+				.addEventListener("change", ({ matches: isDark }) => {
+					const theme = isDark ? "dark" : "light";
+					setTheme(theme);
+				});
 		}
 	});
 

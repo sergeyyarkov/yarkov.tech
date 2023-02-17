@@ -21,7 +21,7 @@ import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
 import { escape } from "html-escaper";
 import languages from "./src/i18n/languages";
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, SITE_METADATA } from "./src/constants";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "./src/constants";
 
 const createAnchorLabel = (heading) => {
 	const node = h("span.anchor-label", escape(heading));
@@ -336,6 +336,32 @@ export default defineConfig({
 												widget: "number",
 												hint: "Кол-во публикаций на гл.странице",
 												default: 5,
+											},
+										],
+									},
+									{
+										label: "Контакты",
+										name: "contacts",
+										widget: "object",
+										required: false,
+										fields: [
+											{
+												label: "Telegram",
+												name: "telegram",
+												widget: "string",
+												required: false,
+											},
+											{
+												label: "Почта",
+												name: "email",
+												widget: "string",
+												required: false,
+											},
+											{
+												label: "Github",
+												name: "github",
+												widget: "string",
+												required: false,
 											},
 										],
 									},

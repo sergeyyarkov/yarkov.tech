@@ -1,10 +1,10 @@
 ---
 import { Icon } from "astro-icon";
 import { IS_SITE_UNDER_CONSTRUCTION, SITE_METADATA } from "@root/constants";
-import HeaderLink from "./HeaderLink.astro";
 import ThemeSwitcher from "@components/ThemeSwticher";
 import LanguageSelect from "@components/LanguageSelect.astro";
 import NavToggle from "@components/NavToggle";
+import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header {...(IS_SITE_UNDER_CONSTRUCTION ? { style: 'top: 45px;' } : {})}>
@@ -39,20 +39,20 @@ import NavToggle from "@components/NavToggle";
 					)
 				}
 			</ul>
-			<div class="contacts">
-				<a href={"mailto:" + "serzh.yarkov@gmail.com"}>
+			{SITE_METADATA.contacts && <div class="contacts">
+				<a target="_blank" href={"mailto:" + SITE_METADATA.contacts.email}>
 					Email
 					<Icon name="email" width="18" height="18" />
 				</a>
-				<a href={"https://github.com/sergeyyarkov"}>
+				<a target="_blank" href={SITE_METADATA.contacts.github}>
 					Github
 					<Icon name="github_filled" width="18" height="18" />
 				</a>
-				<a href={"https://t.me/sergeyyarkov"}>
+				<a target="_blank" href={SITE_METADATA.contacts.telegram}>
 					Telegram
 					<Icon name="telegram" width="18" height="18" />
 				</a>
-			</div>
+			</div>}
 			<div class="flex settings">
 				<LanguageSelect />
 				<ThemeSwitcher client:visible />
