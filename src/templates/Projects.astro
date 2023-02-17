@@ -1,21 +1,21 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import ProjectsList from "@components/ProjectsList.astro";
 import ProjectItem from "@components/ProjectItem.astro";
 import PageHeading from "@components/PageHeading.astro";
 import { getLanguageFromURL } from "@i18n/utils";
-import { getCollection } from "astro:content";
-// import { useTranslation } from "@i18n/utils";
+
 // const t = useTranslation(Astro);
-const lang = getLanguageFromURL(Astro.url.pathname);
-const projects = (await getCollection("projects")).filter(
-	(p) => !p.data.draft && p.id.split(".")[1] === lang
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const projects = (await getCollection("projects", (e) => e.slug.startsWith(`${pageLang}/`))).sort(
+	(a, b) => b.data.year - a.data.year
 );
 ---
 
 <PageLayout
 	noIndex
-	lang={lang}
+	lang={pageLang}
 	title={"Проекты"}
 	description={"Несколько моих основных проектов которые были разработаны и выложены в открытый доступ."}
 >
