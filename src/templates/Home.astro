@@ -2,10 +2,11 @@
 import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import Splash from "@components/Splash/Splash.astro";
-import SplashHeading from "@root/components/Splash/SplashHeading.astro";
-import SplashLinks from "@root/components/Splash/SplashLinks.astro";
-import SplashLink from "@root/components/Splash/SplashLink.astro";
-import RecentArticles from "@root/components/RecentArticles.astro";
+import SplashHeading from "@components/Splash/SplashHeading.astro";
+import SplashLinks from "@components/Splash/SplashLinks.astro";
+import SplashLink from "@components/Splash/SplashLink.astro";
+import RecentArticles from "@components/RecentArticles.astro";
+import UIString from "@components/UIString.astro";
 
 const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -16,17 +17,16 @@ const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
 	<Splash>
 		<SplashHeading>
 			<hgroup>
-				<h1>Hello, I'am Sergey</h1>
+				<h1><UIString key={"splash.headline"} /></h1>
 				<h2>Fullstack <b>web-developer</b> & <b>freelancer</b></h2>
 			</hgroup>
-			<p>
-				Я занимаюсь разработкой веб-сайтов и веб-приложений разной сложности, а также публикую
-				статьи и туториалы на разные IT темы.
-			</p>
+			<p><UIString key={"splash.description"} /></p>
 		</SplashHeading>
 		<SplashLinks>
-			<SplashLink icon="information" href="/about/">обо мне</SplashLink>
-			<SplashLink icon="email_filled" href="/contacts/">написать мне</SplashLink>
+			<SplashLink icon="information" href="/about/"><UIString key={"splash.about"} /></SplashLink>
+			<SplashLink icon="email_filled" href="/contacts/">
+				<UIString key={"splash.contact"} />
+			</SplashLink>
 		</SplashLinks>
 	</Splash>
 	<RecentArticles articles={articles} />

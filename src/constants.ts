@@ -9,4 +9,10 @@ export const SITE_METADATA: SiteMetadataType = {
 	author: "Sergey Yarkov",
 	themeColor: "#1e2327",
 	contacts: siteconfig.contacts,
+	nav: [
+		{ key: "navigation.articles", url: "/articles/" },
+		{ key: "navigation.projects", url: "/projects/" },
+		{ key: "navigation.about", url: "/about/" },
+		{ key: "navigation.contacts", url: "/contacts/" },
+	],
 };

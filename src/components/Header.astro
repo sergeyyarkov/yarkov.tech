@@ -4,55 +4,51 @@ import { IS_SITE_UNDER_CONSTRUCTION, SITE_METADATA } from "@root/constants";
 import ThemeSwitcher from "@components/ThemeSwticher";
 import LanguageSelect from "@components/LanguageSelect.astro";
 import NavToggle from "@components/NavToggle";
-import HeaderLink from "./HeaderLink.astro";
+import UIString from "@components/UIString.astro";
+import TranslatedLink from "@components/TranslatedLink.astro";
 ---
 
 <header {...(IS_SITE_UNDER_CONSTRUCTION ? { style: 'top: 45px;' } : {})}>
 	<div class="container">
 		<div class="logo">
-			<a href={"/"}>{SITE_METADATA.name}</a>
+			<TranslatedLink to="/">
+				{SITE_METADATA.name}
+			</TranslatedLink>
 		</div>
 		<nav itemscope itemtype="http://schema.org/SiteNavigationElement">
 			<ul>
 				{
-					(
+					SITE_METADATA.nav.map((link) => (
 						<li>
-							<HeaderLink itemprop={"url"} href={"/articles"}>
-								статьи
-							</HeaderLink>
+							<TranslatedLink
+								itemprop={"url"}
+								to={link.url}
+								class:list={[{ active: link.url === Astro.url.pathname }]}
+							>
+								<UIString key={link.key} />
+							</TranslatedLink>
 						</li>
-            <li>
-							<HeaderLink itemprop={"url"} href={"/projects"}>
-								проекты
-							</HeaderLink>
-						</li>
-            <li>
-							<HeaderLink itemprop={"url"} href={"/about"}>
-								обо мне
-							</HeaderLink>
-						</li>
-            <li>
-							<HeaderLink itemprop={"url"} href={"/contacts"}>
-								контакты
-							</HeaderLink>
-						</li>
-					)
+					))
 				}
 			</ul>
-			{SITE_METADATA.contacts && <div class="contacts">
-				<a target="_blank" href={"mailto:" + SITE_METADATA.contacts.email}>
-					Email
-					<Icon name="email" width="18" height="18" />
-				</a>
-				<a target="_blank" href={SITE_METADATA.contacts.github}>
-					Github
-					<Icon name="github_filled" width="18" height="18" />
-				</a>
-				<a target="_blank" href={SITE_METADATA.contacts.telegram}>
-					Telegram
-					<Icon name="telegram" width="18" height="18" />
-				</a>
-			</div>}
+			{
+				SITE_METADATA.contacts && (
+					<div class="contacts">
+						<a target="_blank" href={"mailto:" + SITE_METADATA.contacts.email}>
+							Email
+							<Icon name="email" width="18" height="18" />
+						</a>
+						<a target="_blank" href={SITE_METADATA.contacts.github}>
+							Github
+							<Icon name="github_filled" width="18" height="18" />
+						</a>
+						<a target="_blank" href={SITE_METADATA.contacts.telegram}>
+							Telegram
+							<Icon name="telegram" width="18" height="18" />
+						</a>
+					</div>
+				)
+			}
 			<div class="flex settings">
 				<LanguageSelect />
 				<ThemeSwitcher client:visible />
@@ -74,7 +70,7 @@ import HeaderLink from "./HeaderLink.astro";
 		z-index: 9999;
 		& .container {
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: space-between;
 		}
 		& .logo a {
@@ -157,7 +153,7 @@ import HeaderLink from "./HeaderLink.astro";
 					display: block;
 					& ul {
 						display: block;
-						text-align: center;
+						text-align: left;
 						margin: 0;
 						& li {
 							margin-bottom: 30px;
@@ -168,8 +164,14 @@ import HeaderLink from "./HeaderLink.astro";
 					}
 					& .contacts {
 						margin-right: 0;
-						margin-top: 2rem;
-						justify-content: center;
+						margin-top: 2.5rem;
+						& a {
+							margin-right: 0.2rem;
+						}
+						& svg {
+							width: 21px;
+							height: 21px;
+						}
 					}
 				}
 			}

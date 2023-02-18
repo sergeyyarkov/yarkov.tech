@@ -1,4 +1,5 @@
 import languages from "@i18n/languages";
+import uiKeys from "@i18n/ru/ui";
 
 export {};
 
@@ -31,5 +32,6 @@ declare global {
 			telegram?: string;
 			github?: string;
 		};
+		nav: Array<{ key: UIDictionaryKeys; url: string }>;
 	};
 }

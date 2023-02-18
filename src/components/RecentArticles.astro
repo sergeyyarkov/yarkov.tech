@@ -1,20 +1,25 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import siteconfig from "siteconfig.json";
 import ArticleItem from "@components/ArticleItem.astro";
 import EmptyList from "@components/EmptyList.astro";
-import siteconfig from "siteconfig.json";
+import UIString from "@components/UIString.astro";
+import TranslatedLink from "@components/TranslatedLink.astro";
 export interface Props {
 	articles: CollectionEntry<"blog">[];
 	length?: number | undefined;
 }
+
 const { articles, length = siteconfig.articles.recentLimit } = Astro.props as Props;
 const isEmpty = articles.length === 0;
 ---
 
 <section>
 	<div>
-		<h2>недавние публикации</h2>
-		<a href="/articles/">смотреть все</a>
+		<h2><UIString key={"recentArticles.heading"} /></h2>
+		<TranslatedLink to="/articles">
+			<UIString key={"recentArticles.all"} />
+		</TranslatedLink>
 	</div>
 
 	<div itemscope itemtype="http://schema.org/Blog">

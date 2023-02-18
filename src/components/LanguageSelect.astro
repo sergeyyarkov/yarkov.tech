@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
+import { URL_BLOG_PREFIX } from "@root/pages/[...blog].astro";
 import { getLanguageFromURL } from "@i18n/utils";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
@@ -18,6 +19,35 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 		}
 	</select>
 </div>
+
+<script define:vars={{ lang, DEFAULT_LANGUAGE, URL_BLOG_PREFIX }}>
+	const $select = document.getElementById("languageSelect");
+
+	const changeLanguageHandler = (e) => {
+		const newLang = e.target.value;
+		const pathname = window.location.pathname;
+		let url;
+
+		if (lang !== DEFAULT_LANGUAGE) {
+			url = pathname.split("/").slice(2).join("/");
+		} else {
+			url = pathname.slice(1);
+		}
+
+		if (newLang !== DEFAULT_LANGUAGE) url = `${newLang}/${url}`;
+
+		/* Move user to articles page with new language */
+		if (window.location.pathname.includes(`/${URL_BLOG_PREFIX}/`)) {
+			window.location.pathname =
+				`${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
+			return;
+		}
+
+		window.location.pathname = url;
+	};
+
+	$select.addEventListener("change", changeLanguageHandler);
+</script>
 
 <style lang="scss">
 	div {
@@ -63,31 +93,3 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 		}
 	}
 </style>
-
-<script define:vars={{ lang, DEFAULT_LANGUAGE }}>
-	const $select = document.getElementById("languageSelect");
-
-	const changeLanguageHandler = (e) => {
-		const newLang = e.target.value;
-		const pathname = window.location.pathname;
-		let url;
-
-		if (lang !== DEFAULT_LANGUAGE) {
-			url = pathname.split("/").slice(2).join("/");
-		} else {
-			url = pathname.slice(1);
-		}
-
-		if (newLang !== DEFAULT_LANGUAGE) url = `${newLang}/${url}`;
-
-		/* Move user to articles page with new language */
-		if (window.location.pathname.includes("/blog/")) {
-			window.location.pathname = `${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
-			return;
-		}
-
-		window.location.pathname = url;
-	};
-
-	$select.addEventListener("change", changeLanguageHandler);
-</script>
