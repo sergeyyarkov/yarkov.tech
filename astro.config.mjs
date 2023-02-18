@@ -326,6 +326,13 @@ export default defineConfig({
 										hint: "Отображает баннер на всех старницах о том, что веб-сайт находится в разработке",
 									},
 									{
+										label: "Счетчик Яндекс.Метрики",
+										name: "ymCounter",
+										widget: "number",
+										hint: "Например: 90034656",
+										required: false,
+									},
+									{
 										label: "Статьи",
 										name: "articles",
 										widget: "object",

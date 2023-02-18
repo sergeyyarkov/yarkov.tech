@@ -1,6 +1,8 @@
 ---
 import "@styles/global.scss";
+import siteconfig from "siteconfig.json";
 import { SITE_METADATA } from "@root/constants";
+import YaMetrika from "./Analytics/YaMetrika.astro";
 
 export interface Props {
 	title?: string;
@@ -10,6 +12,7 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description } = Astro.props;
+const isDev = import.meta.env.DEV;
 ---
 
 <head>
@@ -72,5 +75,6 @@ const { title, description } = Astro.props;
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 	<slot />
 	<script is:inline src="/assets/js/detect-theme.js"></script>
-	<!-- <script src="../quicklink.js"></script> -->
+	<script src="../quicklink.js"></script>
+	{!isDev && siteconfig?.ymCounter && <YaMetrika counter={siteconfig.ymCounter} />}
 </head>

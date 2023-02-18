@@ -4,7 +4,7 @@ import { Icon } from "astro-icon";
 import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
-// import TranslatedLink from "../TranslatedLink";
+import TranslatedLink from "@components/TranslatedLink.astro";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
 
 export type Props = {
@@ -19,8 +19,7 @@ const {
 	data: { coverImage, title, author, description, tags, pubDate },
 	slug,
 } = article;
-
-// const t = useTranslation(Astro);
+const t = useTranslation(Astro);
 ---
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="article">
@@ -32,9 +31,9 @@ const {
 						<ul itemprop="keywords">
 							{tags.map((tag) => (
 								<li>
-									<a rel="tag" href={`/articles/?tags=${tag.toLocaleLowerCase()}`}>
+									<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>
 										{tag}
-									</a>
+									</TranslatedLink>
 								</li>
 							))}
 						</ul>
@@ -43,7 +42,7 @@ const {
 			}
 			<div class="views">
 				<Icon name="eye" width="21" height="21" />
-				<span><span id="views">---</span>&nbsp;{"просмотров"}</span>
+				<span><span id="views">---</span>&nbsp;{t("article.views")}</span>
 			</div>
 		</div>
 		<div class="heading">
