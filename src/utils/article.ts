@@ -1,4 +1,6 @@
 import type { CollectionEntry } from "astro:content";
+import { DEFAULT_LANGUAGE } from "@root/constants";
+import slugify from "@sindresorhus/slugify";
 import { findDuplicates } from "./string";
 import { removeLanguageCodeFromPath } from "./url";
 
@@ -30,4 +32,16 @@ export function removeDuplicates(
 	});
 
 	return entries;
+}
+
+export function createRelativeArticleUrl(
+	article: CollectionEntry<"blog">,
+	prefix: string = "blog"
+): string {
+	const articleLang = article.id.split("/")[0];
+	const date = article.data.pubDate.toISOString().split("T")[0];
+	return `${articleLang !== DEFAULT_LANGUAGE ? "/" + articleLang : ""}/${prefix}/${date}/${slugify(
+		article.data.title,
+		{ lowercase: true }
+	)}`;
 }

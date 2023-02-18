@@ -27,7 +27,7 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 	const translations: Record<string, T> = {};
 	for (const [path, module] of Object.entries(modules)) {
 		const [, lang] = path.split("/");
-		translations[lang as LanguageKeys] = module.default;
+		translations[lang] = module.default;
 	}
 	return translations;
 }
@@ -36,7 +36,7 @@ const translations = transformExports<Record<string, UIDictionaryKeys>>(
 	import.meta.glob("./*/ui.ts", { eager: true })
 );
 
-function translate(key: UIDictionaryKeys, lang: LanguageKeys): string {
+export function translate(key: UIDictionaryKeys, lang: LanguageKeys): string {
 	const value = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
 	if (value === undefined) console.log(`Cannot find any string for translation key "${key}".`);
 	return value;

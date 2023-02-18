@@ -1,23 +1,19 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import slugify from "@sindresorhus/slugify";
 import { URL_BLOG_PREFIX } from "@root/pages/[...blog].astro";
-import { DEFAULT_LANGUAGE } from "@root/constants";
 import { getLanguageFromURL } from "@i18n/utils";
-import { createDateFormatter } from "@root/utils";
+import { createDateFormatter, createRelativeArticleUrl } from "@root/utils";
 
 export interface Props {
 	entry: CollectionEntry<"blog">;
 }
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
+const { entry } = Astro.props as Props;
 const {
-	entry: {
-		id,
-		data: { title, pubDate },
-	},
-} = Astro.props as Props;
-const slug = slugify(title, { lowercase: true });
+	id,
+	data: { title, pubDate },
+} = entry;
 const articleLang = id.split("/")[0];
 ---
 
@@ -27,11 +23,7 @@ const articleLang = id.split("/")[0];
 	itemtype="http://schema.org/BlogPosting"
 	class="article-item"
 >
-	<a
-		href={articleLang === DEFAULT_LANGUAGE
-			? `/${URL_BLOG_PREFIX}/${pubDate.toISOString().split("T")[0]}/${slug}`
-			: `/${articleLang}/${URL_BLOG_PREFIX}/${pubDate.toISOString().split("T")[0]}/${slug}`}
-	>
+	<a href={`${createRelativeArticleUrl(entry, URL_BLOG_PREFIX)}`}>
 		<div class="flex">
 			<h3 itemprop="headline">{title}</h3>
 			{articleLang !== pageLang && <sup>{articleLang.toLocaleUpperCase()}</sup>}

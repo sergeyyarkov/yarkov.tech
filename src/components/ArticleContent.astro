@@ -206,6 +206,9 @@
 		& .languages-available {
 			margin: 25px 0;
 			font-size: var(--font-size-lg);
+			& a:not(:last-child)::after {
+				content: ",";
+			}
 		}
 	}
 
