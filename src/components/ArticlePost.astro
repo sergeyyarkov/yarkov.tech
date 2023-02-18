@@ -5,14 +5,15 @@ import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
 // import TranslatedLink from "../TranslatedLink";
-// import { useTranslation } from "@i18n/utils";
+import { useTranslation, getLanguageFromURL } from "@i18n/utils";
 
 export type Props = {
 	article: CollectionEntry<"blog">;
 	lang: string;
 };
 
-const { article, lang } = Astro.props as Props;
+const { article } = Astro.props as Props;
+const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
 	data: { coverImage, title, author, description, tags, pubDate },
@@ -50,7 +51,7 @@ const {
 		</div>
 		<div class="published">
 			<time itemprop="datePublished" datetime={pubDate.toString()}>
-				{createDateFormatter(lang).format(pubDate)}
+				{createDateFormatter(pageLang).format(pubDate)}
 			</time>
 			<span itemprop="author">{author}</span>
 		</div>

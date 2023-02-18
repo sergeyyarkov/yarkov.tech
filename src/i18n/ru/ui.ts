@@ -54,6 +54,7 @@ export default {
 	"form.contactError": "При отправке произошла ошибка. Повторите запрос позже.",
 	/* Error messages */
 	"error.invalidEmail": "Заполните поле в формате e-mail.",
-	/* Other */
-	"rss.feed": "RSS Лента",
+	/* Footer */
+	"footer.rssFeed": "RSS Лента",
+	"footer.developed": "Разработка",
 };

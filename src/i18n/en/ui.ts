@@ -53,6 +53,7 @@ export default {
 	"form.contactError": "An error occurred while sending. Please try again later.",
 	/* Error messages */
 	"error.invalidEmail": "Fill in the field in the e-mail format.",
-	/* Other */
-	"rss.feed": "RSS Feed",
+	/* Footer */
+	"footer.rssFeed": "RSS Feed",
+	"footer.developed": "Developed",
 };

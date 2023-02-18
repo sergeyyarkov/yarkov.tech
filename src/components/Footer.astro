@@ -3,19 +3,20 @@ import { SITE_METADATA } from "@root/constants";
 import { Icon } from "astro-icon";
 import TranslatedLink from "./TranslatedLink.astro";
 import UIString from "./UIString.astro";
-const date = new Date();
 ---
 
 <footer>
 	<div class="container">
 		<div>
 			<i>
-				Разработка: <TranslatedLink to="/contacts">{SITE_METADATA.author}</TranslatedLink>
-				&copy; {date.getFullYear()}
+				<UIString key={"footer.developed"} />: <TranslatedLink to="/contacts">
+					{SITE_METADATA.author}
+				</TranslatedLink>
+				&copy; {new Date().getFullYear()}
 			</i>
 		</div>
 		<div>
-			<a href="/rss.xml" target="_blank"><UIString key={"rss.feed"} /></a>
+			<a href="/rss.xml" target="_blank"><UIString key={"footer.rssFeed"} /></a>
 			<span>
 				<Icon name="rss" width="20" height="20" />
 			</span>
@@ -27,14 +28,18 @@ const date = new Date();
 	footer {
 		font-weight: 500;
 		margin-top: 5rem;
-		color: var(--color-gray-200);
+		color: var(--color-gray-400);
 		font-size: var(--font-size-sm);
 		& .container {
-			padding: 15px 0 15px 0;
+			padding-top: 15px;
+			padding-bottom: 15px;
 			border-top: 1px solid var(--border-color);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			flex-wrap: wrap;
+			column-gap: 20px;
+			row-gap: 5px;
 			& div:last-child {
 				display: flex;
 				align-items: center;

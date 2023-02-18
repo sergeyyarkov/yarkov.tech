@@ -1,35 +1,35 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import siteconfig from "siteconfig.json";
+import { getLanguageFromURL } from "@i18n/utils";
+import * as utils from "@utils/index";
 import ArticleItem from "@components/ArticleItem.astro";
 import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
+
 export interface Props {
 	articles: CollectionEntry<"blog">[];
 	length?: number | undefined;
 }
 
 const { articles, length = siteconfig.articles.recentLimit } = Astro.props as Props;
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
 const isEmpty = articles.length === 0;
 ---
 
 <section>
 	<div>
-		<h2><UIString key={"recentArticles.heading"} /></h2>
+		<h2>
+			<UIString key={"recentArticles.heading"} />
+		</h2>
 		<TranslatedLink to="/articles">
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-
 	<div itemscope itemtype="http://schema.org/Blog">
-		{
-			!isEmpty ? (
-				articles.slice(0, length).map((article) => <ArticleItem entry={article} />)
-			) : (
-				<EmptyList />
-			)
-		}
+		{!isEmpty ? filtered.map((article) => <ArticleItem entry={article} />) : <EmptyList />}
 	</div>
 </section>
 
