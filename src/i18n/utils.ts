@@ -2,13 +2,9 @@ import type { AstroGlobal } from "astro";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
 import languages from "./languages";
 
-function transformExports<T>(modules: Record<string, { default: T }>): Record<string, string> {
-	const translations: Record<string, T> = {};
-	for (const [path, module] of Object.entries(modules)) {
-		const [, lang] = path.split("/");
-		translations[lang] = module.default;
-	}
-	return translations;
+export function useTranslation(Astro: Readonly<AstroGlobal>): (key: UIDictionaryKeys) => string {
+	const pageLang = getLanguageFromURL(Astro.url.pathname);
+	return (key: UIDictionaryKeys) => translate(key, pageLang);
 }
 
 export function getLanguageKeys(): Array<string> {
@@ -27,19 +23,21 @@ export function removeLangFromURL(pathname: string): string {
 	return pathname.split("/").slice(2).join("/");
 }
 
-const translations = transformExports(import.meta.glob("./*/ui.ts", { eager: true }));
+function transformExports<T>(modules: Record<string, { default: T }>) {
+	const translations: Record<string, T> = {};
+	for (const [path, module] of Object.entries(modules)) {
+		const [, lang] = path.split("/");
+		translations[lang as LanguageKeys] = module.default;
+	}
+	return translations;
+}
 
-const s = translations["ru"];
+const translations = transformExports<Record<string, UIDictionaryKeys>>(
+	import.meta.glob("./*/ui.ts", { eager: true })
+);
 
-function translate(key: UIDictionaryKeys, lang: LanguageKeys): string | undefined {
+function translate(key: UIDictionaryKeys, lang: LanguageKeys): string {
 	const value = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
 	if (value === undefined) console.log(`Cannot find any string for translation key "${key}".`);
 	return value;
-}
-
-export function useTranslation(
-	Astro: Readonly<AstroGlobal>
-): (key: UIDictionaryKeys) => string | undefined {
-	const pageLang = getLanguageFromURL(Astro.url.pathname);
-	return (key: UIDictionaryKeys) => translate(key, pageLang);
 }

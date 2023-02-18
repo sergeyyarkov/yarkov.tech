@@ -1,5 +1,9 @@
 ---
 import Button from "@components/Button.astro";
+import UIString from "./UIString.astro";
+import { useTranslation } from "@i18n/utils";
+
+const t = useTranslation(Astro);
 ---
 
 <form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
@@ -9,17 +13,44 @@ import Button from "@components/Button.astro";
 	</div>
 	<div class="flex">
 		<div>
-			<input name="name" placeholder={"Имя"} type="text" maxlength="20" autocomplete="off" required />
+			<input
+				name="name"
+				placeholder={t("input.nameField")}
+				type="text"
+				maxlength="20"
+				autocomplete="off"
+				required
+			/>
 		</div>
 		<div>
-			<input name="email" placeholder="example@email.com" autocomplete="off" type="email" required />
+			<input
+				name="email"
+				placeholder="example@email.com"
+				autocomplete="off"
+				type="email"
+				required
+			/>
 		</div>
 	</div>
-	<input name="subject" placeholder={"Тема"} type="text" autocomplete="off" required />
-	<textarea name="message" placeholder={"Сообщение"} id="message" autocomplete="off" cols={30} rows={10} required
-	></textarea>
+	<input
+		name="subject"
+		placeholder={t("input.subjectField")}
+		type="text"
+		autocomplete="off"
+		required
+	/>
+	<textarea
+		name="message"
+		placeholder={t("input.messageField")}
+		id="message"
+		autocomplete="off"
+		cols={30}
+		rows={10}
+		required></textarea>
 	<div class="footer">
-		<Button type="submit">{"Отправить"}</Button>
+		<Button type="submit">
+			<UIString key={"btn.submit"} />
+		</Button>
 	</div>
 </form>
 

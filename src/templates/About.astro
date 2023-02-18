@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntryBySlug } from "astro:content";
-import { getLanguageFromURL } from "@i18n/utils";
+import { getLanguageFromURL, useTranslation } from "@i18n/utils";
 import PageLayout from "@layouts/default.astro";
 import PageHeading from "@components/PageHeading.astro";
 import SkillsList from "@components/SkillsList.astro";
@@ -11,12 +11,11 @@ const pageLang = getLanguageFromURL(Astro.url.pathname);
 const skills = await getCollection("skills", (e) => e.id.startsWith(`${pageLang}/`));
 const about = await getEntryBySlug("authors", `${pageLang}/сергей-ярков`);
 const data = await about?.render();
-
-// const t = useTranslation(Astro);
+const t = useTranslation(Astro);
 ---
 
-<PageLayout noIndex lang={pageLang} title={"Обо мне"}>
-	<PageHeading heading={"Обо мне"} />
+<PageLayout noIndex lang={pageLang} title={t("pageTitle.about")}>
+	<PageHeading heading={t("pageTitle.about")} />
 	<section>
 		<ArticleContent>
 			{data && <data.Content />}

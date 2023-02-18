@@ -23,7 +23,7 @@ import TranslatedLink from "@components/TranslatedLink.astro";
 							<TranslatedLink
 								itemprop={"url"}
 								to={link.url}
-								class:list={[{ active: link.url === Astro.url.pathname }]}
+								class:list={[{ active: Astro.url.pathname.includes(link.url) }]}
 							>
 								<UIString key={link.key} />
 							</TranslatedLink>
