@@ -48,7 +48,7 @@ export default {
 	"input.nameField": "Ваше имя",
 	"input.subjectField": "Тема сообщения",
 	"input.messageField": "Ваше сообщение...",
-	"input.search": "поиск по названию или описанию...",
+	"input.search": "поиск публикаций по названию...",
 	/* Forms */
 	"form.contactSuccess": "Сообщение было успешно отправлено!",
 	"form.contactError": "При отправке произошла ошибка. Повторите запрос позже.",

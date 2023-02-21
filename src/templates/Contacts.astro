@@ -4,6 +4,7 @@ import PageHeading from "@components/PageHeading.astro";
 import ContactForm from "@components/ContactForm.astro";
 import ContactsList from "@components/ContactsList.astro";
 import { getLanguageFromURL, useTranslation } from "@i18n/utils";
+
 const t = useTranslation(Astro);
 const lang = getLanguageFromURL(Astro.url.pathname);
 ---

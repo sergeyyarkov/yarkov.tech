@@ -3,12 +3,11 @@ import { CollectionEntry, getCollection } from "astro:content";
 import ArticleLayout from "@root/layouts/article.astro";
 import { createRelativeArticleUrl, removeLanguageCodeFromPath } from "@root/utils";
 import { getLanguageFromURL, useTranslation } from "@i18n/utils";
+import { URL_BLOG_PREFIX } from "@root/constants";
 import languages from "@i18n/languages";
 
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-
-export const URL_BLOG_PREFIX = "blog";
 
 /**
  * Generate articles pages from `blog` collection.
@@ -18,7 +17,11 @@ export const URL_BLOG_PREFIX = "blog";
 export async function getStaticPaths() {
 	const collection = await getCollection("blog", (e) => !e.data.draft);
 	return collection.map((article) => {
-		const url = createRelativeArticleUrl(article);
+		const {
+			id,
+			data: { title, pubDate },
+		} = article;
+		const url = createRelativeArticleUrl({ id, title, pubDate });
 		return {
 			params: { blog: url.slice(1) },
 			props: {
@@ -44,9 +47,9 @@ const { article, availableOnLang } = Astro.props;
 				{t("article.availableOn")}:{" "}
 				{availableOnLang
 					.filter((a) => !a.id.startsWith(`${pageLang}/`))
-					.map((a) => (
-						<a href={`${createRelativeArticleUrl(a, URL_BLOG_PREFIX)}`}>{`${
-							languages[a.id.split("/")[0] as LanguageKeys]
+					.map(({ id, data: { title, pubDate } }) => (
+						<a href={`${createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX)}`}>{`${
+							languages[id.split("/")[0] as LanguageKeys]
 						}`}</a>
 					))}
 			</div>

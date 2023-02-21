@@ -47,7 +47,7 @@ export default {
 	"input.nameField": "Your name",
 	"input.subjectField": "Message subject",
 	"input.messageField": "Your message...",
-	"input.search": "search by title or description...",
+	"input.search": "search publications by title...",
 	/* Forms */
 	"form.contactSuccess": "The message was submitted successfully!",
 	"form.contactError": "An error occurred while sending. Please try again later.",

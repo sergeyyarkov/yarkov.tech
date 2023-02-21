@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
-import { URL_BLOG_PREFIX } from "@root/pages/[...blog].astro";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, URL_BLOG_PREFIX } from "@root/constants";
 import { getLanguageFromURL } from "@i18n/utils";
 
 const lang = getLanguageFromURL(Astro.url.pathname);

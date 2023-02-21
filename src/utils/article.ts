@@ -7,10 +7,6 @@ import { removeLanguageCodeFromPath } from "./url";
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
- *
- * @param entries Array of articles
- * @param pageLang Current language on page
- * @returns
  */
 export function removeDuplicates(
 	entries: CollectionEntry<"blog">[],
@@ -34,14 +30,30 @@ export function removeDuplicates(
 	return entries;
 }
 
+/**
+ * This will create a relative url based on article entry.
+ * `/en/blog/2023-01-01/my-first-article`
+ */
 export function createRelativeArticleUrl(
-	article: CollectionEntry<"blog">,
+	params: { id: string; title: string; pubDate: Date },
 	prefix: string = "blog"
 ): string {
-	const articleLang = article.id.split("/")[0];
-	const date = article.data.pubDate.toISOString().split("T")[0];
-	return `${articleLang !== DEFAULT_LANGUAGE ? "/" + articleLang : ""}/${prefix}/${date}/${slugify(
-		article.data.title,
-		{ lowercase: true }
-	)}`;
+	const articleLang = params.id.split("/")[0];
+	const date = params.pubDate.toISOString().split("T")[0];
+	const lang = articleLang !== DEFAULT_LANGUAGE ? "/" + articleLang : "";
+	return `${lang}/${prefix}/${date}/${slugify(params.title, { lowercase: true })}`;
+}
+
+export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
+	const blocks: Record<string, any[]> = {};
+	articles.forEach((a) => {
+		const year = a.data.pubDate.getFullYear();
+		if (!blocks[year]) blocks[year] = [];
+		blocks[year].push({ id: a.id, title: a.data.title, pubDate: a.data.pubDate });
+	});
+	return blocks;
+}
+
+export function getUniqueTags(articles: CollectionEntry<"blog">[]): string[] {
+	return Array.from(new Set(articles.map((a) => a.data.tags).flat()));
 }

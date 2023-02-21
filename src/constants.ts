@@ -3,9 +3,10 @@ import siteconfig from "../siteconfig.json";
 export const DEFAULT_LANGUAGE: LanguageKeys = "ru";
 export const IS_SITE_UNDER_CONSTRUCTION = siteconfig.isSiteUnderConstruction;
 export const SUPPORTED_LANGUAGES: SupportedLanguages = ["ru", "en"];
+export const URL_BLOG_PREFIX = "blog";
 export const SITE_METADATA: SiteMetadataType = {
 	title: siteconfig.globalTitle,
-	name: "yarkov.tech",
+	name: siteconfig.name,
 	author: "Sergey Yarkov",
 	themeColor: "#1e2327",
 	contacts: siteconfig.contacts,

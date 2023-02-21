@@ -312,6 +312,13 @@ export default defineConfig({
 								file: "siteconfig.json",
 								fields: [
 									{
+										label: "Название сайта",
+										name: "name",
+										widget: "string",
+										hint: "Отображается в шапке.",
+										default: "yarkov.tech",
+									},
+									{
 										label: "Глобальный заголовок",
 										name: "globalTitle",
 										widget: "string",
