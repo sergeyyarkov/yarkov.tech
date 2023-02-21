@@ -1,6 +1,6 @@
 import type { Component } from "solid-js";
 import { createSignal, createEffect, For } from "solid-js";
-import { search, selectedTags } from "@stores/searchStore";
+import { search, selectedTags, setCount } from "@stores/searchStore";
 import SearchInput from "./SearchInput";
 import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
@@ -39,7 +39,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		params: { search, tags },
 	}: {
 		params: { search: string; tags?: string[] };
-	}) => {
+	}): ArticlesBlockType => {
 		const filter = (cb: (year: string) => ArticlesType) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
@@ -60,7 +60,9 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	};
 
 	createEffect(() => {
-		setArticles(searchArticles({ params: { search: search(), tags: selectedTags() } }));
+		const filtered = searchArticles({ params: { search: search(), tags: selectedTags() } });
+		setArticles(filtered);
+		setCount(Object.values(filtered).flat().length);
 	});
 
 	return (

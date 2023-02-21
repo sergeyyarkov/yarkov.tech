@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon";
+import slugify from "@sindresorhus/slugify";
 import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
@@ -17,8 +18,8 @@ const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
 	data: { coverImage, title, author, description, tags, pubDate },
-	slug,
 } = article;
+const slug = slugify(title, { lowercase: true });
 const t = useTranslation(Astro);
 ---
 
