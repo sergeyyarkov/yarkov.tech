@@ -21,7 +21,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 	 * Update state and set url param
 	 */
 	const onSearch: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
-		const value = e.currentTarget.value;
+		const value = e.currentTarget.value.trim().toLocaleLowerCase();
 
 		if (value.trim().length === 0) {
 			resetSearch();
@@ -31,8 +31,6 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 		const url = utils.setParamToUrl("search", value.trim());
 		history.replaceState(null, "", `${location.pathname}?${url}`);
 		setSearch(value);
-
-		// TODO: search articles
 	};
 
 	/**

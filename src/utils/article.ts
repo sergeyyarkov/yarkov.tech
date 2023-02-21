@@ -49,7 +49,12 @@ export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
 	articles.forEach((a) => {
 		const year = a.data.pubDate.getFullYear();
 		if (!blocks[year]) blocks[year] = [];
-		blocks[year].push({ id: a.id, title: a.data.title, pubDate: a.data.pubDate });
+		blocks[year].push({
+			id: a.id,
+			title: a.data.title,
+			tags: a.data.tags,
+			pubDate: a.data.pubDate,
+		});
 	});
 	return blocks;
 }

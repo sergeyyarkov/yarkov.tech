@@ -1,100 +1,98 @@
 import type { Component } from "solid-js";
 import { createSignal, createEffect, For } from "solid-js";
 import { search, selectedTags } from "@stores/searchStore";
+import SearchInput from "./SearchInput";
+import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
 import "./ArticlesList.scss";
 
-type UiStringsType = { "articles.empty": string };
+type UiStringsType = { "articles.empty": string; "input.search": string };
 
-type ArticleType = {
+type ArticlesType = Array<{
 	id: string;
 	title: string;
+	tags: string[];
 	pubDate: Date;
-};
+}>;
 
-type ArticlesType = Record<string, ArticleType[]>;
+type ArticlesBlockType = Record<string, ArticlesType>;
 
 type ArticlesListProps = {
-	data: { articles: ArticlesType; pageLang: string };
+	articles: ArticlesBlockType;
+	tags: string[];
+	pageLang: string;
 	i18n: UiStringsType;
 };
 
 const ArticlesList: Component<ArticlesListProps> = (props) => {
-	const [articles, setArticles] = createSignal<ArticlesType>(props.data.articles);
+	const [articles, setArticles] = createSignal<ArticlesBlockType>(props.articles);
 
-	/**
-	 * Sort articles by year in descending order
-	 */
-	const sortYears = (articles: ArticlesType) => {
+	const isEmpty = () => Object.keys(articles()).length === 0;
+
+	const sortYears = (articles: ArticlesBlockType) => {
 		return Object.keys(articles)
 			.map(Number)
 			.sort((a, b) => b - a);
 	};
 
-	const isEmpty = () => Object.keys(articles()).length === 0;
-	const getLength = () => Object.values(articles()).flat().length;
+	const searchArticles = ({
+		params: { search, tags },
+	}: {
+		params: { search: string; tags?: string[] };
+	}) => {
+		const filter = (cb: (year: string) => ArticlesType) => {
+			return Object.fromEntries(
+				Object.keys(props.articles)
+					.map((year) => [year, cb(year)])
+					.filter((articles) => articles[1].length !== 0)
+			);
+		};
+
+		return filter((year) => {
+			let filtered = props.articles[year].filter((a) =>
+				a.title.toLocaleLowerCase().includes(search)
+			);
+			if (tags && tags.length > 0) {
+				filtered = filtered.filter((a) => tags.some((t) => a.tags.includes(t)));
+			}
+			return filtered;
+		});
+	};
 
 	createEffect(() => {
-		// const filtered = Object.values(articles()).flat(1)
-	});
-
-	createEffect(() => {
-		let filtered = props.data.articles;
-
-		/**
-		 * Find articles by title
-		 */
-		if (search()) {
-			// filtered = findArticlesBySearch(search().trim(), filtered);
-			// setArticles(filtered);
-			console.log(search());
-		}
-
-		/**
-		 * Find articles by selected tags
-		 */
-		if (selectedTags().length !== 0) {
-			// filtered = findArticlesByTags(selectedTags(), filtered);
-			// setArticles(filtered);
-
-			return;
-		}
-
-		/**
-		 * Set filtered variable as default value
-		 */
-		if (!search() && selectedTags().length === 0) {
-			filtered = props.data.articles;
-			setArticles(filtered);
-		}
+		setArticles(searchArticles({ params: { search: search(), tags: selectedTags() } }));
 	});
 
 	return (
-		<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
-			{!isEmpty() ? (
-				<For each={sortYears(articles())}>
-					{(year) => (
-						<div class="articles-list__wrapper">
-							<h2>{year}</h2>
-							<For each={articles()[year]}>
-								{(a) => (
-									<ArticleItem
-										id={a.id}
-										title={a.title}
-										pubDate={a.pubDate}
-										pageLang={props.data.pageLang}
-									/>
-								)}
-							</For>
-						</div>
-					)}
-				</For>
-			) : (
-				<div class="articles-list__empty">
-					<p>{props.i18n["articles.empty"]}</p>
-				</div>
-			)}
-		</div>
+		<>
+			<SearchInput i18n={{ "input.search": props.i18n["input.search"] }} />
+			<TagsList data={props.tags} />
+			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
+				{!isEmpty() ? (
+					<For each={sortYears(articles())}>
+						{(year) => (
+							<div class="articles-list__wrapper">
+								<h2>{year}</h2>
+								<For each={articles()[year]}>
+									{({ id, title, pubDate }) => (
+										<ArticleItem
+											id={id}
+											title={title}
+											pubDate={pubDate}
+											pageLang={props.pageLang}
+										/>
+									)}
+								</For>
+							</div>
+						)}
+					</For>
+				) : (
+					<div class="articles-list__empty">
+						<p>{props.i18n["articles.empty"]}</p>
+					</div>
+				)}
+			</div>
+		</>
 	);
 };
 

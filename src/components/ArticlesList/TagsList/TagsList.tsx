@@ -6,7 +6,7 @@ import * as utils from "@utils/history";
 type TagsListProps = { data: string[] };
 
 const TagsList: Component<TagsListProps> = (props) => {
-	const isTagSelected = (tag: string) => selectedTags().includes(tag.toLocaleLowerCase());
+	const isTagSelected = (tag: string) => selectedTags().includes(tag);
 
 	/**
 	 * Reset signal state and `tags` property in history state
@@ -20,6 +20,8 @@ const TagsList: Component<TagsListProps> = (props) => {
 
 	const onSelect: JSX.EventHandler<HTMLLIElement, PointerEvent> = (e) => {
 		const tag = e.target.getAttribute("data-tag");
+
+		if (!tag) return;
 
 		/**
 		 * Delete tag from selected tags if already selected
@@ -68,10 +70,10 @@ const TagsList: Component<TagsListProps> = (props) => {
 		const tags: string[] = [];
 
 		for (const tag of props.data) {
-			const isTagExist = param.includes(tag.toLocaleLowerCase());
+			const isTagExist = param.includes(tag);
 
 			if (isTagExist) {
-				tags.push(tag.toLocaleLowerCase());
+				tags.push(tag);
 			}
 		}
 
@@ -83,12 +85,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 			<For
 				each={props.data}
 				children={(tag) => (
-					<li
-						onClick={onSelect}
-						class="btn-link"
-						data-tag={tag.toLocaleLowerCase()}
-						data-active={isTagSelected(tag)}
-					>
+					<li onClick={onSelect} class="btn-link" data-tag={tag} data-active={isTagSelected(tag)}>
 						{tag}
 					</li>
 				)}
