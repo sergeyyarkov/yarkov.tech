@@ -3,7 +3,7 @@ import { For, createEffect } from "solid-js";
 import { selectedTags, setSelectedTags } from "@stores/searchStore";
 import * as utils from "@utils/history";
 
-type TagsListProps = { data: string[] };
+type TagsListProps = { tags: string[] };
 
 const TagsList: Component<TagsListProps> = (props) => {
 	const isTagSelected = (tag: string) => selectedTags().includes(tag);
@@ -18,7 +18,7 @@ const TagsList: Component<TagsListProps> = (props) => {
 		history.replaceState(null, "", url);
 	};
 
-	const onSelect: JSX.EventHandler<HTMLLIElement, PointerEvent> = (e) => {
+	const onSelect: JSX.EventHandler<HTMLLIElement, MouseEvent> = (e) => {
 		const tag = e.target.getAttribute("data-tag");
 
 		if (!tag) return;
@@ -52,14 +52,13 @@ const TagsList: Component<TagsListProps> = (props) => {
 	};
 
 	createEffect(() => {
-		let param: string | string[] = new URLSearchParams(location.search).get("tags");
+		let param: string | null | string[] = new URLSearchParams(location.search).get("tags");
 
 		if (!param) {
 			resetSelected();
 			return;
 		}
 
-		/* to array */
 		param = param.split(",");
 
 		if (param.length === 0) {
@@ -67,23 +66,13 @@ const TagsList: Component<TagsListProps> = (props) => {
 			return;
 		}
 
-		const tags: string[] = [];
-
-		for (const tag of props.data) {
-			const isTagExist = param.includes(tag);
-
-			if (isTagExist) {
-				tags.push(tag);
-			}
-		}
-
-		setSelectedTags(tags);
+		setSelectedTags(props.tags.filter((t) => param?.includes(t)));
 	});
 
 	return (
 		<ul class="list-links">
 			<For
-				each={props.data}
+				each={props.tags}
 				children={(tag) => (
 					<li onClick={onSelect} class="btn-link" data-tag={tag} data-active={isTagSelected(tag)}>
 						{tag}

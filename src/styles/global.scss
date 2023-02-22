@@ -77,6 +77,7 @@ body {
 	&[data-active="true"] {
 		background-color: var(--background-btn-link-active);
 		border-color: var(--border-color-hover);
+		font-weight: 600;
 	}
 }
 

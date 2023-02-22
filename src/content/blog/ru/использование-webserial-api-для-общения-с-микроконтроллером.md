@@ -1,7 +1,7 @@
 ---
 coverImage: /media/serial-port.jpg
 draft: false
-author: Sergey Yarkov
+author: Сергей Ярков
 title: Использование WebSerial API для общения с микроконтроллером
 description: Речь пойдет о том, что такое WebSerial API, как его можно
   использовать в браузере для чтения и записи данных в последовательное

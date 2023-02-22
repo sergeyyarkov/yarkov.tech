@@ -7,13 +7,16 @@ import SplashLinks from "@components/Splash/SplashLinks.astro";
 import SplashLink from "@components/Splash/SplashLink.astro";
 import RecentArticles from "@components/RecentArticles.astro";
 import UIString from "@components/UIString.astro";
+import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
 
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslation(Astro);
 const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<PageLayout description="Home page" lang={"ru"}>
+<PageLayout description={t("site.description")} lang={pageLang}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>

@@ -1,14 +1,15 @@
 {
-	"globalTitle": "Sergey Yarkov",
-	"articles": {
-		"recentLimit": 5
-	},
-	"isSiteUnderConstruction": false,
-	"contacts": {
-		"email": "serzh.yarkov@gmail.com",
-		"telegram": "https://t.me/sergeyyarkov",
-		"github": "https://github.com/sergeyyarkov"
-	},
-	"ymCounter": 90034656,
-	"name": "yarkov.tech"
+  "globalTitle": "Sergey Yarkov",
+  "articles": {
+    "recentLimit": 5
+  },
+  "isSiteUnderConstruction": false,
+  "contacts": {
+    "email": "serzh.yarkov@gmail.com",
+    "telegram": "https://t.me/sergeyyarkov",
+    "github": "https://github.com/sergeyyarkov"
+  },
+  "ymCounter": 90034656,
+  "name": "yarkov.tech",
+  "author": "Sergey Yarkov"
 }

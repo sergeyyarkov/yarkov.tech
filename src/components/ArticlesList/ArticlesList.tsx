@@ -40,17 +40,17 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	}: {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
-		const filter = (cb: (year: string) => ArticlesType) => {
+		const filter = (cb: (articles: ArticlesType) => ArticlesType) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
-					.map((year) => [year, cb(year)])
+					.map((year) => [year, cb(props.articles[year])])
 					.filter((articles) => articles[1].length !== 0)
 			);
 		};
 
-		return filter((year) => {
-			let filtered = props.articles[year].filter((a) =>
-				a.title.toLocaleLowerCase().includes(search)
+		return filter((articles) => {
+			let filtered = articles.filter((a) =>
+				a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
 			);
 			if (tags && tags.length > 0) {
 				filtered = filtered.filter((a) => tags.some((t) => a.tags.includes(t)));
@@ -68,7 +68,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	return (
 		<>
 			<SearchInput i18n={{ "input.search": props.i18n["input.search"] }} />
-			<TagsList data={props.tags} />
+			<TagsList tags={props.tags} />
 			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
 				{!isEmpty() ? (
 					<For each={sortYears(articles())}>

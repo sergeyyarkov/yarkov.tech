@@ -7,7 +7,7 @@ export const URL_BLOG_PREFIX = "blog";
 export const SITE_METADATA: SiteMetadataType = {
 	title: siteconfig.globalTitle,
 	name: siteconfig.name,
-	author: "Sergey Yarkov",
+	author: siteconfig.author,
 	themeColor: "#1e2327",
 	contacts: siteconfig.contacts,
 	nav: [

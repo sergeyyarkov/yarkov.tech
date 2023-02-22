@@ -3,6 +3,7 @@ import "@styles/global.scss";
 import siteconfig from "siteconfig.json";
 import { SITE_METADATA } from "@root/constants";
 import YaMetrika from "./Analytics/YaMetrika.astro";
+import { useTranslation } from "@root/i18n/utils";
 
 export interface Props {
 	title?: string;
@@ -13,6 +14,7 @@ export interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description } = Astro.props;
 const isDev = import.meta.env.DEV;
+const t = useTranslation(Astro);
 ---
 
 <head>
@@ -37,7 +39,7 @@ const isDev = import.meta.env.DEV;
 	<!-- Metadata -->
 	<meta name="title" content={title || SITE_METADATA.title} />
 	<meta name="generator" content={Astro.generator} />
-	{description && <meta name="description" content={description} />}
+	<meta name="description" content={description || t("site.description")} />
 	<meta name="theme-color" content={SITE_METADATA.themeColor} />
 	<meta name="msapplication-TileColor" content="#da532c" />
 

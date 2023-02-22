@@ -319,6 +319,12 @@ export default defineConfig({
 										default: "yarkov.tech",
 									},
 									{
+										label: "Автор веб-сайта",
+										name: "author",
+										widget: "string",
+										hint: "Отображается в подвале.",
+									},
+									{
 										label: "Глобальный заголовок",
 										name: "globalTitle",
 										widget: "string",
