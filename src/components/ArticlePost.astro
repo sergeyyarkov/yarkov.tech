@@ -32,7 +32,7 @@ const t = useTranslation(Astro);
 						<ul itemprop="keywords">
 							{tags.map((tag) => (
 								<li>
-									<TranslatedLink rel="tag" to={`/articles/?tags=${tag.toLocaleLowerCase()}`}>
+									<TranslatedLink rel="tag" to={`/articles/?tags=${tag}`}>
 										{tag}
 									</TranslatedLink>
 								</li>
