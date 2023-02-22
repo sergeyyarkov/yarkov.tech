@@ -56,7 +56,7 @@ export default defineConfig({
 				backend: {
 					name: "github",
 					repo: "sergeyyarkov/yarkov.tech",
-					branch: "version-2.0.0",
+					branch: "main",
 				},
 				media_folder: "public/media",
 				public_folder: "/media",
