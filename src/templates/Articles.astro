@@ -9,7 +9,7 @@ import ArticlesList from "@root/components/ArticlesList";
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const articles = await getCollection("blog", (e) => !e.data.draft);
-const tags = utils.getUniqueTags(articles);
+const tags = Array.from(new Set((await getCollection("tags")).map((t) => t.data.title)));
 const filtered = utils.removeDuplicates(articles, pageLang);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
