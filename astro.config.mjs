@@ -55,6 +55,7 @@ export default defineConfig({
 				locale: DEFAULT_LANGUAGE,
 				backend: {
 					name: "github",
+					repo: "sergeyyarkov/yarkov.tech",
 					branch: "version-2.0.0",
 				},
 				media_folder: "public/media",
