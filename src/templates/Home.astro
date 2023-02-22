@@ -1,21 +1,22 @@
 ---
-import * as utils from "@utils/index";
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
-import RecentArticles from "@components/RecentArticles";
-import { Splash, SplashHeading, SplashLinks, Link } from "@components/Splash";
-import { getLanguageFromURL } from "@root/utils";
-import { useTranslation } from "@i18n/utils";
-import UIString from "@components/UIString";
-import * as API from "@root/lib/api";
+import Splash from "@components/Splash/Splash.astro";
+import SplashHeading from "@components/Splash/SplashHeading.astro";
+import SplashLinks from "@components/Splash/SplashLinks.astro";
+import SplashLink from "@components/Splash/SplashLink.astro";
+import RecentArticles from "@components/RecentArticles.astro";
+import UIString from "@components/UIString.astro";
+import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
 
-const data = API.fetchTranslatedArticles(Astro);
+const pageLang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
-const lang = getLanguageFromURL(Astro.url.pathname);
-const articles = utils.transformArticles(data);
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
-<PageLayout lang={lang} description={t("site.description")} canonicalUrl={canonicalUrl.href}>
+<PageLayout description={t("site.description")} lang={pageLang}>
 	<Splash>
 		<SplashHeading>
 			<hgroup>
@@ -25,9 +26,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 			<p><UIString key={"splash.description"} /></p>
 		</SplashHeading>
 		<SplashLinks>
-			<Link icon="information" href="/about/"><UIString key={"splash.about"} /></Link>
-			<Link icon="email_filled" href="/contacts/"><UIString key={"splash.contact"} /></Link>
+			<SplashLink icon="information" href="/about/"><UIString key={"splash.about"} /></SplashLink>
+			<SplashLink icon="email_filled" href="/contacts/">
+				<UIString key={"splash.contact"} />
+			</SplashLink>
 		</SplashLinks>
 	</Splash>
-	<RecentArticles articles={articles} length={5} />
+	<RecentArticles articles={articles} />
 </PageLayout>

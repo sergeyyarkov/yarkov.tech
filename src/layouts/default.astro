@@ -1,10 +1,8 @@
 ---
 import type { Props as BaseHeadProps } from "@components/BaseHead.astro";
-
-import { SITE_METADATA } from "@root/config";
+import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/constants";
 import BaseHead from "@components/BaseHead.astro";
-import BaseLayout from "@components/BaseLayout";
-import "@styles/global.scss";
+import BaseLayout from "@components/BaseLayout.astro";
 
 export interface Props extends BaseHeadProps {
 	lang?: string | undefined;
@@ -12,14 +10,13 @@ export interface Props extends BaseHeadProps {
 	canonicalUrl?: string | undefined;
 }
 
-const { title, description, lang = "ru", noIndex = false, canonicalUrl } = Astro.props as Props;
+const { title, description, lang = DEFAULT_LANGUAGE, noIndex = false } = Astro.props as Props;
 ---
 
 <html lang={lang}>
 	<BaseHead
 		title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title}
 		description={description}
-		canonicalUrl={canonicalUrl}
 	>
 		{noIndex && <meta name="robots" content="noindex" />}
 	</BaseHead>

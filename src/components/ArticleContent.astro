@@ -1,0 +1,228 @@
+<div itemprop="articleBody" class="article-content"><slot /></div>
+
+<style lang="scss" is:global>
+	.article-content {
+		& h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-top: 3rem;
+			margin-bottom: 1rem;
+			padding-bottom: 5px;
+		}
+
+		& p,
+		em,
+		q {
+			line-height: var(--line-height-base);
+			font-size: var(--font-size-lg);
+		}
+
+		& p {
+			margin: 1.5rem 0;
+		}
+
+		& ul,
+		ol {
+			padding-left: 1.5rem;
+			line-height: var(--line-height-base);
+			margin: 1.5rem 0;
+			& li {
+				font-size: var(--font-size-lg);
+				line-height: var(--line-height-base);
+				margin-bottom: 0.5rem;
+				padding-left: 0.25rem;
+			}
+		}
+
+		& q {
+			font-style: italic;
+			quotes: "« " " »";
+		}
+
+		& a {
+			color: var(--font-color);
+			text-decoration: underline;
+			text-decoration-color: var(--color-blue-500);
+			text-underline-offset: 2.2px;
+			text-decoration-thickness: 2px;
+			font-weight: 500;
+			&:hover {
+				color: var(--color-blue-500);
+				text-decoration-thickness: 2px;
+			}
+		}
+
+		& figure {
+			margin: 0 0 1em;
+			& figcaption {
+				color: var(--color-gray-400);
+			}
+		}
+
+		& hr {
+			background-color: var(--border-color);
+			margin: 40px 0;
+			border: none;
+			height: 1px;
+		}
+
+		& pre {
+			font-size: var(--font-size-sm);
+			border-radius: var(--border-radius-md);
+		}
+
+		& :not(pre) > code {
+			-webkit-font-smoothing: subpixel-antialiased;
+			background: var(--background-inline-code);
+			border-radius: var(--border-radius-lg);
+			font-size: 1rem;
+			font-weight: 500;
+			font-family: "IBM Plex Mono", monospace;
+			padding: 0.2rem 0.3rem;
+		}
+
+		& figcaption {
+			font-style: italic;
+			font-size: 1em;
+			text-align: center;
+			margin: 0.7rem 0;
+		}
+
+		& .table-wrapper {
+			overflow-x: auto;
+			margin-bottom: 1.25rem;
+		}
+
+		& table {
+			display: table;
+			border-radius: var(--border-radius-md);
+			min-width: 100%;
+			font-size: var(--font-size-md);
+			border: 1px solid var(--border-color);
+			border-collapse: separate;
+			border-spacing: 0;
+			margin: 5px 0;
+			& thead th {
+				background-color: var(--background-card);
+				border-top-left-radius: var(--border-radius-md);
+				border-top-right-radius: var(--border-radius-md);
+			}
+			& td,
+			th {
+				border-bottom: 1px solid var(--border-color);
+				padding: 0.5rem;
+				text-align: left;
+			}
+			& tbody tr:last-child td {
+				border: none;
+			}
+		}
+
+		& li {
+			list-style: disc;
+			& li {
+				list-style-type: circle;
+			}
+			&::marker {
+				color: var(--color-blue-500);
+				font-size: 1.3rem;
+				line-height: var(--line-height-none);
+			}
+		}
+
+		& blockquote {
+			margin: 1.5rem 0;
+			font-style: italic;
+			border-left: 0.25rem solid var(--border-color);
+			padding-left: 1rem;
+		}
+
+		& .heading-wrapper {
+			border-bottom: 1px solid var(--border-color);
+			margin: 3rem 0 1rem 0;
+			padding-bottom: 0.35rem;
+
+			& h2 {
+				font-size: var(--font-size-2xl);
+			}
+
+			& h3 {
+				font-size: var(--font-size-xl);
+			}
+
+			& h4 {
+				font-size: var(--font-size-lg);
+			}
+
+			& h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				margin: 0;
+			}
+		}
+
+		& .heading-wrapper {
+			display: flex;
+			align-items: center;
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+			margin-inline-start: 1px;
+			& .anchor-link {
+				position: relative;
+				display: inline-flex;
+				text-decoration: none;
+				justify-content: center;
+				align-items: center;
+				opacity: 0;
+				& .anchor-icon {
+					position: absolute;
+					left: -25px;
+					top: -13px;
+				}
+				& svg {
+					vertical-align: middle;
+				}
+			}
+			& .anchor-label {
+				position: absolute;
+				width: 0;
+				height: 0;
+				padding: 0;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			&:hover {
+				& .anchor-link {
+					opacity: 1;
+				}
+			}
+		}
+		& .languages-available {
+			margin: 25px 0;
+			font-size: var(--font-size-lg);
+			& a:not(:last-child)::after {
+				content: ",";
+			}
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		.article-content {
+			& .heading-wrapper {
+				flex-direction: row;
+				justify-content: flex-start;
+				& .anchor-link {
+					& .anchor-icon {
+						left: 5px;
+					}
+				}
+			}
+		}
+	}
+</style>

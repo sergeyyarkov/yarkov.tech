@@ -1,0 +1,33 @@
+---
+import mime from 'mime-types' 
+import { extname } from 'node:path'
+import { isURL } from "@utils/string";
+
+export interface Props {
+  title: string;
+  siteName: string;
+  description: string;
+  type: string;
+  url: string;
+  image?: {
+    path: string;
+    width: string;
+    height: string;
+    type: string;
+  }
+}
+
+const {title, siteName, description, url, image} = Astro.props as Props;
+---
+
+<meta property="og:title" content={title} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="article" />
+<meta property="og:url" content={url} />
+{image && (
+  <meta property="og:image" content={isURL(image.path) ? image.path : `${Astro.url.origin}${image.path}`} />
+  <meta property="og:image:width" content="700" />
+  <meta property="og:image:height" content="400" />
+  <meta property="og:image:type" content={`${mime.lookup(extname(image.path))}`} />
+)}

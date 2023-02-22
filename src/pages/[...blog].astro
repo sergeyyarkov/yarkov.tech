@@ -1,0 +1,59 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import ArticleLayout from "@root/layouts/article.astro";
+import { createRelativeArticleUrl, removeLanguageCodeFromPath } from "@root/utils";
+import { getLanguageFromURL, useTranslation } from "@i18n/utils";
+import { URL_BLOG_PREFIX } from "@root/constants";
+import languages from "@i18n/languages";
+
+const t = useTranslation(Astro);
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+
+/**
+ * Generate articles pages from `blog` collection.
+ * The final url will be `http://website.com/blog/2023-01-01/my-article` with default language
+ * and `http://website.com/{language-code}/blog/2023-01-01/my-article` with other languages.
+ */
+export async function getStaticPaths() {
+	const collection = await getCollection("blog", (e) => !e.data.draft);
+	return collection.map((article) => {
+		const {
+			id,
+			data: { title, pubDate },
+		} = article;
+		const url = createRelativeArticleUrl({ id, title, pubDate });
+		return {
+			params: { blog: url.slice(1) },
+			props: {
+				article,
+				availableOnLang: collection.filter((e) =>
+					e.id.includes(removeLanguageCodeFromPath(article.id))
+				),
+			},
+		};
+	});
+}
+
+type Props = { article: CollectionEntry<"blog">; availableOnLang: CollectionEntry<"blog">[] };
+
+const { Content } = await Astro.props.article.render();
+const { article, availableOnLang } = Astro.props;
+---
+
+<ArticleLayout lang={article.id.split("/")[0]} article={article}>
+	{
+		availableOnLang.length > 1 && (
+			<div class="languages-available">
+				{t("article.availableOn")}:{" "}
+				{availableOnLang
+					.filter((a) => !a.id.startsWith(`${pageLang}/`))
+					.map(({ id, data: { title, pubDate } }) => (
+						<a href={`${createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX)}`}>{`${
+							languages[id.split("/")[0] as LanguageKeys]
+						}`}</a>
+					))}
+			</div>
+		)
+	}
+	<Content />
+</ArticleLayout>

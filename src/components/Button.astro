@@ -1,0 +1,25 @@
+---
+export type Props = astroHTML.JSX.ButtonHTMLAttributes;
+const attrs = Astro.props as Props;
+---
+
+<button {...attrs}>
+	<slot />
+</button>
+
+<style lang="scss">
+	button {
+		display: inline-flex;
+		column-gap: 7px;
+		font-family: var(--font-family-base);
+		font-weight: 500;
+		font-size: var(--font-size-sm);
+		&[disabled] {
+			opacity: 0.5;
+			cursor: not-allowed;
+			&:hover {
+				border: 1px solid var(--border-color);
+			}
+		}
+	}
+</style>

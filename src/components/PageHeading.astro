@@ -1,0 +1,30 @@
+---
+export interface Props {
+	heading: string;
+	description?: string | undefined;
+}
+const { heading, description } = Astro.props as Props;
+---
+
+<div class="page-heading">
+	<h1>
+		{heading}
+	</h1>
+	{description && <p>{description}</p>}
+</div>
+
+<style lang="scss">
+	div {
+		margin-bottom: 2.5rem;
+		text-align: center;
+		& h1 {
+			font-size: var(--font-size-4xl);
+			margin-bottom: 15px;
+		}
+		& p {
+			font-size: var(--font-size-lg);
+			max-width: 650px;
+			margin: 0 auto;
+		}
+	}
+</style>

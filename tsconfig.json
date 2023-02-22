@@ -1,15 +1,8 @@
 {
+	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"types": ["vite/client", "@astrojs/image/client", "@types/mdx"],
-		"sourceMap": true,
+		"strictNullChecks": true,
 		"baseUrl": ".",
-		"jsx": "preserve",
 		"paths": {
 			"@root/*": ["./src/*"],
 			"@styles/*": ["./src/styles/*"],
@@ -21,8 +14,9 @@
 			"@hooks/*": ["./src/hooks/*"],
 			"@i18n/*": ["./src/i18n/*"]
 		},
-		"outDir": "./dist",
-		"typeRoots": ["./node_modules/@types", "./src/types"]
+		"typeRoots": ["./node_modules/@types", "./src/types"],
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js"
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
 }

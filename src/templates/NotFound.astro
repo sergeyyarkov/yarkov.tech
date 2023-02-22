@@ -1,15 +1,14 @@
 ---
 import PageLayout from "@layouts/default.astro";
-import { useTranslation } from "@i18n/utils";
-import { getLanguageFromURL } from "@root/utils";
+import { getLanguageFromURL } from "@i18n/utils";
+import UIString from "@root/components/UIString.astro";
 
 const lang = getLanguageFromURL(Astro.url.pathname);
-const t = useTranslation(Astro);
 ---
 
-<PageLayout lang={lang} title="404">
+<PageLayout noIndex lang={lang}>
 	<div class="container">
-		<h1 style="font-size:var(--font-size-5xl);">404</h1>
-		<p>{t("404.description")}</p>
+		<h1 style="font-size:var(--font-size-5xl);"><UIString key={"404.heading"} /></h1>
+		<p><UIString key={"404.description"} /></p>
 	</div>
 </PageLayout>

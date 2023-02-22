@@ -1,22 +1,21 @@
 ---
+import { getCollection } from "astro:content";
+import { useTranslation, getLanguageFromURL } from "@i18n/utils";
+import * as utils from "@utils/index";
 import PageLayout from "@layouts/default.astro";
-import PageHeading from "@components/PageHeading";
-import ArticlesList from "@components/ArticlesList";
-import * as utils from "@utils/articles";
-import { getLanguageFromURL } from "@root/utils";
-import { useTranslation } from "@i18n/utils";
-import * as API from "@root/lib/api";
+import PageHeading from "@components/PageHeading.astro";
+import ArticlesList from "@root/components/ArticlesList";
 
 const t = useTranslation(Astro);
-const data = API.fetchTranslatedArticles(Astro);
-const tags = new Set(data.map((article) => article.frontmatter.tags).flat());
-const lang = getLanguageFromURL(Astro.url.pathname);
-const articles = utils.transformArticles(data);
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const articles = await getCollection("blog", (e) => !e.data.draft);
+const tags = utils.getUniqueTags(articles);
+const filtered = utils.removeDuplicates(articles, pageLang);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <PageLayout
-	lang={lang}
+	lang={pageLang}
 	title={t("pageTitle.articles")}
 	description={t("pageDescription.articles")}
 	canonicalUrl={canonicalUrl.href}
@@ -25,12 +24,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 	<section>
 		<ArticlesList
 			client:load
-			lang={lang}
-			i18n={{
-				"input.search": t("input.search"),
-				"articles.empty": t("articles.empty"),
-			}}
-			data={{ articles: utils.formatToArticleBlocks(articles), tags: [...tags] }}
+			i18n={{ "articles.empty": t("articles.empty"), "input.search": t("input.search") }}
+			articles={utils.formatToArticleBlocks(filtered)}
+			tags={tags}
+			pageLang={pageLang}
 		/>
 	</section>
 </PageLayout>

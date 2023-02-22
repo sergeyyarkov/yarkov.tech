@@ -1,0 +1,16 @@
+---
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@root/constants";
+import { getLanguageFromURL } from "@i18n/utils";
+
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	to: string;
+}
+
+let pageLang = getLanguageFromURL(Astro.url.pathname);
+const { to, ...attrs } = Astro.props as Props;
+
+if (!SUPPORTED_LANGUAGES.includes(pageLang)) pageLang = DEFAULT_LANGUAGE;
+const href = pageLang === DEFAULT_LANGUAGE ? to : `/${pageLang}${to}`;
+---
+
+<a href={href} {...attrs}><slot /></a>

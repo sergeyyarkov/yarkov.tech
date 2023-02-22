@@ -16,8 +16,10 @@ export default {
 	/* Page descriptions */
 	"pageDescription.articles":
 		"Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь.",
-	"pageDescription.projects": "Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.",
-	"pageDescription.contacts": "Воспользуйтесь формой обратной связи или напишите мне в социальные сети.",
+	"pageDescription.projects":
+		"Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.",
+	"pageDescription.contacts":
+		"Воспользуйтесь формой обратной связи или напишите мне в социальные сети.",
 	/* Navigation */
 	"navigation.articles": "Статьи",
 	"navigation.projects": "Проекты",
@@ -46,10 +48,13 @@ export default {
 	"input.nameField": "Ваше имя",
 	"input.subjectField": "Тема сообщения",
 	"input.messageField": "Ваше сообщение...",
-	"input.search": "поиск по названию или описанию...",
+	"input.search": "поиск публикаций по названию...",
 	/* Forms */
 	"form.contactSuccess": "Сообщение было успешно отправлено!",
 	"form.contactError": "При отправке произошла ошибка. Повторите запрос позже.",
 	/* Error messages */
 	"error.invalidEmail": "Заполните поле в формате e-mail.",
+	/* Footer */
+	"footer.rssFeed": "RSS Лента",
+	"footer.developed": "Разработка",
 };

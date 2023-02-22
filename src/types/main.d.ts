@@ -1,5 +1,6 @@
-import uiKeys from "@i18n/ru/ui";
 import languages from "@i18n/languages";
+import uiKeys from "@i18n/ru/ui";
+
 export {};
 
 declare global {
@@ -19,65 +20,18 @@ declare global {
 	type UIDictionaryKeys = keyof typeof uiKeys;
 	type SupportedLanguages = LanguageKeys[];
 
+	type ThemeModeType = "light" | "dark";
+
 	type SiteMetadataType = {
 		title: string;
 		name: string;
 		author: string;
 		themeColor: string;
-		contacts: {
-			email: string;
-			githubUrl: string;
-			telegramUrl: string;
+		contacts?: {
+			email?: string;
+			telegram?: string;
+			github?: string;
 		};
-		nav: Array<{
-			key: UIDictionaryKeys;
-			url: string;
-		}>;
-		projects: Array<ProjectType>;
-		skills: Array<SkillsType>;
+		nav: Array<{ key: UIDictionaryKeys; url: string }>;
 	};
-
-	type ArticleType = {
-		slug: string;
-		title: string;
-		coverImage?: string | undefined;
-		description: string;
-		author: string;
-		tags: Array<string>;
-		published_at: string;
-		lang?: string;
-		draft?: boolean;
-	};
-
-	type ProjectType = {
-		icon: string;
-		name: string;
-		year: string;
-		description: Record<string, string>;
-		sourceUrl?: string | undefined;
-		articleUrl?: string | undefined;
-		demoUrl?: string | undefined;
-	};
-
-	type SkillsType = {
-		title: Record<string, string>;
-		list: Array<{
-			icon?: string | undefined;
-			name: string;
-		}>;
-	};
-
-	type ContactFieldsType = {
-		name: string;
-		email: string;
-		subject: string;
-		message: string;
-		"bot-field": string;
-	};
-
-	type ArticleBlockType = {
-		[year: number]: ArticleType[];
-	};
-
-	type ThemeModeType = "light" | "dark";
 }

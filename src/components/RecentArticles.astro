@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from "astro:content";
+import siteconfig from "siteconfig.json";
+import { getLanguageFromURL } from "@i18n/utils";
+import * as utils from "@utils/index";
+import ArticleItem from "@components/ArticleItem";
+import EmptyList from "@components/EmptyList.astro";
+import UIString from "@components/UIString.astro";
+import TranslatedLink from "@components/TranslatedLink.astro";
+
+export interface Props {
+	articles: CollectionEntry<"blog">[];
+	length?: number | undefined;
+}
+
+const { articles, length = siteconfig.articles.recentLimit } = Astro.props as Props;
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
+const isEmpty = articles.length === 0;
+---
+
+<section>
+	<div>
+		<h2>
+			<UIString key={"recentArticles.heading"} />
+		</h2>
+		<TranslatedLink to="/articles/">
+			<UIString key={"recentArticles.all"} />
+		</TranslatedLink>
+	</div>
+	<div itemscope itemtype="http://schema.org/Blog">
+		{
+			!isEmpty ? (
+				filtered.map((article) => (
+					<ArticleItem
+						id={article.id}
+						title={article.data.title}
+						pubDate={article.data.pubDate}
+						pageLang={pageLang}
+					/>
+				))
+			) : (
+				<EmptyList />
+			)
+		}
+	</div>
+</section>
+
+<style lang="scss">
+	section {
+		& > div:nth-child(1) {
+			display: flex;
+			align-items: center;
+			column-gap: 15px;
+			row-gap: 5px;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			border-bottom: 1px solid var(--border-color);
+			padding-bottom: 10px;
+			& h2 {
+				margin: 0;
+			}
+		}
+		& > div:nth-child(2) {
+			margin-top: 10px;
+			max-width: calc(var(--content-width) + (var(--content-padding) * 2));
+		}
+	}
+</style>

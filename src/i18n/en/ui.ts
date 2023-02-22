@@ -16,7 +16,8 @@ export default {
 	/* Page descriptions */
 	"pageDescription.articles":
 		"Technical articles, tutorials and various reference materials related to IT topics can be found here.",
-	"pageDescription.projects": "A few of my main projects that have been developed and published in open access.",
+	"pageDescription.projects":
+		"A few of my main projects that have been developed and published in open access.",
 	"pageDescription.contacts": "Use the feedback form or write to me on social networks.",
 	/* Navigation */
 	"navigation.articles": "Articles",
@@ -46,10 +47,13 @@ export default {
 	"input.nameField": "Your name",
 	"input.subjectField": "Message subject",
 	"input.messageField": "Your message...",
-	"input.search": "search by title or description...",
+	"input.search": "search publications by title...",
 	/* Forms */
 	"form.contactSuccess": "The message was submitted successfully!",
 	"form.contactError": "An error occurred while sending. Please try again later.",
 	/* Error messages */
 	"error.invalidEmail": "Fill in the field in the e-mail format.",
+	/* Footer */
+	"footer.rssFeed": "RSS Feed",
+	"footer.developed": "Developed",
 };

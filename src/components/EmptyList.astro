@@ -1,0 +1,18 @@
+---
+import UIString from "@components/UIString.astro";
+---
+
+<div>
+	<p><UIString key={"recentArticles.empty"} /></p>
+</div>
+
+<style lang="scss">
+	div {
+		text-align: center;
+		margin: 2.5rem 0;
+		& p {
+			color: var(--font-color-gray);
+			user-select: none;
+		}
+	}
+</style>
