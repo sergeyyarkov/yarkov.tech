@@ -70,7 +70,6 @@ const t = useTranslation(Astro);
 
 <script define:vars={{ slug, IS_DEV: import.meta.env.DEV }}>
 	(async () => {
-		console.log(slug);
 		if (IS_DEV) return;
 		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
 		if (!response.ok) return;
