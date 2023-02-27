@@ -15,3 +15,11 @@ export function isURL(url: string): boolean {
 export function findDuplicates(array: string[]): string[] {
 	return array.filter((item, i) => array.indexOf(item) !== i);
 }
+
+export function encodeString(string: string, slice: number = 10) {
+	return Buffer.from(string)
+		.toString("base64")
+		.slice(0, slice)
+		.toLocaleLowerCase()
+		.replace(/[^a-zA-Z]+/g, "");
+}

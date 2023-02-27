@@ -1,12 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon";
-import slugify from "@sindresorhus/slugify";
 import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
+import * as utils from "@utils/index";
 
 export type Props = {
 	article: CollectionEntry<"blog">;
@@ -17,9 +17,11 @@ const { article } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
+	id,
 	data: { coverImage, title, author, description, tags, pubDate },
 } = article;
-const slug = slugify(title, { lowercase: true });
+
+const slug = utils.encodeString(id.split("/")[1]);
 const t = useTranslation(Astro);
 ---
 
@@ -68,6 +70,7 @@ const t = useTranslation(Astro);
 
 <script define:vars={{ slug, IS_DEV: import.meta.env.DEV }}>
 	(async () => {
+		console.log(slug);
 		if (IS_DEV) return;
 		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
 		if (!response.ok) return;
