@@ -19,7 +19,7 @@
 	},
 	"dependencies": {
 		"@astrojs/image": "^0.15.0",
-		"@astrojs/rss": "^2.1.1",
+		"@astrojs/rss": "^2.2.0",
 		"@astrojs/sitemap": "^1.0.1",
 		"@astrojs/solid-js": "^2.0.2",
 		"@netlify/functions": "^1.4.0",
