@@ -18,13 +18,13 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/image": "^0.15.0",
-		"@astrojs/rss": "^2.1.1",
-		"@astrojs/sitemap": "^1.0.1",
-		"@astrojs/solid-js": "^2.0.2",
+		"@astrojs/image": "^0.16.2",
+		"@astrojs/rss": "^2.3.1",
+		"@astrojs/sitemap": "^1.2.1",
+		"@astrojs/solid-js": "^2.1.0",
 		"@netlify/functions": "^1.4.0",
 		"@sindresorhus/slugify": "^2.2.0",
-		"astro": "^2.0.14",
+		"astro": "^2.1.7",
 		"astro-icon": "^0.8.0",
 		"astro-netlify-cms": "^0.5.3",
 		"hast-util-to-string": "^2.0.0",
@@ -35,11 +35,11 @@
 		"quicklink": "^2.3.0",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-slug": "^5.1.0",
-		"sharp": "^0.31.3",
-		"solid-js": "^1.6.11"
+		"sharp": "^0.32.0",
+		"solid-js": "^1.6.15"
 	},
 	"devDependencies": {
 		"@types/mime-types": "^2.1.1",
-		"sass": "^1.58.3"
+		"sass": "^1.60.0"
 	}
 }
