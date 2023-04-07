@@ -20,7 +20,7 @@
 	"dependencies": {
 		"@astrojs/image": "^0.16.2",
 		"@astrojs/rss": "^2.3.1",
-		"@astrojs/sitemap": "^1.2.1",
+		"@astrojs/sitemap": "^1.2.2",
 		"@astrojs/solid-js": "^2.1.0",
 		"@netlify/functions": "^1.4.0",
 		"@sindresorhus/slugify": "^2.2.0",
