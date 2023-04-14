@@ -412,7 +412,7 @@ Now after opening the port you can send commands, don't forget to set the carria
 
 The web application will consist of just a few elements: an input box where we can write our commands, buttons to open and close the serial port, connection status. You can see the finished version [here](https://web-serial-example.netlify.app/).
 
-### Create HTML markup and styles
+## Create HTML markup and styles
 
 The HTML markup will look like this:
 

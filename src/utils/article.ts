@@ -1,3 +1,4 @@
+import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { DEFAULT_LANGUAGE } from "@root/constants";
 import slugify from "@sindresorhus/slugify";
@@ -61,4 +62,21 @@ export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
 
 export function getUniqueTags(articles: CollectionEntry<"blog">[]): string[] {
 	return Array.from(new Set(articles.map((a) => a.data.tags).flat()));
+}
+
+export type MarkdownHeadingToc = MarkdownHeading & { subheadings: MarkdownHeading[] };
+
+export function buildToc(headings: MarkdownHeading[]) {
+	const toc: MarkdownHeadingToc[] = [];
+	const parentHeadings = new Map();
+	headings.forEach((h) => {
+		const heading = { ...h, subheadings: [] };
+		parentHeadings.set(heading.depth, heading);
+		if (heading.depth === 1) {
+			toc.push(heading);
+		} else {
+			parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+		}
+	});
+	return toc;
 }

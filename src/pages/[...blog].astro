@@ -36,11 +36,11 @@ export async function getStaticPaths() {
 
 type Props = { article: CollectionEntry<"blog">; availableOnLang: CollectionEntry<"blog">[] };
 
-const { Content } = await Astro.props.article.render();
+const { Content, headings } = await Astro.props.article.render();
 const { article, availableOnLang } = Astro.props;
 ---
 
-<ArticleLayout lang={article.id.split("/")[0]} article={article}>
+<ArticleLayout lang={article.id.split("/")[0]} article={article} headings={headings}>
 	{
 		availableOnLang.length > 1 && (
 			<div class="languages-available">
