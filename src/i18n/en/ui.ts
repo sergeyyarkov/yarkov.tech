@@ -4,6 +4,7 @@ export default {
 		"Here I publish articles and tutorials on various IT topics, and I also talk about my projects that I have done over the past few years.",
 	"site.underConstruction": "This web-site is under development...",
 	"article.availableOn": "Available on",
+	"article.tableOfContents": "Table of contents",
 	"articles.empty": "No articles found...",
 	"articlePost.comments": "Comments",
 	"article.views": "views",

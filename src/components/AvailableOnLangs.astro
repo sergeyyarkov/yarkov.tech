@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
+import { URL_BLOG_PREFIX } from "@root/constants";
+import { createRelativeArticleUrl } from "@root/utils";
+import languages from "@i18n/languages";
+
+export interface Props {
+	articles: CollectionEntry<"blog">[];
+}
+
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslation(Astro);
+const { articles } = Astro.props;
+---
+
+{
+	articles.length !== 1 && (
+		<div>
+			{t("article.availableOn")}:{" "}
+			{articles
+				.filter((a) => !a.id.startsWith(`${pageLang}/`))
+				.map(({ id, data: { title, pubDate } }) => (
+					<a href={`${createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX)}`}>{`${
+						languages[id.split("/")[0] as LanguageKeys]
+					}`}</a>
+				))}
+		</div>
+	)
+}
+
+<style lang="scss">
+	div {
+		margin: 25px 0;
+		font-size: var(--font-size-lg);
+		& a {
+			&:not(:last-child)::after {
+				content: ",";
+			}
+		}
+	}
+</style>
