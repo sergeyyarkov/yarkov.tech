@@ -11,6 +11,7 @@ Personal website created with Astro.
 - [x] Search articles by title or description
 - [x] Dark/Light Theme
 - [x] Multilang web-site
+- [x] Table of contents
 - [x] Content management via [NetlifyCMS](https://www.netlifycms.org/)
 - [x] Prefetch pages via [Quicklink](https://getquick.link/)
 - [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
