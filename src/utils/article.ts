@@ -66,7 +66,7 @@ export function getUniqueTags(articles: CollectionEntry<"blog">[]): string[] {
 
 export type MarkdownHeadingToc = MarkdownHeading & { subheadings: MarkdownHeading[] };
 
-export function buildToc(headings: MarkdownHeading[]) {
+export function buildToc(headings: MarkdownHeading[], maxDepth: number = 2) {
 	const toc: MarkdownHeadingToc[] = [];
 	const parentHeadings = new Map();
 	headings.forEach((h) => {
@@ -74,7 +74,7 @@ export function buildToc(headings: MarkdownHeading[]) {
 		parentHeadings.set(heading.depth, heading);
 		if (heading.depth === 1) {
 			toc.push(heading);
-		} else {
+		} else if (heading.depth <= maxDepth) {
 			parentHeadings.get(heading.depth - 1).subheadings.push(heading);
 		}
 	});

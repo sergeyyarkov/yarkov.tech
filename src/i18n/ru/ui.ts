@@ -4,6 +4,7 @@ export default {
 		"Здесь я публикую статьи и туториалы на разные IT темы, а также рассказываю о своих проектах которые я сделал за последние несколько лет.",
 	"site.underConstruction": "Этот веб-сайт находится в разработке...",
 	"article.availableOn": "Доступно на",
+	"article.tableOfContents": "Оглавление",
 	"articles.empty": "Не найдено ни одной статьи...",
 	"articlePost.comments": "Комментарии",
 	"article.views": "просмотров",

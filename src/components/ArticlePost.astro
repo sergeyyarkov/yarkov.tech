@@ -5,15 +5,17 @@ import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
+import AvailableOnLangs from "@components/AvailableOnLangs.astro";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
 import * as utils from "@utils/index";
 
 export type Props = {
 	article: CollectionEntry<"blog">;
+	availableOnLangs?: CollectionEntry<"blog">[];
 	lang: string;
 };
 
-const { article } = Astro.props as Props;
+const { article, availableOnLangs } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
@@ -63,6 +65,7 @@ const t = useTranslation(Astro);
 				{description}
 			</p>
 		</div>
+		{availableOnLangs && <AvailableOnLangs articles={availableOnLangs} />}
 	</header>
 	<slot />
 	<ArticleComments url={canonicalUrl.href} id={slug} />
@@ -119,9 +122,8 @@ const t = useTranslation(Astro);
 					flex-wrap: wrap;
 					column-gap: 7px;
 					row-gap: 7px;
-					& li:not(:last-child)::after {
+					& li:not(:last-child) a::after {
 						content: ",";
-						color: var(--color-blue-400);
 					}
 				}
 			}
@@ -129,6 +131,19 @@ const t = useTranslation(Astro);
 			& .published {
 				margin-bottom: 1.25em;
 				color: var(--font-color-gray);
+			}
+		}
+
+		& a {
+			color: var(--font-color);
+			text-decoration: underline;
+			text-decoration-color: var(--color-blue-500);
+			text-underline-offset: 2.2px;
+			text-decoration-thickness: 2px;
+			font-weight: 500;
+			&:hover {
+				color: var(--color-blue-500);
+				text-decoration-thickness: 2px;
 			}
 		}
 

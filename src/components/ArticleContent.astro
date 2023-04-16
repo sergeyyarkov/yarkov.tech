@@ -2,6 +2,7 @@
 
 <style lang="scss" is:global>
 	.article-content {
+		margin-top: 70px;
 		& h1,
 		h2,
 		h3,
@@ -40,19 +41,6 @@
 		& q {
 			font-style: italic;
 			quotes: "« " " »";
-		}
-
-		& a {
-			color: var(--font-color);
-			text-decoration: underline;
-			text-decoration-color: var(--color-blue-500);
-			text-underline-offset: 2.2px;
-			text-decoration-thickness: 2px;
-			font-weight: 500;
-			&:hover {
-				color: var(--color-blue-500);
-				text-decoration-thickness: 2px;
-			}
 		}
 
 		& figure {
@@ -121,15 +109,17 @@
 			}
 		}
 
-		& li {
-			list-style: disc;
+		& ul {
 			& li {
-				list-style-type: circle;
-			}
-			&::marker {
-				color: var(--color-blue-500);
-				font-size: 1.3rem;
-				line-height: var(--line-height-none);
+				list-style: disc;
+				& li {
+					list-style-type: circle;
+				}
+				&::marker {
+					color: var(--color-blue-500);
+					font-size: 1.3rem;
+					line-height: var(--line-height-none);
+				}
 			}
 		}
 

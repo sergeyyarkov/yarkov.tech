@@ -2,22 +2,62 @@
 import { buildToc } from "@root/utils";
 import type { MarkdownHeading } from "astro";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+import { useTranslation } from "@root/i18n/utils";
 
 export interface Props {
 	headings: MarkdownHeading[];
 }
 
-const toc = buildToc(Astro.props.headings);
+const toc = buildToc(Astro.props.headings, 3);
+const t = useTranslation(Astro);
 ---
 
-<nav class="toc">
-	<h2>Содержание</h2>
-	<ul>
-		{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
-	</ul>
-</nav>
+<details class="toc">
+	<summary>{t("article.tableOfContents")}</summary>
+	<nav>
+		<div>
+			<ul>
+				{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+			</ul>
+		</div>
+	</nav>
+</details>
+
+<script>
+	var $toc = document.querySelector(".toc");
+	if ($toc) {
+		$toc.addEventListener(
+			"click",
+			(e) => (e.target as HTMLElement).tagName === "A" && $toc!.removeAttribute("open")
+		);
+	}
+</script>
 
 <style lang="scss" is:global>
 	.toc {
+		cursor: pointer;
+		display: block;
+		position: absolute;
+		& summary {
+			font-size: var(--font-size-lg);
+		}
+		& nav {
+			background-color: var(--background-card);
+			border: 1px solid var(--border-color);
+			border-radius: var(--border-radius-lg);
+			margin-top: 10px;
+			padding: 10px 16px;
+			& ul {
+				& a {
+					display: block;
+					margin-bottom: 10px;
+					color: var(--font-color);
+					text-decoration: none;
+				}
+				& li ul {
+					margin-left: 15px;
+				}
+			}
+		}
 	}
 </style>
