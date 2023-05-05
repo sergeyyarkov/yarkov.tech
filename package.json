@@ -36,7 +36,7 @@
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-slug": "^5.1.0",
 		"sharp": "^0.31.0",
-		"solid-js": "^1.7.3"
+		"solid-js": "^1.7.4"
 	},
 	"devDependencies": {
 		"@types/mime-types": "^2.1.1",
