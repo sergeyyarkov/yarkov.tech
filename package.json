@@ -21,7 +21,7 @@
 		"@astrojs/image": "^0.16.6",
 		"@astrojs/rss": "^2.3.2",
 		"@astrojs/sitemap": "^1.2.2",
-		"@astrojs/solid-js": "^2.1.0",
+		"@astrojs/solid-js": "^2.2.0",
 		"@netlify/functions": "^1.4.0",
 		"@sindresorhus/slugify": "^2.2.0",
 		"astro": "^2.3.0",
