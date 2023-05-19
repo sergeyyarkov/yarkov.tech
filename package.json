@@ -22,7 +22,7 @@
 		"@astrojs/rss": "^2.3.2",
 		"@astrojs/sitemap": "^1.2.2",
 		"@astrojs/solid-js": "^2.1.0",
-		"@netlify/functions": "^1.4.0",
+		"@netlify/functions": "^1.6.0",
 		"@sindresorhus/slugify": "^2.2.0",
 		"astro": "^2.3.0",
 		"astro-icon": "^0.8.0",
