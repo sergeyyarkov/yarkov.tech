@@ -32,6 +32,7 @@ const createAnchorLabel = (heading) => {
 // https://astro.build/config
 export default defineConfig({
 	site: "https://yarkov.tech",
+	compressHTML: true,
 	integrations: [
 		sitemap({
 			i18n: {
