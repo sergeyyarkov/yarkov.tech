@@ -17,6 +17,5 @@
 		"typeRoots": ["./node_modules/@types", "./src/types"],
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js"
-	},
-	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
+	}
 }
