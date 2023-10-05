@@ -1,7 +1,7 @@
 ---
 import { getLanguageKeys } from "@i18n/utils";
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import Projects from "@templates/Projects.astro";
+import ProjectsTemplate from "@templates/Projects.astro";
 
 export function getStaticPaths() {
 	return getLanguageKeys()
@@ -10,4 +10,4 @@ export function getStaticPaths() {
 }
 ---
 
-<Projects />
+<ProjectsTemplate />

@@ -55,7 +55,7 @@ const t = useTranslation(Astro);
 		</div>
 		<div class="published">
 			<time itemprop="datePublished" datetime={pubDate.toString()}>
-				{createDateFormatter(pageLang).format(pubDate)}
+				{createDateFormatter(pageLang).format(pubDate)}&nbsp;
 			</time>
 			<span itemprop="author">{author}</span>
 		</div>
@@ -72,15 +72,15 @@ const t = useTranslation(Astro);
 </article>
 
 <script define:vars={{ slug, IS_DEV: import.meta.env.DEV }}>
-	(async () => {
-		if (IS_DEV) return;
-		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
-		if (!response.ok) return;
-		const views = await response.text();
-		const $views = document.getElementById("views");
-		if (isNaN(parseInt(views, 10))) return;
-		if ($views) $views.textContent = views;
-	})();
+(async () => {
+	if (IS_DEV) return;
+	const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
+	if (!response.ok) return;
+	const views = await response.text();
+	const $views = document.getElementById("views");
+	if (isNaN(parseInt(views, 10))) return;
+	if ($views) $views.textContent = views;
+})();
 </script>
 
 <style lang="scss" is:global>

@@ -5,7 +5,6 @@ import { defineConfig } from "astro/config";
  */
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
-import image from "@astrojs/image";
 import netlifyCMS from "astro-netlify-cms";
 
 /**
@@ -394,9 +393,6 @@ export default defineConfig({
 				],
 			},
 		}),
-		image({
-			serviceEntryPoint: "@astrojs/image/sharp",
-		}),
 	],
 	markdown: {
 		syntaxHighlight: "prism",
@@ -442,4 +438,5 @@ export default defineConfig({
 		],
 	},
 	trailingSlash: "ignore",
+	scopedStyleStrategy: "where",
 });

@@ -5,7 +5,7 @@ import { createRelativeArticleUrl } from "@root/utils";
 import * as utils from "@i18n/utils";
 
 // TODO: generate feed for RU, EN, ... languages
-export async function get() {
+export async function GET() {
 	const articles = await getCollection("blog", (e) => !e.data.draft);
 	return rss({
 		title: SITE_METADATA.name,

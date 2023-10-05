@@ -1,7 +1,7 @@
 ---
 import { getLanguageKeys } from "@i18n/utils";
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import Articles from "@templates/Articles.astro";
+import ArticlesTemplate from "@templates/Articles.astro";
 
 export function getStaticPaths() {
 	return getLanguageKeys()
@@ -10,4 +10,4 @@ export function getStaticPaths() {
 }
 ---
 
-<Articles />
+<ArticlesTemplate />
