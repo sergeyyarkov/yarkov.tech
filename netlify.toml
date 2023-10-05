@@ -11,6 +11,6 @@
 
 [[redirects]]
   from = "/blog/2022-11-04/ispolzovanie-web-serial-api-dlya-obscheniyas-mikrokontrollerom/"
-  to = "/blog/2022-11-04/ispolzovanie-webserial-api-dlya-obshcheniya-s-mikrokontrollerom/"
+  to = "/blog/2022-11-04/ispolzovanie-web-serial-api-dlya-obscheniya-s-mikrokontrollerom/"
   status = 301
   force = true
