@@ -1,4 +1,4 @@
-import { Handler } from "@netlify/functions";
+import type { Handler } from "@netlify/functions";
 import { redisClient } from "../../redis";
 
 const getViewsBySlug = async (slug: string): Promise<number> => {

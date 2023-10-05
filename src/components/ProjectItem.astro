@@ -1,9 +1,7 @@
 ---
-import { DEFAULT_LANGUAGE } from "@root/constants";
-import { getLanguageFromURL } from "@i18n/utils";
 import { Icon } from "astro-icon";
 import type { CollectionEntry } from "astro:content";
-// import UIString from "../UIString";
+import UIString from "@components/UIString.astro";
 
 export interface Props {
 	data: CollectionEntry<"projects">["data"];
@@ -29,14 +27,14 @@ const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		{
 			articleUrl && (
 				<a class="btn-link" href={articleUrl} target="_blank">
-					Статья
+					<UIString key={'btn.article'} />
 				</a>
 			)
 		}
 		{
 			sourceUrl && (
 				<a class="btn-link" href={sourceUrl} target="_blank">
-					Исходник
+					<UIString key={'btn.sourceCode'} />
 					<Icon name="link-out" width="15" height="15" />
 				</a>
 			)
@@ -44,7 +42,7 @@ const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		{
 			demoUrl && (
 				<a class="btn-link" href={demoUrl} target="_blank">
-					Демо
+					 <UIString key={'btn.demo'} />
 					<Icon name="link-out" width="15" height="15" />
 				</a>
 			)

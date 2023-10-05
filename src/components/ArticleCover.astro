@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 export interface Props {
 	src: string;
@@ -10,18 +10,15 @@ const { src, alt } = Astro.props as Props;
 ---
 
 <div class="cover">
-	<figure>
-		<Picture
-			itemprop="image"
-			src={src}
-			sizes="(max-width: 450px) 450px, 700px"
-			widths={[450, 700]}
-			formats={["webp"]}
-			aspectRatio={"16:9"}
-			alt={alt ? alt : ""}
-			background={"chocolate"}
-		/>
-	</figure>
+	<Image
+		itemprop="image"
+		src={src}
+		width={700}
+		height={400}
+		sizes="(max-width: 450px) 450px, 700px"
+		format="webp"
+		alt={alt ? alt : ""}
+	/>
 </div>
 
 <style lang="scss">
