@@ -69,13 +69,14 @@ export type MarkdownHeadingToc = MarkdownHeading & { subheadings: MarkdownHeadin
 export function buildToc(headings: MarkdownHeading[], maxDepth: number = 2) {
 	const toc: MarkdownHeadingToc[] = [];
 	const parentHeadings = new Map();
+
 	headings.forEach((h) => {
 		const heading = { ...h, subheadings: [] };
 		parentHeadings.set(heading.depth, heading);
 		if (heading.depth === 1) {
 			toc.push(heading);
 		} else if (heading.depth <= maxDepth) {
-			parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+			parentHeadings.get(heading.depth - 1)?.subheadings.push(heading);
 		}
 	});
 	return toc;
