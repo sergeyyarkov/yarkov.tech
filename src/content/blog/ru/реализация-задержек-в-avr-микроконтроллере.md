@@ -8,6 +8,7 @@ description: Очень часто в программах приходится 
 tags:
   - AVR
   - Tutorial
+  - Microcontrollers
 pubDate: 2023-10-15T16:28:52.587Z
 updatedDate: 2023-10-15T16:28:52.601Z
 ---
