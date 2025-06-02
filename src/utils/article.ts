@@ -64,7 +64,7 @@ export function getUniqueTags(articles: CollectionEntry<"blog">[]): string[] {
 	return Array.from(new Set(articles.map((a) => a.data.tags).flat()));
 }
 
-export type MarkdownHeadingToc = MarkdownHeading & { subheadings: MarkdownHeading[] };
+export type MarkdownHeadingToc = MarkdownHeading & { subheadings?: MarkdownHeading[] };
 
 export function buildToc(headings: MarkdownHeading[], maxDepth: number = 2) {
 	const toc: MarkdownHeadingToc[] = [];

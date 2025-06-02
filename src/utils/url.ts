@@ -1,4 +1,4 @@
-export const encode = (data: object) => {
+export const encode = (data: Record<string, string>) => {
 	return Object.keys(data)
 		.map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
 		.join("&");

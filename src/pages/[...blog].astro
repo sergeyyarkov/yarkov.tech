@@ -1,8 +1,8 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import ArticleLayout from "@root/layouts/article.astro";
 import { createRelativeArticleUrl, removeLanguageCodeFromPath } from "@root/utils";
-import { getLanguageFromURL, useTranslation } from "@i18n/utils";
 
 /**
  * Generate articles pages from `blog` collection.

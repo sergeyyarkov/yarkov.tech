@@ -12,6 +12,7 @@ tags:
 pubDate: 2023-10-15T16:28:52.587Z
 updatedDate: 2023-10-15T16:28:52.601Z
 ---
+
 # Способы реализации
 
 Существует два способа как можно реализовать задержку - это использовать аппаратные таймеры микроконтроллера или использовать простой цикл который выполняется определенное количество тактов. Преимущество использования аппаратного таймера микроконтроллера перед обычным программным циклом заключается в неблокирующем выполнении программы за счет того что работа таймера-счетчика не зависит от выполнения основной программы. Но иногда нужно использовать задержку всего в несколько микросекунд, что особо не повлияет на работу программы в некоторых случаях, тогда можно посмотреть в сторону простых циклов. Будет рассмотрен вариант и с длительной задержкой в несколько часов или дней. Программы будут представлены на языке Си и Ассемблера для микроконтроллера AVR ATtiny45V. В качестве основной программы будет моргающий светодиод который переключается раз в 0.5 секунд.
@@ -598,13 +599,13 @@ int main(void) {
 }
 ```
 
-## Заключение
+# Заключение
 
 Рассмотрены два основных способа реализации задержки используя таймеры и циклы. Выяснили что используя таймер-счетчик можно сделать задержку, которая не будет блокировать основной поток выполнения программы. Для длительных задержек, где необходимо отслеживать прошедшее время в секундах или часах, можно использовать глобальные переменные.
 
-## Полезные материалы
+# Полезные материалы
 
-* [AVR Instruction Set](https://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf)
-* [AVR130: Setup and Use of AVR Timers](https://ww1.microchip.com/downloads/en/Appnotes/Atmel-2505-Setup-and-Use-of-AVR-Timers_ApplicationNote_AVR130.pdf)
-* [AVR Delay Loop Calculator](http://darcy.rsgc.on.ca/ACES/TEI4M/AVRdelay.html)
-* [AVR Timer Calculator](https://eleccelerator.com/avr-timer-calculator/)
+- [AVR Instruction Set](https://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf)
+- [AVR130: Setup and Use of AVR Timers](https://ww1.microchip.com/downloads/en/Appnotes/Atmel-2505-Setup-and-Use-of-AVR-Timers_ApplicationNote_AVR130.pdf)
+- [AVR Delay Loop Calculator](http://darcy.rsgc.on.ca/ACES/TEI4M/AVRdelay.html)
+- [AVR Timer Calculator](https://eleccelerator.com/avr-timer-calculator/)
