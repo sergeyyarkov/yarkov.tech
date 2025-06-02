@@ -5,7 +5,6 @@ import { defineConfig } from "astro/config";
  */
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
-// import netlifyCMS from "astro-netlify-cms";
 import icon from "astro-icon";
 
 /**
