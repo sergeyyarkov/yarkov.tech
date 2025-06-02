@@ -25,7 +25,7 @@
 		"@sindresorhus/slugify": "^2.2.1",
 		"astro": "^3.2.0",
 		"astro-icon": "^1.1.5",
-		"astro-netlify-cms": "^0.5.4",
+		"decap-cms-app": "^3.6.3",
 		"hast-util-to-string": "^3.0.0",
 		"hastscript": "^8.0.0",
 		"html-escaper": "^3.0.3",
