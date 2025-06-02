@@ -1,5 +1,7 @@
 editor:
   preview: false
+publish_mode: editorial_workflow
+site_url: https://yarkov.tech
 display_url: https://yarkov.tech
 i18n:
   locales: [ru, en]
