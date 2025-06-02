@@ -3,7 +3,7 @@
   "articles": {
     "recentLimit": 5
   },
-  "isSiteUnderConstruction": true,
+  "isSiteUnderConstruction": false,
   "contacts": {
     "email": "serzh.yarkov@gmail.com",
     "telegram": "https://t.me/sergeyyarkov",
