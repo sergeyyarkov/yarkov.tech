@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 import UIString from "@components/UIString.astro";
 
@@ -27,14 +27,14 @@ const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		{
 			articleUrl && (
 				<a class="btn-link" href={articleUrl} target="_blank">
-					<UIString key={'btn.article'} />
+					<UIString key={"btn.article"} />
 				</a>
 			)
 		}
 		{
 			sourceUrl && (
 				<a class="btn-link" href={sourceUrl} target="_blank">
-					<UIString key={'btn.sourceCode'} />
+					<UIString key={"btn.sourceCode"} />
 					<Icon name="link-out" width="15" height="15" />
 				</a>
 			)
@@ -42,7 +42,7 @@ const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
 		{
 			demoUrl && (
 				<a class="btn-link" href={demoUrl} target="_blank">
-					 <UIString key={'btn.demo'} />
+					<UIString key={"btn.demo"} />
 					<Icon name="link-out" width="15" height="15" />
 				</a>
 			)

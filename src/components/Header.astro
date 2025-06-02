@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { IS_SITE_UNDER_CONSTRUCTION, SITE_METADATA } from "@root/constants";
 import ThemeSwitcher from "@components/ThemeSwticher";
 import LanguageSelect from "@components/LanguageSelect.astro";
@@ -8,7 +8,7 @@ import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 ---
 
-<header {...(IS_SITE_UNDER_CONSTRUCTION ? { style: 'top: 45px;' } : {})}>
+<header {...IS_SITE_UNDER_CONSTRUCTION ? { style: "top: 45px;" } : {}}>
 	<div class="container">
 		<div class="logo">
 			<TranslatedLink to="/">

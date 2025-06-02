@@ -6,6 +6,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
 import netlifyCMS from "astro-netlify-cms";
+import icon from "astro-icon";
 
 /**
  * Rehype plugins
@@ -39,6 +40,7 @@ export default defineConfig({
 				locales: Object.fromEntries(Object.keys(languages).map((key) => [key, key])),
 			},
 		}),
+		icon(),
 		solidJs(),
 		netlifyCMS({
 			adminPath: "/cms",

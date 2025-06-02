@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
 import ArticleComments from "@components/ArticleComments.astro";
@@ -72,15 +72,15 @@ const t = useTranslation(Astro);
 </article>
 
 <script define:vars={{ slug, IS_DEV: import.meta.env.DEV }}>
-(async () => {
-	if (IS_DEV) return;
-	const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
-	if (!response.ok) return;
-	const views = await response.text();
-	const $views = document.getElementById("views");
-	if (isNaN(parseInt(views, 10))) return;
-	if ($views) $views.textContent = views;
-})();
+	(async () => {
+		if (IS_DEV) return;
+		const response = await fetch(`/api/views?slug=${slug}`, { method: "POST" });
+		if (!response.ok) return;
+		const views = await response.text();
+		const $views = document.getElementById("views");
+		if (isNaN(parseInt(views, 10))) return;
+		if ($views) $views.textContent = views;
+	})();
 </script>
 
 <style lang="scss" is:global>
