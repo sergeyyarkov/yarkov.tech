@@ -20,7 +20,7 @@
 		"@astrojs/check": "^0.9.4",
 		"@astrojs/rss": "^3.0.0",
 		"@astrojs/sitemap": "^3.0.0",
-		"@astrojs/solid-js": "^3.0.1",
+		"@astrojs/solid-js": "^5.1.0",
 		"@iconify-json/mdi": "^1.2.3",
 		"@netlify/functions": "^2.1.0",
 		"@sindresorhus/slugify": "^2.2.1",
