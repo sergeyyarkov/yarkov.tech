@@ -24,7 +24,7 @@
 		"@iconify-json/mdi": "^1.2.3",
 		"@netlify/functions": "^2.1.0",
 		"@sindresorhus/slugify": "^2.2.1",
-		"astro": "^3.2.0",
+		"astro": "^5.13.0",
 		"astro-icon": "^1.1.5",
 		"decap-cms-app": "^3.6.3",
 		"hast-util-to-string": "^3.0.0",
