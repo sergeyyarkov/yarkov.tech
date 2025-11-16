@@ -36,13 +36,13 @@ export function removeDuplicates(
  * `/en/blog/2023-01-01/my-first-article`
  */
 export function createRelativeArticleUrl(
-	params: { id: string; title: string; pubDate: Date },
+	params: { slug: string; articleLang: string; pubDate: string },
 	prefix: string = "blog"
 ): string {
-	const articleLang = params.id.split("/")[0];
-	const date = params.pubDate.toISOString().split("T")[0];
+	const { pubDate, articleLang, slug } = params;
+	const date = pubDate.split("T")[0];
 	const lang = articleLang !== DEFAULT_LANGUAGE ? "/" + articleLang : "";
-	return `${lang}/${prefix}/${date}/${slugify(params.title, { lowercase: true })}`;
+	return `${lang}/${prefix}/${date}/${slug}`;
 }
 
 export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {

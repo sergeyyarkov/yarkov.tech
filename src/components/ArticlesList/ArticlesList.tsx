@@ -75,7 +75,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 						{(year) => (
 							<div class="articles-list__wrapper">
 								<h2>{year}</h2>
-								<For each={articles()[year]}>
+								{/* <For each={articles()[year]}>
 									{({ id, title, pubDate }) => (
 										<ArticleItem
 											id={id}
@@ -84,7 +84,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 											pageLang={props.pageLang}
 										/>
 									)}
-								</For>
+								</For> */}
 							</div>
 						)}
 					</For>

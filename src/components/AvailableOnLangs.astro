@@ -21,15 +21,13 @@ const { articles } = Astro.props;
 			{articles
 				.filter((a) => !a.id.startsWith(`${pageLang}/`))
 				.map(({ id, data: { title, pubDate } }) => (
-					<a href={`${createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX)}`}>{`${
-						languages[id.split("/")[0] as LanguageKeys]
-					}`}</a>
+					<a href={`...`}>{`${languages[id.split("/")[0] as LanguageKeys]}`}</a>
 				))}
 		</div>
 	)
 }
 
-<style lang="scss">
+<style lang='scss'>
 	div {
 		margin: 25px 0;
 		font-size: var(--font-size-lg);

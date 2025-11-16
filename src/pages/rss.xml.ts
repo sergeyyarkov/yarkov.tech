@@ -16,7 +16,7 @@ export async function GET() {
 				title,
 				pubDate,
 				description: `${description}${coverImage && `<img src="${coverImage}" alt="${title}">`}`,
-				link: createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX),
+				// link: createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX),
 				customData: `<language>en-us</language>`,
 			};
 		}),

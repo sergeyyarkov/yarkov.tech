@@ -14,7 +14,10 @@ export interface Props {
 }
 
 type RecentArticlesQueryResult = {
-	article_translations: Pick<ArticleTranslation, "id" | "title" | "pub_date">[];
+	article_translations: Pick<
+		ArticleTranslation,
+		"id" | "title" | "slug" | "pub_date" | "languages_code"
+	>[];
 };
 
 const data = await directus.query<RecentArticlesQueryResult>(`
@@ -22,18 +25,23 @@ const data = await directus.query<RecentArticlesQueryResult>(`
     article_translations {
         id
         title
+				slug
         pub_date
+				languages_code {
+            code
+						name
+        }
     }
 	}
 `);
 
 const { article_translations: articles } = data;
 
-console.log(data);
+// console.log();
 
-const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
+// const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
+// const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
 const isEmpty = articles.length === 0;
 ---
 
@@ -54,6 +62,8 @@ const isEmpty = articles.length === 0;
 						id={article.id}
 						title={article.title}
 						pubDate={article.pub_date}
+						slug={article.slug}
+						articleLang={article.languages_code.code.split("-")[0]}
 						pageLang={pageLang}
 					/>
 				))
