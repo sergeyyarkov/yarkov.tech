@@ -48,13 +48,13 @@ export function createRelativeArticleUrl(
 export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
 	const blocks: Record<string, any[]> = {};
 	articles.forEach((a) => {
-		const year = a.data.pubDate.getFullYear();
+		const year = new Date(a.pub_date).getFullYear();
 		if (!blocks[year]) blocks[year] = [];
 		blocks[year].push({
 			id: a.id,
-			title: a.data.title,
-			tags: a.data.tags,
-			pubDate: a.data.pubDate,
+			title: a.title,
+			// tags: a.tags,
+			pubDate: a.pub_date,
 		});
 	});
 	return blocks;

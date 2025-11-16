@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import siteconfig from "siteconfig.json";
 import { getLanguageFromURL } from "@i18n/utils";
 import * as utils from "@utils/index";
@@ -7,13 +6,32 @@ import ArticleItem from "@components/ArticleItem";
 import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
+import directus from "@/directus";
+import type { ArticleTranslation } from "@/directus-schema";
 
 export interface Props {
-	articles: CollectionEntry<"blog">[];
 	length?: number | undefined;
 }
 
-const { articles, length = siteconfig.articles.recentLimit } = Astro.props as Props;
+type RecentArticlesQueryResult = {
+	article_translations: Pick<ArticleTranslation, "id" | "title" | "pub_date">[];
+};
+
+const data = await directus.query<RecentArticlesQueryResult>(`
+	query Article_translations {
+    article_translations {
+        id
+        title
+        pub_date
+    }
+	}
+`);
+
+const { article_translations: articles } = data;
+
+console.log(data);
+
+const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
 const isEmpty = articles.length === 0;
@@ -24,18 +42,18 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to="/articles/">
+		<TranslatedLink to='/articles/'>
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype="http://schema.org/Blog">
+	<div itemscope itemtype='http://schema.org/Blog'>
 		{
 			!isEmpty ? (
-				filtered.map((article) => (
+				articles.map((article) => (
 					<ArticleItem
 						id={article.id}
-						title={article.data.title}
-						pubDate={article.data.pubDate}
+						title={article.title}
+						pubDate={article.pub_date}
 						pageLang={pageLang}
 					/>
 				))
@@ -46,7 +64,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
 	section {
 		& > div:nth-child(1) {
 			display: flex;

@@ -11,9 +11,6 @@ import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
-const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
 ---
 
 <PageLayout description={t("site.description")} lang={pageLang}>
@@ -26,11 +23,11 @@ const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
 			<p><UIString key={"splash.description"} /></p>
 		</SplashHeading>
 		<SplashLinks>
-			<SplashLink icon="information" href="/about/"><UIString key={"splash.about"} /></SplashLink>
-			<SplashLink icon="email_filled" href="/contacts/">
+			<SplashLink icon='information' href='/about/'><UIString key={"splash.about"} /></SplashLink>
+			<SplashLink icon='email_filled' href='/contacts/'>
 				<UIString key={"splash.contact"} />
 			</SplashLink>
 		</SplashLinks>
 	</Splash>
-	<RecentArticles articles={articles} />
+	<RecentArticles />
 </PageLayout>

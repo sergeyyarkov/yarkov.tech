@@ -1,11 +1,12 @@
 {
 	"extends": "astro/tsconfigs/strict",
 	"include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+	"exclude": ["dist"],
 	"compilerOptions": {
 		"strictNullChecks": true,
 		"baseUrl": ".",
 		"paths": {
+			"@/*": ["./*"],
 			"@root/*": ["./src/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@components/*": ["./src/components/*"],
@@ -19,5 +20,5 @@
 		"typeRoots": ["./node_modules/@types", "./src/types"],
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js"
-	},
+	}
 }

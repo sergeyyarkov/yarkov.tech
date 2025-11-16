@@ -4,18 +4,18 @@ import { URL_BLOG_PREFIX } from "@root/constants";
 import "./ArticleItem.scss";
 
 export type ArticleItemProps = {
-	id: string;
+	id: number;
 	title: string;
 	pubDate: Date;
 	pageLang: string;
 };
 
 const ArticleItem: Component<ArticleItemProps> = (props) => {
-	const articleLang = props.id.split("/")[0];
-	const href = createRelativeArticleUrl(
-		{ id: props.id, title: props.title, pubDate: props.pubDate },
-		URL_BLOG_PREFIX
-	);
+	const articleLang = "ru";
+	// const href = createRelativeArticleUrl(
+	// 	{ id: props.id, title: props.title, pubDate: props.pubDate },
+	// 	URL_BLOG_PREFIX
+	// );
 
 	return (
 		<article
@@ -24,14 +24,14 @@ const ArticleItem: Component<ArticleItemProps> = (props) => {
 			itemtype="http://schema.org/BlogPosting"
 			class="article-item"
 		>
-			<a href={href}>
+			<a href={""}>
 				<div class="flex">
 					<h3 itemprop="headline">{props.title}</h3>
 					{articleLang !== props.pageLang && <sup>{articleLang.toLocaleUpperCase()}</sup>}
 				</div>
 				<p>
-					<time datetime={props.pubDate.toISOString()}>
-						{createDateFormatter(props.pageLang).format(props.pubDate)}
+					<time datetime={`props.pubDate.toISOString()`}>
+						{/* {createDateFormatter(props.pageLang).format(props.pubDate)} */}
 					</time>
 				</p>
 			</a>

@@ -1,8 +1,9 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 
 /**
  * Integrations
  */
+import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
 import icon from "astro-icon";
@@ -32,6 +33,15 @@ const createAnchorLabel = (heading) => {
 export default defineConfig({
 	site: "https://yarkov.tech",
 	compressHTML: true,
+	output: "server",
+	adapter: node({
+		mode: "standalone",
+	}),
+	env: {
+		schema: {
+			DIRECTUS_TOKEN: envField.string({ context: "server", access: "secret", default: "" }),
+		},
+	},
 	integrations: [
 		sitemap({
 			i18n: {

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
+import slugify from "@sindresorhus/slugify";
 import ArticleLayout from "@root/layouts/article.astro";
 import { createRelativeArticleUrl, removeLanguageCodeFromPath } from "@root/utils";
 
@@ -9,37 +10,41 @@ import { createRelativeArticleUrl, removeLanguageCodeFromPath } from "@root/util
  * The final url will be `http://website.com/blog/2023-01-01/my-article` with default language
  * and `http://website.com/{language-code}/blog/2023-01-01/my-article` with other languages.
  */
-export async function getStaticPaths() {
-	const collection = await getCollection("blog", (e) => !e.data.draft);
-	return collection.map((article) => {
-		const {
-			id,
-			data: { title, pubDate },
-		} = article;
-		const url = createRelativeArticleUrl({ id, title, pubDate });
-		return {
-			params: { blog: url.slice(1) },
-			props: {
-				article,
-				availableOnLangs: collection.filter((e) =>
-					e.id.includes(removeLanguageCodeFromPath(article.id))
-				),
-			},
-		};
-	});
-}
+// export async function getStaticPaths() {
+// 	const collection = await getCollection("blog", (e) => !e.data.draft);
+// 	return collection.map((article) => {
+// 		const {
+// 			id,
+// 			data: { title, pubDate },
+// 		} = article;
+// 		const url = createRelativeArticleUrl({ id, title, pubDate });
+// 		return {
+// 			params: { blog: url.slice(1) },
+// 			props: {
+// 				article,
+// 				availableOnLangs: collection.filter((e) =>
+// 					e.id.includes(removeLanguageCodeFromPath(article.id))
+// 				),
+// 			},
+// 		};
+// 	});
+// }
 
 type Props = { article: CollectionEntry<"blog">; availableOnLangs: CollectionEntry<"blog">[] };
 
-const { Content, headings } = await Astro.props.article.render();
-const { article, availableOnLangs } = Astro.props;
+const { blog } = Astro.params as { blog: string };
+const collection = await getCollection("blog", (e) => !e.data.draft);
+const slug = blog.split("/").at(-1);
+const article = collection.find(
+	(a) => slugify(a.slug.split("/").at(-1) || "", { lowercase: true }) === slug
+);
+
+if (article === undefined) return Astro.redirect("/404");
+
+const { Content, headings } = await render(article);
+// const { article, availableOnLangs } = Astro.props;
 ---
 
-<ArticleLayout
-	lang={article.id.split("/")[0]}
-	article={article}
-	headings={headings}
-	availableOnLangs={availableOnLangs}
->
+<ArticleLayout lang={article.id.split("/")[0]} article={article} headings={headings}>
 	<Content />
 </ArticleLayout>
