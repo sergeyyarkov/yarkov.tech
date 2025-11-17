@@ -13,7 +13,7 @@ export type ArticleItemProps = {
 };
 
 const ArticleItem: Component<ArticleItemProps> = (props) => {
-	const articleLang = "ru";
+	const articleLang = props.articleLang;
 
 	const href = createRelativeArticleUrl(
 		{ pubDate: props.pubDate, slug: props.slug, articleLang: props.articleLang },

@@ -7,40 +7,45 @@ import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import directus from "@/directus";
-import type { ArticleTranslation } from "@/directus-schema";
+import type { Article, ArticleTranslation, Language } from "@/directus-schema";
 
 export interface Props {
 	length?: number | undefined;
 }
 
 type RecentArticlesQueryResult = {
-	article_translations: Pick<
-		ArticleTranslation,
-		"id" | "title" | "slug" | "pub_date" | "languages_code"
-	>[];
+	article: Array<{
+		translations: Pick<ArticleTranslation, "id" | "title" | "slug" | "pub_date" | "views"> & {
+			languages_code: Pick<Language, "code">;
+		};
+	}>;
 };
 
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+
 const data = await directus.query<RecentArticlesQueryResult>(`
-	query Article_translations {
-    article_translations {
-        id
-        title
+	query Article {
+		article {
+			translations(
+				filter: { 
+					status: { _eq: "published" } 
+				}
+			) {
+				title
 				slug
-        pub_date
-				languages_code {
-            code
-						name
-        }
-    }
+				pub_date
+				views
+				languages_code { code }
+			}
+		}
 	}
 `);
 
-const { article_translations: articles } = data;
+const articles = data.article.flatMap((a) => a.translations);
 
-// console.log();
+// console.log(articles[0]);
 
 // const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
-const pageLang = getLanguageFromURL(Astro.url.pathname);
 // const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
 const isEmpty = articles.length === 0;
 ---
@@ -50,11 +55,11 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to='/articles/'>
+		<TranslatedLink to="/articles/">
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype='http://schema.org/Blog'>
+	<div itemscope itemtype="http://schema.org/Blog">
 		{
 			!isEmpty ? (
 				articles.map((article) => (
@@ -74,7 +79,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
 	section {
 		& > div:nth-child(1) {
 			display: flex;

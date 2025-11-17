@@ -9,12 +9,14 @@
 		"url": "https://yarkov.tech"
 	},
 	"license": "MIT",
+	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro check && astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"gen-types": "node --env-file=.env ./scripts/gen-types.js"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.5",
@@ -41,6 +43,7 @@
 	},
 	"devDependencies": {
 		"@types/mime-types": "^2.1.4",
+		"directus-sdk-typegen": "^0.2.1",
 		"sass": "^1.68.0"
 	}
 }

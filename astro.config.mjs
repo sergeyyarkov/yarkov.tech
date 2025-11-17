@@ -39,6 +39,7 @@ export default defineConfig({
 	}),
 	env: {
 		schema: {
+			DIRECTUS_URL: envField.string({ context: "server", access: "secret", default: "" }),
 			DIRECTUS_TOKEN: envField.string({ context: "server", access: "secret", default: "" }),
 		},
 	},

@@ -17,20 +17,31 @@ export interface ArticleTranslation {
 	/** @primaryKey */
 	id: number;
 	article_id?: Article | string | null;
-	languages_code?: Language | string | null;
-	title?: string | null;
-	description?: string | null;
-	slug?: string | null;
-	content?: string | null;
-	status?: 'published' | 'draft' | 'archived' | null;
-	author?: DirectusUser | string | null;
-	pub_date?: string | null;
-	views?: number | null;
+	/** @required */
+	languages_code: Language | string;
+	/** @required */
+	title: string;
+	/** @required */
+	description: string;
+	/** @required */
+	slug: string;
+	/** @required */
+	content: string;
+	/** @required */
+	status: 'published' | 'draft' | 'archived';
+	/** @required */
+	author: DirectusUser | string;
+	/** @required */
+	pub_date: string;
+	/** @required */
+	views: number;
 }
 
 export interface Global {
 	/** @primaryKey */
 	id: number;
+	/** @required */
+	title: string;
 	translations?: GlobalTranslation[] | null;
 }
 
@@ -40,6 +51,26 @@ export interface GlobalTranslation {
 	global_id?: Global | string | null;
 	languages_code?: Language | string | null;
 	description?: string | null;
+	navigation?: Array<{ name: string; link: string }> | null;
+}
+
+export interface HomePage {
+	/** @primaryKey */
+	id: number;
+	translations?: HomePageTranslation[] | null;
+}
+
+export interface HomePageTranslation {
+	/** @primaryKey */
+	id: number;
+	home_page_id?: HomePage | string | null;
+	languages_code?: Language | string | null;
+	/** @required */
+	headline: string;
+	/** @required */
+	subheadline: string;
+	/** @required */
+	description: string;
 }
 
 export interface Language {
@@ -509,6 +540,8 @@ export interface Schema {
 	article_translations: ArticleTranslation[];
 	global: Global;
 	global_translations: GlobalTranslation[];
+	home_page: HomePage;
+	home_page_translations: HomePageTranslation[];
 	languages: Language[];
 	tag: Tag[];
 	directus_access: DirectusAccess[];
@@ -546,6 +579,8 @@ export enum CollectionNames {
 	article_translations = 'article_translations',
 	global = 'global',
 	global_translations = 'global_translations',
+	home_page = 'home_page',
+	home_page_translations = 'home_page_translations',
 	languages = 'languages',
 	tag = 'tag',
 	directus_access = 'directus_access',
