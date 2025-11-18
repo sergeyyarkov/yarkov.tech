@@ -65,10 +65,6 @@ export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
 	return blocks;
 }
 
-export function getUniqueTags(articles: CollectionEntry<"blog">[]): string[] {
-	return Array.from(new Set(articles.map((a) => a.data.tags).flat()));
-}
-
 export type MarkdownHeadingToc = MarkdownHeading & { subheadings?: MarkdownHeading[] };
 
 export function buildToc(headings: MarkdownHeading[], maxDepth: number = 2) {
@@ -96,8 +92,8 @@ export async function markdownToHTML(content: string): Promise<string> {
 
 	const file = await unified()
 		.use(remarkParse)
-		.use(remarkPrism)
-		.use(remarkToc)
+		.use(remarkToc, { heading: "(table[ -]of[ -])?contents?|toc|содержание", maxDepth: 2 })
+		.use(remarkPrism as any)
 		.use(remarkRehype)
 		.use(rehypeSlug)
 		.use(rehypeAutolinkHeadings, {
