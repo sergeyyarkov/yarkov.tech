@@ -7,10 +7,11 @@ import ArticleComments from "@components/ArticleComments.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import AvailableOnLangs from "@components/AvailableOnLangs.astro";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
-import * as utils from "@utils/index";
+import type { ArticleTranslation } from "@/directus-schema";
+import { DIRECTUS_URL } from "astro:env/server";
 
 export type Props = {
-	article: CollectionEntry<"blog">;
+	article: ArticleTranslation;
 	availableOnLangs?: CollectionEntry<"blog">[];
 	lang: string;
 };
@@ -18,12 +19,8 @@ export type Props = {
 const { article, availableOnLangs } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const {
-	id,
-	data: { coverImage, title, author, description, tags, pubDate },
-} = article;
+const { id, cover_image, title, author, description, tags, pub_date, slug } = article;
 
-const slug = utils.encodeString(id.split("/")[1]);
 const t = useTranslation(Astro);
 ---
 
@@ -54,12 +51,16 @@ const t = useTranslation(Astro);
 			<h1 itemprop="headline">{title}</h1>
 		</div>
 		<div class="published">
-			<time itemprop="datePublished" datetime={pubDate.toString()}>
-				{createDateFormatter(pageLang).format(pubDate)}&nbsp;
+			<time itemprop="datePublished" datetime={pub_date}>
+				{createDateFormatter(pageLang).format(new Date(pub_date))}&nbsp;
 			</time>
 			<span itemprop="author">{author}</span>
 		</div>
-		{coverImage && <ArticleCover src={coverImage} alt={title} />}
+		{
+			cover_image && (
+				<ArticleCover src={`${DIRECTUS_URL}/assets/${cover_image.filename_disk}`} alt={title} />
+			)
+		}
 		<div class="description">
 			<p>
 				{description}

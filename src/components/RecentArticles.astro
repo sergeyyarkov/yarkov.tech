@@ -1,5 +1,4 @@
 ---
-import siteconfig from "siteconfig.json";
 import { getLanguageFromURL } from "@i18n/utils";
 import * as utils from "@utils/index";
 import ArticleItem from "@components/ArticleItem";
@@ -41,12 +40,9 @@ const data = await directus.query<RecentArticlesQueryResult>(`
 	}
 `);
 
-const articles = data.article.flatMap((a) => a.translations);
-
-console.log(articles);
-
-// const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
-// const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
+const articles = data.article.flatMap((a) =>
+	utils.removeArticleDuplicates(a.translations, pageLang)
+);
 const isEmpty = articles.length === 0;
 ---
 
@@ -55,26 +51,14 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to='/articles/'>
+		<TranslatedLink to="/articles/">
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype='http://schema.org/Blog'>
+	<div itemscope itemtype="http://schema.org/Blog">
 		{
 			!isEmpty ? (
-				articles.map(
-					(article) =>
-						article && (
-							<ArticleItem
-								id={article.id}
-								title={article.title}
-								pubDate={article.pub_date}
-								slug={article.slug}
-								articleLang={article.languages_code}
-								pageLang={pageLang}
-							/>
-						)
-				)
+				articles.map((article) => article && <ArticleItem data={article} pageLang={pageLang} />)
 			) : (
 				<EmptyList />
 			)
@@ -82,7 +66,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
 	section {
 		& > div:nth-child(1) {
 			display: flex;

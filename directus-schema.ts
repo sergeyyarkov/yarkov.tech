@@ -1,7 +1,6 @@
 export interface Article {
 	/** @primaryKey */
 	id: number;
-	tags?: ArticleTag[] | string[];
 	/** @required */
 	translations: ArticleTranslation[] | null;
 }
@@ -36,6 +35,15 @@ export interface ArticleTranslation {
 	/** @required */
 	views: number;
 	cover_image?: DirectusFile | string | null;
+	/** @required */
+	tags: ArticleTranslationsTag[] | string[];
+}
+
+export interface ArticleTranslationsTag {
+	/** @primaryKey */
+	id: number;
+	article_translations_id?: ArticleTranslation | string | null;
+	tag_id?: Tag | string | null;
 }
 
 export interface Global {
@@ -43,6 +51,12 @@ export interface Global {
 	id: number;
 	/** @required */
 	title: string;
+	ym_counter?: number | null;
+	github?: string | null;
+	telegram?: string | null;
+	email?: string | null;
+	/** @required */
+	recent_articles_limit: number;
 	translations?: GlobalTranslation[] | null;
 }
 
@@ -77,8 +91,32 @@ export interface HomePageTranslation {
 export interface Language {
 	/** @primaryKey */
 	code: string;
-	name?: string | null;
-	direction?: 'ltr' | 'rtl' | null;
+	/** @required */
+	name: string;
+	/** @required */
+	direction: 'ltr' | 'rtl';
+}
+
+export interface Project {
+	/** @primaryKey */
+	id: number;
+	/** @required */
+	translations: ProjectTranslation[] | null;
+}
+
+export interface ProjectTranslation {
+	/** @primaryKey */
+	id: number;
+	project_id?: Project | string | null;
+	languages_code?: Language | string | null;
+	/** @required */
+	title: string;
+	/** @required */
+	year: string;
+	/** @required */
+	description: string;
+	/** @required */
+	source_url: string;
 }
 
 export interface Tag {
@@ -539,11 +577,14 @@ export interface Schema {
 	article: Article[];
 	article_tag: ArticleTag[];
 	article_translations: ArticleTranslation[];
+	article_translations_tag: ArticleTranslationsTag[];
 	global: Global;
 	global_translations: GlobalTranslation[];
 	home_page: HomePage;
 	home_page_translations: HomePageTranslation[];
 	languages: Language[];
+	project: Project[];
+	project_translations: ProjectTranslation[];
 	tag: Tag[];
 	directus_access: DirectusAccess[];
 	directus_activity: DirectusActivity[];
@@ -578,11 +619,14 @@ export enum CollectionNames {
 	article = 'article',
 	article_tag = 'article_tag',
 	article_translations = 'article_translations',
+	article_translations_tag = 'article_translations_tag',
 	global = 'global',
 	global_translations = 'global_translations',
 	home_page = 'home_page',
 	home_page_translations = 'home_page_translations',
 	languages = 'languages',
+	project = 'project',
+	project_translations = 'project_translations',
 	tag = 'tag',
 	directus_access = 'directus_access',
 	directus_activity = 'directus_activity',
