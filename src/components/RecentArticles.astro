@@ -7,18 +7,14 @@ import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import directus from "@/directus";
-import type { Article, ArticleTranslation, Language } from "@/directus-schema";
+import type { Article } from "@/directus-schema";
 
 export interface Props {
 	length?: number | undefined;
 }
 
 type RecentArticlesQueryResult = {
-	article: Array<{
-		translations: Pick<ArticleTranslation, "id" | "title" | "slug" | "pub_date" | "views"> & {
-			languages_code: Pick<Language, "code">;
-		};
-	}>;
+	article: Array<Article>;
 };
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
@@ -32,6 +28,10 @@ const data = await directus.query<RecentArticlesQueryResult>(`
 				}
 			) {
 				title
+				cover_image { 
+					id
+					title
+				}
 				slug
 				pub_date
 				views
@@ -43,7 +43,7 @@ const data = await directus.query<RecentArticlesQueryResult>(`
 
 const articles = data.article.flatMap((a) => a.translations);
 
-// console.log(articles[0]);
+console.log(articles);
 
 // const { length = siteconfig.articles.recentLimit } = Astro.props as Props;
 // const filtered = utils.removeDuplicates(articles.slice(0, length), pageLang);
@@ -55,23 +55,26 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to="/articles/">
+		<TranslatedLink to='/articles/'>
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype="http://schema.org/Blog">
+	<div itemscope itemtype='http://schema.org/Blog'>
 		{
 			!isEmpty ? (
-				articles.map((article) => (
-					<ArticleItem
-						id={article.id}
-						title={article.title}
-						pubDate={article.pub_date}
-						slug={article.slug}
-						articleLang={article.languages_code.code.split("-")[0]}
-						pageLang={pageLang}
-					/>
-				))
+				articles.map(
+					(article) =>
+						article && (
+							<ArticleItem
+								id={article.id}
+								title={article.title}
+								pubDate={article.pub_date}
+								slug={article.slug}
+								articleLang={article.languages_code}
+								pageLang={pageLang}
+							/>
+						)
+				)
 			) : (
 				<EmptyList />
 			)
@@ -79,7 +82,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
 	section {
 		& > div:nth-child(1) {
 			display: flex;

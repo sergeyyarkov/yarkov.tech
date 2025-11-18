@@ -35,6 +35,7 @@ export interface ArticleTranslation {
 	pub_date: string;
 	/** @required */
 	views: number;
+	cover_image?: DirectusFile | string | null;
 }
 
 export interface Global {

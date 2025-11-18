@@ -1,22 +1,24 @@
 import type { Component } from "solid-js";
 import { createDateFormatter, createRelativeArticleUrl } from "@root/utils";
-import { URL_BLOG_PREFIX } from "@root/constants";
+import { DEFAULT_LANGUAGE, URL_BLOG_PREFIX } from "@root/constants";
 import "./ArticleItem.scss";
+import type { Language } from "@/directus-schema";
 
 export type ArticleItemProps = {
 	id: number;
 	title: string;
 	pubDate: string;
 	pageLang: string;
-	articleLang: string;
+	articleLang: string | Language;
 	slug: string;
 };
 
 const ArticleItem: Component<ArticleItemProps> = (props) => {
-	const articleLang = props.articleLang;
+	const articleLang =
+		typeof props.articleLang === "object" ? props.articleLang.code.split("-")[0] : DEFAULT_LANGUAGE;
 
 	const href = createRelativeArticleUrl(
-		{ pubDate: props.pubDate, slug: props.slug, articleLang: props.articleLang },
+		{ pubDate: props.pubDate, slug: props.slug, articleLang },
 		URL_BLOG_PREFIX
 	);
 

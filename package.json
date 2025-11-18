@@ -16,7 +16,7 @@
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"gen-types": "node --env-file=.env ./scripts/gen-types.js"
+		"directus:gen-types": "node --env-file=.env ./scripts/gen-types.js"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.5",
