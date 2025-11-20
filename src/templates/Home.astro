@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import Splash from "@components/Splash/Splash.astro";
 import SplashHeading from "@components/Splash/SplashHeading.astro";
@@ -23,11 +22,11 @@ const t = useTranslation(Astro);
 			<p><UIString key={"splash.description"} /></p>
 		</SplashHeading>
 		<SplashLinks>
-			<SplashLink icon='information' href='/about/'><UIString key={"splash.about"} /></SplashLink>
-			<SplashLink icon='email_filled' href='/contacts/'>
+			<SplashLink icon="information" href="/about/"><UIString key={"splash.about"} /></SplashLink>
+			<SplashLink icon="email_filled" href="/contacts/">
 				<UIString key={"splash.contact"} />
 			</SplashLink>
 		</SplashLinks>
 	</Splash>
-	<RecentArticles />
+	<RecentArticles limit={5} />
 </PageLayout>

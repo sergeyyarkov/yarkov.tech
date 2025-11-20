@@ -13,27 +13,27 @@ import rehypeStringify from "rehype-stringify";
 import { escape } from "html-escaper";
 import { h } from "hastscript";
 import { toString } from "hast-util-to-string";
-import { selectAll } from "hast-util-select";
+// import { selectAll } from "hast-util-select";
 
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
 export function removeArticleDuplicates(
-	articles: ArticleTranslation[] | null,
+	articleTranslations: ArticleTranslation[] | null,
 	pageLang: LanguageKeys
 ): ArticleTranslation[] {
-	if (!articles) return [];
-	if (articles && articles.length >= 2) {
-		const pageLangArticles = articles.filter((a) => {
+	if (!articleTranslations) return [];
+	if (articleTranslations && articleTranslations.length >= 2) {
+		const pageLangArticles = articleTranslations.filter((a) => {
 			return (
 				typeof a.languages_code === "object" && a.languages_code.code.split("-")[0] === pageLang
 			);
 		});
 		if (pageLangArticles.length !== 0) return pageLangArticles;
-		return articles;
+		return articleTranslations;
 	}
-	return articles;
+	return articleTranslations;
 }
 
 /**
@@ -50,8 +50,9 @@ export function createRelativeArticleUrl(
 	return `${lang}/${prefix}/${date}/${slug}`;
 }
 
-export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
-	const blocks: Record<string, any[]> = {};
+export function formatToArticleBlocks(articles: ArticleTranslation[]) {
+	const blocks: Record<string, ArticleTranslation[]> = {};
+
 	articles.forEach((a) => {
 		const year = new Date(a.pub_date).getFullYear();
 		if (!blocks[year]) blocks[year] = [];
@@ -59,7 +60,8 @@ export function formatToArticleBlocks(articles: CollectionEntry<"blog">[]) {
 			id: a.id,
 			title: a.title,
 			// tags: a.tags,
-			pubDate: a.pub_date,
+			slug: a.slug,
+			pub_date: a.pub_date,
 		});
 	});
 	return blocks;

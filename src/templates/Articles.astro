@@ -1,31 +1,19 @@
 ---
-import { getCollection } from "astro:content";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
 import * as utils from "@utils/index";
 import PageLayout from "@layouts/default.astro";
 import PageHeading from "@components/PageHeading.astro";
 import ArticlesList from "@root/components/ArticlesList";
-import directus from "@/directus";
+import { fetchTags, fetchArticles } from "@/directus";
 
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-// const articles = await getCollection("blog", (e) => !e.data.draft);
-// const filtered = utils.removeDuplicates(articles, pageLang);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const tags = (await directus.query(`query Tag { tag { title } }`)).tag.map((t) => t.title);
-
-const { article_translations } = await directus.query(`
-	query Article_translations {
-			article_translations {
-					languages_code {
-						code
-					}
-					slug
-					status
-					pub_date	
-			}
-	}
-`);
+const tags = (await fetchTags()).map((t) => t.title);
+const articles = (await fetchArticles()).flatMap((a) =>
+	utils.removeArticleDuplicates(a.translations, pageLang)
+);
+const articleBlocks = utils.formatToArticleBlocks(articles);
 ---
 
 <PageLayout
@@ -39,7 +27,7 @@ const { article_translations } = await directus.query(`
 		<ArticlesList
 			client:load
 			i18n={{ "articles.empty": t("articles.empty"), "input.search": t("input.search") }}
-			articles={utils.formatToArticleBlocks(article_translations)}
+			articles={articleBlocks}
 			tags={tags}
 			pageLang={pageLang}
 		/>

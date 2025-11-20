@@ -5,17 +5,11 @@ import SearchInput from "./SearchInput";
 import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
 import "./ArticlesList.scss";
+import type { ArticleTranslation } from "@/directus-schema";
 
 type UiStringsType = { "articles.empty": string; "input.search": string };
 
-type ArticlesType = Array<{
-	id: string;
-	title: string;
-	tags: string[];
-	pubDate: Date;
-}>;
-
-type ArticlesBlockType = Record<string, ArticlesType>;
+type ArticlesBlockType = Record<string, ArticleTranslation[]>;
 
 type ArticlesListProps = {
 	articles: ArticlesBlockType;
@@ -40,7 +34,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	}: {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
-		const filter = (cb: (articles: ArticlesType) => ArticlesType) => {
+		const filter = (cb: (articles: ArticleTranslation[]) => ArticleTranslation[]) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
 					.map((year) => [year, cb(props.articles[year])])
@@ -75,16 +69,9 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 						{(year) => (
 							<div class="articles-list__wrapper">
 								<h2>{year}</h2>
-								{/* <For each={articles()[year]}>
-									{({ id, title, pubDate }) => (
-										<ArticleItem
-											id={id}
-											title={title}
-											pubDate={pubDate}
-											pageLang={props.pageLang}
-										/>
-									)}
-								</For> */}
+								<For each={articles()[year]}>
+									{(data) => <ArticleItem data={data} pageLang={props.pageLang} />}
+								</For>
 							</div>
 						)}
 					</For>

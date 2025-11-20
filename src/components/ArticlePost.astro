@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { createDateFormatter } from "@root/utils";
 import ArticleCover from "@components/ArticleCover.astro";
@@ -12,29 +11,29 @@ import { DIRECTUS_URL } from "astro:env/server";
 
 export type Props = {
 	article: ArticleTranslation;
-	availableOnLangs?: CollectionEntry<"blog">[];
 	lang: string;
 };
 
-const { article, availableOnLangs } = Astro.props as Props;
+const { article } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const { cover_image, title, author, description, tags, pub_date, slug, views } = article;
+const { cover_image, title, author, description, tags, pub_date, slug, views, article_id } =
+	article;
 const t = useTranslation(Astro);
 ---
 
-<article itemscope itemtype='http://schema.org/BlogPosting' class='article'>
+<article itemscope itemtype="http://schema.org/BlogPosting" class="article">
 	<header>
 		<div>
 			{
 				tags && (
-					<div class='tags'>
-						<ul itemprop='keywords'>
+					<div class="tags">
+						<ul itemprop="keywords">
 							{tags.map(
 								(tag) =>
 									typeof tag === "object" && (
 										<li>
-											<TranslatedLink rel='tag' to={`/articles/?tags=${tag.tag_id.title}`}>
+											<TranslatedLink rel="tag" to={`/articles/?tags=${tag.tag_id.title}`}>
 												{tag.tag_id.title}
 											</TranslatedLink>
 										</li>
@@ -44,37 +43,37 @@ const t = useTranslation(Astro);
 					</div>
 				)
 			}
-			<div class='views'>
-				<Icon name='eye' width='21' height='21' />
+			<div class="views">
+				<Icon name="eye" width="21" height="21" />
 				<span><span>{views}</span>&nbsp;{t("article.views")}</span>
 			</div>
 		</div>
-		<div class='heading'>
-			<h1 itemprop='headline'>{title}</h1>
+		<div class="heading">
+			<h1 itemprop="headline">{title}</h1>
 		</div>
-		<div class='published'>
-			<time itemprop='datePublished' datetime={pub_date}>
+		<div class="published">
+			<time itemprop="datePublished" datetime={pub_date}>
 				{createDateFormatter(pageLang).format(new Date(pub_date))}&nbsp;
 			</time>
-			<span itemprop='author'>{`${author.first_name} ${author.last_name}`}</span>
+			<span itemprop="author">{`${author.first_name} ${author.last_name}`}</span>
 		</div>
 		{
 			cover_image && (
 				<ArticleCover src={`${DIRECTUS_URL}/assets/${cover_image.filename_disk}`} alt={title} />
 			)
 		}
-		<div class='description'>
+		<div class="description">
 			<p>
 				{description}
 			</p>
 		</div>
-		{availableOnLangs && <AvailableOnLangs articles={availableOnLangs} />}
+		<AvailableOnLangs articles={article_id.translations} />
 	</header>
 	<slot />
 	<ArticleComments url={canonicalUrl.href} id={slug} />
 </article>
 
-<style lang='scss' is:global>
+<style lang="scss" is:global>
 	.article {
 		& header {
 			& div:nth-child(1) {

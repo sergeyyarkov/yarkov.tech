@@ -23,6 +23,8 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 	const onSearch: JSX.EventHandler<HTMLInputElement, InputEvent> = (e) => {
 		const value = e.currentTarget.value;
 
+		console.log(value);
+
 		if (value.trim().length === 0) {
 			resetSearch();
 			return;
@@ -62,6 +64,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 				onInput={onSearch}
 				value={search()}
 				type="search"
+				name="search"
 				placeholder={props.i18n["input.search"] || "Search article by title..."}
 				autocapitalize="off"
 				autocomplete="off"

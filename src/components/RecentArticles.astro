@@ -5,44 +5,16 @@ import ArticleItem from "@components/ArticleItem";
 import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
-import directus from "@/directus";
-import type { Article } from "@/directus-schema";
+import { fetchRecentArticles } from "@/directus";
 
 export interface Props {
-	length?: number | undefined;
+	limit?: number;
 }
 
-type RecentArticlesQueryResult = {
-	article: Array<Article>;
-};
-
+const { limit = 1 } = Astro.props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-
-const data = await directus.query<RecentArticlesQueryResult>(`
-	query Article {
-		article {
-			translations(
-				filter: { 
-					status: { _eq: "published" } 
-				}
-			) {
-				title
-				cover_image { 
-					id
-					title
-				}
-				slug
-				pub_date
-				views
-				languages_code { code }
-			}
-		}
-	}
-`);
-
-const articles = data.article.flatMap((a) =>
-	utils.removeArticleDuplicates(a.translations, pageLang)
-);
+const data = await fetchRecentArticles();
+const articles = data.flatMap((a) => utils.removeArticleDuplicates(a.translations, pageLang));
 const isEmpty = articles.length === 0;
 ---
 
@@ -58,7 +30,9 @@ const isEmpty = articles.length === 0;
 	<div itemscope itemtype="http://schema.org/Blog">
 		{
 			!isEmpty ? (
-				articles.map((article) => article && <ArticleItem data={article} pageLang={pageLang} />)
+				articles
+					.slice(0, limit)
+					.map((article) => article && <ArticleItem data={article} pageLang={pageLang} />)
 			) : (
 				<EmptyList />
 			)

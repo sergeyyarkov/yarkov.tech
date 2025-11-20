@@ -1,25 +1,23 @@
 ---
 import type { MarkdownHeading } from "astro";
-import type { CollectionEntry } from "astro:content";
 import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/constants";
 import BaseHead from "@components/BaseHead.astro";
 import BaseLayout from "@components/BaseLayout.astro";
 import ArticleContent from "@components/ArticleContent.astro";
 import ArticlePost from "@components/ArticlePost.astro";
 import OpenGraph from "@components/OpenGraph.astro";
-import TableOfContents from "@root/components/TableOfContents.astro";
+// import TableOfContents from "@root/components/TableOfContents.astro";
 import type { ArticleTranslation } from "@/directus-schema";
 import * as utils from "@utils/article";
 
 export interface Props {
 	lang?: string | undefined;
 	article: ArticleTranslation;
-	availableOnLangs?: CollectionEntry<"blog">[];
 	headings: MarkdownHeading[];
 }
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const { lang = DEFAULT_LANGUAGE, article, availableOnLangs } = Astro.props as Props;
+const { lang = DEFAULT_LANGUAGE, article } = Astro.props as Props;
 const { title, description, cover_image, content } = article;
 const htmlContent = await utils.markdownToHTML(content);
 ---
@@ -30,18 +28,18 @@ const htmlContent = await utils.markdownToHTML(content);
 			title={title}
 			siteName={SITE_METADATA.name}
 			description={description}
-			type='article'
+			type="article"
 			url={canonicalUrl.href}
 			image={cover_image
 				? { path: cover_image.filename_disk, width: "700", height: "400", type: cover_image.type }
 				: undefined}
 		/>
-		<script is:inline defer src='/assets/js/load-code-highlight.js'></script>
+		<script is:inline defer src="/assets/js/load-code-highlight.js"></script>
 	</BaseHead>
 
 	<BaseLayout>
-		<div class='container'>
-			<ArticlePost lang={lang} article={article} availableOnLangs={availableOnLangs}>
+		<div class="container">
+			<ArticlePost lang={lang} article={article}>
 				<ArticleContent set:html={htmlContent} />
 			</ArticlePost>
 		</div>
