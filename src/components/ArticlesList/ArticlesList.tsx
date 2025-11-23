@@ -47,7 +47,11 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 				a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
 			);
 			if (tags && tags.length > 0) {
-				filtered = filtered.filter((a) => tags.some((t) => a.tags.includes(t)));
+				filtered = filtered.filter((a) =>
+					tags.some((t) => {
+						return a.tags.map((t) => t.tag_id.title).includes(t);
+					})
+				);
 			}
 			return filtered;
 		});

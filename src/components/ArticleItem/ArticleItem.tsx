@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import { createDateFormatter, createRelativeArticleUrl } from "@root/utils";
+import { createRelativeArticleUrl, createDateFormatter } from "@root/utils";
 import { DEFAULT_LANGUAGE, URL_BLOG_PREFIX } from "@root/constants";
 import "./ArticleItem.scss";
 import type { ArticleTranslation } from "@/directus-schema";
