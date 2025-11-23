@@ -1,3 +1,5 @@
 {
-	"githubPullRequests.ignoredPullRequestBranches": ["develop"]
+	"githubPullRequests.ignoredPullRequestBranches": ["develop"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true
 }

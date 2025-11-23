@@ -6,10 +6,11 @@ import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
 import "./ArticlesList.scss";
 import type { ArticleTranslation } from "@/directus-schema";
+import { ArticleQuery } from "@/src/graphql/graphql";
 
 type UiStringsType = { "articles.empty": string; "input.search": string };
 
-type ArticlesBlockType = Record<string, ArticleTranslation[]>;
+type ArticlesBlockType = Record<string, ArticleQuery["article"][0]["translations"]>;
 
 type ArticlesListProps = {
 	articles: ArticlesBlockType;
