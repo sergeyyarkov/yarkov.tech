@@ -5,7 +5,7 @@ import ArticleItem from "@components/ArticleItem";
 import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
-import { fetchRecentArticles } from "@/directus";
+import { getRecentArticleList } from "../queries";
 
 export interface Props {
 	limit?: number;
@@ -13,7 +13,7 @@ export interface Props {
 
 const { limit = 1 } = Astro.props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-const data = await fetchRecentArticles();
+const data = await getRecentArticleList();
 const articles = data.flatMap((a) => utils.removeArticleDuplicates(a.translations, pageLang));
 const isEmpty = articles.length === 0;
 ---
@@ -32,7 +32,18 @@ const isEmpty = articles.length === 0;
 			!isEmpty ? (
 				articles
 					.slice(0, limit)
-					.map((article) => article && <ArticleItem data={article} pageLang={pageLang} />)
+					.map(
+						(a) =>
+							a && (
+								<ArticleItem
+									slug={a.slug}
+									title={a.title}
+									languages_code={a.languages_code}
+									pub_date={a.pub_date}
+									pageLang={pageLang}
+								/>
+							)
+					)
 			) : (
 				<EmptyList />
 			)

@@ -2,20 +2,19 @@ import type { Component } from "solid-js";
 import { createRelativeArticleUrl, createDateFormatter } from "@root/utils";
 import { DEFAULT_LANGUAGE, URL_BLOG_PREFIX } from "@root/constants";
 import "./ArticleItem.scss";
-import type { ArticleTranslation } from "@/directus-schema";
+import { Article_Translations } from "@/src/graphql/graphql";
 
 export type ArticleItemProps = {
-	data: ArticleTranslation;
+	title: Article_Translations["title"];
+	pub_date: Article_Translations["pub_date"];
+	slug: Article_Translations["slug"];
+	languages_code: Article_Translations["languages_code"];
 	pageLang: string;
 };
 
 const ArticleItem: Component<ArticleItemProps> = (props) => {
-	const {
-		data: { title, pub_date: pubDate, slug, languages_code },
-		pageLang,
-	} = props;
-	const articleLang =
-		typeof languages_code === "object" ? languages_code.code.split("-")[0] : DEFAULT_LANGUAGE;
+	const { title, pub_date: pubDate, slug, languages_code, pageLang } = props;
+	const articleLang = languages_code?.code.split("-")[0] || DEFAULT_LANGUAGE;
 
 	const href = createRelativeArticleUrl({ pubDate, slug, articleLang }, URL_BLOG_PREFIX);
 

@@ -6,19 +6,28 @@ import ArticleComments from "@components/ArticleComments.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import AvailableOnLangs from "@components/AvailableOnLangs.astro";
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
-import type { ArticleTranslation } from "@/directus-schema";
 import { DIRECTUS_URL } from "astro:env/server";
+import { Article_TranslationsQuery } from "../graphql/graphql";
 
 export type Props = {
-	article: ArticleTranslation;
+	article: Article_TranslationsQuery["article_translations"][0];
 	lang: string;
 };
 
 const { article } = Astro.props as Props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const { cover_image, title, author, description, tags, pub_date, slug, views, article_id } =
-	article;
+const {
+	cover_image,
+	title,
+	author,
+	description,
+	tags,
+	pub_date,
+	slug,
+	views,
+	article_id: articleTranslations,
+} = article;
 const t = useTranslation(Astro);
 ---
 
@@ -29,16 +38,13 @@ const t = useTranslation(Astro);
 				tags && (
 					<div class="tags">
 						<ul itemprop="keywords">
-							{tags.map(
-								(tag) =>
-									typeof tag === "object" && (
-										<li>
-											<TranslatedLink rel="tag" to={`/articles/?tags=${tag.tag_id.title}`}>
-												{tag.tag_id.title}
-											</TranslatedLink>
-										</li>
-									)
-							)}
+							{tags.map((tag) => (
+								<li>
+									<TranslatedLink rel="tag" to={`/articles/?tags=${tag?.tag_id?.title}`}>
+										{tag?.tag_id?.title}
+									</TranslatedLink>
+								</li>
+							))}
 						</ul>
 					</div>
 				)
@@ -55,7 +61,7 @@ const t = useTranslation(Astro);
 			<time itemprop="datePublished" datetime={pub_date}>
 				{createDateFormatter(pageLang).format(new Date(pub_date))}&nbsp;
 			</time>
-			<span itemprop="author">{`${author.first_name} ${author.last_name}`}</span>
+			<span itemprop="author">{`${author?.first_name} ${author?.last_name}`}</span>
 		</div>
 		{
 			cover_image && (
@@ -67,7 +73,7 @@ const t = useTranslation(Astro);
 				{description}
 			</p>
 		</div>
-		<AvailableOnLangs articles={article_id.translations} />
+		<AvailableOnLangs articles={articleTranslations} />
 	</header>
 	<slot />
 	<ArticleComments url={canonicalUrl.href} id={slug} />

@@ -1,20 +1,21 @@
 import type { MarkdownHeading } from "astro";
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import type { ArticleTranslation } from "@/directus-schema";
-import { ArticleQuery } from "../graphql/graphql";
+import { ArticleQuery, RecentArticleQuery } from "../graphql/graphql";
 
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
 export function removeArticleDuplicates(
-	articles: ArticleQuery["article"][0]["translations"],
+	articles:
+		| ArticleQuery["article"][0]["translations"]
+		| RecentArticleQuery["article"][0]["translations"],
 	pageLang: LanguageKeys
 ) {
 	if (!articles) return [];
 	if (articles && articles.length >= 2) {
 		const pageLangArticles = articles.filter(
-			(a) => a?.languages_code?.code.split("-")[0] === pageLang
+			(a) => a && a.languages_code?.code.split("-")[0] === pageLang
 		);
 		if (pageLangArticles.length !== 0) return pageLangArticles;
 		return articles;

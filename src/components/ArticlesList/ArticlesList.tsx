@@ -5,7 +5,6 @@ import SearchInput from "./SearchInput";
 import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
 import "./ArticlesList.scss";
-import type { ArticleTranslation } from "@/directus-schema";
 import { ArticleQuery } from "@/src/graphql/graphql";
 
 type UiStringsType = { "articles.empty": string; "input.search": string };
@@ -24,7 +23,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 
 	const isEmpty = () => Object.keys(articles()).length === 0;
 
-	const sortYears = (articles: ArticlesBlockType) => {
+	const sortByYears = (articles: ArticlesBlockType) => {
 		return Object.keys(articles)
 			.map(Number)
 			.sort((a, b) => b - a);
@@ -35,22 +34,26 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	}: {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
-		const filter = (cb: (articles: ArticleTranslation[]) => ArticleTranslation[]) => {
+		const filter = (
+			cb: (
+				articles: ArticleQuery["article"][0]["translations"]
+			) => ArticleQuery["article"][0]["translations"]
+		) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
 					.map((year) => [year, cb(props.articles[year])])
-					.filter((articles) => articles[1].length !== 0)
+					.filter((articles) => articles[1]?.length !== 0)
 			);
 		};
 
 		return filter((articles) => {
-			let filtered = articles.filter((a) =>
-				a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
+			let filtered = articles?.filter(
+				(a) => a && a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
 			);
 			if (tags && tags.length > 0) {
-				filtered = filtered.filter((a) =>
+				filtered = filtered?.filter((a) =>
 					tags.some((t) => {
-						return a.tags.map((t) => t.tag_id.title).includes(t);
+						return a?.tags?.map((t) => t?.tag_id?.title).includes(t);
 					})
 				);
 			}
@@ -70,12 +73,22 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 			<TagsList tags={props.tags} />
 			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
 				{!isEmpty() ? (
-					<For each={sortYears(articles())}>
+					<For each={sortByYears(articles())}>
 						{(year) => (
 							<div class="articles-list__wrapper">
 								<h2>{year}</h2>
 								<For each={articles()[year]}>
-									{(data) => <ArticleItem data={data} pageLang={props.pageLang} />}
+									{(a) =>
+										a && (
+											<ArticleItem
+												slug={a.slug}
+												title={a.title}
+												languages_code={a.languages_code}
+												pub_date={a.pub_date}
+												pageLang={props.pageLang}
+											/>
+										)
+									}
 								</For>
 							</div>
 						)}

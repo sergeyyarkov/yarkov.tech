@@ -1411,7 +1411,7 @@ export type Article_Translations = {
   tags?: Maybe<Array<Maybe<Article_Translations_Tag>>>;
   tags_func?: Maybe<Count_Functions>;
   title: Scalars['String']['output'];
-  views?: Maybe<Scalars['Int']['output']>;
+  views: Scalars['Int']['output'];
 };
 
 
@@ -1686,7 +1686,7 @@ export type Create_Article_Translations_Input = {
   status?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Create_Article_Translations_Tag_Input>>>;
   title: Scalars['String']['input'];
-  views?: InputMaybe<Scalars['Int']['input']>;
+  views: Scalars['Int']['input'];
 };
 
 export type Create_Article_Translations_Tag_Input = {
@@ -4302,6 +4302,18 @@ export type ArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null } | null> | null }> };
 
+export type RecentArticleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RecentArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, views: number, cover_image?: { __typename?: 'directus_files', id: string, title?: string | null } | null, languages_code?: { __typename?: 'languages', code: string } | null } | null> | null }> };
+
+export type Article_TranslationsQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type Article_TranslationsQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, content: string, pub_date: any, views: number, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, author?: { __typename?: 'directus_users', first_name?: string | null, last_name?: string | null } | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null, cover_image?: { __typename?: 'directus_files', title?: string | null, type?: string | null, filename_disk?: string | null } | null, article_id?: { __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null } | null> | null } | null }> };
+
 export type TagQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4348,6 +4360,66 @@ export const ArticleDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ArticleQuery, ArticleQueryVariables>;
+export const RecentArticleDocument = new TypedDocumentString(`
+    query RecentArticle {
+  article {
+    translations(filter: {status: {_eq: "published"}}) {
+      title
+      cover_image {
+        id
+        title
+      }
+      slug
+      pub_date
+      views
+      languages_code {
+        code
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<RecentArticleQuery, RecentArticleQueryVariables>;
+export const Article_TranslationsDocument = new TypedDocumentString(`
+    query Article_translations($slug: String!) {
+  article_translations(filter: {slug: {_eq: $slug}}) {
+    id
+    title
+    tags {
+      tag_id {
+        title
+      }
+    }
+    description
+    slug
+    content
+    author {
+      first_name
+      last_name
+    }
+    pub_date
+    views
+    languages_code {
+      code
+      name
+    }
+    cover_image {
+      title
+      type
+      filename_disk
+    }
+    article_id {
+      translations {
+        slug
+        languages_code {
+          code
+          name
+        }
+        pub_date
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<Article_TranslationsQuery, Article_TranslationsQueryVariables>;
 export const TagDocument = new TypedDocumentString(`
     query Tag {
   tag {

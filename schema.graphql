@@ -287,7 +287,7 @@ type article_translations {
   tags(filter: article_translations_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations_tag]
   tags_func: count_functions
   title: String!
-  views: Int
+  views: Int!
 }
 
 type article_translations_aggregated {
@@ -482,7 +482,7 @@ input create_article_translations_input {
   status: String
   tags: [create_article_translations_tag_input]
   title: String!
-  views: Int
+  views: Int!
 }
 
 input create_article_translations_tag_input {
