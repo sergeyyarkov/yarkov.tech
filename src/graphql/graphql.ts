@@ -1818,6 +1818,7 @@ export type Create_Global_Input = {
 };
 
 export type Create_Global_Translations_Input = {
+  about?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   global_id?: InputMaybe<Create_Global_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -3462,6 +3463,7 @@ export type Global_Mutated = {
 
 export type Global_Translations = {
   __typename?: 'global_translations';
+  about?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   global_id?: Maybe<Global>;
   id: Scalars['ID']['output'];
@@ -3506,6 +3508,7 @@ export type Global_Translations_Aggregated = {
 
 export type Global_Translations_Aggregated_Count = {
   __typename?: 'global_translations_aggregated_count';
+  about?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   global_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
@@ -3522,6 +3525,7 @@ export type Global_Translations_Aggregated_Fields = {
 export type Global_Translations_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Global_Translations_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Global_Translations_Filter>>>;
+  about?: InputMaybe<String_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   global_id?: InputMaybe<Global_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
@@ -3542,6 +3546,7 @@ export type Global_Translations_Quantifier_Filter = {
   _none?: InputMaybe<Global_Translations_Filter>;
   _or?: InputMaybe<Array<InputMaybe<Global_Translations_Filter>>>;
   _some?: InputMaybe<Global_Translations_Filter>;
+  about?: InputMaybe<String_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   global_id?: InputMaybe<Global_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
@@ -4144,6 +4149,7 @@ export type Update_Global_Input = {
 };
 
 export type Update_Global_Translations_Input = {
+  about?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   global_id?: InputMaybe<Update_Global_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -4243,6 +4249,7 @@ export type Version_Global = {
 
 export type Version_Global_Translations = {
   __typename?: 'version_global_translations';
+  about?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   global_id?: Maybe<Scalars['JSON']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
@@ -4313,6 +4320,13 @@ export type Article_TranslationsQueryVariables = Exact<{
 
 
 export type Article_TranslationsQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, content: string, pub_date: any, views: number, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, author?: { __typename?: 'directus_users', first_name?: string | null, last_name?: string | null } | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null, cover_image?: { __typename?: 'directus_files', title?: string | null, type?: string | null, filename_disk?: string | null } | null, article_id?: { __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null } | null> | null } | null }> };
+
+export type AboutMeQueryQueryVariables = Exact<{
+  pageLang: Scalars['String']['input'];
+}>;
+
+
+export type AboutMeQueryQuery = { __typename?: 'Query', global_translations: Array<{ __typename?: 'global_translations', about?: string | null }> };
 
 export type TagQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4420,6 +4434,13 @@ export const Article_TranslationsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<Article_TranslationsQuery, Article_TranslationsQueryVariables>;
+export const AboutMeQueryDocument = new TypedDocumentString(`
+    query AboutMeQuery($pageLang: String!) {
+  global_translations(filter: {languages_code: {code: {_contains: $pageLang}}}) {
+    about
+  }
+}
+    `) as unknown as TypedDocumentString<AboutMeQueryQuery, AboutMeQueryQueryVariables>;
 export const TagDocument = new TypedDocumentString(`
     query Tag {
   tag {

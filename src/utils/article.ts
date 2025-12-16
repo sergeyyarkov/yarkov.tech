@@ -6,17 +6,13 @@ import { ArticleQuery, RecentArticleQuery } from "../graphql/graphql";
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
-export function removeArticleDuplicates(
-	articles:
-		| ArticleQuery["article"][0]["translations"]
-		| RecentArticleQuery["article"][0]["translations"],
+export function filterArticlesByPageLang(
+	articles: ArticleQuery["article"][number]["translations"],
 	pageLang: LanguageKeys
 ) {
 	if (!articles) return [];
 	if (articles && articles.length >= 2) {
-		const pageLangArticles = articles.filter(
-			(a) => a && a.languages_code?.code.split("-")[0] === pageLang
-		);
+		const pageLangArticles = articles.filter((a) => a && a.languages_code?.code.split("-")[0] === pageLang);
 		if (pageLangArticles.length !== 0) return pageLangArticles;
 		return articles;
 	}
@@ -42,11 +38,13 @@ export function formatToArticleBlocks(articles: ArticleQuery["article"][0]["tran
 
 	if (!articles) return {};
 
-	articles.forEach((a) => {
-		const year = new Date(a?.pub_date).getFullYear();
-		if (!blocks[year]) blocks[year] = [];
-		blocks[year].push(a);
-	});
+	for (const a of articles) {
+		if (a) {
+			const year = new Date(a?.pub_date).getFullYear();
+			if (!blocks[year]) blocks[year] = [];
+			blocks[year].push(a);
+		}
+	}
 
 	return blocks;
 }

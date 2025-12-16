@@ -614,6 +614,7 @@ input create_global_input {
 }
 
 input create_global_translations_input {
+  about: String
   description: String
   global_id: create_global_input
   id: ID
@@ -1690,6 +1691,7 @@ type global_mutated {
 }
 
 type global_translations {
+  about: String
   description: String
   global_id(filter: global_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): global
   id: ID!
@@ -1712,6 +1714,7 @@ type global_translations_aggregated {
 }
 
 type global_translations_aggregated_count {
+  about: Int
   description: Int
   global_id: Int
   id: Int
@@ -1727,6 +1730,7 @@ type global_translations_aggregated_fields {
 input global_translations_filter {
   _and: [global_translations_filter]
   _or: [global_translations_filter]
+  about: string_filter_operators
   description: string_filter_operators
   global_id: global_filter
   id: number_filter_operators
@@ -1746,6 +1750,7 @@ input global_translations_quantifier_filter {
   _none: global_translations_filter
   _or: [global_translations_filter]
   _some: global_translations_filter
+  about: string_filter_operators
   description: string_filter_operators
   global_id: global_filter
   id: number_filter_operators
@@ -2252,6 +2257,7 @@ input update_global_input {
 }
 
 input update_global_translations_input {
+  about: String
   description: String
   global_id: update_global_input
   id: ID
@@ -2345,6 +2351,7 @@ type version_global {
 }
 
 type version_global_translations {
+  about: String
   description: String
   global_id: JSON
   id: ID

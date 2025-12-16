@@ -14,7 +14,7 @@ export interface Props {
 const { limit = 1 } = Astro.props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const data = await getRecentArticleList();
-const articles = data.flatMap((a) => utils.removeArticleDuplicates(a.translations, pageLang));
+const articles = data.flatMap((a) => utils.filterArticlesByPageLang(a.translations, pageLang));
 const isEmpty = articles.length === 0;
 ---
 
@@ -23,11 +23,11 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to="/articles/">
+		<TranslatedLink to='/articles/'>
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype="http://schema.org/Blog">
+	<div itemscope itemtype='http://schema.org/Blog'>
 		{
 			!isEmpty ? (
 				articles
@@ -51,7 +51,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
 	section {
 		& > div:nth-child(1) {
 			display: flex;
