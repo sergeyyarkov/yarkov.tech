@@ -20,6 +20,8 @@ type Documents = {
     "\n\t\tquery Article_translations($slug: String!) {\n\t\t\tarticle_translations(filter: { slug: { _eq: $slug } }) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\ttags {\n\t\t\t\t\ttag_id {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tdescription\n\t\t\t\tslug\n\t\t\t\tcontent\n\t\t\t\tauthor {\n\t\t\t\t\tfirst_name\n\t\t\t\t\tlast_name\n\t\t\t\t}\n\t\t\t\tpub_date\n\t\t\t\tviews\n\t\t\t\tlanguages_code {\n\t\t\t\t\tcode\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcover_image {\n\t\t\t\t\ttitle\n\t\t\t\t\ttype\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t\tarticle_id {\n\t\t\t\t\ttranslations {\n\t\t\t\t\t\tslug\n\t\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\t\tcode\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tpub_date\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": typeof types.Article_TranslationsDocument,
     "\n\t\tmutation Update_article_translations_item($id: ID!, $views: Int!) {\n\t\t\tupdate_article_translations_item(id: $id, data: { views: $views }) {\n\t\t\t\tviews\n\t\t\t}\n\t\t}\n\t": typeof types.Update_Article_Translations_ItemDocument,
     "\n\t\tquery AboutMeQuery($pageLang: String!) {\n\t\t\tglobal_translations(filter: { languages_code: { code: { _contains: $pageLang } } }) {\n\t\t\t\tabout\n\t\t\t}\n\t\t}\n\t": typeof types.AboutMeQueryDocument,
+    "\n\t\tquery ContactsQuery {\n\t\t\tglobal {\n\t\t\t\temail\n\t\t\t\tgithub\n\t\t\t\ttelegram\n\t\t\t}\n\t\t}\n\t": typeof types.ContactsQueryDocument,
+    "\n\t\tquery SiteSettingsQuery {\n\t\t\tglobal {\n\t\t\t\tym_counter\n\t\t\t\trecent_articles_limit\n\t\t\t}\n\t\t}\n\t": typeof types.SiteSettingsQueryDocument,
     "\n\t\tquery Project_translations($pageLang: String!) {\n\t\t\tproject_translations(filter: { languages_code: { code: { _contains: $pageLang } } }, sort: [\"-year\"]) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\tyear\n\t\t\t\tdescription\n\t\t\t\tsource_url\n\t\t\t\tdemo_url\n\t\t\t\tarticle_url\n\t\t\t\ticon {\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": typeof types.Project_TranslationsDocument,
     "\n\t\tquery Tag {\n\t\t\ttag {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t}\n\t\t}\n\t": typeof types.TagDocument,
 };
@@ -29,6 +31,8 @@ const documents: Documents = {
     "\n\t\tquery Article_translations($slug: String!) {\n\t\t\tarticle_translations(filter: { slug: { _eq: $slug } }) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\ttags {\n\t\t\t\t\ttag_id {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tdescription\n\t\t\t\tslug\n\t\t\t\tcontent\n\t\t\t\tauthor {\n\t\t\t\t\tfirst_name\n\t\t\t\t\tlast_name\n\t\t\t\t}\n\t\t\t\tpub_date\n\t\t\t\tviews\n\t\t\t\tlanguages_code {\n\t\t\t\t\tcode\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcover_image {\n\t\t\t\t\ttitle\n\t\t\t\t\ttype\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t\tarticle_id {\n\t\t\t\t\ttranslations {\n\t\t\t\t\t\tslug\n\t\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\t\tcode\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tpub_date\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.Article_TranslationsDocument,
     "\n\t\tmutation Update_article_translations_item($id: ID!, $views: Int!) {\n\t\t\tupdate_article_translations_item(id: $id, data: { views: $views }) {\n\t\t\t\tviews\n\t\t\t}\n\t\t}\n\t": types.Update_Article_Translations_ItemDocument,
     "\n\t\tquery AboutMeQuery($pageLang: String!) {\n\t\t\tglobal_translations(filter: { languages_code: { code: { _contains: $pageLang } } }) {\n\t\t\t\tabout\n\t\t\t}\n\t\t}\n\t": types.AboutMeQueryDocument,
+    "\n\t\tquery ContactsQuery {\n\t\t\tglobal {\n\t\t\t\temail\n\t\t\t\tgithub\n\t\t\t\ttelegram\n\t\t\t}\n\t\t}\n\t": types.ContactsQueryDocument,
+    "\n\t\tquery SiteSettingsQuery {\n\t\t\tglobal {\n\t\t\t\tym_counter\n\t\t\t\trecent_articles_limit\n\t\t\t}\n\t\t}\n\t": types.SiteSettingsQueryDocument,
     "\n\t\tquery Project_translations($pageLang: String!) {\n\t\t\tproject_translations(filter: { languages_code: { code: { _contains: $pageLang } } }, sort: [\"-year\"]) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\tyear\n\t\t\t\tdescription\n\t\t\t\tsource_url\n\t\t\t\tdemo_url\n\t\t\t\tarticle_url\n\t\t\t\ticon {\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.Project_TranslationsDocument,
     "\n\t\tquery Tag {\n\t\t\ttag {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t}\n\t\t}\n\t": types.TagDocument,
 };
@@ -53,6 +57,14 @@ export function graphql(source: "\n\t\tmutation Update_article_translations_item
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n\t\tquery AboutMeQuery($pageLang: String!) {\n\t\t\tglobal_translations(filter: { languages_code: { code: { _contains: $pageLang } } }) {\n\t\t\t\tabout\n\t\t\t}\n\t\t}\n\t"): typeof import('./graphql').AboutMeQueryDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\t\tquery ContactsQuery {\n\t\t\tglobal {\n\t\t\t\temail\n\t\t\t\tgithub\n\t\t\t\ttelegram\n\t\t\t}\n\t\t}\n\t"): typeof import('./graphql').ContactsQueryDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\t\tquery SiteSettingsQuery {\n\t\t\tglobal {\n\t\t\t\tym_counter\n\t\t\t\trecent_articles_limit\n\t\t\t}\n\t\t}\n\t"): typeof import('./graphql').SiteSettingsQueryDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

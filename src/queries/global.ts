@@ -16,3 +16,34 @@ export async function getAboutMe(pageLang: string) {
 
 	return result.data.global_translations[0];
 }
+
+export async function getContacts() {
+	const ContactsQuery = graphql(`
+		query ContactsQuery {
+			global {
+				email
+				github
+				telegram
+			}
+		}
+	`);
+
+	const result = await execute(ContactsQuery);
+
+	return result.data?.global;
+}
+
+export async function getSiteSettings() {
+	const SiteSettingsQuery = graphql(`
+		query SiteSettingsQuery {
+			global {
+				ym_counter
+				recent_articles_limit
+			}
+		}
+	`);
+
+	const result = await execute(SiteSettingsQuery);
+
+	return result.data?.global;
+}

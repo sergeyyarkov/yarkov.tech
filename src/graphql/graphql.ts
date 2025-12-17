@@ -1984,13 +1984,13 @@ export type Create_Directus_Users_Input = {
 };
 
 export type Create_Global_Input = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  github?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+  github: Scalars['String']['input'];
   id?: InputMaybe<Scalars['ID']['input']>;
   ntfy_password?: InputMaybe<Scalars['String']['input']>;
   ntfy_user?: InputMaybe<Scalars['String']['input']>;
   recent_articles_limit?: InputMaybe<Scalars['Int']['input']>;
-  telegram?: InputMaybe<Scalars['String']['input']>;
+  telegram: Scalars['String']['input'];
   title?: InputMaybe<Scalars['String']['input']>;
   translations?: InputMaybe<Array<InputMaybe<Create_Global_Translations_Input>>>;
   ym_counter?: InputMaybe<Scalars['Int']['input']>;
@@ -2002,7 +2002,6 @@ export type Create_Global_Translations_Input = {
   global_id?: InputMaybe<Create_Global_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   languages_code?: InputMaybe<Create_Languages_Input>;
-  navigation?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type Create_Home_Page_Input = {
@@ -3600,13 +3599,13 @@ export type Directus_Webhooks_Mutated = {
 
 export type Global = {
   __typename?: 'global';
-  email?: Maybe<Scalars['String']['output']>;
-  github?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
+  github: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   ntfy_password?: Maybe<Scalars['String']['output']>;
   ntfy_user?: Maybe<Scalars['String']['output']>;
   recent_articles_limit?: Maybe<Scalars['Int']['output']>;
-  telegram?: Maybe<Scalars['String']['output']>;
+  telegram: Scalars['String']['output'];
   title?: Maybe<Scalars['String']['output']>;
   translations?: Maybe<Array<Maybe<Global_Translations>>>;
   translations_func?: Maybe<Count_Functions>;
@@ -3653,8 +3652,6 @@ export type Global_Translations = {
   global_id?: Maybe<Global>;
   id: Scalars['ID']['output'];
   languages_code?: Maybe<Languages>;
-  navigation?: Maybe<Scalars['JSON']['output']>;
-  navigation_func?: Maybe<Count_Functions>;
 };
 
 
@@ -3698,7 +3695,6 @@ export type Global_Translations_Aggregated_Count = {
   global_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   languages_code?: Maybe<Scalars['Int']['output']>;
-  navigation?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Global_Translations_Aggregated_Fields = {
@@ -3715,8 +3711,6 @@ export type Global_Translations_Filter = {
   global_id?: InputMaybe<Global_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   languages_code?: InputMaybe<Languages_Filter>;
-  navigation?: InputMaybe<String_Filter_Operators>;
-  navigation_func?: InputMaybe<Count_Function_Filter_Operators>;
 };
 
 export type Global_Translations_Mutated = {
@@ -3736,8 +3730,6 @@ export type Global_Translations_Quantifier_Filter = {
   global_id?: InputMaybe<Global_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   languages_code?: InputMaybe<Languages_Filter>;
-  navigation?: InputMaybe<String_Filter_Operators>;
-  navigation_func?: InputMaybe<Count_Function_Filter_Operators>;
 };
 
 export type Hash_Filter_Operators = {
@@ -4360,7 +4352,6 @@ export type Update_Global_Translations_Input = {
   global_id?: InputMaybe<Update_Global_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   languages_code?: InputMaybe<Update_Languages_Input>;
-  navigation?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type Update_Home_Page_Input = {
@@ -4475,7 +4466,6 @@ export type Version_Global_Translations = {
   global_id?: Maybe<Scalars['JSON']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   languages_code?: Maybe<Scalars['JSON']['output']>;
-  navigation?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Version_Home_Page = {
@@ -4558,6 +4548,16 @@ export type AboutMeQueryQueryVariables = Exact<{
 
 
 export type AboutMeQueryQuery = { __typename?: 'Query', global_translations: Array<{ __typename?: 'global_translations', about?: string | null }> };
+
+export type ContactsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactsQueryQuery = { __typename?: 'Query', global?: { __typename?: 'global', email: string, github: string, telegram: string } | null };
+
+export type SiteSettingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SiteSettingsQueryQuery = { __typename?: 'Query', global?: { __typename?: 'global', ym_counter?: number | null, recent_articles_limit?: number | null } | null };
 
 export type Project_TranslationsQueryVariables = Exact<{
   pageLang: Scalars['String']['input'];
@@ -4686,6 +4686,23 @@ export const AboutMeQueryDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<AboutMeQueryQuery, AboutMeQueryQueryVariables>;
+export const ContactsQueryDocument = new TypedDocumentString(`
+    query ContactsQuery {
+  global {
+    email
+    github
+    telegram
+  }
+}
+    `) as unknown as TypedDocumentString<ContactsQueryQuery, ContactsQueryQueryVariables>;
+export const SiteSettingsQueryDocument = new TypedDocumentString(`
+    query SiteSettingsQuery {
+  global {
+    ym_counter
+    recent_articles_limit
+  }
+}
+    `) as unknown as TypedDocumentString<SiteSettingsQueryQuery, SiteSettingsQueryQueryVariables>;
 export const Project_TranslationsDocument = new TypedDocumentString(`
     query Project_translations($pageLang: String!) {
   project_translations(

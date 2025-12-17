@@ -1,23 +1,32 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getContacts } from "../queries";
+
+const contacts = await getContacts();
 ---
 
 <div>
-	<a href={"mailto:" + "serzh.yarkov@gmail.com"}
-		>Email
-		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
-	</a>
-	<a href={"https://github.com/sergeyyarkov"} target="_blank"
-		>Github
-		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
-	</a>
-	<a href={"https://t.me/sergeyyarkov"} target="_blank"
-		>Telegram
-		<Icon name="arrow-up-right" width="15" height="15" data-filter="none" />
-	</a>
+	{
+		contacts && (
+			<>
+				<a href={"mailto:" + contacts.email}>
+					Email
+					<Icon name='arrow-up-right' width='15' height='15' data-filter='none' />
+				</a>
+				<a href={contacts.github} target='_blank'>
+					Github
+					<Icon name='arrow-up-right' width='15' height='15' data-filter='none' />
+				</a>
+				<a href={contacts.telegram} target='_blank'>
+					Telegram
+					<Icon name='arrow-up-right' width='15' height='15' data-filter='none' />
+				</a>
+			</>
+		)
+	}
 </div>
 
-<style lang="scss">
+<style lang='scss'>
 	div {
 		display: flex;
 		flex-wrap: wrap;

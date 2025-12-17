@@ -682,13 +682,13 @@ input create_directus_users_input {
 }
 
 input create_global_input {
-  email: String
-  github: String
+  email: String!
+  github: String!
   id: ID
   ntfy_password: String
   ntfy_user: String
   recent_articles_limit: Int
-  telegram: String
+  telegram: String!
   title: String
   translations: [create_global_translations_input]
   ym_counter: Int
@@ -700,7 +700,6 @@ input create_global_translations_input {
   global_id: create_global_input
   id: ID
   languages_code: create_languages_input
-  navigation: JSON
 }
 
 input create_home_page_input {
@@ -1742,13 +1741,13 @@ type directus_webhooks_mutated {
 }
 
 type global {
-  email: String
-  github: String
+  email: String!
+  github: String!
   id: ID!
   ntfy_password: String
   ntfy_user: String
   recent_articles_limit: Int
-  telegram: String
+  telegram: String!
   title: String
   translations(filter: global_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [global_translations]
   translations_func: count_functions
@@ -1783,8 +1782,6 @@ type global_translations {
   global_id(filter: global_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): global
   id: ID!
   languages_code(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
-  navigation: JSON
-  navigation_func: count_functions
 }
 
 type global_translations_aggregated {
@@ -1806,7 +1803,6 @@ type global_translations_aggregated_count {
   global_id: Int
   id: Int
   languages_code: Int
-  navigation: Int
 }
 
 type global_translations_aggregated_fields {
@@ -1822,8 +1818,6 @@ input global_translations_filter {
   global_id: global_filter
   id: number_filter_operators
   languages_code: languages_filter
-  navigation: string_filter_operators
-  navigation_func: count_function_filter_operators
 }
 
 type global_translations_mutated {
@@ -1842,8 +1836,6 @@ input global_translations_quantifier_filter {
   global_id: global_filter
   id: number_filter_operators
   languages_code: languages_filter
-  navigation: string_filter_operators
-  navigation_func: count_function_filter_operators
 }
 
 input hash_filter_operators {
@@ -2370,7 +2362,6 @@ input update_global_translations_input {
   global_id: update_global_input
   id: ID
   languages_code: update_languages_input
-  navigation: JSON
 }
 
 input update_home_page_input {
@@ -2478,7 +2469,6 @@ type version_global_translations {
   global_id: JSON
   id: ID
   languages_code: JSON
-  navigation: JSON
 }
 
 type version_home_page {
