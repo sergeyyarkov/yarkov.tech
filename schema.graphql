@@ -606,6 +606,8 @@ input create_global_input {
   email: String
   github: String
   id: ID
+  ntfy_password: String
+  ntfy_user: String
   recent_articles_limit: Int
   telegram: String
   title: String
@@ -648,6 +650,8 @@ input create_project_input {
 }
 
 input create_project_translations_input {
+  article_url: String
+  demo_url: String
   description: String
   icon: create_directus_files_input
   id: ID
@@ -655,7 +659,7 @@ input create_project_translations_input {
   project_id: create_project_input
   source_url: String
   title: String
-  year: String
+  year: Int
 }
 
 input create_tag_input {
@@ -1662,6 +1666,8 @@ type global {
   email: String
   github: String
   id: ID!
+  ntfy_password: String
+  ntfy_user: String
   recent_articles_limit: Int
   telegram: String
   title: String
@@ -1676,6 +1682,8 @@ input global_filter {
   email: string_filter_operators
   github: string_filter_operators
   id: number_filter_operators
+  ntfy_password: string_filter_operators
+  ntfy_user: string_filter_operators
   recent_articles_limit: number_filter_operators
   telegram: string_filter_operators
   title: string_filter_operators
@@ -1965,6 +1973,8 @@ type project_mutated {
 }
 
 type project_translations {
+  article_url: String
+  demo_url: String
   description: String
   icon(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   id: ID!
@@ -1972,7 +1982,7 @@ type project_translations {
   project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
   source_url: String
   title: String
-  year: String
+  year: Int
 }
 
 type project_translations_aggregated {
@@ -1989,6 +1999,8 @@ type project_translations_aggregated {
 }
 
 type project_translations_aggregated_count {
+  article_url: Int
+  demo_url: Int
   description: Int
   """SVG"""
   icon: Int
@@ -2003,11 +2015,14 @@ type project_translations_aggregated_count {
 type project_translations_aggregated_fields {
   id: Float
   project_id: Float
+  year: Float
 }
 
 input project_translations_filter {
   _and: [project_translations_filter]
   _or: [project_translations_filter]
+  article_url: string_filter_operators
+  demo_url: string_filter_operators
   description: string_filter_operators
   icon: directus_files_filter
   id: number_filter_operators
@@ -2015,7 +2030,7 @@ input project_translations_filter {
   project_id: project_filter
   source_url: string_filter_operators
   title: string_filter_operators
-  year: string_filter_operators
+  year: number_filter_operators
 }
 
 type project_translations_mutated {
@@ -2029,6 +2044,8 @@ input project_translations_quantifier_filter {
   _none: project_translations_filter
   _or: [project_translations_filter]
   _some: project_translations_filter
+  article_url: string_filter_operators
+  demo_url: string_filter_operators
   description: string_filter_operators
   icon: directus_files_filter
   id: number_filter_operators
@@ -2036,7 +2053,7 @@ input project_translations_quantifier_filter {
   project_id: project_filter
   source_url: string_filter_operators
   title: string_filter_operators
-  year: string_filter_operators
+  year: number_filter_operators
 }
 
 input string_filter_operators {
@@ -2249,6 +2266,8 @@ input update_global_input {
   email: String
   github: String
   id: ID
+  ntfy_password: String
+  ntfy_user: String
   recent_articles_limit: Int
   telegram: String
   title: String
@@ -2291,6 +2310,8 @@ input update_project_input {
 }
 
 input update_project_translations_input {
+  article_url: String
+  demo_url: String
   description: String
   icon: update_directus_files_input
   id: ID
@@ -2298,7 +2319,7 @@ input update_project_translations_input {
   project_id: update_project_input
   source_url: String
   title: String
-  year: String
+  year: Int
 }
 
 input update_tag_input {
@@ -2343,6 +2364,8 @@ type version_global {
   email: String
   github: String
   id: ID
+  ntfy_password: String
+  ntfy_user: String
   recent_articles_limit: Int
   telegram: String
   title: String
@@ -2385,6 +2408,8 @@ type version_project {
 }
 
 type version_project_translations {
+  article_url: String
+  demo_url: String
   description: String
   icon: JSON
   id: ID
@@ -2392,7 +2417,7 @@ type version_project_translations {
   project_id: JSON
   source_url: String
   title: String
-  year: String
+  year: Int
 }
 
 type version_tag {

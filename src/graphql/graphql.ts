@@ -1810,6 +1810,8 @@ export type Create_Global_Input = {
   email?: InputMaybe<Scalars['String']['input']>;
   github?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  ntfy_password?: InputMaybe<Scalars['String']['input']>;
+  ntfy_user?: InputMaybe<Scalars['String']['input']>;
   recent_articles_limit?: InputMaybe<Scalars['Int']['input']>;
   telegram?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -1852,6 +1854,8 @@ export type Create_Project_Input = {
 };
 
 export type Create_Project_Translations_Input = {
+  article_url?: InputMaybe<Scalars['String']['input']>;
+  demo_url?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Create_Directus_Files_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -1859,7 +1863,7 @@ export type Create_Project_Translations_Input = {
   project_id?: InputMaybe<Create_Project_Input>;
   source_url?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-  year?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Tag_Input = {
@@ -3422,6 +3426,8 @@ export type Global = {
   email?: Maybe<Scalars['String']['output']>;
   github?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  ntfy_password?: Maybe<Scalars['String']['output']>;
+  ntfy_user?: Maybe<Scalars['String']['output']>;
   recent_articles_limit?: Maybe<Scalars['Int']['output']>;
   telegram?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -3446,6 +3452,8 @@ export type Global_Filter = {
   email?: InputMaybe<String_Filter_Operators>;
   github?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
+  ntfy_password?: InputMaybe<String_Filter_Operators>;
+  ntfy_user?: InputMaybe<String_Filter_Operators>;
   recent_articles_limit?: InputMaybe<Number_Filter_Operators>;
   telegram?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
@@ -3818,6 +3826,8 @@ export type Project_Mutated = {
 
 export type Project_Translations = {
   __typename?: 'project_translations';
+  article_url?: Maybe<Scalars['String']['output']>;
+  demo_url?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   icon?: Maybe<Directus_Files>;
   id: Scalars['ID']['output'];
@@ -3825,7 +3835,7 @@ export type Project_Translations = {
   project_id?: Maybe<Project>;
   source_url?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  year?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -3874,6 +3884,8 @@ export type Project_Translations_Aggregated = {
 
 export type Project_Translations_Aggregated_Count = {
   __typename?: 'project_translations_aggregated_count';
+  article_url?: Maybe<Scalars['Int']['output']>;
+  demo_url?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   /** SVG */
   icon?: Maybe<Scalars['Int']['output']>;
@@ -3889,11 +3901,14 @@ export type Project_Translations_Aggregated_Fields = {
   __typename?: 'project_translations_aggregated_fields';
   id?: Maybe<Scalars['Float']['output']>;
   project_id?: Maybe<Scalars['Float']['output']>;
+  year?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Project_Translations_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Project_Translations_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Project_Translations_Filter>>>;
+  article_url?: InputMaybe<String_Filter_Operators>;
+  demo_url?: InputMaybe<String_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   icon?: InputMaybe<Directus_Files_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
@@ -3901,7 +3916,7 @@ export type Project_Translations_Filter = {
   project_id?: InputMaybe<Project_Filter>;
   source_url?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
-  year?: InputMaybe<String_Filter_Operators>;
+  year?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Project_Translations_Mutated = {
@@ -3916,6 +3931,8 @@ export type Project_Translations_Quantifier_Filter = {
   _none?: InputMaybe<Project_Translations_Filter>;
   _or?: InputMaybe<Array<InputMaybe<Project_Translations_Filter>>>;
   _some?: InputMaybe<Project_Translations_Filter>;
+  article_url?: InputMaybe<String_Filter_Operators>;
+  demo_url?: InputMaybe<String_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   icon?: InputMaybe<Directus_Files_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
@@ -3923,7 +3940,7 @@ export type Project_Translations_Quantifier_Filter = {
   project_id?: InputMaybe<Project_Filter>;
   source_url?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
-  year?: InputMaybe<String_Filter_Operators>;
+  year?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type String_Filter_Operators = {
@@ -4141,6 +4158,8 @@ export type Update_Global_Input = {
   email?: InputMaybe<Scalars['String']['input']>;
   github?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  ntfy_password?: InputMaybe<Scalars['String']['input']>;
+  ntfy_user?: InputMaybe<Scalars['String']['input']>;
   recent_articles_limit?: InputMaybe<Scalars['Int']['input']>;
   telegram?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -4183,6 +4202,8 @@ export type Update_Project_Input = {
 };
 
 export type Update_Project_Translations_Input = {
+  article_url?: InputMaybe<Scalars['String']['input']>;
+  demo_url?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Update_Directus_Files_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -4190,7 +4211,7 @@ export type Update_Project_Translations_Input = {
   project_id?: InputMaybe<Update_Project_Input>;
   source_url?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-  year?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Tag_Input = {
@@ -4240,6 +4261,8 @@ export type Version_Global = {
   email?: Maybe<Scalars['String']['output']>;
   github?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
+  ntfy_password?: Maybe<Scalars['String']['output']>;
+  ntfy_user?: Maybe<Scalars['String']['output']>;
   recent_articles_limit?: Maybe<Scalars['Int']['output']>;
   telegram?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -4288,6 +4311,8 @@ export type Version_Project = {
 
 export type Version_Project_Translations = {
   __typename?: 'version_project_translations';
+  article_url?: Maybe<Scalars['String']['output']>;
+  demo_url?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   icon?: Maybe<Scalars['JSON']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
@@ -4295,7 +4320,7 @@ export type Version_Project_Translations = {
   project_id?: Maybe<Scalars['JSON']['output']>;
   source_url?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  year?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Version_Tag = {
@@ -4327,6 +4352,13 @@ export type AboutMeQueryQueryVariables = Exact<{
 
 
 export type AboutMeQueryQuery = { __typename?: 'Query', global_translations: Array<{ __typename?: 'global_translations', about?: string | null }> };
+
+export type Project_TranslationsQueryVariables = Exact<{
+  pageLang: Scalars['String']['input'];
+}>;
+
+
+export type Project_TranslationsQuery = { __typename?: 'Query', project_translations: Array<{ __typename?: 'project_translations', id: string, title?: string | null, year?: number | null, description?: string | null, source_url?: string | null, demo_url?: string | null, article_url?: string | null, icon?: { __typename?: 'directus_files', filename_disk?: string | null } | null }> };
 
 export type TagQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4441,6 +4473,25 @@ export const AboutMeQueryDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<AboutMeQueryQuery, AboutMeQueryQueryVariables>;
+export const Project_TranslationsDocument = new TypedDocumentString(`
+    query Project_translations($pageLang: String!) {
+  project_translations(
+    filter: {languages_code: {code: {_contains: $pageLang}}}
+    sort: ["-year"]
+  ) {
+    id
+    title
+    year
+    description
+    source_url
+    demo_url
+    article_url
+    icon {
+      filename_disk
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<Project_TranslationsQuery, Project_TranslationsQueryVariables>;
 export const TagDocument = new TypedDocumentString(`
     query Tag {
   tag {

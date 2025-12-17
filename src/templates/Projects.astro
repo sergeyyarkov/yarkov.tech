@@ -1,28 +1,21 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import ProjectsList from "@components/ProjectsList.astro";
 import ProjectItem from "@components/ProjectItem.astro";
 import PageHeading from "@components/PageHeading.astro";
 import { getLanguageFromURL, useTranslation } from "@i18n/utils";
+import { getProjectList } from "../queries/project";
 
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-const projects = (await getCollection("projects", (e) => e.slug.startsWith(`${pageLang}/`))).sort(
-	(a, b) => b.data.year - a.data.year
-);
+const projects = await getProjectList(pageLang);
 ---
 
-<PageLayout
-	noIndex
-	lang={pageLang}
-	title={t("pageTitle.projects")}
-	description={t("pageDescription.projects")}
->
+<PageLayout noIndex lang={pageLang} title={t("pageTitle.projects")} description={t("pageDescription.projects")}>
 	<PageHeading heading={t("pageTitle.projects")} description={t("pageDescription.projects")} />
 	<section>
 		<ProjectsList>
-			{projects.map((project) => <ProjectItem data={project.data} />)}
+			{projects.map((data) => <ProjectItem data={data} />)}
 		</ProjectsList>
 	</section>
 </PageLayout>

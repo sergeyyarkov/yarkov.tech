@@ -24,6 +24,10 @@ body {
 	fill: var(--icon-primary);
 }
 
+img[data-icon] {
+	filter: var(--icon-filter);
+}
+
 html {
 	font-size: 16px;
 	font-weight: normal;
