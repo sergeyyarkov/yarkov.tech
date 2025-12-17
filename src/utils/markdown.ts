@@ -22,7 +22,7 @@ export async function markdownToHTML(content: string): Promise<string> {
 		.use(remarkParse)
 		.use(remarkToc, { heading: "(table[ -]of[ -])?contents?|toc|содержание", maxDepth: 2 })
 		.use(remarkPrism as any)
-		.use(remarkRehype)
+		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeSlug)
 		.use(rehypeAutolinkHeadings, {
 			properties: {
@@ -58,7 +58,7 @@ export async function markdownToHTML(content: string): Promise<string> {
 				createAnchorLabel(toString(heading)),
 			],
 		})
-		.use(rehypeStringify)
+		.use(rehypeStringify, { allowDangerousHtml: true })
 		.process(content);
 
 	return String(file);
