@@ -1,6 +1,6 @@
 ---
 import ArticleLayout from "@root/layouts/article.astro";
-import { getArticleTranslationsBySlug } from "@/src/queries";
+import { getArticleTranslationsBySlug, incArticleTranslationViews } from "@/src/queries";
 
 const { url } = Astro.params as { blog: string; url: string };
 const slug = url.split("/").at(-1);
@@ -11,7 +11,7 @@ const article = await getArticleTranslationsBySlug(slug);
 
 if (!article) return Astro.redirect("/404");
 
-// if (import.meta.env.PROD) await incArticleTranslationViews(article);
+if (import.meta.env.PROD) await incArticleTranslationViews(article);
 ---
 
 <ArticleLayout lang={article.languages_code?.code} article={article} />

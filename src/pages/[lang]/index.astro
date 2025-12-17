@@ -1,13 +1,5 @@
 ---
-import { getLanguageKeys } from "@i18n/utils";
-import { DEFAULT_LANGUAGE } from "@root/constants";
 import HomeTemplate from "@templates/Home.astro";
-
-export function getStaticPaths() {
-	return getLanguageKeys()
-		.filter((lang) => lang !== DEFAULT_LANGUAGE)
-		.map((lang) => ({ params: { lang } }));
-}
 ---
 
 <HomeTemplate />

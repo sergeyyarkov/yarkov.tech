@@ -28,6 +28,8 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 type Mutation {
+  create_appeal_item(data: create_appeal_input!): appeal
+  create_appeal_items(data: [create_appeal_input!], filter: appeal_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal!]!
   create_article_item(data: create_article_input!): article
   create_article_items(data: [create_article_input!], filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
   create_article_tag_item(data: create_article_tag_input!): article_tag
@@ -48,6 +50,8 @@ type Mutation {
   create_project_translations_items(data: [create_project_translations_input!], filter: project_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_translations!]!
   create_tag_item(data: create_tag_input!): tag
   create_tag_items(data: [create_tag_input!], filter: tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tag!]!
+  delete_appeal_item(id: ID!): delete_one
+  delete_appeal_items(ids: [ID]!): delete_many
   delete_article_item(id: ID!): delete_one
   delete_article_items(ids: [ID]!): delete_many
   delete_article_tag_item(id: ID!): delete_one
@@ -68,6 +72,9 @@ type Mutation {
   delete_project_translations_items(ids: [ID]!): delete_many
   delete_tag_item(id: ID!): delete_one
   delete_tag_items(ids: [ID]!): delete_many
+  update_appeal_batch(data: [update_appeal_input!], filter: appeal_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal!]!
+  update_appeal_item(data: update_appeal_input!, id: ID!): appeal
+  update_appeal_items(data: update_appeal_input!, filter: appeal_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal!]!
   update_article_batch(data: [update_article_input!], filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
   update_article_item(data: update_article_input!, id: ID!): article
   update_article_items(data: update_article_input!, filter: article_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
@@ -103,6 +110,10 @@ type Mutation {
 }
 
 type Query {
+  appeal(filter: appeal_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal!]!
+  appeal_aggregated(filter: appeal_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal_aggregated!]!
+  appeal_by_id(id: ID!, version: String): appeal
+  appeal_by_version(id: ID!, version: String!): version_appeal
   article(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
   article_aggregated(filter: article_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_aggregated!]!
   article_by_id(id: ID!, version: String): article
@@ -150,6 +161,7 @@ type Query {
 }
 
 type Subscription {
+  appeal_mutated(event: EventEnum): appeal_mutated
   article_mutated(event: EventEnum): article_mutated
   article_tag_mutated(event: EventEnum): article_tag_mutated
   article_translations_mutated(event: EventEnum): article_translations_mutated
@@ -183,6 +195,63 @@ type Subscription {
   project_mutated(event: EventEnum): project_mutated
   project_translations_mutated(event: EventEnum): project_translations_mutated
   tag_mutated(event: EventEnum): tag_mutated
+}
+
+type appeal {
+  client_ip: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  email: String!
+  id: ID!
+  message: String!
+  name: String!
+  subject: String!
+}
+
+type appeal_aggregated {
+  avg: appeal_aggregated_fields
+  avgDistinct: appeal_aggregated_fields
+  count: appeal_aggregated_count
+  countAll: Int
+  countDistinct: appeal_aggregated_count
+  group: JSON
+  max: appeal_aggregated_fields
+  min: appeal_aggregated_fields
+  sum: appeal_aggregated_fields
+  sumDistinct: appeal_aggregated_fields
+}
+
+type appeal_aggregated_count {
+  client_ip: Int
+  date_created: Int
+  email: Int
+  id: Int
+  message: Int
+  name: Int
+  subject: Int
+}
+
+type appeal_aggregated_fields {
+  id: Float
+}
+
+input appeal_filter {
+  _and: [appeal_filter]
+  _or: [appeal_filter]
+  client_ip: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  email: string_filter_operators
+  id: number_filter_operators
+  message: string_filter_operators
+  name: string_filter_operators
+  subject: string_filter_operators
+}
+
+type appeal_mutated {
+  data: appeal
+  event: EventEnum
+  key: ID!
 }
 
 type article {
@@ -456,6 +525,16 @@ input count_function_filter_operators {
 
 type count_functions {
   count: Int
+}
+
+input create_appeal_input {
+  client_ip: String!
+  date_created: Date
+  email: String!
+  id: ID
+  message: String!
+  name: String!
+  subject: String!
 }
 
 input create_article_input {
@@ -2118,6 +2197,16 @@ type tag_mutated {
   key: ID!
 }
 
+input update_appeal_input {
+  client_ip: String
+  date_created: Date
+  email: String
+  id: ID
+  message: String
+  name: String
+  subject: String
+}
+
 input update_article_input {
   id: ID
   translations: [update_article_translations_input]
@@ -2325,6 +2414,16 @@ input update_project_translations_input {
 input update_tag_input {
   id: ID
   title: String
+}
+
+type version_appeal {
+  client_ip: String
+  date_created: Date
+  email: String
+  id: ID
+  message: String
+  name: String
+  subject: String
 }
 
 type version_article {

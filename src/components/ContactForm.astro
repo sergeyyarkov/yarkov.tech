@@ -6,32 +6,32 @@ import { useTranslation } from "@i18n/utils";
 const t = useTranslation(Astro);
 ---
 
-<form name='contact' method='post'>
-	<div class='flex'>
+<form name="contact" action="/api/appeal" method="post">
+	<div class="flex">
 		<div>
-			<input name='name' placeholder={t("input.nameField")} type='text' maxlength='20' autocomplete='off' required />
+			<input name="name" placeholder={t("input.nameField")} type="text" maxlength="20" autocomplete="off" required />
 		</div>
 		<div>
-			<input name='email' placeholder='example@email.com' autocomplete='off' type='email' required />
+			<input name="email" placeholder="example@email.com" autocomplete="off" type="email" required />
 		</div>
 	</div>
-	<input name='subject' placeholder={t("input.subjectField")} type='text' autocomplete='off' required />
+	<input name="subject" placeholder={t("input.subjectField")} type="text" autocomplete="off" required />
 	<textarea
-		name='message'
+		name="message"
 		placeholder={t("input.messageField")}
-		id='message'
-		autocomplete='off'
+		id="message"
+		autocomplete="off"
 		cols={30}
 		rows={10}
 		required></textarea>
-	<div class='footer'>
+	<div class="footer">
 		<Button type={"submit"}>
 			<UIString key={"btn.submit"} />
 		</Button>
 	</div>
 </form>
 
-<style lang='scss'>
+<style lang="scss">
 	form {
 		display: flex;
 		flex-direction: column;

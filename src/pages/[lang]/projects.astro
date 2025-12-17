@@ -1,13 +1,5 @@
 ---
-import { getLanguageKeys } from "@i18n/utils";
-import { DEFAULT_LANGUAGE } from "@root/constants";
 import ProjectsTemplate from "@templates/Projects.astro";
-
-export function getStaticPaths() {
-	return getLanguageKeys()
-		.filter((lang) => lang !== DEFAULT_LANGUAGE)
-		.map((lang) => ({ params: { lang } }));
-}
 ---
 
 <ProjectsTemplate />

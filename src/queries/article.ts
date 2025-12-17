@@ -1,5 +1,6 @@
 import { graphql } from "../graphql";
 import execute from "../graphql/execute";
+import { Article_Translations } from "../graphql/graphql";
 
 export async function getArticleList() {
 	const ArticleQuery = graphql(`
@@ -110,12 +111,19 @@ export async function getArticleTranslationsBySlug(slug: string) {
 	return { ...result.data.article_translations[0] };
 }
 
-// export async function incArticleTranslationViews() {
-// 	const IncArticleTranslationViewsQuery = graphql(`
-// 		mutation Update_article_translations_item($id: ID!) {
-// 			update_article_translations_item(id: $id, data: { views: ${article.views + 1} }) {
-// 				views
-// 			}
-// 		}
-// 	`)
-// }
+export async function incArticleTranslationViews({
+	id,
+	views: currentViews,
+}: Pick<Article_Translations, "id" | "views">) {
+	const IncArticleTranslationViewsQuery = graphql(`
+		mutation Update_article_translations_item($id: ID!, $views: Int!) {
+			update_article_translations_item(id: $id, data: { views: $views }) {
+				views
+			}
+		}
+	`);
+
+	const result = await execute(IncArticleTranslationViewsQuery, { id, views: currentViews + 1 });
+
+	return result.data?.update_article_translations_item?.views;
+}
