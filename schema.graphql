@@ -344,6 +344,7 @@ type article_tag_mutated {
 type article_translations {
   article_id(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): article
   author(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+  """Insert "[[toc]]" to generate table of contents."""
   content: String!
   cover_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   description: String!
@@ -375,6 +376,7 @@ type article_translations_aggregated {
 type article_translations_aggregated_count {
   article_id: Int
   author: Int
+  """Insert "[[toc]]" to generate table of contents."""
   content: Int
   cover_image: Int
   description: Int
@@ -551,6 +553,7 @@ input create_article_tag_input {
 input create_article_translations_input {
   article_id: create_article_input
   author: create_directus_users_input
+  """Insert "[[toc]]" to generate table of contents."""
   content: String!
   cover_image: create_directus_files_input
   description: String!
@@ -2213,6 +2216,7 @@ input update_article_tag_input {
 input update_article_translations_input {
   article_id: update_article_input
   author: update_directus_users_input
+  """Insert "[[toc]]" to generate table of contents."""
   content: String
   cover_image: update_directus_files_input
   description: String
@@ -2431,6 +2435,7 @@ type version_article_tag {
 type version_article_translations {
   article_id: JSON
   author: JSON
+  """Insert "[[toc]]" to generate table of contents."""
   content: String
   cover_image: JSON
   description: String

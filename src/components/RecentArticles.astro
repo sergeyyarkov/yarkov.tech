@@ -32,6 +32,7 @@ const isEmpty = articles.length === 0;
 			!isEmpty ? (
 				articles
 					.slice(0, limit)
+					.reverse()
 					.map(
 						(a) =>
 							a && (

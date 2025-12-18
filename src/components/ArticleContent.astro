@@ -1,8 +1,23 @@
-<div itemprop="articleBody" class="article-content"><slot /></div>
+---
+import { useTranslation } from "../i18n/utils";
 
-<style lang="scss" is:global>
+const t = useTranslation(Astro);
+const tocTitle = t("article.tableOfContents");
+---
+
+<div itemprop='articleBody' class='article-content'><slot /></div>
+
+<script define:vars={{ tocTitle }}>
+	var $toc = document.querySelector(".toc");
+	if ($toc) {
+		$toc.querySelector("summary").textContent = tocTitle;
+		document.querySelector("body")?.addEventListener("click", () => $toc?.removeAttribute("open"));
+	}
+</script>
+
+<style lang='scss' is:global>
 	.article-content {
-		margin-top: 70px;
+		padding-top: 20px;
 		& h1,
 		h2,
 		h3,
@@ -198,6 +213,44 @@
 			font-size: var(--font-size-lg);
 			& a:not(:last-child)::after {
 				content: ",";
+			}
+		}
+
+		.toc {
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			& summary {
+				font-size: var(--font-size-lg);
+			}
+			& nav {
+				background-color: var(--background-card);
+				border: 1px solid var(--border-color);
+				border-radius: var(--border-radius-lg);
+				margin-top: 10px;
+				padding: 10px 16px;
+				& ul {
+					margin: 6px 0;
+					padding-left: 0;
+					margin-left: 0;
+					& a {
+						display: block;
+						// margin-bottom: 10px;
+						color: var(--font-color);
+						text-decoration: none;
+						font-size: var(--font-size-md);
+						&:hover {
+							color: var(--color-blue-500);
+						}
+					}
+					& li {
+						list-style: none;
+						padding: 0;
+					}
+					& li ul {
+						margin-left: 15px;
+					}
+				}
 			}
 		}
 	}

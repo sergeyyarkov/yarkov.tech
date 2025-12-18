@@ -19,7 +19,8 @@ body {
 	box-sizing: inherit;
 }
 
-[data-icon], svg {
+[data-icon],
+svg {
 	color: var(--icon-primary);
 	fill: var(--icon-primary);
 }
@@ -61,6 +62,10 @@ body {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.visually-hidden {
+	display: none;
 }
 
 .btn-link {

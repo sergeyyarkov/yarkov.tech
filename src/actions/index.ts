@@ -16,7 +16,8 @@ export const server = {
 		}),
 		handler: async (data, ctx) => {
 			const currentDate = new Date();
-			const appealsLastHrs = (await getLatestAppealsByClientIp(ctx.clientAddress, 5)).filter((a) => {
+			const latestAppeals = await getLatestAppealsByClientIp(ctx.clientAddress, 5);
+			const appealsLastHrs = latestAppeals.filter((a) => {
 				const hourDiff = (currentDate.getTime() - new Date(a.date_created).getTime()) / (1000 * 60 * 60);
 				return hourDiff <= CREATE_APPEAL_LIMIT_HRS;
 			});

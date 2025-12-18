@@ -1566,6 +1566,7 @@ export type Article_Translations = {
   __typename?: 'article_translations';
   article_id?: Maybe<Article>;
   author?: Maybe<Directus_Users>;
+  /** Insert "[[toc]]" to generate table of contents. */
   content: Scalars['String']['output'];
   cover_image?: Maybe<Directus_Files>;
   description: Scalars['String']['output'];
@@ -1649,6 +1650,7 @@ export type Article_Translations_Aggregated_Count = {
   __typename?: 'article_translations_aggregated_count';
   article_id?: Maybe<Scalars['Int']['output']>;
   author?: Maybe<Scalars['Int']['output']>;
+  /** Insert "[[toc]]" to generate table of contents. */
   content?: Maybe<Scalars['Int']['output']>;
   cover_image?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
@@ -1853,6 +1855,7 @@ export type Create_Article_Tag_Input = {
 export type Create_Article_Translations_Input = {
   article_id?: InputMaybe<Create_Article_Input>;
   author?: InputMaybe<Create_Directus_Users_Input>;
+  /** Insert "[[toc]]" to generate table of contents. */
   content: Scalars['String']['input'];
   cover_image?: InputMaybe<Create_Directus_Files_Input>;
   description: Scalars['String']['input'];
@@ -4203,6 +4206,7 @@ export type Update_Article_Tag_Input = {
 export type Update_Article_Translations_Input = {
   article_id?: InputMaybe<Update_Article_Input>;
   author?: InputMaybe<Update_Directus_Users_Input>;
+  /** Insert "[[toc]]" to generate table of contents. */
   content?: InputMaybe<Scalars['String']['input']>;
   cover_image?: InputMaybe<Update_Directus_Files_Input>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -4425,6 +4429,7 @@ export type Version_Article_Translations = {
   __typename?: 'version_article_translations';
   article_id?: Maybe<Scalars['JSON']['output']>;
   author?: Maybe<Scalars['JSON']['output']>;
+  /** Insert "[[toc]]" to generate table of contents. */
   content?: Maybe<Scalars['String']['output']>;
   cover_image?: Maybe<Scalars['JSON']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -4655,7 +4660,7 @@ export const ArticleDocument = new TypedDocumentString(`
 export const RecentArticleDocument = new TypedDocumentString(`
     query RecentArticle {
   article {
-    translations(filter: {status: {_eq: "published"}}) {
+    translations(filter: {status: {_eq: "published"}}, sort: ["-pub_date"]) {
       title
       cover_image {
         id

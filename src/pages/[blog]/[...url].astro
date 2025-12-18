@@ -14,4 +14,4 @@ if (!article) return Astro.redirect("/404");
 if (import.meta.env.PROD) await incArticleTranslationViews(article);
 ---
 
-<ArticleLayout lang={article.languages_code?.code} article={article} />
+<ArticleLayout lang={article.languages_code?.code.split("-")[0]} article={article} />

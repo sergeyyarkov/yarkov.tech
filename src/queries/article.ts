@@ -37,7 +37,7 @@ export async function getRecentArticleList() {
 	const RecentArticleQuery = graphql(`
 		query RecentArticle {
 			article {
-				translations(filter: { status: { _eq: "published" } }) {
+				translations(filter: { status: { _eq: "published" } }, sort: ["-pub_date"]) {
 					title
 					cover_image {
 						id

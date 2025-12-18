@@ -30,7 +30,7 @@ export default {
 	"splash.description":
 		"I develop websites and web applications of varying complexity, and also publish articles and tutorials on various IT topics.",
 	"splash.about": "about me",
-	"splash.contact": "write me",
+	"splash.contact": "text me",
 	/* Recent articles */
 	"recentArticles.heading": "recent publications",
 	"recentArticles.all": "see all",
