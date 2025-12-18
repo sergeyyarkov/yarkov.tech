@@ -1,10 +1,8 @@
 ---
 import "@styles/global.scss";
-import siteconfig from "siteconfig.json";
 import { SITE_METADATA } from "@root/constants";
 import YaMetrika from "./Analytics/YaMetrika.astro";
 import { useTranslation } from "@root/i18n/utils";
-import { getSiteSettings } from "../queries";
 
 export interface Props {
 	title?: string;
@@ -14,60 +12,59 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description } = Astro.props;
-const siteSettings = await getSiteSettings();
 const isDev = import.meta.env.DEV;
 const t = useTranslation(Astro);
 ---
 
 <head>
 	<!-- Fonts -->
-	<link rel='preconnect' href='https://fonts.googleapis.com' />
-	<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href='https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono&display=swap'
-		rel='preload'
-		as='style'
-		onload="this.rel='stylesheet'"
+		href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono&display=swap"
+		rel="preload"
+		as="style"
+		onload={`this.rel='stylesheet'`}
 	/>
 
 	<!-- Canonical URL -->
-	<link rel='canonical' href={canonicalURL.href} />
+	<link rel="canonical" href={canonicalURL.href} />
 
 	<!-- Base metadata -->
-	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>{title || SITE_METADATA.title}</title>
 
 	<!-- Metadata -->
-	<meta name='title' content={title || SITE_METADATA.title} />
-	<meta name='generator' content={Astro.generator} />
-	<meta name='description' content={description || t("site.description")} />
-	<meta name='theme-color' content={SITE_METADATA.themeColor} />
-	<meta name='msapplication-TileColor' content='#da532c' />
+	<meta name="title" content={title || SITE_METADATA.title} />
+	<meta name="generator" content={Astro.generator} />
+	<meta name="description" content={description || t("site.description")} />
+	<meta name="theme-color" content={SITE_METADATA.themeColor} />
+	<meta name="msapplication-TileColor" content="#da532c" />
 
 	<!-- Favicons -->
-	<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 	<link
-		rel='icon'
-		type='image/png'
-		sizes='32x32'
-		href='/favicon-light-32x32.png'
-		media='(prefers-color-scheme: light)'
+		rel="icon"
+		type="image/png"
+		sizes="32x32"
+		href="/favicon-light-32x32.png"
+		media="(prefers-color-scheme: light)"
 	/>
 	<link
-		rel='icon'
-		type='image/png'
-		sizes='16x16'
-		href='/favicon-light-16x16.png'
-		media='(prefers-color-scheme: light)'
+		rel="icon"
+		type="image/png"
+		sizes="16x16"
+		href="/favicon-light-16x16.png"
+		media="(prefers-color-scheme: light)"
 	/>
-	<link rel='icon' type='image/png' sizes='32x32' href='/favicon-dark-32x32.png' media='(prefers-color-scheme: dark)' />
-	<link rel='icon' type='image/png' sizes='16x16' href='/favicon-dark-16x16.png' media='(prefers-color-scheme: dark)' />
-	<link rel='manifest' href='/site.webmanifest' />
-	<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-	<link rel='sitemap' href='/sitemap-index.xml' />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-dark-32x32.png" media="(prefers-color-scheme: dark)" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-dark-16x16.png" media="(prefers-color-scheme: dark)" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<link rel="sitemap" href="/sitemap-index.xml" />
 	<slot />
-	<script is:inline src='/assets/js/detect-theme.js'></script>
-	<script src='../quicklink.js'></script>
-	{!isDev && siteSettings?.ym_counter && <YaMetrika counter={siteSettings.ym_counter} />}
+	<script is:inline src="/assets/js/detect-theme.js"></script>
+	<!-- <script src="../quicklink.js"></script> -->
+	{!isDev && <YaMetrika />}
 </head>

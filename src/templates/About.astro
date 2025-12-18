@@ -2,23 +2,15 @@
 import { getLanguageFromURL, useTranslation } from "@i18n/utils";
 import PageLayout from "@layouts/default.astro";
 import PageHeading from "@components/PageHeading.astro";
-import ArticleContent from "@components/ArticleContent.astro";
-import { getAboutMe } from "../queries/global";
-import { markdownToHTML } from "../utils/markdown";
+import AboutMeContent from "@components/AboutMeContent.astro";
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-const data = await getAboutMe(pageLang);
-if (!data?.about) return Astro.redirect("/404", 404);
-const aboutMeHtmlContent = await markdownToHTML(data.about);
 const t = useTranslation(Astro);
 ---
 
 <PageLayout noIndex lang={pageLang} title={t("pageTitle.about")}>
 	<PageHeading heading={t("pageTitle.about")} />
 	<section>
-		<ArticleContent set:html={aboutMeHtmlContent} />
-		<!-- <SkillsList>
-			{skills.map((block) => <SkillsBlock data={block.data} />)}
-		</SkillsList> -->
+		<AboutMeContent />
 	</section>
 </PageLayout>

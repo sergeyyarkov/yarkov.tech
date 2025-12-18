@@ -14,6 +14,7 @@ export default defineConfig({
 	output: "server",
 	server: {
 		port: 9966,
+		host: true,
 		allowedHosts: ["showcase.yarkov.tech"],
 	},
 	adapter: node({

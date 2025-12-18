@@ -1,6 +1,6 @@
 import type { MarkdownHeading } from "astro";
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import { ArticleQuery, RecentArticleQuery } from "../graphql/graphql";
+import { ArticleQuery } from "../graphql/graphql";
 
 /**
  * If there is a translation of an article in the current language of the page,
