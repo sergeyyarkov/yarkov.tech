@@ -12,12 +12,21 @@ export default defineConfig({
 	site: "https://yarkov.tech",
 	compressHTML: true,
 	output: "server",
+	server: {
+		port: 9966,
+		allowedHosts: ["showcase.yarkov.tech"],
+	},
 	adapter: node({
 		mode: "standalone",
 	}),
 	env: {
 		schema: {
 			DIRECTUS_URL: envField.string({ context: "server", access: "secret", default: "" }),
+			DIRECTUS_URL_GRAPHQL: envField.string({
+				context: "server",
+				access: "secret",
+				default: "http://directus:8055/graphql",
+			}),
 			DIRECTUS_TOKEN: envField.string({ context: "server", access: "secret", default: "" }),
 		},
 	},

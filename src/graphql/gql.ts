@@ -15,6 +15,8 @@ import * as types from './graphql';
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n\t\tquery LatestAppealByClientIpQuery($client_ip: String!, $limit: Int!) {\n\t\t\tappeal(filter: { client_ip: { _eq: $client_ip } }, sort: [\"-date_created\"], limit: $limit) {\n\t\t\t\tclient_ip\n\t\t\t\tdate_created\n\t\t\t}\n\t\t}\n\t": typeof types.LatestAppealByClientIpQueryDocument,
+    "\n\t\tmutation CreateAppealQuery(\n\t\t\t$name: String!\n\t\t\t$email: String!\n\t\t\t$subject: String!\n\t\t\t$message: String!\n\t\t\t$client_ip: String!\n\t\t) {\n\t\t\tcreate_appeal_item(\n\t\t\t\tdata: { name: $name, email: $email, subject: $subject, message: $message, client_ip: $client_ip }\n\t\t\t) {\n\t\t\t\tid\n\t\t\t}\n\t\t}\n\t": typeof types.CreateAppealQueryDocument,
     "\n\t\tquery Article {\n\t\t\tarticle {\n\t\t\t\ttranslations(filter: { status: { _eq: \"published\" } }) {\n\t\t\t\t\tid\n\t\t\t\t\ttitle\n\t\t\t\t\ttags {\n\t\t\t\t\t\ttag_id {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tdescription\n\t\t\t\t\tslug\n\t\t\t\t\tpub_date\n\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\tcode\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": typeof types.ArticleDocument,
     "\n\t\tquery RecentArticle {\n\t\t\tarticle {\n\t\t\t\ttranslations(filter: { status: { _eq: \"published\" } }) {\n\t\t\t\t\ttitle\n\t\t\t\t\tcover_image {\n\t\t\t\t\t\tid\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t\tslug\n\t\t\t\t\tpub_date\n\t\t\t\t\tviews\n\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\tcode\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": typeof types.RecentArticleDocument,
     "\n\t\tquery Article_translations($slug: String!) {\n\t\t\tarticle_translations(filter: { slug: { _eq: $slug } }) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\ttags {\n\t\t\t\t\ttag_id {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tdescription\n\t\t\t\tslug\n\t\t\t\tcontent\n\t\t\t\tauthor {\n\t\t\t\t\tfirst_name\n\t\t\t\t\tlast_name\n\t\t\t\t}\n\t\t\t\tpub_date\n\t\t\t\tviews\n\t\t\t\tlanguages_code {\n\t\t\t\t\tcode\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcover_image {\n\t\t\t\t\ttitle\n\t\t\t\t\ttype\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t\tarticle_id {\n\t\t\t\t\ttranslations {\n\t\t\t\t\t\tslug\n\t\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\t\tcode\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tpub_date\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": typeof types.Article_TranslationsDocument,
@@ -26,6 +28,8 @@ type Documents = {
     "\n\t\tquery Tag {\n\t\t\ttag {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t}\n\t\t}\n\t": typeof types.TagDocument,
 };
 const documents: Documents = {
+    "\n\t\tquery LatestAppealByClientIpQuery($client_ip: String!, $limit: Int!) {\n\t\t\tappeal(filter: { client_ip: { _eq: $client_ip } }, sort: [\"-date_created\"], limit: $limit) {\n\t\t\t\tclient_ip\n\t\t\t\tdate_created\n\t\t\t}\n\t\t}\n\t": types.LatestAppealByClientIpQueryDocument,
+    "\n\t\tmutation CreateAppealQuery(\n\t\t\t$name: String!\n\t\t\t$email: String!\n\t\t\t$subject: String!\n\t\t\t$message: String!\n\t\t\t$client_ip: String!\n\t\t) {\n\t\t\tcreate_appeal_item(\n\t\t\t\tdata: { name: $name, email: $email, subject: $subject, message: $message, client_ip: $client_ip }\n\t\t\t) {\n\t\t\t\tid\n\t\t\t}\n\t\t}\n\t": types.CreateAppealQueryDocument,
     "\n\t\tquery Article {\n\t\t\tarticle {\n\t\t\t\ttranslations(filter: { status: { _eq: \"published\" } }) {\n\t\t\t\t\tid\n\t\t\t\t\ttitle\n\t\t\t\t\ttags {\n\t\t\t\t\t\ttag_id {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tdescription\n\t\t\t\t\tslug\n\t\t\t\t\tpub_date\n\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\tcode\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.ArticleDocument,
     "\n\t\tquery RecentArticle {\n\t\t\tarticle {\n\t\t\t\ttranslations(filter: { status: { _eq: \"published\" } }) {\n\t\t\t\t\ttitle\n\t\t\t\t\tcover_image {\n\t\t\t\t\t\tid\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t\tslug\n\t\t\t\t\tpub_date\n\t\t\t\t\tviews\n\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\tcode\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.RecentArticleDocument,
     "\n\t\tquery Article_translations($slug: String!) {\n\t\t\tarticle_translations(filter: { slug: { _eq: $slug } }) {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\ttags {\n\t\t\t\t\ttag_id {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tdescription\n\t\t\t\tslug\n\t\t\t\tcontent\n\t\t\t\tauthor {\n\t\t\t\t\tfirst_name\n\t\t\t\t\tlast_name\n\t\t\t\t}\n\t\t\t\tpub_date\n\t\t\t\tviews\n\t\t\t\tlanguages_code {\n\t\t\t\t\tcode\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcover_image {\n\t\t\t\t\ttitle\n\t\t\t\t\ttype\n\t\t\t\t\tfilename_disk\n\t\t\t\t}\n\t\t\t\tarticle_id {\n\t\t\t\t\ttranslations {\n\t\t\t\t\t\tslug\n\t\t\t\t\t\tlanguages_code {\n\t\t\t\t\t\t\tcode\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tpub_date\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.Article_TranslationsDocument,
@@ -37,6 +41,14 @@ const documents: Documents = {
     "\n\t\tquery Tag {\n\t\t\ttag {\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t}\n\t\t}\n\t": types.TagDocument,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\t\tquery LatestAppealByClientIpQuery($client_ip: String!, $limit: Int!) {\n\t\t\tappeal(filter: { client_ip: { _eq: $client_ip } }, sort: [\"-date_created\"], limit: $limit) {\n\t\t\t\tclient_ip\n\t\t\t\tdate_created\n\t\t\t}\n\t\t}\n\t"): typeof import('./graphql').LatestAppealByClientIpQueryDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\t\tmutation CreateAppealQuery(\n\t\t\t$name: String!\n\t\t\t$email: String!\n\t\t\t$subject: String!\n\t\t\t$message: String!\n\t\t\t$client_ip: String!\n\t\t) {\n\t\t\tcreate_appeal_item(\n\t\t\t\tdata: { name: $name, email: $email, subject: $subject, message: $message, client_ip: $client_ip }\n\t\t\t) {\n\t\t\t\tid\n\t\t\t}\n\t\t}\n\t"): typeof import('./graphql').CreateAppealQueryDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

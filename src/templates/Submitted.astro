@@ -1,0 +1,13 @@
+---
+import PageLayout from "@layouts/default.astro";
+import { getLanguageFromURL } from "@i18n/utils";
+import UIString from "@root/components/UIString.astro";
+const lang = getLanguageFromURL(Astro.url.pathname);
+---
+
+<PageLayout noIndex lang={lang}>
+	<div class="container">
+		<h1 style="font-size:var(--font-size-5xl);"><UIString key={"submitted.heading"} /></h1>
+		<p><UIString key={"submitted.description"} /></p>
+	</div>
+</PageLayout>

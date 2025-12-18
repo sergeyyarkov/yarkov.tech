@@ -4517,6 +4517,25 @@ export type Version_Tag = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+export type LatestAppealByClientIpQueryQueryVariables = Exact<{
+  client_ip: Scalars['String']['input'];
+  limit: Scalars['Int']['input'];
+}>;
+
+
+export type LatestAppealByClientIpQueryQuery = { __typename?: 'Query', appeal: Array<{ __typename?: 'appeal', client_ip: string, date_created?: any | null }> };
+
+export type CreateAppealQueryMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  subject: Scalars['String']['input'];
+  message: Scalars['String']['input'];
+  client_ip: Scalars['String']['input'];
+}>;
+
+
+export type CreateAppealQueryMutation = { __typename?: 'Mutation', create_appeal_item?: { __typename?: 'appeal', id: string } | null };
+
 export type ArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4590,6 +4609,27 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const LatestAppealByClientIpQueryDocument = new TypedDocumentString(`
+    query LatestAppealByClientIpQuery($client_ip: String!, $limit: Int!) {
+  appeal(
+    filter: {client_ip: {_eq: $client_ip}}
+    sort: ["-date_created"]
+    limit: $limit
+  ) {
+    client_ip
+    date_created
+  }
+}
+    `) as unknown as TypedDocumentString<LatestAppealByClientIpQueryQuery, LatestAppealByClientIpQueryQueryVariables>;
+export const CreateAppealQueryDocument = new TypedDocumentString(`
+    mutation CreateAppealQuery($name: String!, $email: String!, $subject: String!, $message: String!, $client_ip: String!) {
+  create_appeal_item(
+    data: {name: $name, email: $email, subject: $subject, message: $message, client_ip: $client_ip}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CreateAppealQueryMutation, CreateAppealQueryMutationVariables>;
 export const ArticleDocument = new TypedDocumentString(`
     query Article {
   article {

@@ -1,12 +1,12 @@
 import type { ExecutionResult } from "graphql";
 import type { TypedDocumentString } from "./graphql";
-import { DIRECTUS_URL, DIRECTUS_TOKEN } from "astro:env/server";
+import { DIRECTUS_URL_GRAPHQL, DIRECTUS_TOKEN } from "astro:env/server";
 
 export default async function execute<TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
 	...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) {
-	const response = await fetch(DIRECTUS_URL + "/graphql", {
+	const response = await fetch(DIRECTUS_URL_GRAPHQL, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

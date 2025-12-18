@@ -11,11 +11,12 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"dev": "astro dev",
+		"dev": "astro dev --host",
 		"build": "astro check && astro build",
 		"start": "node --env-file=.env ./dist/server/entry.mjs",
 		"preview": "astro preview",
 		"astro": "astro",
+		"telemetry-disable": "astro telemetry disable",
 		"codegen": "graphql-codegen --require dotenv/config --config codegen.ts --watch"
 	},
 	"dependencies": {
