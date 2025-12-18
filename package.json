@@ -12,7 +12,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
-		"build": "astro build",
+		"build": "astro check && astro build",
 		"start": "node --env-file=.env ./dist/server/entry.mjs",
 		"preview": "astro preview",
 		"astro": "astro",

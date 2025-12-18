@@ -4544,12 +4544,14 @@ export type CreateAppealQueryMutation = { __typename?: 'Mutation', create_appeal
 export type ArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null } | null> | null }> };
+export type ArticleQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null }> };
 
-export type RecentArticleQueryVariables = Exact<{ [key: string]: never; }>;
+export type RecentArticleQueryVariables = Exact<{
+  limit: Scalars['Int']['input'];
+}>;
 
 
-export type RecentArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, views: number, cover_image?: { __typename?: 'directus_files', id: string, title?: string | null } | null, languages_code?: { __typename?: 'languages', code: string } | null } | null> | null }> };
+export type RecentArticleQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string } | null }> };
 
 export type Article_TranslationsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -4637,41 +4639,36 @@ export const CreateAppealQueryDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<CreateAppealQueryMutation, CreateAppealQueryMutationVariables>;
 export const ArticleDocument = new TypedDocumentString(`
     query Article {
-  article {
-    translations(filter: {status: {_eq: "published"}}) {
-      id
-      title
-      tags {
-        tag_id {
-          title
-        }
+  article_translations(filter: {status: {_eq: "published"}}) {
+    id
+    title
+    tags {
+      tag_id {
+        title
       }
-      description
-      slug
-      pub_date
-      languages_code {
-        code
-        name
-      }
+    }
+    description
+    slug
+    pub_date
+    languages_code {
+      code
+      name
     }
   }
 }
     `) as unknown as TypedDocumentString<ArticleQuery, ArticleQueryVariables>;
 export const RecentArticleDocument = new TypedDocumentString(`
-    query RecentArticle {
-  article {
-    translations(filter: {status: {_eq: "published"}}, sort: ["-pub_date"]) {
-      title
-      cover_image {
-        id
-        title
-      }
-      slug
-      pub_date
-      views
-      languages_code {
-        code
-      }
+    query RecentArticle($limit: Int!) {
+  article_translations(
+    filter: {status: {_eq: "published"}}
+    sort: ["-pub_date"]
+    limit: $limit
+  ) {
+    title
+    slug
+    pub_date
+    languages_code {
+      code
     }
   }
 }

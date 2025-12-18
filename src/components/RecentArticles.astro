@@ -5,16 +5,12 @@ import ArticleItem from "@components/ArticleItem";
 import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
-import { getRecentArticleList } from "../queries";
+import { getRecentArticleList, getSiteSettings } from "../queries";
 
-export interface Props {
-	limit?: number;
-}
-
-const { limit = 1 } = Astro.props;
 const pageLang = getLanguageFromURL(Astro.url.pathname);
-const data = await getRecentArticleList();
-const articles = data.flatMap((a) => utils.filterArticlesByPageLang(a.translations, pageLang));
+const siteSettings = await getSiteSettings();
+const data = await getRecentArticleList(siteSettings?.recent_articles_limit || 5);
+const articles = utils.filterArticlesByPageLang(data, pageLang);
 const isEmpty = articles.length === 0;
 ---
 
@@ -30,21 +26,15 @@ const isEmpty = articles.length === 0;
 	<div itemscope itemtype='http://schema.org/Blog'>
 		{
 			!isEmpty ? (
-				articles
-					.slice(0, limit)
-					.reverse()
-					.map(
-						(a) =>
-							a && (
-								<ArticleItem
-									slug={a.slug}
-									title={a.title}
-									languages_code={a.languages_code}
-									pub_date={a.pub_date}
-									pageLang={pageLang}
-								/>
-							)
-					)
+				articles.map((a) => (
+					<ArticleItem
+						slug={a.slug}
+						title={a.title}
+						languages_code={a.languages_code}
+						pub_date={a.pub_date}
+						pageLang={pageLang}
+					/>
+				))
 			) : (
 				<EmptyList />
 			)

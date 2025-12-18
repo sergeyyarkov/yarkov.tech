@@ -7,7 +7,7 @@ const tocTitle = t("article.tableOfContents");
 
 <div itemprop='articleBody' class='article-content'><slot /></div>
 
-<script define:vars={{ tocTitle }}>
+<script is:inline define:vars={{ tocTitle }}>
 	var $toc = document.querySelector(".toc");
 	if ($toc) {
 		$toc.querySelector("summary").textContent = tocTitle;

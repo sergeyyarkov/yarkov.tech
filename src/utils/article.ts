@@ -1,13 +1,12 @@
-import type { MarkdownHeading } from "astro";
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import { ArticleQuery } from "../graphql/graphql";
+import { Article_Translations, ArticleQuery } from "../graphql/graphql";
 
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
-export function filterArticlesByPageLang(
-	articles: ArticleQuery["article"][number]["translations"],
+export function filterArticlesByPageLang<T>(
+	articles: Array<T & Pick<Article_Translations, "languages_code">>,
 	pageLang: LanguageKeys
 ) {
 	if (!articles) return [];
@@ -33,8 +32,8 @@ export function createRelativeArticleUrl(
 	return `${lang}/${prefix}/${date}/${slug}`;
 }
 
-export function formatToArticleBlocks(articles: ArticleQuery["article"][0]["translations"]) {
-	const blocks: Record<string, ArticleQuery["article"][0]["translations"]> = {};
+export function formatToArticleBlocks<T>(articles: Array<T & Pick<Article_Translations, "pub_date">>) {
+	const blocks: Record<string, Array<T & Pick<Article_Translations, "pub_date">>> = {};
 
 	if (!articles) return {};
 
@@ -47,22 +46,4 @@ export function formatToArticleBlocks(articles: ArticleQuery["article"][0]["tran
 	}
 
 	return blocks;
-}
-
-export type MarkdownHeadingToc = MarkdownHeading & { subheadings?: MarkdownHeading[] };
-
-export function buildToc(headings: MarkdownHeading[], maxDepth: number = 2) {
-	const toc: MarkdownHeadingToc[] = [];
-	const parentHeadings = new Map();
-
-	headings.forEach((h) => {
-		const heading = { ...h, subheadings: [] };
-		parentHeadings.set(heading.depth, heading);
-		if (heading.depth === 1) {
-			toc.push(heading);
-		} else if (heading.depth <= maxDepth) {
-			parentHeadings.get(heading.depth - 1)?.subheadings.push(heading);
-		}
-	});
-	return toc;
 }
