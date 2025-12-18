@@ -1,19 +1,16 @@
 import type { Component } from "solid-js";
 import { createSignal, createEffect, For } from "solid-js";
 import { search, selectedTags, setCount } from "@stores/searchStore";
-import SearchInput from "./SearchInput";
-import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
-import "./ArticlesList.scss";
 import { ArticleQuery } from "@/src/graphql/graphql";
+import "./ArticlesList.scss";
 
-type UiStringsType = { "articles.empty": string; "input.search": string };
+type UiStringsType = { "articles.empty": string };
 
 type ArticlesBlockType = Record<string, ArticleQuery["article"][0]["translations"]>;
 
 type ArticlesListProps = {
 	articles: ArticlesBlockType;
-	tags: string[];
 	pageLang: string;
 	i18n: UiStringsType;
 };
@@ -35,9 +32,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
 		const filter = (
-			cb: (
-				articles: ArticleQuery["article"][0]["translations"]
-			) => ArticleQuery["article"][0]["translations"]
+			cb: (articles: ArticleQuery["article"][0]["translations"]) => ArticleQuery["article"][0]["translations"]
 		) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
@@ -69,8 +64,6 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 
 	return (
 		<>
-			<SearchInput i18n={{ "input.search": props.i18n["input.search"] }} />
-			<TagsList tags={props.tags} />
 			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
 				{!isEmpty() ? (
 					<For each={sortByYears(articles())}>

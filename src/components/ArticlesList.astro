@@ -1,0 +1,13 @@
+---
+import { useTranslation, getLanguageFromURL } from "@i18n/utils";
+import { filterArticlesByPageLang, formatToArticleBlocks } from "@utils/article";
+import List from "@components/ArticlesList";
+import { getArticleList } from "@root/queries/article";
+
+const t = useTranslation(Astro);
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const articles = (await getArticleList()).flatMap((a) => filterArticlesByPageLang(a.translations, pageLang));
+const articleBlocks = formatToArticleBlocks(articles);
+---
+
+<List client:load i18n={{ "articles.empty": t("articles.empty") }} articles={articleBlocks} pageLang={pageLang} />
