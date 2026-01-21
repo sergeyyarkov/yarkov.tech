@@ -6,11 +6,12 @@ import EmptyList from "@components/EmptyList.astro";
 import UIString from "@components/UIString.astro";
 import TranslatedLink from "@components/TranslatedLink.astro";
 import { getRecentArticleList, getSiteSettings } from "../queries";
+import { RecentArticleQuery } from "../graphql/graphql";
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const siteSettings = await getSiteSettings();
-const data = await getRecentArticleList(siteSettings?.recent_articles_limit || 5);
-const articles = utils.filterArticlesByPageLang(data, pageLang);
+const articles = await getRecentArticleList(siteSettings?.recent_articles_limit || 5);
+const filteredArticles = utils.filterArticlesByPageLang<RecentArticleQuery>(articles, pageLang);
 const isEmpty = articles.length === 0;
 ---
 
@@ -26,7 +27,7 @@ const isEmpty = articles.length === 0;
 	<div itemscope itemtype='http://schema.org/Blog'>
 		{
 			!isEmpty ? (
-				articles.map((a) => (
+				filteredArticles.map((a) => (
 					<ArticleItem
 						slug={a.slug}
 						title={a.title}

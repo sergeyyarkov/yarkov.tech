@@ -38,8 +38,6 @@ export type Mutation = {
   create_appeal_items: Array<Appeal>;
   create_article_item?: Maybe<Article>;
   create_article_items: Array<Article>;
-  create_article_tag_item?: Maybe<Article_Tag>;
-  create_article_tag_items: Array<Article_Tag>;
   create_article_translations_item?: Maybe<Article_Translations>;
   create_article_translations_items: Array<Article_Translations>;
   create_article_translations_tag_item?: Maybe<Article_Translations_Tag>;
@@ -60,8 +58,6 @@ export type Mutation = {
   delete_appeal_items?: Maybe<Delete_Many>;
   delete_article_item?: Maybe<Delete_One>;
   delete_article_items?: Maybe<Delete_Many>;
-  delete_article_tag_item?: Maybe<Delete_One>;
-  delete_article_tag_items?: Maybe<Delete_Many>;
   delete_article_translations_item?: Maybe<Delete_One>;
   delete_article_translations_items?: Maybe<Delete_Many>;
   delete_article_translations_tag_item?: Maybe<Delete_One>;
@@ -84,9 +80,6 @@ export type Mutation = {
   update_article_batch: Array<Article>;
   update_article_item?: Maybe<Article>;
   update_article_items: Array<Article>;
-  update_article_tag_batch: Array<Article_Tag>;
-  update_article_tag_item?: Maybe<Article_Tag>;
-  update_article_tag_items: Array<Article_Tag>;
   update_article_translations_batch: Array<Article_Translations>;
   update_article_translations_item?: Maybe<Article_Translations>;
   update_article_translations_items: Array<Article_Translations>;
@@ -140,22 +133,6 @@ export type MutationCreate_Article_ItemArgs = {
 export type MutationCreate_Article_ItemsArgs = {
   data?: InputMaybe<Array<Create_Article_Input>>;
   filter?: InputMaybe<Article_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Article_Tag_ItemArgs = {
-  data: Create_Article_Tag_Input;
-};
-
-
-export type MutationCreate_Article_Tag_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Article_Tag_Input>>;
-  filter?: InputMaybe<Article_Tag_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -312,16 +289,6 @@ export type MutationDelete_Article_ItemsArgs = {
 };
 
 
-export type MutationDelete_Article_Tag_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Article_Tag_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
 export type MutationDelete_Article_Translations_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -451,35 +418,6 @@ export type MutationUpdate_Article_ItemArgs = {
 export type MutationUpdate_Article_ItemsArgs = {
   data: Update_Article_Input;
   filter?: InputMaybe<Article_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Article_Tag_BatchArgs = {
-  data?: InputMaybe<Array<Update_Article_Tag_Input>>;
-  filter?: InputMaybe<Article_Tag_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Article_Tag_ItemArgs = {
-  data: Update_Article_Tag_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Article_Tag_ItemsArgs = {
-  data: Update_Article_Tag_Input;
-  filter?: InputMaybe<Article_Tag_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -740,10 +678,6 @@ export type Query = {
   article_aggregated: Array<Article_Aggregated>;
   article_by_id?: Maybe<Article>;
   article_by_version?: Maybe<Version_Article>;
-  article_tag: Array<Article_Tag>;
-  article_tag_aggregated: Array<Article_Tag_Aggregated>;
-  article_tag_by_id?: Maybe<Article_Tag>;
-  article_tag_by_version?: Maybe<Version_Article_Tag>;
   article_translations: Array<Article_Translations>;
   article_translations_aggregated: Array<Article_Translations_Aggregated>;
   article_translations_by_id?: Maybe<Article_Translations>;
@@ -844,39 +778,6 @@ export type QueryArticle_By_IdArgs = {
 
 
 export type QueryArticle_By_VersionArgs = {
-  id: Scalars['ID']['input'];
-  version: Scalars['String']['input'];
-};
-
-
-export type QueryArticle_TagArgs = {
-  filter?: InputMaybe<Article_Tag_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryArticle_Tag_AggregatedArgs = {
-  filter?: InputMaybe<Article_Tag_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryArticle_Tag_By_IdArgs = {
-  id: Scalars['ID']['input'];
-  version?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryArticle_Tag_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -1169,7 +1070,6 @@ export type Subscription = {
   __typename?: 'Subscription';
   appeal_mutated?: Maybe<Appeal_Mutated>;
   article_mutated?: Maybe<Article_Mutated>;
-  article_tag_mutated?: Maybe<Article_Tag_Mutated>;
   article_translations_mutated?: Maybe<Article_Translations_Mutated>;
   article_translations_tag_mutated?: Maybe<Article_Translations_Tag_Mutated>;
   directus_access_mutated?: Maybe<Directus_Access_Mutated>;
@@ -1210,11 +1110,6 @@ export type SubscriptionAppeal_MutatedArgs = {
 
 
 export type SubscriptionArticle_MutatedArgs = {
-  event?: InputMaybe<EventEnum>;
-};
-
-
-export type SubscriptionArticle_Tag_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1438,6 +1333,7 @@ export type Appeal_Mutated = {
 export type Article = {
   __typename?: 'article';
   id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
   translations?: Maybe<Array<Maybe<Article_Translations>>>;
   translations_func?: Maybe<Count_Functions>;
 };
@@ -1469,6 +1365,7 @@ export type Article_Aggregated = {
 export type Article_Aggregated_Count = {
   __typename?: 'article_aggregated_count';
   id?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
   translations?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1481,6 +1378,7 @@ export type Article_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Article_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Article_Filter>>>;
   id?: InputMaybe<Number_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
   translations?: InputMaybe<Article_Translations_Quantifier_Filter>;
   translations_func?: InputMaybe<Count_Function_Filter_Operators>;
 };
@@ -1488,76 +1386,6 @@ export type Article_Filter = {
 export type Article_Mutated = {
   __typename?: 'article_mutated';
   data?: Maybe<Article>;
-  event?: Maybe<EventEnum>;
-  key: Scalars['ID']['output'];
-};
-
-export type Article_Tag = {
-  __typename?: 'article_tag';
-  article_id?: Maybe<Article>;
-  id: Scalars['ID']['output'];
-  tag_id?: Maybe<Tag>;
-};
-
-
-export type Article_TagArticle_IdArgs = {
-  filter?: InputMaybe<Article_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Article_TagTag_IdArgs = {
-  filter?: InputMaybe<Tag_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Article_Tag_Aggregated = {
-  __typename?: 'article_tag_aggregated';
-  avg?: Maybe<Article_Tag_Aggregated_Fields>;
-  avgDistinct?: Maybe<Article_Tag_Aggregated_Fields>;
-  count?: Maybe<Article_Tag_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Article_Tag_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Article_Tag_Aggregated_Fields>;
-  min?: Maybe<Article_Tag_Aggregated_Fields>;
-  sum?: Maybe<Article_Tag_Aggregated_Fields>;
-  sumDistinct?: Maybe<Article_Tag_Aggregated_Fields>;
-};
-
-export type Article_Tag_Aggregated_Count = {
-  __typename?: 'article_tag_aggregated_count';
-  article_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  tag_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Article_Tag_Aggregated_Fields = {
-  __typename?: 'article_tag_aggregated_fields';
-  article_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  tag_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Article_Tag_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Article_Tag_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Article_Tag_Filter>>>;
-  article_id?: InputMaybe<Article_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  tag_id?: InputMaybe<Tag_Filter>;
-};
-
-export type Article_Tag_Mutated = {
-  __typename?: 'article_tag_mutated';
-  data?: Maybe<Article_Tag>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -1843,13 +1671,8 @@ export type Create_Appeal_Input = {
 
 export type Create_Article_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
   translations?: InputMaybe<Array<InputMaybe<Create_Article_Translations_Input>>>;
-};
-
-export type Create_Article_Tag_Input = {
-  article_id?: InputMaybe<Create_Article_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  tag_id?: InputMaybe<Create_Tag_Input>;
 };
 
 export type Create_Article_Translations_Input = {
@@ -2024,7 +1847,7 @@ export type Create_Home_Page_Translations_Input = {
 export type Create_Languages_Input = {
   code: Scalars['ID']['input'];
   direction?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type Create_Project_Input = {
@@ -3891,7 +3714,7 @@ export type Languages = {
   __typename?: 'languages';
   code: Scalars['ID']['output'];
   direction?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
 };
 
 export type Languages_Aggregated = {
@@ -4194,13 +4017,8 @@ export type Update_Appeal_Input = {
 
 export type Update_Article_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
   translations?: InputMaybe<Array<InputMaybe<Update_Article_Translations_Input>>>;
-};
-
-export type Update_Article_Tag_Input = {
-  article_id?: InputMaybe<Update_Article_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  tag_id?: InputMaybe<Update_Tag_Input>;
 };
 
 export type Update_Article_Translations_Input = {
@@ -4415,14 +4233,8 @@ export type Version_Appeal = {
 export type Version_Article = {
   __typename?: 'version_article';
   id?: Maybe<Scalars['ID']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
   translations?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type Version_Article_Tag = {
-  __typename?: 'version_article_tag';
-  article_id?: Maybe<Scalars['JSON']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  tag_id?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Version_Article_Translations = {
@@ -4544,21 +4356,21 @@ export type CreateAppealQueryMutation = { __typename?: 'Mutation', create_appeal
 export type ArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null }> };
+export type ArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, languages_code?: { __typename?: 'languages', code: string, name: string } | null } | null> | null }> };
 
 export type RecentArticleQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
 
 
-export type RecentArticleQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string } | null }> };
+export type RecentArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string } | null } | null> | null }> };
 
 export type Article_TranslationsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type Article_TranslationsQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, content: string, pub_date: any, views: number, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, author?: { __typename?: 'directus_users', first_name?: string | null, last_name?: string | null } | null, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null, cover_image?: { __typename?: 'directus_files', title?: string | null, type?: string | null, filename_disk?: string | null } | null, article_id?: { __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string, name?: string | null } | null } | null> | null } | null }> };
+export type Article_TranslationsQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', id: string, title: string, description: string, slug: string, content: string, pub_date: any, views: number, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, author?: { __typename?: 'directus_users', first_name?: string | null, last_name?: string | null } | null, languages_code?: { __typename?: 'languages', code: string, name: string } | null, cover_image?: { __typename?: 'directus_files', title?: string | null, type?: string | null, filename_disk?: string | null } | null, article_id?: { __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string, name: string } | null } | null> | null } | null }> };
 
 export type Update_Article_Translations_ItemMutationVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -4639,36 +4451,36 @@ export const CreateAppealQueryDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<CreateAppealQueryMutation, CreateAppealQueryMutationVariables>;
 export const ArticleDocument = new TypedDocumentString(`
     query Article {
-  article_translations(filter: {status: {_eq: "published"}}) {
-    id
-    title
-    tags {
-      tag_id {
-        title
+  article {
+    translations(filter: {status: {_eq: "published"}}) {
+      id
+      title
+      tags {
+        tag_id {
+          title
+        }
       }
-    }
-    description
-    slug
-    pub_date
-    languages_code {
-      code
-      name
+      description
+      slug
+      pub_date
+      languages_code {
+        code
+        name
+      }
     }
   }
 }
     `) as unknown as TypedDocumentString<ArticleQuery, ArticleQueryVariables>;
 export const RecentArticleDocument = new TypedDocumentString(`
     query RecentArticle($limit: Int!) {
-  article_translations(
-    filter: {status: {_eq: "published"}}
-    sort: ["-pub_date"]
-    limit: $limit
-  ) {
-    title
-    slug
-    pub_date
-    languages_code {
-      code
+  article(limit: $limit, sort: ["-translations.pub_date"]) {
+    translations(filter: {status: {_eq: "published"}}) {
+      title
+      slug
+      pub_date
+      languages_code {
+        code
+      }
     }
   }
 }

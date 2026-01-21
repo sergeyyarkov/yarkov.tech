@@ -32,8 +32,6 @@ type Mutation {
   create_appeal_items(data: [create_appeal_input!], filter: appeal_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [appeal!]!
   create_article_item(data: create_article_input!): article
   create_article_items(data: [create_article_input!], filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
-  create_article_tag_item(data: create_article_tag_input!): article_tag
-  create_article_tag_items(data: [create_article_tag_input!], filter: article_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tag!]!
   create_article_translations_item(data: create_article_translations_input!): article_translations
   create_article_translations_items(data: [create_article_translations_input!], filter: article_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations!]!
   create_article_translations_tag_item(data: create_article_translations_tag_input!): article_translations_tag
@@ -54,8 +52,6 @@ type Mutation {
   delete_appeal_items(ids: [ID]!): delete_many
   delete_article_item(id: ID!): delete_one
   delete_article_items(ids: [ID]!): delete_many
-  delete_article_tag_item(id: ID!): delete_one
-  delete_article_tag_items(ids: [ID]!): delete_many
   delete_article_translations_item(id: ID!): delete_one
   delete_article_translations_items(ids: [ID]!): delete_many
   delete_article_translations_tag_item(id: ID!): delete_one
@@ -78,9 +74,6 @@ type Mutation {
   update_article_batch(data: [update_article_input!], filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
   update_article_item(data: update_article_input!, id: ID!): article
   update_article_items(data: update_article_input!, filter: article_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
-  update_article_tag_batch(data: [update_article_tag_input!], filter: article_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tag!]!
-  update_article_tag_item(data: update_article_tag_input!, id: ID!): article_tag
-  update_article_tag_items(data: update_article_tag_input!, filter: article_tag_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tag!]!
   update_article_translations_batch(data: [update_article_translations_input!], filter: article_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations!]!
   update_article_translations_item(data: update_article_translations_input!, id: ID!): article_translations
   update_article_translations_items(data: update_article_translations_input!, filter: article_translations_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations!]!
@@ -118,10 +111,6 @@ type Query {
   article_aggregated(filter: article_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_aggregated!]!
   article_by_id(id: ID!, version: String): article
   article_by_version(id: ID!, version: String!): version_article
-  article_tag(filter: article_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tag!]!
-  article_tag_aggregated(filter: article_tag_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tag_aggregated!]!
-  article_tag_by_id(id: ID!, version: String): article_tag
-  article_tag_by_version(id: ID!, version: String!): version_article_tag
   article_translations(filter: article_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations!]!
   article_translations_aggregated(filter: article_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations_aggregated!]!
   article_translations_by_id(id: ID!, version: String): article_translations
@@ -163,7 +152,6 @@ type Query {
 type Subscription {
   appeal_mutated(event: EventEnum): appeal_mutated
   article_mutated(event: EventEnum): article_mutated
-  article_tag_mutated(event: EventEnum): article_tag_mutated
   article_translations_mutated(event: EventEnum): article_translations_mutated
   article_translations_tag_mutated(event: EventEnum): article_translations_tag_mutated
   directus_access_mutated(event: EventEnum): directus_access_mutated
@@ -256,6 +244,7 @@ type appeal_mutated {
 
 type article {
   id: ID!
+  title: String
   translations(filter: article_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations]
   translations_func: count_functions
 }
@@ -275,6 +264,7 @@ type article_aggregated {
 
 type article_aggregated_count {
   id: Int
+  title: Int
   translations: Int
 }
 
@@ -286,57 +276,13 @@ input article_filter {
   _and: [article_filter]
   _or: [article_filter]
   id: number_filter_operators
+  title: string_filter_operators
   translations: article_translations_quantifier_filter
   translations_func: count_function_filter_operators
 }
 
 type article_mutated {
   data: article
-  event: EventEnum
-  key: ID!
-}
-
-type article_tag {
-  article_id(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): article
-  id: ID!
-  tag_id(filter: tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): tag
-}
-
-type article_tag_aggregated {
-  avg: article_tag_aggregated_fields
-  avgDistinct: article_tag_aggregated_fields
-  count: article_tag_aggregated_count
-  countAll: Int
-  countDistinct: article_tag_aggregated_count
-  group: JSON
-  max: article_tag_aggregated_fields
-  min: article_tag_aggregated_fields
-  sum: article_tag_aggregated_fields
-  sumDistinct: article_tag_aggregated_fields
-}
-
-type article_tag_aggregated_count {
-  article_id: Int
-  id: Int
-  tag_id: Int
-}
-
-type article_tag_aggregated_fields {
-  article_id: Float
-  id: Float
-  tag_id: Float
-}
-
-input article_tag_filter {
-  _and: [article_tag_filter]
-  _or: [article_tag_filter]
-  article_id: article_filter
-  id: number_filter_operators
-  tag_id: tag_filter
-}
-
-type article_tag_mutated {
-  data: article_tag
   event: EventEnum
   key: ID!
 }
@@ -541,13 +487,8 @@ input create_appeal_input {
 
 input create_article_input {
   id: ID
+  title: String
   translations: [create_article_translations_input]
-}
-
-input create_article_tag_input {
-  article_id: create_article_input
-  id: ID
-  tag_id: create_tag_input
 }
 
 input create_article_translations_input {
@@ -722,7 +663,7 @@ input create_home_page_translations_input {
 input create_languages_input {
   code: ID!
   direction: String
-  name: String
+  name: String!
 }
 
 input create_project_input {
@@ -1959,7 +1900,7 @@ input id_filter_operators {
 type languages {
   code: ID!
   direction: String
-  name: String
+  name: String!
 }
 
 type languages_aggregated {
@@ -2204,13 +2145,8 @@ input update_appeal_input {
 
 input update_article_input {
   id: ID
+  title: String
   translations: [update_article_translations_input]
-}
-
-input update_article_tag_input {
-  article_id: update_article_input
-  id: ID
-  tag_id: update_tag_input
 }
 
 input update_article_translations_input {
@@ -2423,13 +2359,8 @@ type version_appeal {
 
 type version_article {
   id: ID
+  title: String
   translations: JSON
-}
-
-type version_article_tag {
-  article_id: JSON
-  id: ID
-  tag_id: JSON
 }
 
 type version_article_translations {

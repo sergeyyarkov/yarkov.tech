@@ -13,4 +13,4 @@ if (!SUPPORTED_LANGUAGES.includes(pageLang)) pageLang = DEFAULT_LANGUAGE;
 const href = pageLang === DEFAULT_LANGUAGE ? to : `/${pageLang}${to}`;
 ---
 
-<a href={href} {...attrs}><slot /></a>
+<a data-astro-prefetch href={href} {...attrs}><slot /></a>

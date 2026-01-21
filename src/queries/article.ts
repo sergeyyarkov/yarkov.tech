@@ -5,20 +5,22 @@ import { Article_Translations } from "../graphql/graphql";
 export async function getArticleList() {
 	const ArticleQuery = graphql(`
 		query Article {
-			article_translations(filter: { status: { _eq: "published" } }) {
-				id
-				title
-				tags {
-					tag_id {
-						title
+			article {
+				translations(filter: { status: { _eq: "published" } }) {
+					id
+					title
+					tags {
+						tag_id {
+							title
+						}
 					}
-				}
-				description
-				slug
-				pub_date
-				languages_code {
-					code
-					name
+					description
+					slug
+					pub_date
+					languages_code {
+						code
+						name
+					}
 				}
 			}
 		}
@@ -28,18 +30,20 @@ export async function getArticleList() {
 
 	if (!result.data) return [];
 
-	return result.data.article_translations;
+	return result.data.article;
 }
 
 export async function getRecentArticleList(limit: number = 5) {
 	const RecentArticleQuery = graphql(`
 		query RecentArticle($limit: Int!) {
-			article_translations(filter: { status: { _eq: "published" } }, sort: ["-pub_date"], limit: $limit) {
-				title
-				slug
-				pub_date
-				languages_code {
-					code
+			article(limit: $limit, sort: ["-translations.pub_date"]) {
+				translations(filter: { status: { _eq: "published" } }) {
+					title
+					slug
+					pub_date
+					languages_code {
+						code
+					}
 				}
 			}
 		}
@@ -49,7 +53,7 @@ export async function getRecentArticleList(limit: number = 5) {
 
 	if (!result.data) return [];
 
-	return result.data.article_translations;
+	return result.data.article;
 }
 
 export async function getArticleTranslationsBySlug(slug: string) {

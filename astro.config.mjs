@@ -12,6 +12,7 @@ export default defineConfig({
 	site: "https://yarkov.tech",
 	compressHTML: true,
 	output: "server",
+	prefetch: true,
 	server: {
 		port: 9966,
 		host: true,

@@ -6,7 +6,7 @@ import { getArticleList } from "../queries";
 
 // TODO: generate feed for RU, EN, ... languages
 export async function GET() {
-	const articles = (await getArticleList()).flatMap((a) => a.translations);
+	const articles = await getArticleList();
 	return rss({
 		title: SITE_METADATA.name,
 		description: utils.translate("site.description", "ru"),

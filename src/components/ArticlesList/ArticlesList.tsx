@@ -6,8 +6,8 @@ import { ArticleQuery } from "@/src/graphql/graphql";
 import "./ArticlesList.scss";
 
 type UiStringsType = { "articles.empty": string };
-
-type ArticlesBlockType = Record<string, ArticleQuery["article"][0]["translations"]>;
+type Articles = ArticleQuery["article_translations"];
+type ArticlesBlockType = Record<string, Articles>;
 
 type ArticlesListProps = {
 	articles: ArticlesBlockType;
@@ -31,9 +31,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	}: {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
-		const filter = (
-			cb: (articles: ArticleQuery["article"][0]["translations"]) => ArticleQuery["article"][0]["translations"]
-		) => {
+		const filter = (cb: (articles: Articles) => Articles) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
 					.map((year) => [year, cb(props.articles[year])])
