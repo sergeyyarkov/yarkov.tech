@@ -39,6 +39,7 @@ export async function getSiteSettings() {
 			global {
 				ym_counter
 				recent_articles_limit
+				github
 			}
 		}
 	`);

@@ -4363,7 +4363,7 @@ export type RecentArticleQueryVariables = Exact<{
 }>;
 
 
-export type RecentArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string } | null } | null> | null }> };
+export type RecentArticleQuery = { __typename?: 'Query', article: Array<{ __typename?: 'article', translations?: Array<{ __typename?: 'article_translations', title: string, slug: string, pub_date: any, languages_code?: { __typename?: 'languages', code: string, name: string } | null } | null> | null }> };
 
 export type Article_TranslationsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -4395,7 +4395,7 @@ export type ContactsQueryQuery = { __typename?: 'Query', global?: { __typename?:
 export type SiteSettingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQueryQuery = { __typename?: 'Query', global?: { __typename?: 'global', ym_counter?: number | null, recent_articles_limit?: number | null } | null };
+export type SiteSettingsQueryQuery = { __typename?: 'Query', global?: { __typename?: 'global', ym_counter?: number | null, recent_articles_limit?: number | null, github: string } | null };
 
 export type Project_TranslationsQueryVariables = Exact<{
   pageLang: Scalars['String']['input'];
@@ -4480,6 +4480,7 @@ export const RecentArticleDocument = new TypedDocumentString(`
       pub_date
       languages_code {
         code
+        name
       }
     }
   }
@@ -4554,6 +4555,7 @@ export const SiteSettingsQueryDocument = new TypedDocumentString(`
   global {
     ym_counter
     recent_articles_limit
+    github
   }
 }
     `) as unknown as TypedDocumentString<SiteSettingsQueryQuery, SiteSettingsQueryQueryVariables>;

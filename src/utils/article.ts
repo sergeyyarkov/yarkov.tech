@@ -1,18 +1,22 @@
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import { Article, Article_Translations, RecentArticleQuery } from "../graphql/graphql";
+import { Article_Translations, ArticleQuery, RecentArticleQuery } from "../graphql/graphql";
 
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
-export function filterArticlesByPageLang<QueryT extends RecentArticleQuery>(
-	articles: QueryT["article"][0],
+export function filterArticlesByPageLang<T>(
+	articles: T extends RecentArticleQuery["article"][0]["translations"]
+		? RecentArticleQuery["article"]
+		: ArticleQuery["article"],
 	pageLang: LanguageKeys
 ) {
 	const filteredArticles = articles.flatMap((a) => {
+		if (!a.translations) return [];
+
 		// Filter by articles by page lang
 		if (a.translations.length >= 2) {
-			const pageLangTranslations = a.translations.filter((a) => a.languages_code?.code.split("-")[0] === pageLang);
+			const pageLangTranslations = a.translations.filter((a) => a && a.languages_code?.code.split("-")[0] === pageLang);
 			if (pageLangTranslations.length !== 0) return pageLangTranslations;
 
 			// No articles found by page lang. Return first translation.
@@ -39,8 +43,8 @@ export function createRelativeArticleUrl(
 	return `${lang}/${prefix}/${date}/${slug}`;
 }
 
-export function formatToArticleBlocks<T>(articles: Array<T & Pick<Article_Translations, "pub_date">>) {
-	const blocks: Record<string, Array<T & Pick<Article_Translations, "pub_date">>> = {};
+export function formatToArticleBlocks(articles: ArticleQuery["article"][0]["translations"]) {
+	const blocks: Record<string, ArticleQuery["article"][0]["translations"]> = {};
 
 	if (!articles) return {};
 

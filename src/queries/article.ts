@@ -43,6 +43,7 @@ export async function getRecentArticleList(limit: number = 5) {
 					pub_date
 					languages_code {
 						code
+						name
 					}
 				}
 			}

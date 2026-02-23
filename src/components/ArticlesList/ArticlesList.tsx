@@ -6,7 +6,7 @@ import { ArticleQuery } from "@/src/graphql/graphql";
 import "./ArticlesList.scss";
 
 type UiStringsType = { "articles.empty": string };
-type Articles = ArticleQuery["article_translations"];
+type Articles = ArticleQuery["article"][0]["translations"];
 type ArticlesBlockType = Record<string, Articles>;
 
 type ArticlesListProps = {

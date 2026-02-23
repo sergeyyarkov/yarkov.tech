@@ -1,14 +1,15 @@
 ---
 import { useTranslation, getLanguageFromURL } from "@i18n/utils";
-import { filterArticlesByPageLang, formatToArticleBlocks } from "@utils/article";
+import * as utils from "@utils/article";
 import List from "@components/ArticlesList";
 import { getArticleList } from "@root/queries/article";
+import { ArticleQuery } from "../graphql/graphql";
 
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const data = await getArticleList();
-const articles = filterArticlesByPageLang(data, pageLang);
-const articleBlocks = formatToArticleBlocks(articles);
+const articles = utils.filterArticlesByPageLang<ArticleQuery["article"][0]["translations"]>(data, pageLang);
+const articleBlocks = utils.formatToArticleBlocks(articles);
 ---
 
 <List client:load i18n={{ "articles.empty": t("articles.empty") }} articles={articleBlocks} pageLang={pageLang} />
