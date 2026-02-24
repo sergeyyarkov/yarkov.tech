@@ -8,9 +8,7 @@ export function useTranslation(Astro: Readonly<AstroGlobal>): (key: UIDictionary
 }
 
 export function getLanguageKeys(): Array<string> {
-	return Object.keys(languages).filter((lang) =>
-		SUPPORTED_LANGUAGES.includes(lang as LanguageKeys)
-	);
+	return Object.keys(languages).filter((lang) => SUPPORTED_LANGUAGES.includes(lang as LanguageKeys));
 }
 
 export function getLanguageFromURL(pathname: string): LanguageKeys {
@@ -32,9 +30,7 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 	return translations;
 }
 
-const translations = transformExports<Record<string, UIDictionaryKeys>>(
-	import.meta.glob("./*/ui.ts", { eager: true })
-);
+const translations = transformExports<Record<string, UIDictionaryKeys>>(import.meta.glob("./*/ui.ts", { eager: true }));
 
 export function translate(key: UIDictionaryKeys, lang: LanguageKeys): string {
 	const value = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];
