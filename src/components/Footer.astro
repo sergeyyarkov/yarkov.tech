@@ -2,6 +2,10 @@
 import { Icon } from "astro-icon/components";
 import TranslatedLink from "./TranslatedLink.astro";
 import UIString from "./UIString.astro";
+import { getLanguageFromURL } from "../i18n/utils";
+
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+console.log(pageLang);
 ---
 
 <footer>
@@ -13,7 +17,7 @@ import UIString from "./UIString.astro";
 			</i>
 		</div>
 		<div>
-			<a href='/rss.xml' target='_blank'><UIString key={"footer.rssFeed"} /></a>
+			<a href=`/${pageLang}/rss.xml` target='_blank'><UIString key={"footer.rssFeed"} /></a>
 			<span>
 				<Icon name='rss' width='20' height='20' />
 			</span>
