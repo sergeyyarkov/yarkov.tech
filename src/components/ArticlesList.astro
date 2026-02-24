@@ -3,12 +3,11 @@ import { useTranslation, getLanguageFromURL } from "@i18n/utils";
 import * as utils from "@utils/article";
 import List from "@components/ArticlesList";
 import { getArticleList } from "@root/queries/article";
-import { ArticleQuery } from "../graphql/graphql";
 
 const t = useTranslation(Astro);
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const data = await getArticleList();
-const articles = utils.filterArticlesByPageLang<ArticleQuery["article"][0]["translations"]>(data, pageLang);
+const articles = utils.filterArticlesByPageLang(data, pageLang);
 const articleBlocks = utils.formatToArticleBlocks(articles);
 ---
 

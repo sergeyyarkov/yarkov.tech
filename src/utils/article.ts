@@ -1,16 +1,16 @@
 import { DEFAULT_LANGUAGE } from "@root/constants";
-import { Article_Translations, ArticleQuery, RecentArticleQuery } from "../graphql/graphql";
+import { Article_Translations, ArticleQuery } from "../graphql/graphql";
 
 /**
  * If there is a translation of an article in the current language of the page,
  * the remaining articles with other translations should be removed.
  */
-export function filterArticlesByPageLang<T>(
-	articles: T extends RecentArticleQuery["article"][0]["translations"]
-		? RecentArticleQuery["article"]
-		: ArticleQuery["article"],
-	pageLang: LanguageKeys
-) {
+
+export function filterArticlesByPageLang<
+	T extends Array<{
+		translations?: Array<(Pick<Article_Translations, "languages_code"> & { [key: string]: any }) | null> | null;
+	}>
+>(articles: T, pageLang: LanguageKeys) {
 	const filteredArticles = articles.flatMap((a) => {
 		if (!a.translations) return [];
 
@@ -26,7 +26,7 @@ export function filterArticlesByPageLang<T>(
 		return a.translations;
 	});
 
-	return filteredArticles;
+	return filteredArticles as T[0]["translations"];
 }
 
 /**

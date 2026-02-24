@@ -19,13 +19,13 @@ const isEmpty = articles.length === 0;
 		<h2>
 			<UIString key={"recentArticles.heading"} />
 		</h2>
-		<TranslatedLink to='/articles/'>
+		<TranslatedLink to="/articles/">
 			<UIString key={"recentArticles.all"} />
 		</TranslatedLink>
 	</div>
-	<div itemscope itemtype='http://schema.org/Blog'>
+	<div itemscope itemtype="http://schema.org/Blog">
 		{
-			!isEmpty ? (
+			!isEmpty && !!filteredArticles ? (
 				filteredArticles.map(
 					(a) =>
 						a && (
@@ -45,7 +45,7 @@ const isEmpty = articles.length === 0;
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
 	section {
 		& > div:nth-child(1) {
 			display: flex;
