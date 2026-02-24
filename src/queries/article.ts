@@ -2,6 +2,38 @@ import { graphql } from "../graphql";
 import execute from "../graphql/execute";
 import { Article_Translations } from "../graphql/graphql";
 
+export async function getArticleTranslationsRSSList(lang: string) {
+	const ArticleTranslationRSSQuery = graphql(`
+		query ArticleRSS($lang: String!) {
+			article_translations(filter: { languages_code: { code: { _contains: $lang } }, status: { _eq: "published" } }) {
+				title
+				slug
+				tags {
+					tag_id {
+						title
+					}
+				}
+				author {
+					first_name
+					last_name
+					email
+				}
+				description
+				pub_date
+				languages_code {
+					code
+				}
+			}
+		}
+	`);
+
+	const result = await execute(ArticleTranslationRSSQuery, { lang });
+
+	if (!result.data) return [];
+
+	return result.data.article_translations;
+}
+
 export async function getArticleList() {
 	const ArticleQuery = graphql(`
 		query Article {

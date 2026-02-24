@@ -4353,6 +4353,13 @@ export type CreateAppealQueryMutationVariables = Exact<{
 
 export type CreateAppealQueryMutation = { __typename?: 'Mutation', create_appeal_item?: { __typename?: 'appeal', id: string } | null };
 
+export type ArticleRssQueryVariables = Exact<{
+  lang: Scalars['String']['input'];
+}>;
+
+
+export type ArticleRssQuery = { __typename?: 'Query', article_translations: Array<{ __typename?: 'article_translations', title: string, slug: string, description: string, pub_date: any, tags?: Array<{ __typename?: 'article_translations_tag', tag_id?: { __typename?: 'tag', title: string } | null } | null> | null, author?: { __typename?: 'directus_users', first_name?: string | null, last_name?: string | null, email?: string | null } | null, languages_code?: { __typename?: 'languages', code: string } | null }> };
+
 export type ArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4449,6 +4456,31 @@ export const CreateAppealQueryDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CreateAppealQueryMutation, CreateAppealQueryMutationVariables>;
+export const ArticleRssDocument = new TypedDocumentString(`
+    query ArticleRSS($lang: String!) {
+  article_translations(
+    filter: {languages_code: {code: {_contains: $lang}}, status: {_eq: "published"}}
+  ) {
+    title
+    slug
+    tags {
+      tag_id {
+        title
+      }
+    }
+    author {
+      first_name
+      last_name
+      email
+    }
+    description
+    pub_date
+    languages_code {
+      code
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ArticleRssQuery, ArticleRssQueryVariables>;
 export const ArticleDocument = new TypedDocumentString(`
     query Article {
   article {
