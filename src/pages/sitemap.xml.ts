@@ -1,9 +1,11 @@
 import type { APIContext } from "astro";
+import { getArticleList } from "../queries";
 // import { getCollection } from 'astro:content';
 
 export async function GET(context: APIContext) {
-	const site = "https://yarkov.tech";
+	const site = context.site?.origin || "https://yarkov.tech";
 	const urls: Array<{ loc: string; changefreq?: string; priority?: number }> = [];
+	const articles = await getArticleList();
 
 	urls.push(
 		{ loc: `${site}/`, changefreq: "weekly", priority: 1.0 },
@@ -12,8 +14,16 @@ export async function GET(context: APIContext) {
 		{ loc: `${site}/about/`, changefreq: "monthly", priority: 0.7 }
 	);
 
+	// articles.forEach((a) => {
+	// 	if (a.translations) {
+	// 		a.translations.forEach((article) => {
+	// 			urls.push({ loc: `${site}` });
+	// 		});
+	// 	}
+	// });
+
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 		${urls
 			.map(
 				(url) => `<url>
