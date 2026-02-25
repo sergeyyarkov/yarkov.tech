@@ -1,5 +1,8 @@
 ---
 import ContactsTemplate from "@templates/Contacts.astro";
+import { isPageLangSupported } from "@i18n/utils";
+
+if (!isPageLangSupported(Astro)) return Astro.redirect("/404");
 ---
 
 <ContactsTemplate />

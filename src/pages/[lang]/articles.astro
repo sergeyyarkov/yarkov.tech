@@ -1,5 +1,8 @@
 ---
 import ArticlesTemplate from "@templates/Articles.astro";
+import { isPageLangSupported } from "@i18n/utils";
+
+if (!isPageLangSupported(Astro)) return Astro.redirect("/404");
 ---
 
 <ArticlesTemplate />

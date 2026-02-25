@@ -14,10 +14,7 @@ const { title, description, lang = DEFAULT_LANGUAGE, noIndex = false } = Astro.p
 ---
 
 <html lang={lang}>
-	<BaseHead
-		title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title}
-		description={description}
-	>
+	<BaseHead title={title ? `${title} | ${SITE_METADATA.title}` : SITE_METADATA.title} description={description}>
 		{noIndex && <meta name="robots" content="noindex" />}
 	</BaseHead>
 	<BaseLayout>

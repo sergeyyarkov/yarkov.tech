@@ -17,8 +17,17 @@ export function getLanguageFromURL(pathname: string): LanguageKeys {
 	return DEFAULT_LANGUAGE;
 }
 
+// Call only from ./src/[lang]/page.astro
+export function isPageLangSupported(Astro: Readonly<AstroGlobal>) {
+	const params = Astro.params as { lang: string };
+	if (SUPPORTED_LANGUAGES.includes(params.lang as LanguageKeys)) return true;
+	return false;
+} 
+
 export function removeLangFromURL(pathname: string): string {
-	return pathname.split("/").slice(2).join("/");
+	const splittedPath = pathname.split("/");
+	if (splittedPath.length >= 3) return "/" + splittedPath.slice(2).join("/");
+	return pathname;
 }
 
 function transformExports<T>(modules: Record<string, { default: T }>) {

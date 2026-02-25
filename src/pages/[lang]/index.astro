@@ -1,5 +1,8 @@
 ---
 import HomeTemplate from "@templates/Home.astro";
+import { isPageLangSupported } from "@i18n/utils";
+
+if (!isPageLangSupported(Astro)) return Astro.redirect("/404");
 ---
 
 <HomeTemplate />
