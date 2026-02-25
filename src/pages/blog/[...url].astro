@@ -2,7 +2,6 @@
 import ArticleLayout from "@root/layouts/article.astro";
 import { getArticleTranslationsBySlug, incArticleTranslationViews } from "@/src/queries";
 
-// Example of an URL: https://website.com/blog/01-01-2025/my-article/
 const { url } = Astro.params as { url: string };
 const slug = url.split("/").at(-1);
 

@@ -22,14 +22,15 @@ const { articles } = Astro.props;
 					(a) =>
 						a && (
 							<a
-								href={`${createRelativeArticleUrl({ slug: a.slug, articleLang: `${a.languages_code?.code.split("-")[0]}`, pubDate: a.pub_date })}`}>{`${a.languages_code?.name}`}</a>
+								href={`${createRelativeArticleUrl({ slug: a.slug, articleLang: `${a.languages_code?.code.split("-")[0]}`, pubDate: a.pub_date })}`}
+							>{`${a.languages_code?.name}`}</a>
 						)
 				)}
 		</div>
 	)
 }
 
-<style lang='scss'>
+<style lang="scss">
 	div {
 		margin: 10px 0;
 		font-size: var(--font-size-lg);

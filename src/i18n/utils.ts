@@ -12,7 +12,11 @@ export function getLanguageKeys(): Array<string> {
 }
 
 export function getLanguageFromURL(pathname: string): LanguageKeys {
-	const lang = pathname.split("/")[1] as LanguageKeys;
+	const splittedPathName = pathname.split("/");
+	let lang = splittedPathName[1] as LanguageKeys;
+
+	if ((lang as string) === "blog") lang = splittedPathName[2] as LanguageKeys;
+
 	if (Object.hasOwn(languages, lang)) return lang;
 	return DEFAULT_LANGUAGE;
 }
@@ -22,7 +26,7 @@ export function isPageLangSupported(Astro: Readonly<AstroGlobal>) {
 	const params = Astro.params as { lang: string };
 	if (SUPPORTED_LANGUAGES.includes(params.lang as LanguageKeys)) return true;
 	return false;
-} 
+}
 
 export function removeLangFromURL(pathname: string): string {
 	const splittedPath = pathname.split("/");

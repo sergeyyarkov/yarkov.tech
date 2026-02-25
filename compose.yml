@@ -1,0 +1,17 @@
+services:
+  yarkov-tech-node:
+    container_name: yarkov-tech-node
+    restart: unless-stopped
+    image: sergeyyarkov/yarkovtech:latest
+    networks:
+      - nginx_net
+    env_file: .env
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 9966
+
+networks:
+  nginx_net:
+    external: true

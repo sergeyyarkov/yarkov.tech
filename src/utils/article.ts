@@ -31,7 +31,7 @@ export function filterArticlesByPageLang<
 
 /**
  * This will create a relative url based on article entry.
- * `/en/blog/2023-01-01/my-first-article`
+ * `/blog/en/2023-01-01/my-first-article`
  */
 export function createRelativeArticleUrl(
 	params: { slug: string; articleLang: string; pubDate: string },
@@ -40,7 +40,7 @@ export function createRelativeArticleUrl(
 	const { pubDate, articleLang, slug } = params;
 	const date = pubDate.split("T")[0];
 	const lang = articleLang !== DEFAULT_LANGUAGE ? "/" + articleLang : "";
-	return `${lang}/${prefix}/${date}/${slug}`;
+	return `/${prefix}${lang}/${date}/${slug}`;
 }
 
 export function formatToArticleBlocks(articles: ArticleQuery["article"][0]["translations"]) {
