@@ -12,8 +12,8 @@ Personal website created with Astro.
 - [x] Dark/Light Theme
 - [x] Multilang web-site
 - [x] Table of contents
-- [x] Content management via [NetlifyCMS](https://www.netlifycms.org/)
-- [x] Form handling via [Netlify Forms](https://www.netlify.com/products/forms/)
+- [x] Content management via [Directus](https://directus.io/)
+- [x] Form handling
 - [x] Comment system via [Disqus](https://disqus.com/)
 - [x] RSS Feed for articles
 - [x] SEO optimized
