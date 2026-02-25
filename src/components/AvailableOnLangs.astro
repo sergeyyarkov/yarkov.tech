@@ -1,12 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
-import { URL_BLOG_PREFIX } from "@root/constants";
 import { createRelativeArticleUrl } from "@root/utils";
-import languages from "@i18n/languages";
+import { Article_TranslationsQuery } from "../graphql/graphql";
 
 export interface Props {
-	articles: CollectionEntry<"blog">[];
+	articles: Article_TranslationsQuery["article_translations"][0]["article_id"];
 }
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
@@ -15,23 +13,26 @@ const { articles } = Astro.props;
 ---
 
 {
-	articles.length !== 1 && (
+	articles && articles.translations && articles.translations?.length !== 1 && (
 		<div>
 			{t("article.availableOn")}:{" "}
-			{articles
-				.filter((a) => !a.id.startsWith(`${pageLang}/`))
-				.map(({ id, data: { title, pubDate } }) => (
-					<a href={`${createRelativeArticleUrl({ id, title, pubDate }, URL_BLOG_PREFIX)}`}>{`${
-						languages[id.split("/")[0] as LanguageKeys]
-					}`}</a>
-				))}
+			{articles.translations
+				.filter((a) => a && a.languages_code?.code.split("-")[0] !== pageLang)
+				.map(
+					(a) =>
+						a && (
+							<a
+								href={`${createRelativeArticleUrl({ slug: a.slug, articleLang: `${a.languages_code?.code.split("-")[0]}`, pubDate: a.pub_date })}`}
+							>{`${a.languages_code?.name}`}</a>
+						)
+				)}
 		</div>
 	)
 }
 
 <style lang="scss">
 	div {
-		margin: 25px 0;
+		margin: 10px 0;
 		font-size: var(--font-size-lg);
 		& a {
 			&:not(:last-child)::after {

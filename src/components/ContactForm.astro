@@ -2,57 +2,45 @@
 import Button from "@components/Button.astro";
 import UIString from "./UIString.astro";
 import { useTranslation } from "@i18n/utils";
+import { actions } from "astro:actions";
 
 const t = useTranslation(Astro);
+const formResult = Astro.getActionResult(actions.appeal);
 ---
 
-<form name="contact" method="post" netlify-honeypot="bot-field" data-netlify="true">
-	<div hidden>
-		Don't fill this out if you're human
-		<input name="bot-field" />
-	</div>
-	<div class="flex">
-		<div>
-			<input
-				name="name"
-				placeholder={t("input.nameField")}
-				type="text"
-				maxlength="20"
-				autocomplete="off"
-				required
-			/>
+<>
+	<form name="contact" action={actions.appeal} method="post">
+		<div class="flex">
+			<div>
+				<input name="name" placeholder={t("input.nameField")} type="text" maxlength="20" autocomplete="off" required />
+			</div>
+			<div>
+				<input name="email" placeholder="example@email.com" type="email" autocomplete="off" required />
+			</div>
 		</div>
-		<div>
-			<input
-				name="email"
-				placeholder="example@email.com"
-				autocomplete="off"
-				type="email"
-				required
-			/>
+		<input name="subject" placeholder={t("input.subjectField")} type="text" autocomplete="off" required />
+		<textarea
+			name="message"
+			placeholder={t("input.messageField")}
+			id="message"
+			autocomplete="off"
+			cols={30}
+			rows={10}
+			required></textarea>
+		<div class="footer">
+			{
+				formResult?.error && (
+					<span>
+						<UIString key={formResult.error.status === 429 ? "submitted.limit" : "submitted.error"} />
+					</span>
+				)
+			}
+			<Button type={"submit"}>
+				<UIString key={"btn.submit"} />
+			</Button>
 		</div>
-	</div>
-	<input
-		name="subject"
-		placeholder={t("input.subjectField")}
-		type="text"
-		autocomplete="off"
-		required
-	/>
-	<textarea
-		name="message"
-		placeholder={t("input.messageField")}
-		id="message"
-		autocomplete="off"
-		cols={30}
-		rows={10}
-		required></textarea>
-	<div class="footer">
-		<Button type={"submit"}>
-			<UIString key={"btn.submit"} />
-		</Button>
-	</div>
-</form>
+	</form>
+</>
 
 <style lang="scss">
 	form {
@@ -71,7 +59,10 @@ const t = useTranslation(Astro);
 			border: 1px solid var(--color-error);
 		}
 		& .footer {
-			text-align: right;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 12px;
 		}
 	}
 	@media screen and (max-width: 560px) {

@@ -1,56 +1,56 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { CollectionEntry } from "astro:content";
 import UIString from "@components/UIString.astro";
+import { Project_TranslationsQuery } from "../graphql/graphql";
+import { DIRECTUS_URL } from "astro:env/server";
 
 export interface Props {
-	data: CollectionEntry<"projects">["data"];
+	data: Project_TranslationsQuery["project_translations"][0];
 }
 
 const { data } = Astro.props as Props;
-// const lang = getLanguageFromURL(Astro.url.pathname);
-const { icon, title, year, description, articleUrl, sourceUrl, demoUrl } = data;
+const { icon, title, year, description, article_url, source_url, demo_url } = data;
 ---
 
-<div class='project-item'>
-	<div class='project-item__heading'>
+<div class="project-item">
+	<div class="project-item__heading">
 		<h2>
-			<Icon name={icon} width='20' height='20' />
+			{icon && <img data-icon src={`${DIRECTUS_URL}/assets/${icon.filename_disk}`} />}
 			{title}
 		</h2>
 		<span>{year}</span>
 	</div>
-	<div class='project-item__description'>
+	<div class="project-item__description">
 		<p>{description}</p>
 	</div>
-	<div class='project-item__links'>
+	<div class="project-item__links">
 		{
-			articleUrl && (
-				<a class='btn-link' href={articleUrl} target='_blank'>
+			article_url && (
+				<a class="btn-link" href={article_url} target="_blank">
 					<UIString key={"btn.article"} />
 				</a>
 			)
 		}
 		{
-			sourceUrl && (
-				<a class='btn-link' href={sourceUrl} target='_blank'>
+			source_url && (
+				<a class="btn-link" href={source_url} target="_blank">
 					<UIString key={"btn.sourceCode"} />
-					<Icon name='mdi:link-variant' width='15' height='15' />
+					<Icon name="mdi:link-variant" width="15" height="15" />
 				</a>
 			)
 		}
 		{
-			demoUrl && (
-				<a class='btn-link' href={demoUrl} target='_blank'>
+			demo_url && (
+				<a class="btn-link" href={demo_url} target="_blank">
 					<UIString key={"btn.demo"} />
-					<Icon name='mdi:link-variant' width='15' height='15' />
+					<Icon name="mdi:link-variant" width="15" height="15" />
 				</a>
 			)
 		}
 	</div>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
 	.project-item {
 		display: flex;
 		flex-direction: column;

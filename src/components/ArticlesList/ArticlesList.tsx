@@ -1,25 +1,16 @@
 import type { Component } from "solid-js";
 import { createSignal, createEffect, For } from "solid-js";
 import { search, selectedTags, setCount } from "@stores/searchStore";
-import SearchInput from "./SearchInput";
-import TagsList from "./TagsList";
 import ArticleItem from "@components/ArticleItem";
+import { ArticleQuery } from "@/src/graphql/graphql";
 import "./ArticlesList.scss";
 
-type UiStringsType = { "articles.empty": string; "input.search": string };
-
-type ArticlesType = Array<{
-	id: string;
-	title: string;
-	tags: string[];
-	pubDate: Date;
-}>;
-
-type ArticlesBlockType = Record<string, ArticlesType>;
+type UiStringsType = { "articles.empty": string };
+type Articles = ArticleQuery["article"][0]["translations"];
+type ArticlesBlockType = Record<string, Articles>;
 
 type ArticlesListProps = {
 	articles: ArticlesBlockType;
-	tags: string[];
 	pageLang: string;
 	i18n: UiStringsType;
 };
@@ -29,7 +20,7 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 
 	const isEmpty = () => Object.keys(articles()).length === 0;
 
-	const sortYears = (articles: ArticlesBlockType) => {
+	const sortByYears = (articles: ArticlesBlockType) => {
 		return Object.keys(articles)
 			.map(Number)
 			.sort((a, b) => b - a);
@@ -40,20 +31,24 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 	}: {
 		params: { search: string; tags?: string[] };
 	}): ArticlesBlockType => {
-		const filter = (cb: (articles: ArticlesType) => ArticlesType) => {
+		const filter = (cb: (articles: Articles) => Articles) => {
 			return Object.fromEntries(
 				Object.keys(props.articles)
 					.map((year) => [year, cb(props.articles[year])])
-					.filter((articles) => articles[1].length !== 0)
+					.filter((articles) => articles[1]?.length !== 0)
 			);
 		};
 
 		return filter((articles) => {
-			let filtered = articles.filter((a) =>
-				a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
+			let filtered = articles?.filter(
+				(a) => a && a.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
 			);
 			if (tags && tags.length > 0) {
-				filtered = filtered.filter((a) => tags.some((t) => a.tags.includes(t)));
+				filtered = filtered?.filter((a) =>
+					tags.some((t) => {
+						return a?.tags?.map((t) => t?.tag_id?.title).includes(t);
+					})
+				);
 			}
 			return filtered;
 		});
@@ -67,23 +62,24 @@ const ArticlesList: Component<ArticlesListProps> = (props) => {
 
 	return (
 		<>
-			<SearchInput i18n={{ "input.search": props.i18n["input.search"] }} />
-			<TagsList tags={props.tags} />
 			<div itemscope itemtype="http://schema.org/Blog" class="articles-list">
 				{!isEmpty() ? (
-					<For each={sortYears(articles())}>
+					<For each={sortByYears(articles())}>
 						{(year) => (
 							<div class="articles-list__wrapper">
 								<h2>{year}</h2>
 								<For each={articles()[year]}>
-									{({ id, title, pubDate }) => (
-										<ArticleItem
-											id={id}
-											title={title}
-											pubDate={pubDate}
-											pageLang={props.pageLang}
-										/>
-									)}
+									{(a) =>
+										a && (
+											<ArticleItem
+												slug={a.slug}
+												title={a.title}
+												languages_code={a.languages_code}
+												pub_date={a.pub_date}
+												pageLang={props.pageLang}
+											/>
+										)
+									}
 								</For>
 							</div>
 						)}

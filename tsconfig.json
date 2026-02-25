@@ -1,11 +1,13 @@
 {
 	"extends": "astro/tsconfigs/strict",
 	"include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+	"exclude": ["dist"],
 	"compilerOptions": {
 		"strictNullChecks": true,
+		"target": "esnext",
 		"baseUrl": ".",
 		"paths": {
+			"@/*": ["./*"],
 			"@root/*": ["./src/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@components/*": ["./src/components/*"],
@@ -16,8 +18,15 @@
 			"@hooks/*": ["./src/hooks/*"],
 			"@i18n/*": ["./src/i18n/*"]
 		},
+		"plugins": [
+			{
+				"name": "@0no-co/graphqlsp",
+				"schema": "./schema.graphql"
+			}
+		],
+		"verbatimModuleSyntax": false,
 		"typeRoots": ["./node_modules/@types", "./src/types"],
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js"
-	},
+	}
 }

@@ -62,6 +62,7 @@ const SearchInput: Component<SearchInputProps> = (props) => {
 				onInput={onSearch}
 				value={search()}
 				type="search"
+				name="search"
 				placeholder={props.i18n["input.search"] || "Search article by title..."}
 				autocapitalize="off"
 				autocomplete="off"

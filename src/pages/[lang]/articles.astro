@@ -1,13 +1,8 @@
 ---
-import { getLanguageKeys } from "@i18n/utils";
-import { DEFAULT_LANGUAGE } from "@root/constants";
 import ArticlesTemplate from "@templates/Articles.astro";
+import { isPageLangSupported } from "@i18n/utils";
 
-export function getStaticPaths() {
-	return getLanguageKeys()
-		.filter((lang) => lang !== DEFAULT_LANGUAGE)
-		.map((lang) => ({ params: { lang } }));
-}
+if (!isPageLangSupported(Astro)) return Astro.redirect("/404");
 ---
 
 <ArticlesTemplate />

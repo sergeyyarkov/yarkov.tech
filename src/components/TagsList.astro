@@ -1,0 +1,8 @@
+---
+import { getTagList } from "@root/queries/tag";
+import List from "@components/ArticlesList/TagsList";
+
+const tags = (await getTagList()).map((t) => t.title);
+---
+
+<List client:load tags={tags} />

@@ -1,3 +1,0 @@
----
-title: WebSerial API
----

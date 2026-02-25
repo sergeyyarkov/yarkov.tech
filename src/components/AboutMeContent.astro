@@ -1,0 +1,12 @@
+---
+import { getLanguageFromURL } from "@i18n/utils";
+import { getAboutMe } from "../queries/global";
+import { markdownToHTML } from "../utils/markdown";
+import ArticleContent from "@components/ArticleContent.astro";
+
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const data = await getAboutMe(pageLang);
+const aboutMeHtmlContent = await markdownToHTML(data?.about || "");
+---
+
+<ArticleContent set:html={aboutMeHtmlContent} />

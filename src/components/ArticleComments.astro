@@ -11,7 +11,7 @@ const { url, id } = Astro.props as Props;
 	<div id="disqus_thread"></div>
 </footer>
 
-<script define:vars={{ url, id }}>
+<script is:inline define:vars={{ url, id }}>
 	var disqus_config = function () {
 		this.page.url = url;
 		this.page.identifier = id;
@@ -25,9 +25,9 @@ const { url, id } = Astro.props as Props;
 					((function () {
 						var e = document,
 							t = e.createElement("script");
-						(t.src = "https://yarkov-tech.disqus.com/embed.js"),
+						((t.src = "https://yarkov-tech.disqus.com/embed.js"),
 							t.setAttribute("data-timestamp", +new Date()),
-							(e.head || e.body).appendChild(t);
+							(e.head || e.body).appendChild(t));
 					})(),
 					t.unobserve(e.target));
 			});
@@ -39,9 +39,6 @@ const { url, id } = Astro.props as Props;
 		"onthemetoggled",
 		() =>
 			document.readyState == "complete" &&
-			setTimeout(
-				() => "DISQUS" in window && DISQUS.reset({ reload: true, config: disqus_config }),
-				100
-			)
+			setTimeout(() => "DISQUS" in window && DISQUS.reset({ reload: true, config: disqus_config }), 100)
 	);
 </script>

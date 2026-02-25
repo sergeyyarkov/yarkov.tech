@@ -17,10 +17,8 @@ export default {
 	/* Page descriptions */
 	"pageDescription.articles":
 		"Технические статьи, туториалы и различные справочные материалы которые связаны с IT тематикой находятся здесь.",
-	"pageDescription.projects":
-		"Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.",
-	"pageDescription.contacts":
-		"Воспользуйтесь формой обратной связи или напишите мне в социальные сети.",
+	"pageDescription.projects": "Несколько моих основных проектов которые были разработаны и выложены в открытый доступ.",
+	"pageDescription.contacts": "Воспользуйтесь формой обратной связи или напишите мне в социальные сети.",
 	/* Navigation */
 	"navigation.articles": "Статьи",
 	"navigation.projects": "Проекты",
@@ -58,4 +56,9 @@ export default {
 	/* Footer */
 	"footer.rssFeed": "RSS Лента",
 	"footer.developed": "Разработка",
+	/* Submitted page */
+	"submitted.heading": "Сообщение отправлено",
+	"submitted.description": "Ваше сообщение отправлено, спасибо.",
+	"submitted.error": "Ошибка отправки сообщения. Повторите позже.",
+	"submitted.limit": "Отправьте ваше сообщение позже.",
 };

@@ -1,8 +1,14 @@
 ---
+import ProjectItem from "@components/ProjectItem.astro";
+import { getLanguageFromURL } from "../i18n/utils";
+import { getProjectList } from "../queries";
+
+const pageLang = getLanguageFromURL(Astro.url.pathname);
+const projects = await getProjectList(pageLang);
 ---
 
 <div>
-	<slot />
+	{projects.map((data) => <ProjectItem data={data} />)}
 </div>
 
 <style>

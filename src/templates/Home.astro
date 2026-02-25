@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/default.astro";
 import Splash from "@components/Splash/Splash.astro";
 import SplashHeading from "@components/Splash/SplashHeading.astro";
@@ -11,9 +10,6 @@ import { getLanguageFromURL, useTranslation } from "@root/i18n/utils";
 
 const pageLang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslation(Astro);
-const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
 ---
 
 <PageLayout description={t("site.description")} lang={pageLang}>
@@ -32,5 +28,5 @@ const articles = (await getCollection("blog", (e) => !e.data.draft)).sort(
 			</SplashLink>
 		</SplashLinks>
 	</Splash>
-	<RecentArticles articles={articles} />
+	<RecentArticles />
 </PageLayout>

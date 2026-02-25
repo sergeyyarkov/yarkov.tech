@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+.env
+.env.example
+.git
+.gitignore
+dockerfile
+.dockerignore
+.vscode
+.prettierrc
+codegen.ts
+schema.graphql
+README.md

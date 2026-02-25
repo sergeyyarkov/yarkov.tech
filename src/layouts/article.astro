@@ -1,27 +1,23 @@
 ---
-import type { MarkdownHeading } from "astro";
-import type { CollectionEntry } from "astro:content";
 import { DEFAULT_LANGUAGE, SITE_METADATA } from "@root/constants";
 import BaseHead from "@components/BaseHead.astro";
 import BaseLayout from "@components/BaseLayout.astro";
 import ArticleContent from "@components/ArticleContent.astro";
 import ArticlePost from "@components/ArticlePost.astro";
 import OpenGraph from "@components/OpenGraph.astro";
-import TableOfContents from "@root/components/TableOfContents.astro";
-import { useTranslation } from "@root/i18n/utils";
+// import TableOfContents from "@root/components/TableOfContents.astro";
+import { markdownToHTML } from "@utils/markdown";
+import { Article_TranslationsQuery } from "../graphql/graphql";
 
 export interface Props {
-	lang?: string | undefined;
-	article: CollectionEntry<"blog">;
-	availableOnLangs?: CollectionEntry<"blog">[];
-	headings: MarkdownHeading[];
+	lang?: string;
+	article: Article_TranslationsQuery["article_translations"][0];
 }
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const { lang = DEFAULT_LANGUAGE, article, headings, availableOnLangs } = Astro.props as Props;
-const {
-	data: { title, description, coverImage },
-} = article;
+const { lang = DEFAULT_LANGUAGE, article } = Astro.props as Props;
+const { title, description, cover_image, content } = article;
+const htmlContent = await markdownToHTML(content);
 ---
 
 <html lang={lang}>
@@ -32,8 +28,13 @@ const {
 			description={description}
 			type="article"
 			url={canonicalUrl.href}
-			image={coverImage
-				? { path: coverImage, width: "700", height: "400", type: coverImage }
+			image={cover_image
+				? {
+						path: `${cover_image.filename_disk}`,
+						width: "700",
+						height: "400",
+						type: `${cover_image.type}`,
+					}
 				: undefined}
 		/>
 		<script is:inline defer src="/assets/js/load-code-highlight.js"></script>
@@ -41,11 +42,8 @@ const {
 
 	<BaseLayout>
 		<div class="container">
-			<ArticlePost lang={lang} article={article} availableOnLangs={availableOnLangs}>
-				<TableOfContents headings={headings} />
-				<ArticleContent>
-					<slot />
-				</ArticleContent>
+			<ArticlePost lang={lang} article={article}>
+				<ArticleContent set:html={htmlContent} />
 			</ArticlePost>
 		</div>
 	</BaseLayout>

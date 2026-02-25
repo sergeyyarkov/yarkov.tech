@@ -8,19 +8,30 @@ export function useTranslation(Astro: Readonly<AstroGlobal>): (key: UIDictionary
 }
 
 export function getLanguageKeys(): Array<string> {
-	return Object.keys(languages).filter((lang) =>
-		SUPPORTED_LANGUAGES.includes(lang as LanguageKeys)
-	);
+	return Object.keys(languages).filter((lang) => SUPPORTED_LANGUAGES.includes(lang as LanguageKeys));
 }
 
 export function getLanguageFromURL(pathname: string): LanguageKeys {
-	const lang = pathname.split("/")[1] as LanguageKeys;
+	const splittedPathName = pathname.split("/");
+	let lang = splittedPathName[1] as LanguageKeys;
+
+	if ((lang as string) === "blog") lang = splittedPathName[2] as LanguageKeys;
+
 	if (Object.hasOwn(languages, lang)) return lang;
 	return DEFAULT_LANGUAGE;
 }
 
+// Call only from ./src/[lang]/page.astro
+export function isPageLangSupported(Astro: Readonly<AstroGlobal>) {
+	const params = Astro.params as { lang: string };
+	if (SUPPORTED_LANGUAGES.includes(params.lang as LanguageKeys)) return true;
+	return false;
+}
+
 export function removeLangFromURL(pathname: string): string {
-	return pathname.split("/").slice(2).join("/");
+	const splittedPath = pathname.split("/");
+	if (splittedPath.length >= 3) return "/" + splittedPath.slice(2).join("/");
+	return pathname;
 }
 
 function transformExports<T>(modules: Record<string, { default: T }>) {
@@ -32,9 +43,7 @@ function transformExports<T>(modules: Record<string, { default: T }>) {
 	return translations;
 }
 
-const translations = transformExports<Record<string, UIDictionaryKeys>>(
-	import.meta.glob("./*/ui.ts", { eager: true })
-);
+const translations = transformExports<Record<string, UIDictionaryKeys>>(import.meta.glob("./*/ui.ts", { eager: true }));
 
 export function translate(key: UIDictionaryKeys, lang: LanguageKeys): string {
 	const value = translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key];

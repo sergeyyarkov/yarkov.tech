@@ -19,7 +19,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 	</select>
 </div>
 
-<script define:vars={{ lang, DEFAULT_LANGUAGE, URL_BLOG_PREFIX }}>
+<script is:inline define:vars={{ lang, DEFAULT_LANGUAGE, URL_BLOG_PREFIX }}>
 	const $select = document.getElementById("languageSelect");
 
 	const changeLanguageHandler = (e) => {
@@ -37,8 +37,7 @@ const lang = getLanguageFromURL(Astro.url.pathname);
 
 		/* Move user to articles page with new language */
 		if (window.location.pathname.includes(`/${URL_BLOG_PREFIX}/`)) {
-			window.location.pathname =
-				`${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
+			window.location.pathname = `${newLang === DEFAULT_LANGUAGE ? "" : newLang + "/"}` + "articles/";
 			return;
 		}
 
