@@ -10,8 +10,8 @@ export async function GET(context: APIContext) {
 	const articles = await getArticleList();
 
 	const baseUrls: Array<SitemapURL> = [
-		{ loc: `/`, changefreq: "weekly", priority: 1.0 },
-		{ loc: `/articles/`, changefreq: "weekly", priority: 0.9 },
+		{ loc: `/`, changefreq: "monthly", priority: 1.0 },
+		{ loc: `/articles/`, changefreq: "monthly", priority: 0.9 },
 		{ loc: `/projects/`, changefreq: "monthly", priority: 0.8 },
 		{ loc: `/about/`, changefreq: "monthly", priority: 0.7 },
 	];
@@ -65,14 +65,15 @@ export async function GET(context: APIContext) {
 			})
 			.join("")}
 			${articleUrls
-				.map((url) => {
-					return `
-					<url>
-						<loc>${url.loc}</loc>
-						${url.langs?.map(({ lang, href }) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${href}"/>`).join("")}
-					</url>
-				`;
-				})
+				.map(
+					(url) =>
+						`
+							<url>
+								<loc>${url.loc}</loc>
+								${url.langs?.map(({ lang, href }) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${href}"/>`).join("")}
+							</url>
+						`
+				)
 				.join("")}
 		</urlset>`;
 
