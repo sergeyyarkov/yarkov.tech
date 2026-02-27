@@ -36,7 +36,7 @@
 		"markdown-it-table-of-contents": "^1.1.0",
 		"mime-types": "^2.1.35",
 		"sharp": "^0.32.6",
-		"solid-js": "^1.7.12"
+		"solid-js": "^1.9.11"
 	},
 	"devDependencies": {
 		"@0no-co/graphqlsp": "^1.15.1",
