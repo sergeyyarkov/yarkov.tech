@@ -1,44 +1,53 @@
 ---
+import UIString from "./UIString.astro";
+
 interface Props {
 	url: string;
 	id: string;
+	lang: LanguageKeys;
 }
 
-const { url, id } = Astro.props as Props;
+const { url, id, lang } = Astro.props as Props;
 ---
 
 <footer itemscope itemtype="http://schema.org/UserComments">
-	<div id="disqus_thread"></div>
+	<h2><UIString key={"articlePost.comments"} />:</h2>
+	<div id="remark42"></div>
 </footer>
 
-<script is:inline define:vars={{ url, id }}>
-	var disqus_config = function () {
-		this.page.url = url;
-		this.page.identifier = id;
+<script is:inline define:vars={{ url, id, lang }}>
+	window.remark_config = {
+		host: "https://remark.yarkov.tech",
+		site_id: "remark",
+		theme: window.theme,
+		show_email_subscription: true,
+		url,
+		locale: lang,
+		no_footer: true,
 	};
 
-	var e = document.getElementById("disqus_thread");
+	var e = document.getElementById("remark42");
 	if ("IntersectionObserver" in window) {
 		var t = new IntersectionObserver((e) => {
 			e.forEach((e) => {
-				e.isIntersecting &&
-					((function () {
-						var e = document,
-							t = e.createElement("script");
-						((t.src = "https://yarkov-tech.disqus.com/embed.js"),
-							t.setAttribute("data-timestamp", +new Date()),
-							(e.head || e.body).appendChild(t));
-					})(),
-					t.unobserve(e.target));
+				if (e.isIntersecting) {
+					((e, n) => {
+						for (var o = 0; o < e.length; o++) {
+							var r = n.createElement("script"),
+								c = ".js",
+								d = n.head || n.body;
+							("noModule" in r ? ((r.type = "module"), (c = ".mjs")) : (r.async = !0),
+								(r.defer = !0),
+								(r.src = remark_config.host + "/web/" + e[o] + c),
+								d.appendChild(r));
+						}
+					})(remark_config.components || ["embed"], document);
+					t.unobserve(e.target);
+				}
 			});
 		});
 		t.observe(e);
 	}
 
-	window.addEventListener(
-		"onthemetoggled",
-		() =>
-			document.readyState == "complete" &&
-			setTimeout(() => "DISQUS" in window && DISQUS.reset({ reload: true, config: disqus_config }), 100)
-	);
+	window.addEventListener("onthemetoggled", (e) => window.REMARK42.changeTheme(e.detail));
 </script>

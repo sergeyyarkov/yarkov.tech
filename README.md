@@ -13,7 +13,7 @@ Personal website created with Astro.
 - [x] Table of contents
 - [x] Content management via [Directus](https://directus.io/)
 - [x] Form handling
-- [x] Comment system via [Disqus](https://disqus.com/)
+- [x] Comment system via [Remark42](https://github.com/umputun/remark42)
 - [x] RSS Feed for articles
 - [x] SEO optimized
 - [x] Views counter

@@ -140,11 +140,4 @@
 	--icon-filter: invert(100%);
 
 	--image-filter: grayscale(50%);
-
-	/*
-		https://sergeyski.com/css-color-scheme-and-iframes-lessons-learned-from-disqus-background-bug/
-	*/
-	iframe[src*="disqus.com"] {
-		color-scheme: light;
-	}
 }

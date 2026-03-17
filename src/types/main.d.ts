@@ -10,6 +10,8 @@ declare global {
 			type: K,
 			listener: (this: Window, ev: CustomEventMap[K]) => void
 		): void;
+		REMARK42: any;
+		remark_config: any;
 	}
 
 	interface CustomEventMap {

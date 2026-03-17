@@ -28,7 +28,9 @@ const {
 	views,
 	article_id: articleTranslations,
 } = article;
+
 const t = useTranslation(Astro);
+// const articleCodeLangs = articleTranslations?.translations?.map((t) => t?.languages_code?.code);
 ---
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="article">
@@ -63,11 +65,7 @@ const t = useTranslation(Astro);
 			</time>
 			<span itemprop="author">{`${author?.first_name} ${author?.last_name}`}</span>
 		</div>
-		{
-			cover_image && (
-				<ArticleCover src={`${DIRECTUS_URL}/assets/${cover_image.filename_disk}`} alt={title} />
-			)
-		}
+		{cover_image && <ArticleCover src={`${DIRECTUS_URL}/assets/${cover_image.filename_disk}`} alt={title} />}
 		<div class="description">
 			<p>
 				{description}
@@ -76,8 +74,12 @@ const t = useTranslation(Astro);
 		<AvailableOnLangs articles={articleTranslations} />
 	</header>
 	<slot />
-	<ArticleComments url={canonicalUrl.href} id={slug} />
+	<ArticleComments lang={pageLang} url={canonicalUrl.href} id={slug} />
 </article>
+
+<!-- <script define:vars={{ articleCodeLangs }} is:inline>
+	console.log(navigator.language, articleCodeLangs);
+</script> -->
 
 <style lang="scss" is:global>
 	.article {
