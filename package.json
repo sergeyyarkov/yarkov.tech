@@ -40,7 +40,7 @@
 	},
 	"devDependencies": {
 		"@0no-co/graphqlsp": "^1.15.1",
-		"@graphql-codegen/cli": "^6.1.0",
+		"@graphql-codegen/cli": "^6.1.2",
 		"@graphql-codegen/schema-ast": "^5.0.0",
 		"@parcel/watcher": "^2.5.1",
 		"@types/html-escaper": "^3.0.4",
