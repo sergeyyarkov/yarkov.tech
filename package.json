@@ -39,7 +39,7 @@
 		"solid-js": "^1.7.12"
 	},
 	"devDependencies": {
-		"@0no-co/graphqlsp": "^1.15.1",
+		"@0no-co/graphqlsp": "^1.15.2",
 		"@graphql-codegen/cli": "^6.1.0",
 		"@graphql-codegen/schema-ast": "^5.0.0",
 		"@parcel/watcher": "^2.5.1",
