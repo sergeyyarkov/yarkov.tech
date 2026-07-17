@@ -17,6 +17,24 @@ export async function getAboutMe(pageLang: string) {
 	return result.data.global_translations[0];
 }
 
+export async function getSplashInfo(pageLang: string) {
+	const SplashInfoQuery = graphql(`
+		query SplashInfo($pageLang: String!) {
+			home_page_translations(filter: { languages_code: { code: { _contains: $pageLang } } }) {
+				headline
+				subheadline
+				description
+			}
+		}
+	`);
+
+	const result = await execute(SplashInfoQuery, { pageLang });
+
+	if (!result.data || result.data.home_page_translations.length === 0) return null;
+
+	return result.data.home_page_translations[0];
+}
+
 export async function getContacts() {
 	const ContactsQuery = graphql(`
 		query ContactsQuery {

@@ -25,10 +25,6 @@ export default {
 	"navigation.about": "About me",
 	"navigation.contacts": "Contacts",
 	/* Home page */
-	"splash.headline": "Hello, I'am Sergey",
-	"splash.subheadline": "Fullstack web-developer & freelancer",
-	"splash.description":
-		"I develop websites and web applications of varying complexity, and also publish articles and tutorials on various IT topics.",
 	"splash.about": "about me",
 	"splash.contact": "text me",
 	/* Recent articles */

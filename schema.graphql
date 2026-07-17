@@ -158,6 +158,9 @@ type Subscription {
   directus_activity_mutated(event: EventEnum): directus_activity_mutated
   directus_comments_mutated(event: EventEnum): directus_comments_mutated
   directus_dashboards_mutated(event: EventEnum): directus_dashboards_mutated
+  directus_deployment_projects_mutated(event: EventEnum): directus_deployment_projects_mutated
+  directus_deployment_runs_mutated(event: EventEnum): directus_deployment_runs_mutated
+  directus_deployments_mutated(event: EventEnum): directus_deployments_mutated
   directus_files_mutated(event: EventEnum): directus_files_mutated
   directus_flows_mutated(event: EventEnum): directus_flows_mutated
   directus_folders_mutated(event: EventEnum): directus_folders_mutated
@@ -174,7 +177,6 @@ type Subscription {
   directus_translations_mutated(event: EventEnum): directus_translations_mutated
   directus_users_mutated(event: EventEnum): directus_users_mutated
   directus_versions_mutated(event: EventEnum): directus_versions_mutated
-  directus_webhooks_mutated(event: EventEnum): directus_webhooks_mutated
   global_mutated(event: EventEnum): global_mutated
   global_translations_mutated(event: EventEnum): global_translations_mutated
   home_page_mutated(event: EventEnum): home_page_mutated
@@ -244,7 +246,6 @@ type appeal_mutated {
 
 type article {
   id: ID!
-  title: String
   translations(filter: article_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_translations]
   translations_func: count_functions
 }
@@ -264,7 +265,6 @@ type article_aggregated {
 
 type article_aggregated_count {
   id: Int
-  title: Int
   translations: Int
 }
 
@@ -276,7 +276,6 @@ input article_filter {
   _and: [article_filter]
   _or: [article_filter]
   id: number_filter_operators
-  title: string_filter_operators
   translations: article_translations_quantifier_filter
   translations_func: count_function_filter_operators
 }
@@ -487,7 +486,6 @@ input create_appeal_input {
 
 input create_article_input {
   id: ID
-  title: String
   translations: [create_article_translations_input]
 }
 
@@ -857,6 +855,130 @@ input directus_dashboards_filter {
 
 type directus_dashboards_mutated {
   data: directus_dashboards
+  event: EventEnum
+  key: ID!
+}
+
+type directus_deployment_projects {
+  date_created: Date
+  date_created_func: datetime_functions
+  deployment(filter: directus_deployments_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_deployments
+  external_id: String!
+  id: ID!
+  name: String!
+  runs(filter: directus_deployment_runs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_deployment_runs]
+  runs_func: count_functions
+  user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+}
+
+input directus_deployment_projects_filter {
+  _and: [directus_deployment_projects_filter]
+  _or: [directus_deployment_projects_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  deployment: directus_deployments_filter
+  external_id: string_filter_operators
+  id: id_filter_operators
+  name: string_filter_operators
+  runs: directus_deployment_runs_quantifier_filter
+  runs_func: count_function_filter_operators
+  user_created: directus_users_filter
+}
+
+type directus_deployment_projects_mutated {
+  data: directus_deployment_projects
+  event: EventEnum
+  key: ID!
+}
+
+input directus_deployment_projects_quantifier_filter {
+  _and: [directus_deployment_projects_filter]
+  _none: directus_deployment_projects_filter
+  _or: [directus_deployment_projects_filter]
+  _some: directus_deployment_projects_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  deployment: directus_deployments_filter
+  external_id: string_filter_operators
+  id: id_filter_operators
+  name: string_filter_operators
+  runs: directus_deployment_runs_quantifier_filter
+  runs_func: count_function_filter_operators
+  user_created: directus_users_filter
+}
+
+type directus_deployment_runs {
+  date_created: Date
+  date_created_func: datetime_functions
+  external_id: String!
+  id: ID!
+  project(filter: directus_deployment_projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_deployment_projects
+  target: String!
+  user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+}
+
+input directus_deployment_runs_filter {
+  _and: [directus_deployment_runs_filter]
+  _or: [directus_deployment_runs_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  external_id: string_filter_operators
+  id: id_filter_operators
+  project: directus_deployment_projects_filter
+  target: string_filter_operators
+  user_created: directus_users_filter
+}
+
+type directus_deployment_runs_mutated {
+  data: directus_deployment_runs
+  event: EventEnum
+  key: ID!
+}
+
+input directus_deployment_runs_quantifier_filter {
+  _and: [directus_deployment_runs_filter]
+  _none: directus_deployment_runs_filter
+  _or: [directus_deployment_runs_filter]
+  _some: directus_deployment_runs_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  external_id: string_filter_operators
+  id: id_filter_operators
+  project: directus_deployment_projects_filter
+  target: string_filter_operators
+  user_created: directus_users_filter
+}
+
+type directus_deployments {
+  credentials: String
+  date_created: Date
+  date_created_func: datetime_functions
+  id: ID!
+  options: JSON
+  options_func: count_functions
+  projects(filter: directus_deployment_projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_deployment_projects]
+  projects_func: count_functions
+  provider: String!
+  user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+}
+
+input directus_deployments_filter {
+  _and: [directus_deployments_filter]
+  _or: [directus_deployments_filter]
+  credentials: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  id: id_filter_operators
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  projects: directus_deployment_projects_quantifier_filter
+  projects_func: count_function_filter_operators
+  provider: string_filter_operators
+  user_created: directus_users_filter
+}
+
+type directus_deployments_mutated {
+  data: directus_deployments
   event: EventEnum
   key: ID!
 }
@@ -1387,10 +1509,30 @@ input directus_roles_quantifier_filter {
 }
 
 type directus_settings {
+  ai_anthropic_allowed_models: JSON
+  ai_anthropic_allowed_models_func: count_functions
+  ai_anthropic_api_key: String
+  ai_google_allowed_models: JSON
+  ai_google_allowed_models_func: count_functions
+  ai_google_api_key: String
+  ai_openai_allowed_models: JSON
+  ai_openai_allowed_models_func: count_functions
+  ai_openai_api_key: String
+  ai_openai_compatible_api_key: String
+  ai_openai_compatible_base_url: String
+  ai_openai_compatible_headers: JSON
+  ai_openai_compatible_headers_func: count_functions
+  ai_openai_compatible_models: JSON
+  ai_openai_compatible_models_func: count_functions
+  ai_openai_compatible_name: String
+  """$t:fields.directus_settings.ai_system_prompt_note"""
+  ai_system_prompt: String
   auth_login_attempts: Int
   auth_password_policy: String
   basemaps: JSON
   basemaps_func: count_functions
+  """$t:fields.directus_settings.collaborative_editing_note"""
+  collaborative_editing_enabled: Boolean!
   custom_aspect_ratios: JSON
   custom_aspect_ratios_func: count_functions
   custom_css: String
@@ -1659,27 +1801,6 @@ input directus_versions_filter {
 
 type directus_versions_mutated {
   data: directus_versions
-  event: EventEnum
-  key: ID!
-}
-
-type directus_webhooks {
-  actions: [String]!
-  collections: [String]!
-  data: Boolean
-  headers: JSON
-  headers_func: count_functions
-  id: ID!
-  method: String
-  migrated_flow(filter: directus_flows_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_flows
-  name: String!
-  status: String
-  url: String!
-  was_active_before_deprecation: Boolean!
-}
-
-type directus_webhooks_mutated {
-  data: directus_webhooks
   event: EventEnum
   key: ID!
 }
@@ -2145,7 +2266,6 @@ input update_appeal_input {
 
 input update_article_input {
   id: ID
-  title: String
   translations: [update_article_translations_input]
 }
 
@@ -2359,7 +2479,6 @@ type version_appeal {
 
 type version_article {
   id: ID
-  title: String
   translations: JSON
 }
 

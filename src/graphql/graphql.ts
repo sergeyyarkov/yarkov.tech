@@ -1076,6 +1076,9 @@ export type Subscription = {
   directus_activity_mutated?: Maybe<Directus_Activity_Mutated>;
   directus_comments_mutated?: Maybe<Directus_Comments_Mutated>;
   directus_dashboards_mutated?: Maybe<Directus_Dashboards_Mutated>;
+  directus_deployment_projects_mutated?: Maybe<Directus_Deployment_Projects_Mutated>;
+  directus_deployment_runs_mutated?: Maybe<Directus_Deployment_Runs_Mutated>;
+  directus_deployments_mutated?: Maybe<Directus_Deployments_Mutated>;
   directus_files_mutated?: Maybe<Directus_Files_Mutated>;
   directus_flows_mutated?: Maybe<Directus_Flows_Mutated>;
   directus_folders_mutated?: Maybe<Directus_Folders_Mutated>;
@@ -1092,7 +1095,6 @@ export type Subscription = {
   directus_translations_mutated?: Maybe<Directus_Translations_Mutated>;
   directus_users_mutated?: Maybe<Directus_Users_Mutated>;
   directus_versions_mutated?: Maybe<Directus_Versions_Mutated>;
-  directus_webhooks_mutated?: Maybe<Directus_Webhooks_Mutated>;
   global_mutated?: Maybe<Global_Mutated>;
   global_translations_mutated?: Maybe<Global_Translations_Mutated>;
   home_page_mutated?: Maybe<Home_Page_Mutated>;
@@ -1140,6 +1142,21 @@ export type SubscriptionDirectus_Comments_MutatedArgs = {
 
 
 export type SubscriptionDirectus_Dashboards_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionDirectus_Deployment_Projects_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionDirectus_Deployment_Runs_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionDirectus_Deployments_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1220,11 +1237,6 @@ export type SubscriptionDirectus_Users_MutatedArgs = {
 
 
 export type SubscriptionDirectus_Versions_MutatedArgs = {
-  event?: InputMaybe<EventEnum>;
-};
-
-
-export type SubscriptionDirectus_Webhooks_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1333,7 +1345,6 @@ export type Appeal_Mutated = {
 export type Article = {
   __typename?: 'article';
   id: Scalars['ID']['output'];
-  title?: Maybe<Scalars['String']['output']>;
   translations?: Maybe<Array<Maybe<Article_Translations>>>;
   translations_func?: Maybe<Count_Functions>;
 };
@@ -1365,7 +1376,6 @@ export type Article_Aggregated = {
 export type Article_Aggregated_Count = {
   __typename?: 'article_aggregated_count';
   id?: Maybe<Scalars['Int']['output']>;
-  title?: Maybe<Scalars['Int']['output']>;
   translations?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1378,7 +1388,6 @@ export type Article_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Article_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Article_Filter>>>;
   id?: InputMaybe<Number_Filter_Operators>;
-  title?: InputMaybe<String_Filter_Operators>;
   translations?: InputMaybe<Article_Translations_Quantifier_Filter>;
   translations_func?: InputMaybe<Count_Function_Filter_Operators>;
 };
@@ -1671,7 +1680,6 @@ export type Create_Appeal_Input = {
 
 export type Create_Article_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
   translations?: InputMaybe<Array<InputMaybe<Create_Article_Translations_Input>>>;
 };
 
@@ -2142,6 +2150,206 @@ export type Directus_Dashboards_Filter = {
 export type Directus_Dashboards_Mutated = {
   __typename?: 'directus_dashboards_mutated';
   data?: Maybe<Directus_Dashboards>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Directus_Deployment_Projects = {
+  __typename?: 'directus_deployment_projects';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  deployment?: Maybe<Directus_Deployments>;
+  external_id: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  runs?: Maybe<Array<Maybe<Directus_Deployment_Runs>>>;
+  runs_func?: Maybe<Count_Functions>;
+  user_created?: Maybe<Directus_Users>;
+};
+
+
+export type Directus_Deployment_ProjectsDeploymentArgs = {
+  filter?: InputMaybe<Directus_Deployments_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Directus_Deployment_ProjectsRunsArgs = {
+  filter?: InputMaybe<Directus_Deployment_Runs_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Directus_Deployment_ProjectsUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Directus_Deployment_Projects_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Deployment_Projects_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Deployment_Projects_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  deployment?: InputMaybe<Directus_Deployments_Filter>;
+  external_id?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Id_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  runs?: InputMaybe<Directus_Deployment_Runs_Quantifier_Filter>;
+  runs_func?: InputMaybe<Count_Function_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Directus_Deployment_Projects_Mutated = {
+  __typename?: 'directus_deployment_projects_mutated';
+  data?: Maybe<Directus_Deployment_Projects>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Directus_Deployment_Projects_Quantifier_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Deployment_Projects_Filter>>>;
+  _none?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Deployment_Projects_Filter>>>;
+  _some?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  deployment?: InputMaybe<Directus_Deployments_Filter>;
+  external_id?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Id_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  runs?: InputMaybe<Directus_Deployment_Runs_Quantifier_Filter>;
+  runs_func?: InputMaybe<Count_Function_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Directus_Deployment_Runs = {
+  __typename?: 'directus_deployment_runs';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  external_id: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  project?: Maybe<Directus_Deployment_Projects>;
+  target: Scalars['String']['output'];
+  user_created?: Maybe<Directus_Users>;
+};
+
+
+export type Directus_Deployment_RunsProjectArgs = {
+  filter?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Directus_Deployment_RunsUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Directus_Deployment_Runs_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Deployment_Runs_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Deployment_Runs_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  external_id?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Id_Filter_Operators>;
+  project?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  target?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Directus_Deployment_Runs_Mutated = {
+  __typename?: 'directus_deployment_runs_mutated';
+  data?: Maybe<Directus_Deployment_Runs>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Directus_Deployment_Runs_Quantifier_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Deployment_Runs_Filter>>>;
+  _none?: InputMaybe<Directus_Deployment_Runs_Filter>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Deployment_Runs_Filter>>>;
+  _some?: InputMaybe<Directus_Deployment_Runs_Filter>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  external_id?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Id_Filter_Operators>;
+  project?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  target?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Directus_Deployments = {
+  __typename?: 'directus_deployments';
+  credentials?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  options?: Maybe<Scalars['JSON']['output']>;
+  options_func?: Maybe<Count_Functions>;
+  projects?: Maybe<Array<Maybe<Directus_Deployment_Projects>>>;
+  projects_func?: Maybe<Count_Functions>;
+  provider: Scalars['String']['output'];
+  user_created?: Maybe<Directus_Users>;
+};
+
+
+export type Directus_DeploymentsProjectsArgs = {
+  filter?: InputMaybe<Directus_Deployment_Projects_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Directus_DeploymentsUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Directus_Deployments_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Deployments_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Deployments_Filter>>>;
+  credentials?: InputMaybe<String_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Id_Filter_Operators>;
+  options?: InputMaybe<String_Filter_Operators>;
+  options_func?: InputMaybe<Count_Function_Filter_Operators>;
+  projects?: InputMaybe<Directus_Deployment_Projects_Quantifier_Filter>;
+  projects_func?: InputMaybe<Count_Function_Filter_Operators>;
+  provider?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Directus_Deployments_Mutated = {
+  __typename?: 'directus_deployments_mutated';
+  data?: Maybe<Directus_Deployments>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -2975,10 +3183,30 @@ export type Directus_Roles_Quantifier_Filter = {
 
 export type Directus_Settings = {
   __typename?: 'directus_settings';
+  ai_anthropic_allowed_models?: Maybe<Scalars['JSON']['output']>;
+  ai_anthropic_allowed_models_func?: Maybe<Count_Functions>;
+  ai_anthropic_api_key?: Maybe<Scalars['String']['output']>;
+  ai_google_allowed_models?: Maybe<Scalars['JSON']['output']>;
+  ai_google_allowed_models_func?: Maybe<Count_Functions>;
+  ai_google_api_key?: Maybe<Scalars['String']['output']>;
+  ai_openai_allowed_models?: Maybe<Scalars['JSON']['output']>;
+  ai_openai_allowed_models_func?: Maybe<Count_Functions>;
+  ai_openai_api_key?: Maybe<Scalars['String']['output']>;
+  ai_openai_compatible_api_key?: Maybe<Scalars['String']['output']>;
+  ai_openai_compatible_base_url?: Maybe<Scalars['String']['output']>;
+  ai_openai_compatible_headers?: Maybe<Scalars['JSON']['output']>;
+  ai_openai_compatible_headers_func?: Maybe<Count_Functions>;
+  ai_openai_compatible_models?: Maybe<Scalars['JSON']['output']>;
+  ai_openai_compatible_models_func?: Maybe<Count_Functions>;
+  ai_openai_compatible_name?: Maybe<Scalars['String']['output']>;
+  /** $t:fields.directus_settings.ai_system_prompt_note */
+  ai_system_prompt?: Maybe<Scalars['String']['output']>;
   auth_login_attempts?: Maybe<Scalars['Int']['output']>;
   auth_password_policy?: Maybe<Scalars['String']['output']>;
   basemaps?: Maybe<Scalars['JSON']['output']>;
   basemaps_func?: Maybe<Count_Functions>;
+  /** $t:fields.directus_settings.collaborative_editing_note */
+  collaborative_editing_enabled: Scalars['Boolean']['output'];
   custom_aspect_ratios?: Maybe<Scalars['JSON']['output']>;
   custom_aspect_ratios_func?: Maybe<Count_Functions>;
   custom_css?: Maybe<Scalars['String']['output']>;
@@ -3386,39 +3614,6 @@ export type Directus_Versions_Filter = {
 export type Directus_Versions_Mutated = {
   __typename?: 'directus_versions_mutated';
   data?: Maybe<Directus_Versions>;
-  event?: Maybe<EventEnum>;
-  key: Scalars['ID']['output'];
-};
-
-export type Directus_Webhooks = {
-  __typename?: 'directus_webhooks';
-  actions: Array<Maybe<Scalars['String']['output']>>;
-  collections: Array<Maybe<Scalars['String']['output']>>;
-  data?: Maybe<Scalars['Boolean']['output']>;
-  headers?: Maybe<Scalars['JSON']['output']>;
-  headers_func?: Maybe<Count_Functions>;
-  id: Scalars['ID']['output'];
-  method?: Maybe<Scalars['String']['output']>;
-  migrated_flow?: Maybe<Directus_Flows>;
-  name: Scalars['String']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-  url: Scalars['String']['output'];
-  was_active_before_deprecation: Scalars['Boolean']['output'];
-};
-
-
-export type Directus_WebhooksMigrated_FlowArgs = {
-  filter?: InputMaybe<Directus_Flows_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Directus_Webhooks_Mutated = {
-  __typename?: 'directus_webhooks_mutated';
-  data?: Maybe<Directus_Webhooks>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -4017,7 +4212,6 @@ export type Update_Appeal_Input = {
 
 export type Update_Article_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
   translations?: InputMaybe<Array<InputMaybe<Update_Article_Translations_Input>>>;
 };
 
@@ -4233,7 +4427,6 @@ export type Version_Appeal = {
 export type Version_Article = {
   __typename?: 'version_article';
   id?: Maybe<Scalars['ID']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
   translations?: Maybe<Scalars['JSON']['output']>;
 };
 
@@ -4393,6 +4586,13 @@ export type AboutMeQueryQueryVariables = Exact<{
 
 
 export type AboutMeQueryQuery = { __typename?: 'Query', global_translations: Array<{ __typename?: 'global_translations', about?: string | null }> };
+
+export type SplashInfoQueryVariables = Exact<{
+  pageLang: Scalars['String']['input'];
+}>;
+
+
+export type SplashInfoQuery = { __typename?: 'Query', home_page_translations: Array<{ __typename?: 'home_page_translations', headline?: string | null, subheadline?: string | null, description?: string | null }> };
 
 export type ContactsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4573,6 +4773,15 @@ export const AboutMeQueryDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<AboutMeQueryQuery, AboutMeQueryQueryVariables>;
+export const SplashInfoDocument = new TypedDocumentString(`
+    query SplashInfo($pageLang: String!) {
+  home_page_translations(filter: {languages_code: {code: {_contains: $pageLang}}}) {
+    headline
+    subheadline
+    description
+  }
+}
+    `) as unknown as TypedDocumentString<SplashInfoQuery, SplashInfoQueryVariables>;
 export const ContactsQueryDocument = new TypedDocumentString(`
     query ContactsQuery {
   global {
