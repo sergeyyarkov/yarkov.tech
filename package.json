@@ -1,7 +1,7 @@
 {
 	"name": "yarkov.tech",
 	"private": false,
-	"version": "3.1.0",
+	"version": "3.0.1",
 	"description": "Personal website created with Astro.",
 	"author": {
 		"name": "Sergey Yarkov",
