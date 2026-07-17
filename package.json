@@ -20,7 +20,7 @@
 		"codegen": "graphql-codegen --require dotenv/config --config codegen.ts --watch"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.5",
+		"@astrojs/check": "^0.9.9",
 		"@astrojs/node": "^9.5.0",
 		"@astrojs/rss": "^4.0.13",
 		"@astrojs/solid-js": "^5.1.3",
