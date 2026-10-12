@@ -6,6 +6,7 @@
 		"strictNullChecks": true,
 		"target": "esnext",
 		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
 		"paths": {
 			"@/*": ["./*"],
 			"@root/*": ["./src/*"],
