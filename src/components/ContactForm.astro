@@ -17,6 +17,10 @@ const formResult = Astro.getActionResult(actions.appeal);
 			<div>
 				<input name="email" placeholder="example@email.com" type="email" autocomplete="off" required />
 			</div>
+			<div class="hp-field" aria-hidden="true">
+				<label for="website_url">Оставьте это поле пустым:</label>
+				<input type="text" autocomplete="off" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+			</div>
 		</div>
 		<input name="subject" placeholder={t("input.subjectField")} type="text" autocomplete="off" required />
 		<textarea
@@ -48,6 +52,13 @@ const formResult = Astro.getActionResult(actions.appeal);
 		flex-direction: column;
 		row-gap: 7px;
 		margin-bottom: 3.125rem;
+		& .hp-field {
+			position: absolute;
+			left: -9999px;
+			top: -9999px;
+			opacity: 0;
+			pointer-events: none;
+		}
 		& .flex {
 			column-gap: 10px;
 			& div {

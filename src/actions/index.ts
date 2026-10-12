@@ -11,10 +11,13 @@ export const server = {
 		input: z.object({
 			name: z.string(),
 			email: z.string().email(),
+			website_url: z.string().optional(), // honeypot field
 			subject: z.string(),
 			message: z.string(),
 		}),
 		handler: async (data, ctx) => {
+			if (data.website_url && data.website_url.trim() !== "") return true;
+
 			const currentDate = new Date();
 			const latestAppeals = await getLatestAppealsByClientIp(ctx.clientAddress, 5);
 			const appealsLastHrs = latestAppeals.filter((a) => {
