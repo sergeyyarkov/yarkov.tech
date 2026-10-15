@@ -47,7 +47,7 @@
 		"@types/mime-types": "^2.1.4",
 		"@types/remark-prism": "^1.3.7",
 		"dotenv": "^17.2.3",
-		"sass": "^1.68.0",
+		"sass": "^1.101.0",
 		"typescript": "^5.9.3"
 	}
 }
